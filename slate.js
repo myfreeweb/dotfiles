@@ -24,12 +24,12 @@ slate.configAll({
 
 slate.bindAll({
   hyper: {
-    n: $.focus('Aurora'),
+    n: $.focus('Nightly'),
     e: $.focus('iTerm'),
     i: $.focus('Dash'),
     o: $.focus('Finder'),
     k: $.focus('iTunes'),
-    m: $.focus('Colloquy'),
+    m: $.focus('Textual'),
     'return': $('center', 'center'),
     z: 'undo',
     tab: 'hint'

@@ -28,6 +28,7 @@ link lesskey
 link slate.js
 link proBase
 link curlrc
+link psqlrc
 link_custom irbrc.rb $HOME/.irbrc
 link_custom gpg.conf $HOME/.gnupg/gpg.conf
 link_custom vim/vimrc $HOME/.vimrc

@@ -45,6 +45,10 @@ export PATH=/usr/local/share/npm/bin:$PATH
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=$JAVA_HOME/bin:$PATH
 export JRUBY_OPTS="-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify"
+runjava() {
+  cp $1 /tmp/Main.java
+  (cd /tmp && javac Main.java && echo "--- compiled, running" && java Main)
+}
 
 # Ruby
 export RBXOPT=-X19
