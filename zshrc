@@ -128,5 +128,4 @@ source $DOTFILES/vendor/zsh-hss/zsh-history-substring-search.zsh
 eval "$($DOTFILES/bin/fasd/fasd --init auto)"
 source $HOME/.zshrc.local
 
-[[ -e $(which doge) ]] && doge
 [[ -e $(which fortune) ]] && fortune | (cowsay -f tux || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
