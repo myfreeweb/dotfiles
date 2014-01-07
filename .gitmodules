@@ -22,9 +22,6 @@
 [submodule "bin/fasd"]
 	path = bin/fasd
 	url = git://github.com/clvv/fasd.git
-[submodule "emacs.d/vimvars"]
-	path = emacs.d/vimvars
-	url = git://github.com/jamesyoungman/vimvars.git
 [submodule "vim/vundle"]
 	path = vim/vundle
 	url = git://github.com/gmarik/vundle.git

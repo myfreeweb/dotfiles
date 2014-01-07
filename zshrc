@@ -65,6 +65,9 @@ export PYTHONSTARTUP=$DOTFILES/pythonrc.py
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 #export DYLD_FALLBACK_LIBRARY_PATH=/Applications/Postgres.app/Contents/MacOS/lib:/usr/lib:$DYLD_LIBRARY_PATH
 
+# Emacs
+export PATH=$HOME/.cask/bin:$PATH
+
 # TeX
 export PATH=/usr/texbin:$PATH
 

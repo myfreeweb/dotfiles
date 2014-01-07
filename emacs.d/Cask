@@ -1,0 +1,20 @@
+(source melpa)
+
+; General
+(depends-on "better-defaults")
+(depends-on "smex")
+(depends-on "smart-tab")
+(depends-on "smartparens")
+(depends-on "rainbow-delimiters")
+(depends-on "popwin")
+(depends-on "diminish")
+(depends-on "drag-stuff")
+(depends-on "find-file-in-project")
+
+; Theme
+(depends-on "zenburn-theme")
+
+; Clojure
+(depends-on "clojure-mode")
+(depends-on "clojure-test-mode")
+(depends-on "cider")
