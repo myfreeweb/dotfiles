@@ -1,15 +1,18 @@
-# http://blogs.perl.org/users/smylers/2011/08/ssh-productivity-tips.html
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+#
+# thanks:
+#  http://blogs.perl.org/users/smylers/2011/08/ssh-productivity-tips.html
+
 ControlMaster auto
 ControlPath /tmp/ssh_%h%p%r
 ControlPersist 5m
 GSSAPIAuthentication no
 HashKnownHosts no
-TCPKeepAlive yes
+TCPKeepAlive no
+ServerAliveInterval 60
+ServerAliveCountMax 10
 
 Host nfsn
   Hostname ssh.phx.nearlyfreespeech.net
-
-Host scsc
-  Hostname 54.216.202.110
-  User ubuntu
-  IdentityFile ~/.ssh/dev.pem
