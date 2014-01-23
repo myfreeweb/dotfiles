@@ -19,6 +19,7 @@ link ctags
 link gitconfig
 link gitignore
 link tmux.conf
+link tmux-helper.sh
 link vim
 link emacs.d
 link inputrc
