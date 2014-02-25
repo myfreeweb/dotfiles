@@ -12,7 +12,6 @@ link_custom() {
 }
 
 # don't even think about "link *rc", will remove all the rcs
-link emacs.d
 link inputrc
 link lesskey
 link curlrc

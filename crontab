@@ -1,4 +1,0 @@
-#min hour day  mon  wday
-*/30 *    *    *    *    ~/Code/dotfiles/bin/pinboard_xml
-30   *    *    *    *    /usr/bin/purge
-0    0    */2  *    *    /usr/local/bin/brew cleanup

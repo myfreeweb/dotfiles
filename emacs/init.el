@@ -7,12 +7,12 @@
 ;;;   http://whattheemacsd.com
 ;;;   https://github.com/bodil/emacs.d
 
+(add-to-list 'load-path "~/.emacs.d")
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 (load-theme 'zenburn t)
 
-(add-to-list 'load-path "~/.emacs.d")
 (require 'init-ido)
 (require 'init-fns)
 (require 'init-lisp)
@@ -71,4 +71,3 @@
 
 ;; Find File In Project
 (global-set-key (kbd "C-p") 'find-file-in-project)
-
