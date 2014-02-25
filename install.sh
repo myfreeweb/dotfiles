@@ -12,16 +12,12 @@ link_custom() {
 }
 
 # don't even think about "link *rc", will remove all the rcs
-link zshrc
 link vim
 link emacs.d
 link inputrc
-link gemrc
-link railsrc
 link lesskey
 link curlrc
 link psqlrc
-link_custom irbrc.rb $HOME/.irbrc
 link_custom gpg.conf $HOME/.gnupg/gpg.conf
 link_custom vim/vimrc $HOME/.vimrc
 link_custom vim/gvimrc $HOME/.gvimrc

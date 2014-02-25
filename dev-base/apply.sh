@@ -1,19 +1,19 @@
 #!/bin/sh
 echo "==> Installing dev-base"
 
-rm $HOME/.gitconfig
-cp gitconfig $HOME/.gitconfig
+rm /.gitconfig
+cp gitconfig /.gitconfig
 
-rm $HOME/.gitignore
-cp gitignore $HOME/.gitignore
+rm /.gitignore
+cp gitignore /.gitignore
 
-rm $HOME/.hgrc
-cp hgrc $HOME/.hgrc
+rm /.hgrc
+cp hgrc /.hgrc
 
-rm $HOME/.ackrc
-cp ackrc $HOME/.ackrc
+rm /.ackrc
+cp ackrc /.ackrc
 
-rm $HOME/.ctags
-cp ctags $HOME/.ctags
+rm /.ctags
+cp ctags /.ctags
 
 echo "==> Installed dev-base"

@@ -19,8 +19,8 @@ fi
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
-source $DOTFILES/vendor/zsh-hl/zsh-syntax-highlighting.zsh
-source $DOTFILES/zshuery/zshuery.sh
+source $HOME/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zshuery/zshuery.sh
 load_defaults
 load_aliases
 load_completion $DOTFILES/zshuery/completion
@@ -126,7 +126,7 @@ bindkey "\e[3~" delete-char # Del
 # }}}
 
 # Have to load these plugins after... something
-source $DOTFILES/vendor/zsh-hss/zsh-history-substring-search.zsh
+source $HOME/.zsh/zsh-hss/zsh-history-substring-search.zsh
 eval "$($DOTFILES/bin/fasd/fasd --init auto)"
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
