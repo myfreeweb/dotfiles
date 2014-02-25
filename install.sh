@@ -23,9 +23,6 @@ link_custom vim/vimrc $HOME/.vimrc
 link_custom vim/gvimrc $HOME/.gvimrc
 mkdir -p $HOME/.ssh
 link_custom ssh_config $HOME/.ssh/config
-mkdir -p $HOME/.lein
-link_custom lein/init.clj $HOME/.lein/init.clj
-link_custom lein/profiles.clj $HOME/.lein/profiles.clj
 
 echo "vim/tmp vim/tmp/undo vim/tmp/backups" | xargs mkdir -p
 
