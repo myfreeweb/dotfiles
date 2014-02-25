@@ -22,7 +22,6 @@ for dir in $DOTFILES/bin/*
     set PATH $dir $PATH
   end
 end
-set PATH (brew --prefix coreutils)/libexec/gnubin $PATH
 set PATH "$DOTFILES/bin" $PATH
 
 # JS
@@ -33,16 +32,8 @@ set -gx JAVA_HOME (/usr/libexec/java_home)
 set PATH "$JAVA_HOME/bin" $PATH
 set -gx JRUBY_OPTS "-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify"
 
-# Postgres
-set PATH "/Applications/Postgres.app/Contents/MacOS/bin" $PATH
-
 # TeX
 set PATH "/usr/texbin" $PATH
-
-# iOSOpenDev
-set iOSOpenDevPath "/opt/iOSOpenDev"
-set iOSOpenDevDevice "192.168.1.148"
-set PATH "/opt/iOSOpenDev/bin" $PATH
 
 # Fish
 set -gx fish_greeting ''
@@ -81,13 +72,9 @@ function emacs
 end
 # }}}
 
-. $DOTFILES/python.fish
-. $DOTFILES/ruby.fish
-
 # Prompt {{{
 function fish_prompt
   set last_status $status
-  command fasd --proc (fasd --sanitize $1)
   echo
 
   set_color black --background=green

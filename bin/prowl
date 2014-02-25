@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-prowly -k $(cat ~/.prowl) -a CLI -e "Notification" -d $*

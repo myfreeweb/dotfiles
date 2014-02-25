@@ -1,6 +1,4 @@
 #min hour day  mon  wday
-0    */5  *    *    *    zsh ~/Code/dotfiles/bin/backup
-0    */5  */5  *    *    zsh ~/Code/dotfiles/bin/rmbackups
 */30 *    *    *    *    ~/Code/dotfiles/bin/pinboard_xml
 30   *    *    *    *    /usr/bin/purge
 0    0    */2  *    *    /usr/local/bin/brew cleanup

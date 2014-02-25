@@ -34,7 +34,6 @@ if [[ $HAS_BREW == 1 ]]; then
   BREWGO=$(brew --prefix go)
   [[ -d $BREWGO ]] && export GOROOT=$BREWGO && export GOBIN=$BREWGO/bin \
     && export GOPATH=$HOME/Code/go && export PATH=$GOPATH/bin:$GOBIN:$PATH
-  source "$(brew --prefix grc)/etc/grc.bashrc"
 fi
 
 # JS
@@ -53,7 +52,7 @@ runjava() {
 # Ruby
 export RBXOPT=-X19
 export RBENV_ROOT=/usr/local/var/rbenv
-eval "$(rbenv init -)"
+[[ -e $RBENV_ROOT ]] && eval "$(rbenv init -)"
 
 # Python
 export PYTHONDONTWRITEBYTECODE=true
@@ -129,6 +128,6 @@ bindkey "\e[3~" delete-char # Del
 # Have to load these plugins after... something
 source $DOTFILES/vendor/zsh-hss/zsh-history-substring-search.zsh
 eval "$($DOTFILES/bin/fasd/fasd --init auto)"
-source $HOME/.zshrc.local
+[[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 [[ -e $(which fortune) ]] && fortune | (cowsay -f tux || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null

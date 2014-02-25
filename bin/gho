@@ -1,2 +1,0 @@
-#!/bin/sh
-open $(git remote -v | grep fetch | grep github.com | tr "\t" " " | awk '{ print $2 }' | sed -e 's/:/\//' -e 's/git@/https:\/\//' -e 's/\.git$//' -e 's/git\/\/\//https:\/\//')
