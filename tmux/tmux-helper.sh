@@ -17,11 +17,6 @@ case $1 in
       $2
     fi ;;
 
-  battery)
-    if [ -e "$HOME/Code/dotfiles/bin/battery/battery" ]; then
-      $HOME/Code/dotfiles/bin/battery/battery tmux
-    fi ;;
-
   top) if [ -x "`which htop`" ]; then htop; else top; fi ;;
 
   copy-buf) if [ -x "`which reattach-to-user-namespace`" ] && [ -x "`which pbcopy`" ]; then

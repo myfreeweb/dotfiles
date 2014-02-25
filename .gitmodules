@@ -13,15 +13,6 @@
 [submodule "zshuery"]
 	path = zsh/zshuery
 	url = git://github.com/myfreeweb/zshuery
-[submodule "bin/fasd"]
-	path = bin/fasd
-	url = git://github.com/clvv/fasd.git
-[submodule "bin/spark"]
-	path = bin/spark
-	url = git://github.com/holman/spark.git
-[submodule "bin/battery"]
-	path = bin/battery
-	url = git://github.com/Goles/Battery.git
 [submodule "reslate"]
 	path = osx/reslate
 	url = git@github.com:lunixbochs/reslate.git

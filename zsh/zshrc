@@ -7,13 +7,6 @@
 # https://github.com/mathiasbynens/dotfiles/blob/master/.functions
 
 # Loading plugins, setting variables {{{
-export CODEDIR=$HOME/Code
-if [[ -e $HOME/.dotfiles_location ]]; then
-  export DOTFILES=$(cat $HOME/.dotfiles_location)
-else
-  export DOTFILES=$HOME/Code/dotfiles
-  echo "~/.dotfiles_location not found, reinstall dotfiles"
-fi
 
 # brew must be in path before zshuery
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
@@ -23,10 +16,10 @@ source $HOME/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zshuery/zshuery.sh
 load_defaults
 load_aliases
-load_completion $DOTFILES/zshuery/completion
+load_completion $HOME/.zsh/zshuery/completion
 load_correction
 
-for dir in $DOTFILES/bin/*(/); do
+for dir in $HOME/Code/dotfiles/bin/*(/); do
   export PATH=$dir:$PATH
 done
 export PATH=$DOTFILES/bin:$HOME/.cabal/bin:$PATH
@@ -60,20 +53,11 @@ export VIRTUALENV_DISTRIBUTE=true
 export PIP_USE_MIRRORS=true
 export PYTHONSTARTUP=$DOTFILES/pythonrc.py
 
-# Postgres
-export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
-#export DYLD_FALLBACK_LIBRARY_PATH=/Applications/Postgres.app/Contents/MacOS/lib:/usr/lib:$DYLD_LIBRARY_PATH
-
 # Emacs
 export PATH=$HOME/.cask/bin:$PATH
 
 # TeX
 export PATH=/usr/texbin:$PATH
-
-# iOSOpenDev
-export iOSOpenDevPath=/opt/iOSOpenDev
-export iOSOpenDevDevice="192.168.1.148"
-export PATH=$iOSOpenDevPath/bin:$PATH
 
 # Less
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -93,14 +77,9 @@ export LC_ALL="en_US.UTF-8"
 # }}}
 
 # Custom settings, aliases and functions {{{
-source $DOTFILES/rc
+[[ -e $HOME/.rc ]] && source $HOME/.rc
 alias "ps?"=psack
 dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
-echoarrow() { echo "$fg_bold[black]====> $fg_no_bold[yellow]$*$reset_color" }
-updatestuff() {
-  echoarrow "Updating dotfiles w/ submodules" && (cd $DOTFILES && git pull && git su)
-  [[ $HAS_BREW == 1 ]] && echoarrow "Updating Homebrew" && brew update
-}
 dataurl() {
   local mimeType=$(file -b --mime-type "$1")
   if [[ $mimeType == text/* ]]; then
@@ -127,7 +106,6 @@ bindkey "\e[3~" delete-char # Del
 
 # Have to load these plugins after... something
 source $HOME/.zsh/zsh-hss/zsh-history-substring-search.zsh
-eval "$($DOTFILES/bin/fasd/fasd --init auto)"
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 [[ -e $(which fortune) ]] && fortune | (cowsay -f tux || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
