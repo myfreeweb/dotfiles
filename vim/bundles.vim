@@ -1,5 +1,5 @@
 filetype off
-set rtp+=~/.vim/vundle/
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -65,5 +65,6 @@ Bundle 'nvie/vim-flake8'
 Bundle 'fs111/pydoc.vim'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'chriskempson/base16-vim'
 
 filetype plugin indent on

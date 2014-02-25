@@ -1,6 +1,3 @@
-[submodule "bin/rvn"]
-	path = bin/rvn
-	url = git://github.com/rupa/rvn.git
 [submodule "bin/tmux-osx-paste-fix"]
 	path = bin/tmux-osx-paste-fix
 	url = git://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git
@@ -13,18 +10,12 @@
 [submodule "keybindings"]
 	path = osx/keybindings
 	url = git://github.com/ttscoff/KeyBindings.git
-[submodule "mutt/solarized"]
-	path = mutt/solarized
-	url = git://github.com/altercation/mutt-colors-solarized.git
 [submodule "zshuery"]
 	path = zsh/zshuery
 	url = git://github.com/myfreeweb/zshuery
 [submodule "bin/fasd"]
 	path = bin/fasd
 	url = git://github.com/clvv/fasd.git
-[submodule "vim/vundle"]
-	path = vim/vundle
-	url = git://github.com/gmarik/vundle.git
 [submodule "bin/spark"]
 	path = bin/spark
 	url = git://github.com/holman/spark.git
