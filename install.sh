@@ -13,8 +13,6 @@ link_custom() {
 
 # don't even think about "link *rc", will remove all the rcs
 link zshrc
-link tmux.conf
-link tmux-helper.sh
 link vim
 link emacs.d
 link inputrc
