@@ -1,4 +1,3 @@
-slate.src('~/Code/dotfiles/reslate/reslate.js');
 // $.debug = true;
 
 slate.alias('hyper', 'ctrl;shift;alt;cmd');

@@ -26,8 +26,6 @@ link inputrc
 link gemrc
 link railsrc
 link lesskey
-link slate.js
-link proBase
 link curlrc
 link psqlrc
 link_custom irbrc.rb $HOME/.irbrc
@@ -41,15 +39,5 @@ link_custom lein/init.clj $HOME/.lein/init.clj
 link_custom lein/profiles.clj $HOME/.lein/profiles.clj
 
 echo "vim/tmp vim/tmp/undo vim/tmp/backups" | xargs mkdir -p
-
-if [[ $(uname) = 'Linux' ]]; then
-  cat ./crontab | crontab
-elif [[ $(uname) = 'Darwin' ]]; then
-  mkdir -p $HOME/Library/KeyBindings
-  link_custom keybindings/DefaultKeyBinding.dict $HOME/Library/KeyBindings/DefaultKeyBinding.dict
-  mkdir -p $HOME/Library/Application\ Support/KeyRemap4MacBook
-  link_custom private.xml $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml
-  ./osx.sh
-fi
 
 echo "Installed dotfiles!"
