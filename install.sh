@@ -12,12 +12,7 @@ link_custom() {
 }
 
 # don't even think about "link *rc", will remove all the rcs
-link ackrc
 link zshrc
-link hgrc
-link ctags
-link gitconfig
-link gitignore
 link tmux.conf
 link tmux-helper.sh
 link vim
