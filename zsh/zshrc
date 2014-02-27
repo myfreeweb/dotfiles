@@ -36,6 +36,7 @@ export PATH=/usr/local/share/npm/bin:$PATH
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=$JAVA_HOME/bin:$PATH
+export ANDROID_HOME=/usr/local/opt/android-sdk
 export JRUBY_OPTS="-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify"
 runjava() {
   cp $1 /tmp/Main.java
@@ -51,7 +52,7 @@ export RBENV_ROOT=/usr/local/var/rbenv
 export PYTHONDONTWRITEBYTECODE=true
 export VIRTUALENV_DISTRIBUTE=true
 export PIP_USE_MIRRORS=true
-export PYTHONSTARTUP=$DOTFILES/pythonrc.py
+export PYTHONSTARTUP=~/.pythonrc
 
 # Emacs
 export PATH=$HOME/.cask/bin:$PATH

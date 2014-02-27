@@ -12,7 +12,7 @@
 (depends-on "find-file-in-project")
 
 ; Theme
-(depends-on "zenburn-theme")
+(depends-on "base16-theme")
 
 ; Clojure
 (depends-on "clojure-mode")

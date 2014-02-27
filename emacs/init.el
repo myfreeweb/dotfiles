@@ -11,7 +11,7 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
-(load-theme 'zenburn t)
+(load-theme 'base16-default t)
 
 (require 'init-ido)
 (require 'init-fns)
