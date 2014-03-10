@@ -2,6 +2,9 @@
 
 Modular dotfiles!
 Easy installation on virtual machines and servers via SSH.
+No symlinks.
+
+A module is a directory with an `apply.sh` file that installs the dotfiles.
 
 ## Installation
 
