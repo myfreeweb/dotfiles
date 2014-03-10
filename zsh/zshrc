@@ -22,7 +22,7 @@ load_correction
 for dir in $HOME/Code/dotfiles/bin/*(/); do
   export PATH=$dir:$PATH
 done
-export PATH=$DOTFILES/bin:$HOME/.cabal/bin:$PATH
+export PATH=$HOME/Code/dotfiles/bin:$HOME/.cabal/bin:$PATH
 if [[ $HAS_BREW == 1 ]]; then
   BREWGO=$(brew --prefix go)
   [[ -d $BREWGO ]] && export GOROOT=$BREWGO && export GOBIN=$BREWGO/bin \

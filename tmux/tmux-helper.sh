@@ -6,7 +6,6 @@
 case $1 in
   launch-shell)
     if [ "`uname`" = "Darwin" ]; then
-      export PATH=$PATH:`cat ~/.dotfiles_location`/bin/tmux-osx-paste-fix
       if [ -x "`which reattach-to-user-namespace`" ]; then
         reattach-to-user-namespace -l $2
       else

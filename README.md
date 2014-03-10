@@ -8,6 +8,9 @@ A module is a directory with an `apply.sh` file that installs the dotfiles.
 
 ## Installation
 
+On the main machine, clone to `~/Code/dotfiles`.
+Don't forget to do on OS X: `brew install reattach-to-user-namespace`.
+
 ### Local (example)
 
     ./install.sh dev-base tmux zsh vim osx python ruby
