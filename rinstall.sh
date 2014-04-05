@@ -11,7 +11,7 @@ for module in "$@"; do
   if [[ -d "$module" ]]; then
     if [[ -f "$module/apply.sh" ]]; then
       echo "=> Sending $module"
-      find "$module" -depth -print | cpio -oy | ssh "$server" 'cpio -id'
+      find "$module" -depth -print | cpio -o | ssh "$server" 'cpio -id'
       ssh "$server" "cd $module && sh apply.sh && cd .. && rm -r $module"
     else
       echo "=> $module is not a module"

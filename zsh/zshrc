@@ -17,11 +17,13 @@ source $HOME/.zsh/zshuery/zshuery.sh
 load_defaults
 load_aliases
 load_completion $HOME/.zsh/zshuery/completion
-load_correction
+# load_correction
 
-for dir in $HOME/Code/dotfiles/bin/*(/); do
-  export PATH=$dir:$PATH
-done
+if [[ -e $HOME/Code/dotfiles/bin ]]; then
+  for dir in $HOME/Code/dotfiles/bin/*(/); do
+    export PATH=$dir:$PATH
+  done
+fi
 export PATH=$HOME/Code/dotfiles/bin:$HOME/.cabal/bin:$PATH
 if [[ $HAS_BREW == 1 ]]; then
   BREWGO=$(brew --prefix go)
@@ -34,8 +36,10 @@ export NODE_PATH=/usr/local/lib/node_modules
 export PATH=/usr/local/share/npm/bin:$PATH
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home)
-export PATH=$JAVA_HOME/bin:$PATH
+if [[ -e /usr/libexec/java_home ]]; then
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  export PATH=$JAVA_HOME/bin:$PATH
+fi
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export JRUBY_OPTS="-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify"
 runjava() {
