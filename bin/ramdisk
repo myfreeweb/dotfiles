@@ -3,7 +3,7 @@
 OS=$(uname -s)
 
 case $( uname -s ) in
-Darwin)  diskutil erasevolume HFS+ 'ramdisk' `hdiutil attach -nomount ram://2097152`;;
+Darwin)  diskutil erasevolume HFS+ 'ramdisk' `hdiutil attach -nomount ram://4194304`;;
 Linux)   mount -t ramfs -o size=1g ramfs /mnt/ramdisk;;
 FreeBSD) mount_mfs -s 2097152 /dev/ad0s1b /mnt/ramdisk;;
 *)       echo "Unknown OS";;
