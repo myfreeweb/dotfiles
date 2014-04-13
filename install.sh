@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 if [[ $1 == "" ]]; then
   echo "Usage: $0 module (module module ...)"
