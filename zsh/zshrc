@@ -21,7 +21,7 @@ load_completion $HOME/.zsh/zshuery/completion
 
 export DOTFILES=$HOME/Code/github.com/myfreeweb/dotfiles
 if [[ -e $DOTFILES/bin ]]; then
-  for dir in $DOTFILES/bin/*(/); do
+  for dir in $DOTFILES/bin/*; do
     export PATH=$dir:$PATH
   done
 fi
