@@ -19,7 +19,7 @@ load_aliases
 load_completion $HOME/.zsh/zshuery/completion
 # load_correction
 
-export DOTFILES=$HOME/Code/github.com/myfreeweb/dotfiles
+export DOTFILES=$HOME/src/github.com/myfreeweb/dotfiles
 if [[ -e $DOTFILES/bin ]]; then
   for dir in $DOTFILES/bin/*; do
     export PATH=$dir:$PATH
@@ -28,7 +28,7 @@ fi
 export PATH=$DOTFILES/bin:$HOME/.cabal/bin:$PATH
 
 # Go
-export GOPATH=$HOME/Code
+export GOPATH=$HOME
 if [[ $HAS_BREW == 1 ]]; then
   BREWGO=$(brew --prefix go)
   [[ -d $BREWGO ]] && export GOROOT=$BREWGO && export GOBIN=$BREWGO/bin \
