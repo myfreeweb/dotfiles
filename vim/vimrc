@@ -39,6 +39,9 @@ set whichwrap+=<,>,[,]
 set virtualedit=block
 
 " ui
+if !has('gui_running')
+  set t_Co=256
+endif
 set notimeout ttimeout ttimeoutlen=10
 set relativenumber
 set hlsearch
@@ -49,7 +52,7 @@ set showbreak=↪
 set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set fillchars=diff:⣿,vert:│
 set ttyfast lazyredraw title
-set cursorline
+"set cursorline
 set hidden
 set mouse=a
 set shortmess=filtIoOA
@@ -97,8 +100,12 @@ let g:FactorRoot='/Applications/factor'
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 set background=dark
-colorscheme base16-default
+let base16colorspace=256
+colorscheme base16-ocean
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local

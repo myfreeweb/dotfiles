@@ -32,7 +32,6 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 
 " Automatic lint/format/etc
-au BufWritePost {g,.g,,.}vimrc source $MYVIMRC | exe ":PowerlineReloadColorscheme"
 au BufWritePost *.py call Flake8()
 au BufWritePost *.coffee :CoffeeLint | cwindow
 au BufWritePost *.hs :GhcModCheckAndLintAsync | cwindow

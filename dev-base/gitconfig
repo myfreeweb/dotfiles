@@ -24,16 +24,12 @@
 	email = floatboth@me.com
 [github]
 	user = myfreeweb
-[difftool]
-	prompt = false
 [diff]
 	algorithm = histogram
 	renames = copy
 	tool = Kaleidoscope
 	wordRegex = [^[:space:]]
 	mnemonicprefix = true
-[difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [mergetool "splice"]
 	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
 	trustExitCode = true

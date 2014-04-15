@@ -12,6 +12,9 @@ cp -r zsh-hl ~/.zsh/zsh-hl
 rm -r ~/.zsh/zsh-hss
 cp -r zsh-hss ~/.zsh/zsh-hss
 
+rm -r ~/.zsh/base16-shell
+cp -r base16-shell ~/.zsh/base16-shell
+
 rm ~/.zshrc
 cp zshrc ~/.zshrc
 

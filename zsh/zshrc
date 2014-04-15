@@ -8,8 +8,7 @@
 
 # Loading plugins, setting variables {{{
 
-# brew must be in path before zshuery
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH # On OS X, local might not be in PATH
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 source $HOME/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
@@ -17,7 +16,6 @@ source $HOME/.zsh/zshuery/zshuery.sh
 load_defaults
 load_aliases
 load_completion $HOME/.zsh/zshuery/completion
-# load_correction
 
 export DOTFILES=$HOME/src/github.com/myfreeweb/dotfiles
 if [[ -e $DOTFILES/bin ]]; then
@@ -25,14 +23,14 @@ if [[ -e $DOTFILES/bin ]]; then
     export PATH=$dir:$PATH
   done
 fi
-export PATH=$DOTFILES/bin:$HOME/.cabal/bin:$PATH
+export PATH=$DOTFILES/bin:$HOME/.cabal/bin:$HOME/bin:$PATH
 
 # Go
 export GOPATH=$HOME
 if [[ $HAS_BREW == 1 ]]; then
   BREWGO=$(brew --prefix go)
   [[ -d $BREWGO ]] && export GOROOT=$BREWGO && export GOBIN=$BREWGO/bin \
-    && export PATH=$GOPATH/bin:$GOBIN:$PATH
+    && export PATH=$GOBIN:$PATH
 fi
 
 # JS
@@ -105,7 +103,7 @@ precmd() {
 
 prompts '%{$fg_bold[green]%}$(COLLAPSED_DIR)%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} ' '%{$fg[red]%}$(ruby_version)%{$reset_color%}'
 setopt auto_pushd
-bindkey -e
+bindkey -e # Emacs style keys in shell
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
@@ -113,8 +111,11 @@ bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
 # }}}
 
-# Have to load these plugins after... something
+# Have to load the history plugin after... something
 source $HOME/.zsh/zsh-hss/zsh-history-substring-search.zsh
+export BASE16_SCHEME="ocean"
+export BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
+[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 [[ -e $(which fortune) ]] && fortune | (cowsay -f tux || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
