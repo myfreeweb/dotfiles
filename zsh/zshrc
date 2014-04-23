@@ -98,9 +98,10 @@ chpwd() { update_terminal_cwd; }
 precmd() {
   # $? in prompt is wrong, can't pass %? to conditionals
   if [[ $? == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
+  if [[ $PRIVATE == 1 ]]; then SCOLOR="$bg[magenta]$fg_bold[black]"; else SCOLOR="$fg_bold[green]"; fi
 }
 
-prompts '%{$fg_bold[green]%}$(COLLAPSED_DIR)%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} ' '%{$fg[red]%}$(ruby_version)%{$reset_color%}'
+prompts '%{$SCOLOR%}$(COLLAPSED_DIR)%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} ' '%{$fg[red]%}$(ruby_version)%{$reset_color%}'
 setopt auto_pushd
 bindkey -e # Emacs style keys in shell
 autoload -U edit-command-line
@@ -118,3 +119,4 @@ export BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 [[ -e $(which fortune) ]] && fortune | (cowsay -f tux || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
+if [[ $PRIVATE == 1 ]]; then unset HISTFILE; fi
