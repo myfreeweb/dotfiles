@@ -15,6 +15,7 @@ au BufRead,BufNewFile nginx.conf setf nginx
 au BufRead,BufNewFile *.gradle setf groovy
 au BufRead,BufNewFile *.sbt setf scala
 au BufRead,BufNewFile *.scaml setf haml
+au BufRead,BufNewFile *.swig setf htmldjango
 au BufRead,BufNewFile *.go setf go
 au BufRead,BufNewFile quakelive.cfg setf quake
 au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal iskeyword+=-

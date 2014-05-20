@@ -16,3 +16,6 @@ ServerAliveCountMax 10
 
 Host nfsn
   Hostname ssh.phx.nearlyfreespeech.net
+
+Host *.local
+  ForwardAgent yes
