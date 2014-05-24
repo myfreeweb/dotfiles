@@ -29,7 +29,7 @@ export PATH=$DOTFILES/bin:$HOME/.cabal/bin:$HOME/bin:$PATH
 export GOPATH=$HOME
 if [[ $HAS_BREW == 1 ]]; then
   BREWGO=$(brew --prefix go)
-  [[ -d $BREWGO ]] && export PATH=$BREWGO/bin:$BREWGO/libexec/bin:$PATH
+  [[ -d $BREWGO ]] && export GOROOT=$BREWGO/libexec && export PATH=$BREWGO/bin:$BREWGO/libexec/bin:$PATH
 fi
 
 # JS
