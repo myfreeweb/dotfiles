@@ -9,7 +9,7 @@ A module is a directory with an `apply.sh` file that installs the dotfiles.
 ## Installation
 
 On the main machine, clone to `~/src/github.com/myfreeweb/dotfiles`.  
-And `git submodule update --init`.  
+And `git submodule update --init --recursive`.  
 Get `zsh`.  
 Don't forget to do on OS X: `brew install reattach-to-user-namespace`.  
 Also, [base16](https://github.com/chriskempson/base16)-ocean colorscheme for the terminal.
