@@ -31,6 +31,7 @@ if [[ $HAS_BREW == 1 ]]; then
   BREWGO=$(brew --prefix go)
   [[ -d $BREWGO ]] && export GOROOT=$BREWGO/libexec && export PATH=$BREWGO/bin:$BREWGO/libexec/bin:$PATH
 fi
+[[ -d /usr/local/go/bin ]] && export PATH=/usr/local/go/bin:$PATH
 
 # JS
 export NODE_PATH=/usr/local/lib/node_modules

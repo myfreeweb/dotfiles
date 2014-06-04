@@ -36,7 +36,6 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 au BufWritePost *.py call Flake8()
 au BufWritePost *.coffee :CoffeeLint | cwindow
 au BufWritePost *.hs :GhcModCheckAndLintAsync | cwindow
-au BufWritePre *.go :Fmt
 
 " Folds
 au FileType {vim,javascript} setlocal foldmethod=marker
