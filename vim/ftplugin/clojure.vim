@@ -1,3 +1,5 @@
+setlocal expandtab
+
 map <Leader>ss cpr:Eval (run-specs)<CR>
 map <Leader>sw :w<CR>cpr
 

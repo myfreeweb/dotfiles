@@ -31,7 +31,7 @@ set gdefault
 
 " formatting
 set nowrap
-set expandtab
+set noexpandtab " http://lea.verou.me/2012/01/why-tabs-are-clearly-superior/
 set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent smartindent
 set encoding=utf-8 nobomb
