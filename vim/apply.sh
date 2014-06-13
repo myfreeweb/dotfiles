@@ -23,6 +23,6 @@ cp -r ftplugin ~/.vim/ftplugin
 rm -r ~/.vim/syntax
 cp -r syntax ~/.vim/syntax
 
-vim +BundleInstall +qall
+vim +BundleClean +BundleInstall +qall
 
 echo "==> Installed vim"

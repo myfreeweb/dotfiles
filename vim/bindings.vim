@@ -85,16 +85,7 @@ vmap <Leader>T: :Tabularize /:\zs<CR>
 nmap sk :SplitjoinSplit<CR>
 nmap sj :SplitjoinJoin<CR>
 map <Leader>w :w<CR>
-map <Leader>W :SudoWrite<CR>
-map <Leader>a :Ack! 
-map <Leader>m :Rename 
-map <Leader>rb :RunRubyFocusedTest<CR>
-map <Leader>c :VimuxPromptCommand<CR>
-map <Leader>r :VimuxRunLastCommand<CR>
-map <Leader>vq :VimuxCloseRunner<CR>
-map <Leader>vx :VimuxInterruptRunner<CR>
 nnoremap <Leader>b :silent !open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR> " open URLs
-autocmd FileType python map <Leader>8 :call Flake8()<CR>
 let g:ctrlp_map = '<Leader>p'
 nnoremap <Leader>t :CtrlPTag<CR>
 
