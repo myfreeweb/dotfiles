@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # This script runs a given command over a range of Git revisions. Note that it
 # will check past revisions out! Exercise caution if there are important

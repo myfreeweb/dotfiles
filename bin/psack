@@ -1,2 +1,0 @@
-#!/usr/bin/env zsh
-ps auxww | ack $* | ack -v ack | sed -e 's/  */ /g' | cut -d' ' -f 2,11-
