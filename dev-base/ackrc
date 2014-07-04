@@ -19,10 +19,12 @@
 --ignore-dir=build
 --ignore-dir=dist
 --ignore-dir=node_modules
+--ignore-dir=bower_components
 --ignore-file=is:.lein-repl-history
 --type-add=html=haml,jade,mustache,tpl,erb,slim,emblem
 --type-add=css=sass,scss,less,styl,ccss,clevercss
---type-add=js=coffee,em
+--type-add=js=coffee,em,jsx,sjs
 --type-set=clojure=clj,cljs
 --type-set=ronn=ronn,ron
 --type-set=markdown=markdown,mdown,mkdn,mkd,md
+--type-set=puppet=.pp

@@ -94,7 +94,7 @@ precmd() {
   if [[ $PRIVATE == 1 ]]; then SCOLOR="$bg[magenta]$fg_bold[black]"; else SCOLOR="$fg_bold[green]"; fi
 }
 
-prompts '%{$SCOLOR%}$(COLLAPSED_DIR)%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} ' '%{$fg[red]%}$(ruby_version)%{$reset_color%}'
+prompts '%{$SCOLOR%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} ' '%{$fg[red]%}$(ruby_version)%{$reset_color%}'
 setopt auto_pushd
 bindkey -e # Emacs style keys in shell
 autoload -U edit-command-line

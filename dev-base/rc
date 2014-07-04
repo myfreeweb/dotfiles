@@ -6,6 +6,7 @@
 # https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/fish/config.fish
 # https://twitter.com/davegardnerisme/status/360422133316337664
 # https://github.com/mathiasbynens/dotfiles/blob/master/.aliases
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/systemadmin/systemadmin.plugin.zsh
 
 # Enable aliases to be sudo’ed
 alias sudo="sudo "
@@ -46,6 +47,7 @@ alias ll4="tree --dirsfirst -ChFupDaL 4"
 alias ll5="tree --dirsfirst -ChFupDaL 5"
 alias l="l1"
 alias ll="ll1"
+alias la="ls -lAFh" # long list, show all except . and .., show type, human readable
 
 # Text
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
@@ -69,6 +71,12 @@ alias map="xargs -n1"
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# Top
+# get top process eating memory
+alias psmem="ps -e -orss=,args= | sort -b -k1,1n | head -10"
+# get top process eating cpu if not work try excute : export LC_ALL='C'
+alias pscpu="ps -e -o pcpu,cpu,nice,state,cputime,args | sort -k1 -nr | head -10"
 
 # OS X stuff
 ## Empty the Trash on all mounted volumes and the main HDD. Also, clear Apple’s System Logs to improve shell startup speed

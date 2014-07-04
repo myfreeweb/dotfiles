@@ -24,6 +24,8 @@
 	email = floatboth@me.com
 [github]
 	user = myfreeweb
+[web]
+	browser = open
 [diff]
 	algorithm = histogram
 	renames = copy

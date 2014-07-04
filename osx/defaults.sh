@@ -5,6 +5,7 @@
 #
 # thanks:
 # https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# https://bitbucket.org/sjl/dotfiles/src/0112fc0dd59d0e93512ea047fc3639634c70591d/osx.sh?at=default
 
 # General
 ## Increase window resize speed for Cocoa applications
@@ -45,6 +46,11 @@ defaults write com.apple.screencapture location -string "$HOME/Desktop"
 defaults write com.apple.screencapture type -string "png"
 ## Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
+## Display ASCII control characters using caret notation in standard text views
+## Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
+defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
+## Prevent Time Machine from prompting to use new hard drives as backup volume
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Finder
 ## Show all filename extensions
@@ -89,3 +95,7 @@ defaults write com.apple.DiskUtility advanced-image-options -bool true
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 ## Enable Debug Menu in the Mac App Store
 defaults write com.apple.appstore ShowDebugMenu -bool true
+## Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+## Disable Safari’s thumbnail cache for History and Top Sites
+defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
