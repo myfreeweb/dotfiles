@@ -9,6 +9,7 @@ au BufRead,BufNewFile *.{mdown,ronn} setf markdown
 au BufRead,BufNewFile {SConstruct,SConscript} setf python
 au BufRead,BufNewFile *.gradle setf groovy
 au BufRead,BufNewFile *.scaml setf haml
+au BufRead,BufNewFile *.sjs setf javascript
 au BufRead,BufNewFile *.swig setf htmldjango
 au BufRead,BufNewFile quakelive.cfg setf quake
 au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal iskeyword+=-
