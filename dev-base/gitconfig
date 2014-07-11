@@ -107,3 +107,5 @@
 
 [url "git@github.com:"]
 	pushInsteadOf = "git://github.com/"
+[ghq]
+	root = ~/src
