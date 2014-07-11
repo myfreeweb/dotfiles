@@ -17,13 +17,7 @@ load_defaults
 load_aliases
 load_completion $HOME/.zsh/zshuery/completion
 
-export DOTFILES=$HOME/src/github.com/myfreeweb/dotfiles
-if [[ -d $DOTFILES/bin ]]; then
-  for dir in $DOTFILES/bin/*; do
-    [[ -d $dir ]] && export PATH=$dir:$PATH
-  done
-fi
-export PATH=$DOTFILES/bin:$HOME/.cabal/bin:$HOME/bin:$PATH
+export PATH=$HOME/.cabal/bin:$HOME/bin:$PATH
 
 # Go
 export GOPATH=$HOME
