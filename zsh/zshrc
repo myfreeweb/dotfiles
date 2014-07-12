@@ -54,6 +54,9 @@ export VIRTUALENV_DISTRIBUTE=true
 export PIP_USE_MIRRORS=true
 export PYTHONSTARTUP=$HOME/.pythonrc
 
+# OCaml
+[[ -e "$(which opam)" ]] && eval "$(opam config env)"
+
 # Emacs
 export PATH=$HOME/.cask/bin:$PATH
 
