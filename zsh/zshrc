@@ -15,7 +15,7 @@ source $HOME/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zshuery/zshuery.sh
 load_defaults
 load_aliases
-load_completion $HOME/.zsh/zshuery/completion
+load_completion $HOME/.zsh/zshuery/completion/src
 
 export PATH=$HOME/.cabal/bin:$HOME/bin:$PATH
 
@@ -46,7 +46,6 @@ runjava() {
 # Ruby
 export RBXOPT=-X19
 export RBENV_ROOT=/usr/local/var/rbenv
-[[ -e $RBENV_ROOT ]] && eval "$(rbenv init -)"
 
 # Python
 export PYTHONDONTWRITEBYTECODE=true
