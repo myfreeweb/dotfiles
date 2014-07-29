@@ -22,8 +22,8 @@ export PATH=$HOME/.cabal/bin:$HOME/bin:$PATH
 # Go
 export GOPATH=$HOME
 if [[ $HAS_BREW == 1 ]]; then
-  BREWGO=$(brew --prefix go)
-  [[ -d $BREWGO ]] && export GOROOT=$BREWGO/libexec && export PATH=$BREWGO/bin:$BREWGO/libexec/bin:$PATH
+	BREWGO=$(brew --prefix go)
+	[[ -d $BREWGO ]] && export GOROOT=$BREWGO/libexec && export PATH=$BREWGO/bin:$BREWGO/libexec/bin:$PATH
 fi
 [[ -d /usr/local/go/bin ]] && export PATH=/usr/local/go/bin:$PATH
 
@@ -33,14 +33,14 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 # Java
 if [[ -e /usr/libexec/java_home ]]; then
-  export JAVA_HOME=$(/usr/libexec/java_home)
-  export PATH=$JAVA_HOME/bin:$PATH
+	export JAVA_HOME=$(/usr/libexec/java_home)
+	export PATH=$JAVA_HOME/bin:$PATH
 fi
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export JRUBY_OPTS="-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify"
 runjava() {
-  cp $1 /tmp/Main.java
-  (cd /tmp && javac Main.java && echo "--- compiled, running" && java Main)
+	cp $1 /tmp/Main.java
+	(cd /tmp && javac Main.java && echo "--- compiled, running" && java Main)
 }
 
 # Ruby
@@ -85,9 +85,17 @@ dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
 
 chpwd() { update_terminal_cwd; }
 precmd() {
-  # $? in prompt is wrong, can't pass %? to conditionals
-  if [[ $? == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
-  if [[ $PRIVATE == 1 ]]; then SCOLOR="$bg[magenta]$fg_bold[black]"; else SCOLOR="$fg_bold[green]"; fi
+	# $? in prompt is wrong, can't pass %? to conditionals
+	if [[ $? == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
+	if [[ $PRIVATE == 1 ]]; then
+		SCOLOR="$bg[magenta]$fg_bold[black]"
+	elif [[ ${HOST##*\.} == 'local' || ${HOST##*\.} == 'localdomain' || $HOST =~ '^[^\.]+$' ]]; then
+		# green on *.local, *.localdomain and hostnames without dots
+		SCOLOR="$fg_bold[green]"
+	else
+		# red everything else - that is, on production servers!
+		SCOLOR="$fg_bold[red]"
+	fi
 }
 
 prj() { cd ~/src/$(ghq list | peco) }
