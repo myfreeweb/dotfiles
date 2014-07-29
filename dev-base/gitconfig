@@ -75,7 +75,7 @@
 	ff  = rm --cached # [f]orget
 	fm  = mv # [m]ove
 	fr  = rm
-	fu  = reset HEAD
+	fu  = reset HEAD #[u]nstage?
 	# stas[h]
 	hs  = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}" # [s]napshot
 	# [m]erge
