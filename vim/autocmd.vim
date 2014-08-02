@@ -25,9 +25,9 @@ au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 au FileType ruby setlocal omnifunc=rubycomplete#Complete
 
 " Automatic lint/format/etc
-au BufWritePost *.py call Flake8()
-au BufWritePost *.coffee :CoffeeLint | cwindow
-au BufWritePost *.hs :GhcModCheckAndLintAsync | cwindow
+" au BufWritePost *.py call Flake8()
+" au BufWritePost *.coffee :CoffeeLint | cwindow
+" au BufWritePost *.hs :GhcModCheckAndLintAsync | cwindow
 
 " Folds
 au FileType {vim,javascript} setlocal foldmethod=marker

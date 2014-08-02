@@ -17,7 +17,7 @@ load_defaults
 load_aliases
 load_completion $HOME/.zsh/zshuery/completion/src
 
-export PATH=$HOME/.cabal/bin:$HOME/bin:$PATH
+export PATH=$HOME/bin:$PATH
 
 # Go
 export GOPATH=$HOME

@@ -38,5 +38,11 @@ Also, [base16](https://github.com/chriskempson/base16)-ocean colorscheme for the
 
 - **python** -- Python
 - **ruby** -- irb, Rails, RubyGems
-- **lein** -- Leiningen (Clojure)
-- **ocaml** -- OCaml (OPAM, utop)
+- **lein** -- Clojure ([Leiningen])
+- **ocaml** -- OCaml ([OPAM], [utop])
+- **haskell** -- Haskell (cabal, ghci, [hi])
+
+[Leiningen]: http://leiningen.org/
+[OPAM]: http://opam.ocaml.org/
+[utop]: https://github.com/diml/utop
+[hi]: https://github.com/fujimura/hi
