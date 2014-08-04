@@ -33,6 +33,7 @@ Also, [base16](https://github.com/chriskempson/base16)-ocean colorscheme for the
 - **vim** -- Vim text editor configuration and plugins
 - **emacs** -- GNU Emacs text editor configuration and plugins
 - **osx** -- Apple OS X defaults, keybindings, KeyRemap4Macbook, Slate
+- **firefox** -- userChrome.css for Mozilla Firefox
 
 ### Language-specific
 

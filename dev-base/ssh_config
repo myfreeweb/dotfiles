@@ -6,7 +6,7 @@
 #  http://blogs.perl.org/users/smylers/2011/08/ssh-productivity-tips.html
 
 ControlMaster auto
-ControlPath /tmp/ssh_%h%p%r
+ControlPath ~/.tmp/ssh_%r@%h:%p
 ControlPersist 5m
 GSSAPIAuthentication no
 HashKnownHosts no

@@ -39,4 +39,6 @@ mkdir -p ~/.ssh
 rm ~/.ssh/config
 cp ssh_config ~/.ssh/config
 
+mkdir -p ~/.tmp
+
 echo "==> Installed dev-base"
