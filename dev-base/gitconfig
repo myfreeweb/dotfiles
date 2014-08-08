@@ -103,6 +103,7 @@
 	tr  = tag -d
 	# [w]orking copy
 	wr  = reset --hard HEAD
+	wf  = reset --mixed # [f]orget (make all changes unstaged)
 	ws  = status --short --branch --ignore-submodules=untracked
 
 [url "git@github.com:"]
