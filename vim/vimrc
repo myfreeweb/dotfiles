@@ -81,7 +81,7 @@ set wildignore+=node_modules,build
 " paths
 set shell=zsh
 set formatprg=par\ -eq
-set tags=./tags;
+set tags=tags;/,codex.tags;/
 set dictionary=/usr/share/dict/words
 set backupskip=/tmp/*,/private/tmp/*
 set backupdir=~/.vim/tmp/backups/
