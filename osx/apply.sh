@@ -40,11 +40,9 @@ cp ./private.xml $HOME/Library/Application\ Support/Karabiner/private.xml
 KARABINER=/Applications/Karabiner.app/Contents/Library/bin/karabiner
 if [ -e $KARABINER ]; then
 	$KARABINER reloadxml
-	$KARABINER set remap.russian_backquote2paragraph 1
 	$KARABINER set parameter.keyoverlaidmodifier_timeout 300
 	$KARABINER set remap.controlL2controlL_escape 1
 	$KARABINER set space_cadet.left_control_to_hyper 1
-	$KARABINER set remap.russian_paragraph2backquote 1
 	$KARABINER set private.shifts_to_parens 1
 else
 	echo "==> Warning: Karabiner.app not found < https://pqrs.org/osx/karabiner/index.html.en >"
