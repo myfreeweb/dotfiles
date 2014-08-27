@@ -6,7 +6,7 @@
 
 " File types
 au BufRead,BufNewFile *.{mdown,ronn} setf markdown
-au BufRead,BufNewFile {SConstruct,SConscript} setf python
+au BufRead,BufNewFile SCons* setf python
 au BufRead,BufNewFile *.gradle setf groovy
 au BufRead,BufNewFile *.scaml setf haml
 au BufRead,BufNewFile *.sjs setf javascript
@@ -15,23 +15,17 @@ au BufRead,BufNewFile quakelive.cfg setf quake
 au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal iskeyword+=-
 au BufRead,BufNewFile *.{jar,war,ear,sar} setf zip
 au BufRead,BufNewFile *.fish setf tcsh
+au BufRead,BufNewFile gitconfig setf gitconfig
+au BufRead,BufNewFile gitconfig setlocal noexpandtab
 
 " Completion
 au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-au FileType ruby setlocal omnifunc=rubycomplete#Complete
-
-" Automatic lint/format/etc
-" au BufWritePost *.py call Flake8()
-" au BufWritePost *.coffee :CoffeeLint | cwindow
-" au BufWritePost *.hs :GhcModCheckAndLintAsync | cwindow
 
 " Folds
 au FileType {vim,javascript} setlocal foldmethod=marker
-au FileType ruby setlocal foldmethod=syntax
 au FileType coffee setlocal foldmethod=indent
 au BufRead,BufNewFile {,.}zshrc,*.fish setlocal foldmethod=marker
 

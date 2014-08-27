@@ -6,4 +6,5 @@ setlocal expandtab
 setlocal ai
 setlocal formatoptions=tcroqn2
 setlocal comments=n:>
+setlocal comments=b:- " Auto insert bullet when constructing lists
 nnoremap <Leader>m :silent !open -a Marked.app '%:p'<cr>

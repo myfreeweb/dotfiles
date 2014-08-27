@@ -11,8 +11,8 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 rm ~/.vimrc
 cp vimrc ~/.vimrc
 
-rm ~/.gvimrc
-cp gvimrc ~/.gvimrc
+rm ~/.nvimrc
+cp vimrc ~/.nvimrc
 
 rm ~/.vim/*.vim
 cp *.vim ~/.vim/

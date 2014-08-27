@@ -113,7 +113,7 @@ bindkey "\e[3~" delete-char # Del
 
 # Have to load the history plugin after... something
 source $HOME/.zsh/zsh-hss/zsh-history-substring-search.zsh
-export BASE16_SCHEME="ocean"
+[[ -z $BASE16_SCHEME ]] && export BASE16_SCHEME="monokai"
 export BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 [[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local

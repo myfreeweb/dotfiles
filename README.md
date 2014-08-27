@@ -15,7 +15,7 @@ And `git submodule update --init --recursive`.
 Get `zsh` if it's not there, `chsh` it.  
 
 On OS X with [Homebrew], use `brew bundle` to install all the things listed in the Brewfile.  
-Also, [base16] ocean colorscheme for the terminal.
+Also, [base16] colorschemes for the terminal.
 
 ### Local (example)
 
@@ -35,7 +35,7 @@ Also, [base16] ocean colorscheme for the terminal.
 - **zsh** -- Z Shell configuration and plugins
 - **vim** -- Vim text editor configuration and plugins
 - **emacs** -- GNU Emacs text editor configuration and plugins
-- **osx** -- Apple OS X defaults, keybindings, [Karabiner] *used to be KeyRemap4Macbook*, Slate
+- **osx** -- Apple OS X defaults, [keybindings], [Karabiner], [Seil], Slate
 - **firefox** -- userChrome.css for Mozilla Firefox
 
 ### Language-specific
@@ -48,7 +48,9 @@ Also, [base16] ocean colorscheme for the terminal.
 
 [Homebrew]: http://brew.sh
 [base16]: https://github.com/chriskempson/base16
+[keybindings]: https://github.com/ttscoff/KeyBindings
 [Karabiner]: https://pqrs.org/osx/karabiner/index.html.en
+[Seil]: https://pqrs.org/osx/karabiner/seil.html.en
 [Leiningen]: http://leiningen.org/
 [OPAM]: http://opam.ocaml.org/
 [utop]: https://github.com/diml/utop

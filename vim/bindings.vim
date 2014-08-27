@@ -7,46 +7,59 @@
 let mapleader = ","
 let maplocalleader = "\\"
 
-" j and k inverted for colemak
+" Plugins and stuff
+nmap sk :SplitjoinSplit<CR>
+nmap sj :SplitjoinJoin<CR>
+nnoremap <silent> <Leader>g :<C-u>Unite grep:.           -start-insert<CR>
+nnoremap <silent> <Leader>b :<C-u>Unite buffer           -quick-match  -no-split<CR>
+nnoremap <silent> <Leader>p :<C-u>Unite file_rec/async:! -start-insert -no-split<CR>
+nnoremap <silent> <Leader>y :<C-u>Unite history/yank     -start-insert<CR>
+
+" Inverted for Colemak + Improve up/down movement on wrapped lines http://vimbits.com/bits/25
 noremap k gj
 noremap j gk
 
-" less keystrokes
+" Less keystrokes
 nnoremap ; :
 vnoremap ; :
 nnoremap ' i
 vnoremap ' i
 nnoremap U <C-r>
+
+" Show most plugin keybindings  http://vimbits.com/bits/534
+nnoremap <silent> <Leader>? :map <Leader><CR>
+
+" Reselect visual block after indent/outdent  http://vimbits.com/bits/20
+vnoremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+
+" Make Y behave like other capitals  http://vimbits.com/bits/11
 nnoremap Y y$
-map <Leader>d :bd<CR>
 
-" http://vimbits.com/bits/16
-noremap H ^
-noremap L $
+" Don't move on *
+nnoremap * *<C-o>
 
-" folds
+" Easier increment/decrement  http://vimbits.com/bits/207
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+" Folds
 nnoremap <Space> za
 vnoremap <Space> za
 
-" remove search highlights
-nnoremap <CR> :nohlsearch<CR>
+" Remove search highlights  http://vimbits.com/bits/21
+nnoremap <silent> <CR> :nohlsearch<CR>
 
-" unfuck the screen
-nnoremap <leader>u :syntax sync fromstart<cr>:redraw!<cr> 
+" Unfuck the screen
+nnoremap <Leader>u :syntax sync fromstart<cr>:redraw!<cr> 
 
-" select (charwise) the contents of the current line, excluding indentation.
+" Select (charwise) the contents of the current line, excluding indentation.
 " great for pasting Python lines into REPLs.
 nnoremap vv ^vg_
-
-" keep the cursor in place while joining lines
-nnoremap J mzJ`z
-
-" insert mode completion
-inoremap <c-f> <c-x><c-f>
-inoremap <c-]> <c-x><c-]>}
-
-" don't move on *
-nnoremap * *<C-o>
 
 " windows
 map <C-h> <C-w>h
@@ -61,12 +74,6 @@ command! Q q
 command! Wq wq
 command! WQ wq
 
-" emacs bindings in insert and command
-inoremap <C-a> <home>
-inoremap <C-e> <end>
-cnoremap <C-a> <home>
-cnoremap <C-e> <end>
-
 " buffer nav
 nnoremap <Right> :bnext<CR>
 nnoremap <Left>  :bprev<CR>
@@ -74,20 +81,6 @@ nnoremap <Left>  :bprev<CR>
 " List nav
 nnoremap <Up>    :cprev<CR>zvzz
 nnoremap <Down>  :cnext<CR>zvzz
-
-" plugins and stuff
-nmap <Leader>T= :Tabularize /=<CR>
-vmap <Leader>T= :Tabularize /=<CR>
-nmap <Leader>T<Space> :Tabularize /<Space><CR>
-vmap <Leader>T<Space> :Tabularize /<Space><CR>
-nmap <Leader>T: :Tabularize /:\zs<CR>
-vmap <Leader>T: :Tabularize /:\zs<CR>
-nmap sk :SplitjoinSplit<CR>
-nmap sj :SplitjoinJoin<CR>
-map <Leader>w :w<CR>
-nnoremap <Leader>b :silent !open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR> " open URLs
-let g:ctrlp_map = '<Leader>p'
-nnoremap <Leader>t :CtrlPTag<CR>
 
 " Motion for numbers.  Great for CSS.  Lets you do things like this:
 " margin-top: 200px; -> daN -> margin-top: px;
@@ -98,14 +91,14 @@ xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
 onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 function! s:NumberTextObject(whole)
-    normal! v
-    while getline('.')[col('.')] =~# '\v[0-9]'
-        normal! l
-    endwhile
-    if a:whole
-        normal! o
-        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
-            normal! h
-        endwhile
-    endif
+	normal! v
+	while getline('.')[col('.')] =~# '\v[0-9]'
+		normal! l
+	endwhile
+	if a:whole
+		normal! o
+		while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+			normal! h
+		endwhile
+	endif
 endfunction

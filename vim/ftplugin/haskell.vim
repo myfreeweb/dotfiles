@@ -1,5 +1,10 @@
+" This came from Greg V's dotfiles:
+"      https://github.com/myfreeweb/dotfiles
+" Feel free to steal it, but attribution is nice
+" 
+" Thanks: see vimrc
+
 setlocal omnifunc=necoghc#omnifunc
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 setlocal expandtab
 setlocal tabstop=2
