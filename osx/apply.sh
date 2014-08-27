@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 echo "==> Installing osx"
 
 mkdir -p $HOME/Library/KeyBindings
@@ -12,8 +12,23 @@ cat ./reslate/reslate.js ./slate.js > $HOME/.slate.js
 
 SEIL=/Applications/Seil.app/Contents/Library/bin/seil
 if [ -e $SEIL ]; then
+	# Hyper (sends F19, Karabiner turns that into Cmd+Opt+Ctrl+Shift)
 	$SEIL set enable_control_l 1
 	$SEIL set keycode_control_l 80
+	if [ -z $PCKEYBOARD ]; then;
+		echo "==> osx: Mac keyboard"
+	else
+		echo "==> osx: PC keyboard"
+		# Swap Cmd and Opt for ANSI PC keyboard
+		$SEIL set enable_command_l 1
+		$SEIL set keycode_command_l 58
+		$SEIL set enable_option_l 1
+		$SEIL set keycode_option_l 55
+		$SEIL set enable_command_r 1
+		$SEIL set keycode_command_r 61
+		$SEIL set enable_option_r 1
+		$SEIL set keycode_option_r 54
+	fi
 else
 	echo "==> Warning: Seil.app not found < https://pqrs.org/osx/karabiner/seil.html >"
 fi

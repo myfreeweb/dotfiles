@@ -20,6 +20,9 @@ Also, [base16] colorschemes for the terminal.
 ### Local (example)
 
     ./install.sh dev-base bin tmux zsh vim osx python ruby
+    
+    # If using a PC keyboard on a Mac
+    PCKEYBOARD=1 ./install.sh osx
 
 ### Remote (example)
 

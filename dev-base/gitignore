@@ -21,6 +21,8 @@
 *.egg
 *.egg-info
 node_modules
+bower_components
+.lein-repl-history
 npm-debug.log
 tags
 TAGS
