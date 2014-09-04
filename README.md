@@ -36,9 +36,9 @@ Also, [base16] colorschemes for the terminal.
 - **bin** -- various useful scripts that mostly work
 - **tmux** -- tmux configuration and command helper
 - **zsh** -- Z Shell configuration and plugins
-- **vim** -- Vim text editor configuration and plugins
+- **vim** -- Vim (or [neovim]) text editor configuration and plugins
 - **emacs** -- GNU Emacs text editor configuration and plugins
-- **osx** -- Apple OS X defaults, [keybindings], [Karabiner], [Seil], [Mjolnir]
+- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
 - **firefox** -- userChrome.css for Mozilla Firefox
 
 ### Language-specific
@@ -52,10 +52,12 @@ Also, [base16] colorschemes for the terminal.
 
 [Homebrew]: http://brew.sh
 [base16]: https://github.com/chriskempson/base16
+[neovim]: https://github.com/neovim/neovim
 [keybindings]: https://github.com/ttscoff/KeyBindings
 [Karabiner]: https://pqrs.org/osx/karabiner/index.html.en
 [Seil]: https://pqrs.org/osx/karabiner/seil.html.en
 [Mjolnir]: http://mjolnir.io/ 
+[A Modern Space Cadet]: http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
 [Leiningen]: http://leiningen.org/
 [OPAM]: http://opam.ocaml.org/
 [utop]: https://github.com/diml/utop
