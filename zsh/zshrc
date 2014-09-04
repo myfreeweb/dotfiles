@@ -46,6 +46,12 @@ runjava() {
 # Ruby
 export RBXOPT=-X19
 export RBENV_ROOT=/usr/local/var/rbenv
+bforkify() {
+	bundle config "local.$1" "$HOME/src/github.com/myfreeweb/$1"
+}
+bunforkify() {
+	bundle config --delete "local.$1"
+}
 
 # Python
 export PYTHONDONTWRITEBYTECODE=true

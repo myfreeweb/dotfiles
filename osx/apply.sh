@@ -5,8 +5,9 @@ mkdir -p $HOME/Library/KeyBindings
 rm $HOME/Library/KeyBindings/DefaultKeyBinding.dict
 cp ./keybindings/DefaultKeyBinding.dict $HOME/Library/KeyBindings/DefaultKeyBinding.dict
 
-rm $HOME/.slate.js
-cat ./reslate/reslate.js ./slate.js > $HOME/.slate.js
+mkdir -p $HOME/.mjolnir
+rm $HOME/.mjolnir/init.lua
+cp ./mjolnir.lua $HOME/.mjolnir/init.lua
 
 ./defaults.sh
 
@@ -15,7 +16,9 @@ if [ -e $SEIL ]; then
 	# Hyper (sends F19, Karabiner turns that into Cmd+Opt+Ctrl+Shift)
 	$SEIL set enable_control_l 1
 	$SEIL set keycode_control_l 80
-	if [ -z $PCKEYBOARD ]; then;
+	$SEIL set enable_control_r 1
+	$SEIL set keycode_control_r 80
+	if [ -z $PCKEYBOARD ]; then
 		echo "==> osx: Mac keyboard"
 	else
 		echo "==> osx: PC keyboard"

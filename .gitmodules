@@ -13,6 +13,3 @@
 [submodule "keybindings"]
 	path = osx/keybindings
 	url = git://github.com/ttscoff/KeyBindings.git
-[submodule "reslate"]
-	path = osx/reslate
-	url = git://github.com/lunixbochs/reslate.git

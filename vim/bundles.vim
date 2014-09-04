@@ -42,7 +42,6 @@ Bundle 'itchyny/lightline.vim'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'nvie/vim-flake8'
 Bundle 'fs111/pydoc.vim'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'chriskempson/base16-vim'
 
 filetype plugin indent on

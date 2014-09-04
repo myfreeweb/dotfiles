@@ -17,3 +17,5 @@ install tree
 install vim
 install wget
 install zsh
+install homebrew/versions/lua52
+install luarocks --with-lua52
