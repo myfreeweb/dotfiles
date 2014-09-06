@@ -5,6 +5,7 @@
 % Nice login welcome message
 managed_pkg(archey).
 managed_pkg(cowsay).
+managed_pkg(fortune).
 
 % Internets
 managed_pkg(curl).
@@ -21,7 +22,7 @@ command_pkg(peco).
 installs_with_go(peco, 'github.com/peco/peco/cmd/peco').
 
 meta_pkg(shell, [
-	archey, cowsay,
+	archey, cowsay, fortune,
 	curl, wget,
 	tmux, zsh, tree, ghq, peco
 ]).

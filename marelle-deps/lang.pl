@@ -64,7 +64,7 @@ installs_with_luarocks(N, LuarocksPkgUrl) :- luarocks_pkg(N, LuarocksPkgUrl).
 installs_with_luarocks(N, N) :- installs_with_luarocks(N).
 met(N, _) :-
 	luarocks_pkg(N, _),
-	\+ bash(['lua -e "require \'', N, '\'" 2>&1 | grep "module .* not found"']). % only error when module not found, because mjolnir modules fail from lua cli
+	bash(['! (lua -e "require \'', N, '\'" 2>&1 | grep "module .* not found")']). % only error when module not found, because mjolnir modules fail from lua cli
 meet(N, _) :-
 	installs_with_luarocks(N, LuarocksPkgUrl),
 	luarocks_install(LuarocksPkgUrl).
