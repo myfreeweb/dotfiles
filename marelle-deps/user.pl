@@ -10,7 +10,6 @@ managed_pkg(cowsay).
 managed_pkg(curl).
 managed_pkg(wget).
 managed_pkg(libressl).
-managed_pkg(openssh).
 
 % Shell
 managed_pkg(tmux).
@@ -43,7 +42,7 @@ depends('karabiner', osx, [wget]).
 pkg('seil') :- platform(osx).
 met('seil', osx) :- isdir('/Applications/Seil.app').
 meet('seil', osx) :-
-	bash('cd ~/Downloads && wget https://pqrs.org/osx/karabiner/files/Seil-10.11.0.dmg && hdiutil attach Seil-10.11.0.dmg && sudo installer -pkg /Volumes/Seil-10.11.0/Seil.pkg -target / && hdiutil detach /Volumes/Seil-10.10.0').
+	bash('cd ~/Downloads && wget https://pqrs.org/osx/karabiner/files/Seil-10.11.0.dmg && hdiutil attach Seil-10.11.0.dmg && sudo installer -pkg /Volumes/Seil-10.11.0/Seil.pkg -target / && hdiutil detach /Volumes/Seil-10.11.0').
 depends('seil', osx, [wget]).
 
 pkg('mjolnir-app') :- platform(osx).
@@ -66,5 +65,5 @@ meta_pkg(mac, [
 ]).
 
 meta_pkg(desktop, [
-	shell, dev, mac, keychain, rkhunter, openssh
+	shell, dev, mac, keychain, rkhunter
 ]).
