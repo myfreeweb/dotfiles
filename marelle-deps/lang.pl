@@ -28,6 +28,7 @@ installs_with_npm(grunt, 'grunt-cli').
 
 % Go
 managed_pkg(go).
+depends(go, _, [git, mercurial]).
 :- multifile go_pkg/2.
 :- multifile installs_with_go/2.
 pkg(G) :- go_pkg(G, _).
