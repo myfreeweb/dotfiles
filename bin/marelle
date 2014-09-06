@@ -1,0 +1,2 @@
+#!/bin/bash
+exec swipl -q -t main -s ~/.local/marelle/marelle.pl "$@"

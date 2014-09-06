@@ -3,6 +3,7 @@
 Modular dotfiles!
 Easy installation on virtual machines and servers via SSH.
 No symlinks.
+[Marelle] for optional automated installation.
 
 A module is a directory with an `apply.sh` file that installs the dotfiles.
 
@@ -10,12 +11,28 @@ A module is a directory with an `apply.sh` file that installs the dotfiles.
 
 ## Installation
 
-On the main machine, clone to `~/src/github.com/myfreeweb/dotfiles`.  
-And `git submodule update --init --recursive`.  
-Get `zsh` if it's not there, `chsh` it.  
+Prepare OS X:
 
-On OS X with [Homebrew], use `brew bundle` to install all the things listed in the Brewfile.  
-Also, [base16] colorschemes for the terminal.
+```bash
+$ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" 
+$ brew install git zsh swi-prolog
+$ chsh -s zsh
+```
+
+Common setup:
+
+```bash
+$ mkdir -p ~/.local
+$ git clone git@github.com:larsyencken/marelle ~/.local/marelle
+$ mkdir -p ~/src/github.com/myfreeweb
+$ git clone git@github.com:myfreeweb/dotfiles ~/src/github.com/myfreeweb/dotfiles
+$ cd ~/src/github.com/myfreeweb/dotfiles
+$ git submodule update --init --recursive
+$ ./install.sh dev-base bin tmux zsh vim # ... and restart the shell
+$ marelle meet desktop
+```
+
+Also, get [base16] colorschemes for the terminal.
 
 ### Local (example)
 
@@ -50,6 +67,7 @@ Also, [base16] colorschemes for the terminal.
 - **haskell** -- [Cabal], ghci, [hi]
 - **lua** -- [luarocks]
 
+[Marelle]: https://github.com/larsyencken/marelle
 [Homebrew]: http://brew.sh
 [base16]: https://github.com/chriskempson/base16
 [neovim]: https://github.com/neovim/neovim
