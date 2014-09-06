@@ -15,8 +15,7 @@ Prepare OS X:
 
 ```bash
 $ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" 
-$ brew install git zsh swi-prolog
-$ chsh -s zsh
+$ brew install zsh swi-prolog
 ```
 
 Common setup:
@@ -28,7 +27,10 @@ $ mkdir -p ~/src/github.com/myfreeweb
 $ git clone git@github.com:myfreeweb/dotfiles ~/src/github.com/myfreeweb/dotfiles
 $ cd ~/src/github.com/myfreeweb/dotfiles
 $ git submodule update --init --recursive
-$ ./install.sh dev-base bin tmux zsh vim # ... and restart the shell
+$ ./install.sh dev-base bin zsh
+$ sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+$ chsh -s /usr/local/bin/zsh
+$ zsh
 $ marelle meet desktop
 ```
 
