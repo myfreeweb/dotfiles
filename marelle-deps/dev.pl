@@ -17,12 +17,11 @@ managed_pkg('heroku-toolbelt').
 
 % Editing
 managed_pkg(vim).
-managed_pkg(neovim).
 managed_pkg(emacs).
 
 % Misc
 managed_pkg(sloccount).
 
 meta_pkg(dev, [
-	ack, ctags, pt, git, mercurial, 'heroku-toolbelt', vim, neovim, sloccount, grunt
+	ack, ctags, pt, git, mercurial, 'heroku-toolbelt', vim, sloccount, grunt
 ]).
