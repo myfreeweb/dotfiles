@@ -11,6 +11,8 @@ installs_with_go(pt, 'github.com/monochromegane/the_platinum_searcher/cmd/pt').
 % Version control
 managed_pkg(git).
 managed_pkg(mercurial).
+command_pkg(bzr).
+installs_with_brew(bzr, 'bazaar').
 
 % Deployment
 managed_pkg('heroku-toolbelt').
@@ -23,5 +25,5 @@ managed_pkg(emacs).
 managed_pkg(sloccount).
 
 meta_pkg(dev, [
-	ack, ctags, pt, git, mercurial, 'heroku-toolbelt', vim, sloccount, grunt
+	ack, ctags, pt, git, mercurial, bzr, 'heroku-toolbelt', vim, sloccount, grunt
 ]).
