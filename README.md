@@ -21,9 +21,7 @@ $ brew install zsh swi-prolog
 Common setup:
 
 ```bash
-$ mkdir -p ~/.local
 $ git clone git@github.com:larsyencken/marelle ~/.local/marelle
-$ mkdir -p ~/src/github.com/myfreeweb
 $ git clone git@github.com:myfreeweb/dotfiles ~/src/github.com/myfreeweb/dotfiles
 $ cd ~/src/github.com/myfreeweb/dotfiles
 $ git submodule update --init --recursive
