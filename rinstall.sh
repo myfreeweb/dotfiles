@@ -12,7 +12,9 @@ for module in "$@"; do
 		if [[ -f "$module/apply.sh" ]]; then
 			echo "=> Sending $module"
 			find "$module" -depth -print | cpio -o | ssh "$server" 'cpio -id'
-			ssh "$server" "cd $module && sh apply.sh && cd .. && rm -r $module"
+			if [[ "$module" != "bin" ]]; then
+				ssh "$server" "cd $module && sh apply.sh && cd .. && rm -r $module"
+			fi
 		else
 			echo "=> $module is not a module"
 		fi
