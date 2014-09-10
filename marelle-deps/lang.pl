@@ -58,13 +58,13 @@ depends(luarocks, _, [lua]).
 :- multifile installs_with_luarocks/1.
 :- multifile installs_with_luarocks/2.
 pkg(N) :- luarocks_pkg(N, _).
-depends(N, _, [luarocks]) :- installs_with_luarocks(N, _).
+depends(N, _, [luarocks]) :- luarocks_pkg(N).
 luarocks_pkg(N, N) :- luarocks_pkg(N).
 installs_with_luarocks(N, LuarocksPkgUrl) :- luarocks_pkg(N, LuarocksPkgUrl).
 installs_with_luarocks(N, N) :- installs_with_luarocks(N).
 met(N, _) :-
 	luarocks_pkg(N, _),
-	bash(['! (lua -e "require \'', N, '\'" 2>&1 | grep "module .* not found")']). % only error when module not found, because mjolnir modules fail from lua cli
+	bash(['which lua && ! (lua -e "require \'', N, '\'" 2>&1 | grep "module .* not found")']). % only error when module not found, because mjolnir modules fail from lua cli
 meet(N, _) :-
 	installs_with_luarocks(N, LuarocksPkgUrl),
 	luarocks_install(LuarocksPkgUrl).
