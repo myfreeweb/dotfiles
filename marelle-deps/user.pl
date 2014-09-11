@@ -8,13 +8,19 @@ dl(URLDir, Filename) :-
 
 % Nice login welcome message
 managed_pkg(archey).
+managed_pkg(bsdinfo).
+meta_pkg(welcome, freebsd, [bsdinfo]).
+meta_pkg(welcome, osx, [archey]).
 managed_pkg(cowsay).
-managed_pkg(fortune).
+command_pkg(fortune).
+installs_with_brew(fortune).
 
 % Internets
 managed_pkg(curl).
 managed_pkg(wget).
-managed_pkg(libressl).
+pkg(libressl).
+installs_with_brew(libressl).
+installs_with_ports(libressl, 'security/libressl').
 
 % Shell
 managed_pkg(tmux).
@@ -26,7 +32,7 @@ command_pkg(peco).
 installs_with_go(peco, 'github.com/peco/peco/cmd/peco').
 
 meta_pkg(shell, [
-	archey, cowsay, fortune,
+        welcome, cowsay, fortune,
 	curl, wget,
 	tmux, zsh, tree, ghq, peco
 ]).

@@ -13,12 +13,15 @@ managed_pkg(git).
 managed_pkg(mercurial).
 command_pkg(bzr).
 installs_with_brew(bzr, 'bazaar').
+installs_with_pkgng(bzr).
 
 % Deployment
 managed_pkg('heroku-toolbelt').
 
 % Editing
-managed_pkg(vim).
+command_pkg(vim).
+installs_with_brew(vim).
+installs_with_ports(vim, 'editors/vim', 'WITH="CONSOLE" WITHOUT="GTK2 TCL"').
 managed_pkg(emacs).
 
 % Misc
