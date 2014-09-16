@@ -67,7 +67,9 @@ depends('mjolnir-app', osx, [wget]).
 
 luarocks_pkg('mjolnir.hotkey').
 luarocks_pkg('mjolnir.application').
+luarocks_pkg('mjolnir.fnutils').
 luarocks_pkg('mjolnir.cmsj.appfinder').
+depends('mjolnir.cmsj.appfinder', _, ['mjolnir.fnutils']).
 luarocks_pkg('mjolnir.sd.grid').
 meta_pkg(mjolnir, [
 	'mjolnir-app', 'mjolnir.hotkey', 'mjolnir.application',
