@@ -16,6 +16,7 @@ Plugin 'amirh/HTML-AutoCloseTag'
 "" Haskell
 Plugin 'ujihisa/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
+Plugin 'dag/vim2hs'
 "" Python
 Plugin 'nvie/vim-flake8'
 Plugin 'fs111/pydoc.vim'

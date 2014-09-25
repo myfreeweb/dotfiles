@@ -77,7 +77,7 @@ set wildignore+=*.spl                              " compiled spelling word list
 set wildignore+=*.sw?                              " Vim swap files
 set wildignore+=.DS_Store,Thumbs.db                " Shit
 set wildignore+=target                             " JVM compiled stuff
-set wildignore+=node_modules,build
+set wildignore+=node_modules,build,.cabal-sandbox,.hpc
 
 " paths
 set shell=zsh
@@ -99,6 +99,7 @@ let g:vimclojure#DynamicHighlighting=1
 let delimitMate_excluded_ft='clojure'
 let g:flake8_ignore='E128'
 let g:FactorRoot='/Applications/factor'
+let g:haskell_conceal_enumerations = 0
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
