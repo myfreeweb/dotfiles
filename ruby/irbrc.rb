@@ -8,6 +8,7 @@
 # http://pastie.org/179534
 # https://github.com/rafmagana/irbrc/blob/master/dot_irbrc
 # https://github.com/cjameshuff/irbrc/blob/master/irbrc.rb
+# http://stackoverflow.com/questions/123494/whats-your-favourite-irb-trick
 
 require 'rubygems'
 require 'irb/completion'
@@ -16,31 +17,32 @@ def ansi(*codes)
   "\033[" + codes*";" + "m"
 end
 
-FGS = {
-  :black   => '30',
-  :red     => '31',
-  :green   => '32',
-  :yellow  => '33',
-  :blue    => '34',
-  :magenta => '35',
-  :cyan    => '36',
-  :white   => '37',
-  :default => '39',
-}
-BGS = {
-  :black   => '40',
-  :red     => '41',
-  :green   => '42',
-  :yellow  => '43',
-  :blue    => '44',
-  :magenta => '45',
-  :cyan    => '46',
-  :white   => '47',
-  :default => '49',
-}
+FGS = { :black   => '30', :red     => '31', :green   => '32', :yellow  => '33', :blue    => '34', :magenta => '35', :cyan    => '36', :white   => '37', :default => '39', }
+BGS = { :black   => '40', :red     => '41', :green   => '42', :yellow  => '43', :blue    => '44', :magenta => '45', :cyan    => '46', :white   => '47', :default => '49', }
 
 def color(bg, fg)
   ansi(BGS[bg]) + ansi(FGS[fg])
+end
+
+def _yep(x)
+  print color(:default, :green) + "✔ #{x}  " + color(:default, :default)
+end
+
+def _nope(x)
+  print color(:default, :red)   + "✗ #{x}  " + color(:default, :default)
+end
+
+def irb_require(x, &block)
+  loaded, require_result = false, nil
+  begin
+    require_result = require x
+    loaded = true
+    _yep(x)
+  rescue Exception => ex
+    _nope(x)
+  end
+  yield if loaded and block_given?
+  require_result
 end
 
 IRB.conf[:USE_READLINE] = true
@@ -125,11 +127,20 @@ def clear
 end
 alias c clear
 
-begin
-  require 'hirb'
+irb_require 'wirble' do
+  Wirble.init
+  Wirble.colorize
+end
+
+irb_require 'hirb' do
   require 'hirb/import_object'
   Hirb.enable
   extend Hirb::Console
-rescue LoadError => err
 end
+
+irb_require 'awesome_print' do
+  AwesomePrint.irb!
+end
+
+puts ""
 IRB_START_TIME = Time.now

@@ -1,3 +1,4 @@
+# coding: utf-8
 # This came from Greg V's dotfiles:
 #      https://github.com/myfreeweb/dotfiles
 # Feel free to steal it, but attribution is nice
@@ -17,10 +18,17 @@ import sys
 import os
 home = os.environ["HOME"]
 
+def _nope(what):
+    sys.stdout.write("\x1b[31m✗ %s\x1b[0m  " % what)
+
+def _yep(what):
+    sys.stdout.write("\x1b[32m✔ %s\x1b[0m  " % what)
+
 try:
     from see import see
+    _yep("see")
 except ImportError:
-    print >>sys.stderr, "Please pip install see"
+    _nope("see")
 
 def src(obj):
     def highlight(source):
@@ -57,8 +65,9 @@ try:
         readline.read_history_file(HISTFILE)
     except: pass
     atexit.register(readline.write_history_file, HISTFILE)
+    _yep("rlcompleter")
 except:
-    print >>sys.stderr, "Couldn't get rlcompleter + readline working."
+    _nope("rlcompleter")
 
 if "DJANGO_SETTINGS_MODULE" in os.environ:
     from django.db.models.loading import get_models
@@ -74,3 +83,6 @@ if "DJANGO_SETTINGS_MODULE" in os.environ:
 
     M = DjangoModels()
     C = Client()
+    _yep("django")
+
+sys.stdout.write("\n")
