@@ -8,14 +8,19 @@
 
 # Loading plugins, setting variables {{{
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH # On OS X, local might not be in PATH
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Just in case local isn't in PATH
+[[ -d /usr/local/lib/python2.7/site-packages ]] && export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
-source $HOME/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/zshuery/zshuery.sh
 load_defaults
 load_aliases
 load_completion $HOME/.zsh/zshuery/completion/src
+
+source $HOME/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-hss/zsh-history-substring-search.zsh
+[[ -z $BASE16_SCHEME ]] && export BASE16_SCHEME="monokai"
+export BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 export PATH=$HOME/bin:$PATH
 
@@ -63,10 +68,10 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 [[ -e "$(which opam)" ]] && eval "$(opam config env)"
 
 # Emacs
-export PATH=$HOME/.cask/bin:$PATH
+[[ -d "$HOME/.cask/bin" ]] && export PATH=$HOME/.cask/bin:$PATH
 
 # TeX
-export PATH=/usr/texbin:$PATH
+[[ -d /usr/texbin ]] && export PATH=/usr/texbin:$PATH
 
 # Less
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -84,6 +89,7 @@ export EDITOR="vim"
 export PAGER="less"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # }}}
 
 # Custom settings, aliases and functions {{{
@@ -117,17 +123,13 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 # }}}
-
-# Have to load the history plugin after... something
-source $HOME/.zsh/zsh-hss/zsh-history-substring-search.zsh
-[[ -z $BASE16_SCHEME ]] && export BASE16_SCHEME="monokai"
-export BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
-[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
-[[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 [[ -e $(which archey) ]] && archey -c
 [[ -e $(which bsdinfo) ]] && bsdinfo
 [[ -e $(which fortune) ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
 [[ -e $(which keychain) ]] && eval "$(keychain --eval --agents ssh winterhold github bitbucket)"
-if [[ $PRIVATE == 1 ]]; then unset HISTFILE; fi
+[[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+[[ $PRIVATE == 1 ]] && unset HISTFILE
