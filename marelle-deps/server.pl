@@ -5,7 +5,7 @@
 % Server config for FreeBSD 10 -- DO NOT EVEN TRY ON EARLIER VERSIONS
 
 pkg(freebsd_conf).
-depends(freebsd_conf, _, [libressl])
+depends(freebsd_conf, _, [libressl]).
 :- dynamic freebsd_conf_set/0.
 met(freebsd_conf, _) :- freebsd_conf_set.
 meet(freebsd_conf, freebsd) :-
@@ -22,8 +22,6 @@ met(openntpd_enabled, _) :- openntpd_enabled_set.
 meet(openntpd_enabled, freebsd) :-
 	sudo_or_empty(Sudo),
 	bash([Sudo, 'sysrc ntpd_enable=NO openntpd_enable=YES >/dev/null']),
-	bash([Sudo, 'service ntpd stop']),
-	bash([Sudo, 'service openntpd start']),
 	assertz(openntpd_enabled_set).
 
 managed_pkg('dnscrypt-proxy').
@@ -59,3 +57,7 @@ meet(unbound_enabled, freebsd) :-
 	bash([Sudo, 'cp -f ./marelle-tpls/unbound.conf /var/unbound']),
 	bash([Sudo, 'sysrc local_unbound_enable=YES >/dev/null']),
 	assertz(unbound_enabled_set).
+
+meta_pkg(server, [
+        freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled
+]).
