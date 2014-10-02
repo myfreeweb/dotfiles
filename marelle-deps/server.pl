@@ -10,8 +10,8 @@ depends(freebsd_conf, _, [libressl]).
 met(freebsd_conf, _) :- freebsd_conf_set.
 meet(freebsd_conf, freebsd) :-
 	sudo_or_empty(Sudo),
-	bash([Sudo, 'sysrc portmap_enable=NO inetd_enable=NO clear_tmp_enable=YES syslogd_flags="-ss" icmp_drop_redirect=YES icmp_log_redirect=YES >/dev/null']),
-	bash([Sudo, 'cp -f ./marelle-tpls/make.conf /etc']),
+	sh([Sudo, 'sysrc portmap_enable=NO inetd_enable=NO clear_tmp_enable=YES syslogd_flags="-ss" icmp_drop_redirect=YES icmp_log_redirect=YES >/dev/null']),
+	sh([Sudo, 'cp -f ./marelle-tpls/make.conf /etc']),
 	assertz(freebsd_conf_set).
 
 managed_pkg(openntpd).
@@ -21,7 +21,7 @@ depends(openntpd_enabled, _, [openntpd]).
 met(openntpd_enabled, _) :- openntpd_enabled_set.
 meet(openntpd_enabled, freebsd) :-
 	sudo_or_empty(Sudo),
-	bash([Sudo, 'sysrc ntpd_enable=NO openntpd_enable=YES >/dev/null']),
+	sh([Sudo, 'sysrc ntpd_enable=NO openntpd_enable=YES >/dev/null']),
 	assertz(openntpd_enabled_set).
 
 managed_pkg('dnscrypt-proxy').
@@ -31,14 +31,14 @@ depends(dnscrypt_enabled, _, ['dnscrypt-proxy']).
 met(dnscrypt_enabled, _) :- dnscrypt_enabled_set.
 meet(dnscrypt_enabled, freebsd) :-
 	sudo_or_empty(Sudo),
-	bash(['cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/cloudns-can/g    -e s/%name%/cloudns_can/g    -e s/%ip%/127.0.0.2/g | ', Sudo, 'tee /usr/local/etc/rc.d/dnscrypt-proxy-cloudns-can    >/dev/null']),
-	bash(['cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/cloudns-syd/g    -e s/%name%/cloudns_syd/g    -e s/%ip%/127.0.0.3/g | ', Sudo, 'tee /usr/local/etc/rc.d/dnscrypt-proxy-cloudns-syd    >/dev/null']),
-	bash(['cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/opennic-ca-ns3/g -e s/%name%/opennic_ca_ns3/g -e s/%ip%/127.0.0.4/g | ', Sudo, 'tee /usr/local/etc/rc.d/dnscrypt-proxy-opennic-ca-ns3 >/dev/null']),
-	bash([Sudo, 'chmod +x /usr/local/etc/rc.d/dnscrypt-proxy*']),
-	bash([Sudo, 'ifconfig lo0 alias 127.0.0.2 netmask 0xffffffff']),
-	bash([Sudo, 'ifconfig lo0 alias 127.0.0.3 netmask 0xffffffff']),
-	bash([Sudo, 'ifconfig lo0 alias 127.0.0.4 netmask 0xffffffff']),
-	bash([Sudo, 'sysrc ',
+	sh(['cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/cloudns-can/g    -e s/%name%/cloudns_can/g    -e s/%ip%/127.0.0.2/g | ', Sudo, 'tee /usr/local/etc/rc.d/dnscrypt-proxy-cloudns-can    >/dev/null']),
+	sh(['cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/cloudns-syd/g    -e s/%name%/cloudns_syd/g    -e s/%ip%/127.0.0.3/g | ', Sudo, 'tee /usr/local/etc/rc.d/dnscrypt-proxy-cloudns-syd    >/dev/null']),
+	sh(['cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/opennic-ca-ns3/g -e s/%name%/opennic_ca_ns3/g -e s/%ip%/127.0.0.4/g | ', Sudo, 'tee /usr/local/etc/rc.d/dnscrypt-proxy-opennic-ca-ns3 >/dev/null']),
+	sh([Sudo, 'chmod +x /usr/local/etc/rc.d/dnscrypt-proxy*']),
+	sh([Sudo, 'ifconfig lo0 alias 127.0.0.2 netmask 0xffffffff']),
+	sh([Sudo, 'ifconfig lo0 alias 127.0.0.3 netmask 0xffffffff']),
+	sh([Sudo, 'ifconfig lo0 alias 127.0.0.4 netmask 0xffffffff']),
+	sh([Sudo, 'sysrc ',
 		'ifconfig_lo0_alias0="inet 127.0.0.2 netmask 0xffffffff" ',
 		'ifconfig_lo0_alias1="inet 127.0.0.3 netmask 0xffffffff" ',
 		'ifconfig_lo0_alias2="inet 127.0.0.4 netmask 0xffffffff" ',
@@ -54,10 +54,10 @@ depends(unbound_enabled, _, [dnscrypt_enabled]).
 met(unbound_enabled, _) :- unbound_enabled_set.
 meet(unbound_enabled, freebsd) :-
 	sudo_or_empty(Sudo),
-	bash([Sudo, 'cp -f ./marelle-tpls/unbound.conf /var/unbound']),
-	bash([Sudo, 'sysrc local_unbound_enable=YES >/dev/null']),
+	sh([Sudo, 'cp -f ./marelle-tpls/unbound.conf /var/unbound']),
+	sh([Sudo, 'sysrc local_unbound_enable=YES >/dev/null']),
 	assertz(unbound_enabled_set).
 
 meta_pkg(server, [
-        freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled
+	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled
 ]).

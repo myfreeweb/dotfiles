@@ -15,14 +15,14 @@ installs_with_npm(N, NpmPkgUrl) :- npm_pkg(N, NpmPkgUrl).
 installs_with_npm(N, N) :- installs_with_npm(N).
 met(N, _) :-
 	npm_pkg(N, _),
-	bash(['node -e "require(\'', N, '\')" >/dev/null 2>/dev/null']). % error returns a non-zero exit code
+	sh(['node -e "require(\'', N, '\')" >/dev/null 2>/dev/null']). % error returns a non-zero exit code
 meet(N, _) :-
 	installs_with_npm(N, NpmPkgUrl),
 	npm_install(NpmPkgUrl).
 npm_install(NpmPkgUrl) :-
 	join(['Installing ', NpmPkgUrl, ' with npm'], Msg),
 	writeln(Msg),
-	bash(['npm install -g ', NpmPkgUrl]).
+	sh(['npm install -g ', NpmPkgUrl]).
 command_pkg(grunt).
 installs_with_npm(grunt, 'grunt-cli').
 
@@ -45,7 +45,7 @@ meet(G, _) :-
 go_install(GoPkgUrl) :-
 	join(['Installing ', GoPkgUrl, ' with go'], Msg),
 	writeln(Msg),
-	bash(['go get ', GoPkgUrl]).
+	sh(['go get ', GoPkgUrl]).
 
 % Lua
 managed_pkg(lua).
@@ -62,11 +62,11 @@ installs_with_luarocks(N, LuarocksPkgUrl) :- luarocks_pkg(N, LuarocksPkgUrl).
 installs_with_luarocks(N, N) :- installs_with_luarocks(N).
 met(N, _) :-
 	luarocks_pkg(N, _),
-	bash(['which lua >/dev/null && ! (lua -e "require \'', N, '\'" 2>&1 | grep "module .* not found" >/dev/null)']). % only error when module not found, because mjolnir modules fail from lua cli
+	sh(['which lua >/dev/null && ! (lua -e "require \'', N, '\'" 2>&1 | grep "module .* not found" >/dev/null)']). % only error when module not found, because mjolnir modules fail from lua cli
 meet(N, _) :-
 	installs_with_luarocks(N, LuarocksPkgUrl),
 	luarocks_install(LuarocksPkgUrl).
 luarocks_install(LuarocksPkgUrl) :-
 	join(['Installing ', LuarocksPkgUrl, ' with luarocks'], Msg),
 	writeln(Msg),
-	bash(['luarocks install ', LuarocksPkgUrl]).
+	sh(['luarocks install ', LuarocksPkgUrl]).
