@@ -58,6 +58,23 @@ meet(unbound_enabled, freebsd) :-
 	sh([Sudo, 'sysrc local_unbound_enable=YES >/dev/null']),
 	assertz(unbound_enabled_set).
 
+managed_pkg(i2p).
+managed_pkg(javaservicewrapper).
+pkg(i2p_installed).
+depends(i2p_installed, _, [i2p, javaservicewrapper]).
+met(i2p_installed, _) :- isfile('/home/_i2p/i2p/i2psvc').
+meet(i2p_installed, freebsd) :-
+	sudo_or_empty(Sudo),
+	sh([Sudo, 'pw useradd -n _i2p -m || true']),
+	sh([Sudo, 'sysrc i2p_enable=YES i2p_user=_i2p']),
+	sh([Sudo, 'service i2p install >/dev/null 2>/dev/null']),
+	sh([Sudo, 'cp -f /usr/local/bin/javaservicewrapper /home/_i2p/i2p/i2psvc']),
+	sh([Sudo, 'cp -f /usr/local/lib/javaservicewrapper/lib/wrapper.jar /home/_i2p/i2p/lib/']),
+	sh([Sudo, 'cp -f /usr/local/lib/javaservicewrapper/lib/libwrapper.so /home/_i2p/i2p/lib/']),
+	sh([Sudo, 'sed -e s/\\$SYSTEM_java_io_tmpdir/\\\\/var\\\\/tmp/ -e s/\\$INSTALL_PATH/./ -I bak /home/_i2p/i2p/wrapper.config']),
+	sh([Sudo, 'chmod 0777 /home/_i2p/i2p/i2psvc /home/_i2p/i2p/lib/wrapper.jar /home/_i2p/i2p/lib/libwrapper.so']).
+
 meta_pkg(server, [
-	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled
+	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
+	i2p_installed
 ]).
