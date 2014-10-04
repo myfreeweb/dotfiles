@@ -2,9 +2,6 @@
 %      https://github.com/myfreeweb/dotfiles
 % Feel free to steal it, but attribution is nice
 
-dl(URLDir, Filename) :-
-	sh(['cd ~/Downloads && rm -f "', Filename, '" && wget "', URLDir, '/', Filename, '"']).
-
 % Nice login welcome message
 managed_pkg(archey).
 managed_pkg(bsdinfo).
@@ -43,66 +40,101 @@ managed_pkg(rkhunter).
 % OS X
 managed_pkg('reattach-to-user-namespace') :- platform(osx).
 
-pkg('karabiner') :- platform(osx).
-met('karabiner', osx) :- isdir('/Applications/Karabiner.app').
-meet('karabiner', osx) :-
-	dl('https://pqrs.org/osx/karabiner/files', 'Karabiner-10.2.0.dmg'),
-	sh('cd ~/Downloads && hdiutil attach Karabiner-10.2.0.dmg && sudo installer -pkg /Volumes/Karabiner-10.2.0/Karabiner.pkg -target / && hdiutil detach /Volumes/Karabiner-10.2.0').
-depends('karabiner', osx, [wget]).
+cask_pkg(karabiner).
+cask_pkg(seil).
+cask_pkg(flux).
 
-pkg('seil') :- platform(osx).
-met('seil', osx) :- isdir('/Applications/Seil.app').
-meet('seil', osx) :-
-	dl('https://pqrs.org/osx/karabiner/files', 'Seil-10.11.0.dmg'),
-	sh('cd ~/Downloads && hdiutil attach Seil-10.11.0.dmg && sudo installer -pkg /Volumes/Seil-10.11.0/Seil.pkg -target / && hdiutil detach /Volumes/Seil-10.11.0').
-depends('seil', osx, [wget]).
-
-pkg('mjolnir-app') :- platform(osx).
-met('mjolnir-app', osx) :- isdir('/Applications/Mjolnir.app').
-meet('mjolnir-app', osx) :-
-	dl('https://github.com/mjolnir-io/mjolnir/releases/download/0.4.2', 'Mjolnir-0.4.2.tgz'),
-	sh('cd ~/Downloads && tar xvf Mjolnir-0.4.2.tgz -C/Applications').
-depends('mjolnir-app', osx, [wget]).
-
+cask_pkg(mjolnir).
 luarocks_pkg('mjolnir.hotkey').
 luarocks_pkg('mjolnir.application').
 luarocks_pkg('mjolnir.fnutils').
 luarocks_pkg('mjolnir.cmsj.appfinder').
 depends('mjolnir.cmsj.appfinder', _, ['mjolnir.fnutils']).
 luarocks_pkg('mjolnir.sd.grid').
-meta_pkg(mjolnir, [
-	'mjolnir-app', 'mjolnir.hotkey', 'mjolnir.application',
+meta_pkg('mjolnir-configured', [
+	'mjolnir', 'mjolnir.hotkey', 'mjolnir.application',
 	'mjolnir.cmsj.appfinder', 'mjolnir.sd.grid'
 ]).
 
-pkg(fira).
-depends(fira, _, [ghq]).
-met(fira, osx) :- isfile('~/Library/Fonts/FiraMono-Regular.otf').
-meet(fira, osx) :- sh('ghq get -p mozilla/Fira && cp $GOPATH/src/github.com/mozilla/Fira/otf/*.otf ~/Library/Fonts').
-pkg('source-sans-pro').
-depends('source-sans-pro', osx, [wget]).
-met('source-sans-pro', osx) :- isfile('~/Library/Fonts/SourceSansPro-Regular.otf').
-meet('source-sans-pro', osx) :-
-	dl('https://github.com/adobe-fonts/source-sans-pro/archive/2.010R-ro', '1.065R-it.tar.gz'),
-	sh('cd ~/Downloads && tar xf 1.065R-it.tar.gz && cp source-sans-pro-2.010R-ro-1.065R-it/OTF/*.otf ~/Library/Fonts').
-pkg('source-code-pro').
-depends('source-code-pro', osx, [wget]).
-met('source-code-pro', osx) :- isfile('~/Library/Fonts/SourceCodePro-Regular.otf').
-meet('source-code-pro', osx) :-
-	dl('https://github.com/adobe-fonts/source-code-pro/archive/1.017R', '1.017R.tar.gz'),
-	sh('cd ~/Downloads && tar xf 1.017R.tar.gz && cp source-code-pro-1.017R/OTF/*.otf ~/Library/Fonts').
-pkg('source-serif-pro').
-depends('source-serif-pro', osx, [wget]).
-met('source-serif-pro', osx) :- isfile('~/Library/Fonts/SourceSerifPro-Regular.otf').
-meet('source-serif-pro', osx) :-
-	dl('https://github.com/adobe-fonts/source-serif-pro/archive/1.014R', '1.014R.tar.gz'),
-	sh('cd ~/Downloads && tar xf 1.014R.tar.gz && cp source-serif-pro-1.014R/OTF/*.otf ~/Library/Fonts').
+brew_tap('cask-versions-tap', 'caskroom/homebrew-versions').
+
+cask_pkg(alfred).
+cask_pkg(dropbox).
+cask_pkg(virtualbox).
+cask_pkg(transmission).
+cask_pkg(cleanmymac).
+cask_pkg(tunnelblick).
+% cask_pkg(xquartz).
+% cask_pkg(inkscape).
+% depends(inkscape, osx, [xquartz]).
+cask_pkg(vlc).
+% cask_pkg(handbrake).
+cask_pkg(clarify).
+cask_pkg(forklift).
+cask_pkg(gpgtools).
+cask_pkg('android-file-transfer').
+cask_pkg(fliqlo).
+cask_pkg(qlcolorcode).
+cask_pkg(qlmarkdown).
+cask_pkg(qlprettypatch).
+cask_pkg(qlimagesize).
+cask_pkg(qlstephen).
+cask_pkg('iterm2-beta').
+depends('iterm2-beta', _, ['cask-versions-tap']).
+cask_pkg(java).
+cask_pkg(java7).
+cask_pkg('google-chrome').
+cask_pkg('google-chrome-canary').
+depends('google-chrome-canary', _, ['cask-versions-tap']).
+cask_pkg('firefox').
+% cask_pkg('firefox-aurora').
+% depends('firefox-aurora', _, ['cask-versions-tap']).
+cask_pkg('firefox-nightly').
+depends('firefox-nightly', _, ['cask-versions-tap']).
+
+brew_tap('cask-fonts-tap', 'caskroom/homebrew-fonts').
+pkg(P) :- font_pkg(P).
+installs_with_brew_cask(P) :- font_pkg(P).
+depends(P, _, ['cask-fonts-tap']) :- font_pkg(P).
+
+font_pkg('font-fira-sans').
+font_pkg('font-signika').
+font_pkg('font-open-sans').
+font_pkg('font-source-sans-pro').
+font_pkg('font-source-code-pro').
+font_pkg('font-source-serif-pro').
+font_pkg('font-inconsolata-for-powerline').
+font_pkg('font-comic-neue').
+font_pkg('font-londrina-outline').
+font_pkg('font-londrina-shadow').
+font_pkg('font-londrina-sketch').
+font_pkg('font-londrina-solid').
+font_pkg('font-league-gothic').
+font_pkg('font-kaushan-script').
+font_pkg('font-amaranth').
+font_pkg('font-averia-libre').
+font_pkg('font-averia-gruesa-libre').
+font_pkg('font-averia-sans-libre').
+font_pkg('font-averia-serif-libre').
+
 meta_pkg(fonts, [
-	fira, 'source-sans-pro', 'source-code-pro', 'source-serif-pro'
+	'font-fira-sans', 'font-signika', 'font-open-sans',
+	'font-source-sans-pro', 'font-source-code-pro', 'font-source-serif-pro',
+	'font-inconsolata-for-powerline', 'font-comic-neue',
+	'font-londrina-outline', 'font-londrina-shadow', 'font-londrina-sketch', 'font-londrina-solid',
+	'font-league-gothic', 'font-kaushan-script', 'font-amaranth',
+	'font-averia-libre', 'font-averia-gruesa-libre', 'font-averia-sans-libre', 'font-averia-serif-libre'
 ]).
 
 meta_pkg(mac, [
-	'reattach-to-user-namespace', karabiner, seil, mjolnir, fonts
+	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured',
+	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
+	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
+	qlcolorcode, qlmarkdown, qlprettypatch, qlimagesize, qlstephen,
+	'iterm2-beta', java, java7,
+	'google-chrome', 'google-chrome-canary',
+	'firefox', 'firefox-nightly',
+	fonts
 ]).
 
 meta_pkg(desktop, [
