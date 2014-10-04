@@ -6,6 +6,7 @@
 # thanks:
 # https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 # https://bitbucket.org/sjl/dotfiles/src/0112fc0dd59d0e93512ea047fc3639634c70591d/osx.sh?at=default
+# https://gist.github.com/brandonb927/3195465
 
 # General
 ## Increase window resize speed for Cocoa applications
@@ -51,6 +52,8 @@ defaults write com.apple.screencapture disable-shadow -bool true
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 ## Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+## Enabling HiDPI display modes (requires restart)
+defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 # Finder
 ## Show all filename extensions
@@ -75,10 +78,41 @@ defaults write com.apple.finder EmptyTrashSecurely -bool true
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 ## Show the ~/Library folder
 chflags nohidden ~/Library
+## Use column view in all Finder windows by default
+defaults write com.apple.finder FXPreferredViewStyle Clmv
+## Enabling snap-to-grid for icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # Mail
 ## Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# Messages
+## Disable automatic emoji substitution (i.e. use plain text smileys)
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
+## Disable smart quotes as it's annoying for messages that contain code
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
+## Disable continuous spell checking
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
+
+# Chrome
+## Disable annoying backswipe in Chrome
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+
+# Transmission
+## Use `~/Downloads/Incomplete` to store incomplete downloads
+defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Incomplete"
+## Don't prompt for confirmation before downloading
+defaults write org.m0k.transmission DownloadAsk -bool false
+## Trash original torrent files
+defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
+## Hide the donate message
+defaults write org.m0k.transmission WarningDonate -bool false
+## Hide the legal disclaimer
+defaults write org.m0k.transmission WarningLegal -bool false
 
 # Stuff
 ## Enable the debug menu in Address Book
