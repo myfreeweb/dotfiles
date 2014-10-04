@@ -74,6 +74,10 @@ cask_pkg(forklift).
 cask_pkg(gpgtools).
 cask_pkg('android-file-transfer').
 cask_pkg(fliqlo).
+cask_pkg(evernote).
+cask_pkg(skitch).
+cask_pkg(skype).
+cask_pkg('istat-menus').
 cask_pkg(qlcolorcode).
 cask_pkg(qlmarkdown).
 cask_pkg(qlprettypatch).
@@ -130,6 +134,7 @@ meta_pkg(mac, [
 	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured',
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
+	evernote, skitch, skype, 'istat-menus',
 	qlcolorcode, qlmarkdown, qlprettypatch, qlimagesize, qlstephen,
 	'iterm2-beta', java, java7,
 	'google-chrome', 'google-chrome-canary',
