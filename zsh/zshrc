@@ -70,9 +70,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 # Emacs
 [[ -d "$HOME/.cask/bin" ]] && export PATH=$HOME/.cask/bin:$PATH
 
-# TeX
-[[ -d /usr/texbin ]] && export PATH=/usr/texbin:$PATH
-
 # Less
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -111,9 +108,9 @@ precmd() {
 	fi
 }
 
-prj() { cd ~/src/$(ghq list | peco) }
-icd() { DIR=$(ls | peco) && cd $DIR && icd }
-fuck() { sudo $(fc -ln -1) }
+prj() { cd "~/src/$(ghq list | peco)" }
+icd() { DIR="$(ls | peco)" && cd $DIR && icd }
+fuck() { sudo "$(fc -ln -1)" }
 
 prompts '%{$SCOLOR%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} ' '%{$fg[red]%}$(ruby_version)%{$reset_color%}'
 setopt auto_pushd
