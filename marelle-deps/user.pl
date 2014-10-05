@@ -109,6 +109,7 @@ font_pkg('font-source-code-pro').
 font_pkg('font-source-serif-pro').
 font_pkg('font-inconsolata-for-powerline').
 font_pkg('font-comic-neue').
+font_pkg('font-redacted').
 font_pkg('font-londrina-outline').
 font_pkg('font-londrina-shadow').
 font_pkg('font-londrina-sketch').
@@ -124,7 +125,7 @@ font_pkg('font-averia-serif-libre').
 meta_pkg(fonts, [
 	'font-fira-sans', 'font-signika', 'font-open-sans',
 	'font-source-sans-pro', 'font-source-code-pro', 'font-source-serif-pro',
-	'font-inconsolata-for-powerline', 'font-comic-neue',
+	'font-inconsolata-for-powerline', 'font-comic-neue', 'font-redacted',
 	'font-londrina-outline', 'font-londrina-shadow', 'font-londrina-sketch', 'font-londrina-solid',
 	'font-league-gothic', 'font-kaushan-script', 'font-amaranth',
 	'font-averia-libre', 'font-averia-gruesa-libre', 'font-averia-sans-libre', 'font-averia-serif-libre'
