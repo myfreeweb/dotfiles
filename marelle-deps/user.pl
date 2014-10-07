@@ -50,10 +50,10 @@ luarocks_pkg('mjolnir.application').
 luarocks_pkg('mjolnir.fnutils').
 luarocks_pkg('mjolnir.cmsj.appfinder').
 depends('mjolnir.cmsj.appfinder', _, ['mjolnir.fnutils']).
-luarocks_pkg('mjolnir.sd.grid').
+luarocks_pkg('mjolnir.bg.grid').
 meta_pkg('mjolnir-configured', [
 	'mjolnir', 'mjolnir.hotkey', 'mjolnir.application',
-	'mjolnir.cmsj.appfinder', 'mjolnir.sd.grid'
+	'mjolnir.cmsj.appfinder', 'mjolnir.bg.grid'
 ]).
 
 brew_tap('cask-versions-tap', 'caskroom/homebrew-versions').
