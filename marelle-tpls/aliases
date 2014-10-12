@@ -1,0 +1,39 @@
+# Basic system aliases -- these MUST be present
+MAILER-DAEMON:	postmaster
+postmaster:	root
+hostmaster:	root
+webmaster:	root
+
+# General redirections for pseudo accounts
+_dhcp:	root
+_pflogd:	root
+auditdistd:	root
+bin:	root
+bind:	root
+daemon:	root
+games:	root
+hast:	root
+kmem:	root
+mailnull:	postmaster
+man:	root
+news:	root
+nobody:	root
+operator:	root
+pop:	root
+proxy:	root
+smmsp:	postmaster
+sshd:	root
+system:	root
+toor:	root
+tty:	root
+usenet:	root
+uucp:	root
+abuse:	root
+security:	root
+ftp-bugs:	ftp
+ftp:	root
+
+root:	greg
+me:	greg
+mail:	greg
+hello:	greg
