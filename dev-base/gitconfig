@@ -10,7 +10,8 @@
 
 [core]
 	excludesfile = ~/.gitignore
-	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+	autocrlf = input
+	whitespace = space-before-tab,trailing-space
 	legacyheaders = false
 	quotepath = false
 	pager = $PAGER
