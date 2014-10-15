@@ -80,7 +80,7 @@ depends(nginx, _, [libressl]).
 installs_with_ports(nginx, 'www/nginx', 'WITH="SPDY"'). % Also, looks like the pkgng version is statically linked to vulnerable openssl :(
 
 pkg(opensmtpd).
-depends(opensmtpd, _, [libressl, ca-root-nss]).
+depends(opensmtpd, _, [libressl, ca_root_nss]).
 installs_with_ports(opensmtpd, 'mail/opensmtpd').
 pkg(opensmtpd_enabled).
 depends(opensmtpd_enabled, _, [opensmtpd]).
@@ -108,7 +108,7 @@ meet(amavis_enabled, freebsd) :-
 	assertz(amavis_enabled_set).
 
 pkg(prosody).
-depends(prosody, _, [libressl, ca-root-nss]).
+depends(prosody, _, [libressl, ca_root_nss]).
 installs_with_ports(prosody, 'net-im/prosody').
 pkg(prosody_enabled).
 depends(prosody_enabled, _, [prosody]).
@@ -119,10 +119,27 @@ meet(prosody_enabled, freebsd) :-
 	sudo_sh('sysrc prosody_enable=YES >/dev/null'),
 	assertz(prosody_enabled_set).
 
+pkg(znc).
+depends(znc, _, [libressl, ca_root_nss]).
+installs_with_pkgng(znc).
+pkg(znc_enabled).
+depends(znc_enabled, _, [znc]).
+:- dynamic znc_enabled_set/0.
+met(znc_enabled, _) :- znc_enabled_set.
+meet(znc_enabled, freebsd) :-
+	sudo_sh('pw useradd -n znc -m >/dev/null || true'),
+	sudo_sh('mkdir -p /usr/local/etc/znc/configs'),
+	sudo_sh('cat ./marelle-tpls/znc.conf | sed -e s/%passwordhash%/`cat /usr/local/etc/znc/passwordhash`/g > /usr/local/etc/znc/configs/znc.conf'),
+	sudo_sh('cat /usr/local/etc/certs/bundle.pem /usr/local/etc/certs/key.pem > /usr/local/etc/znc/znc.pem'),
+	sudo_sh('chown znc:znc /usr/local/etc/znc/configs/znc.conf /usr/local/etc/znc/znc.pem'),
+	sudo_sh('sysrc znc_enable=YES >/dev/null'),
+	assertz(znc_enabled_set).
+
 meta_pkg(server, [
 	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
 	% i2p_enabled, % too much ram usage :(
 	nginx,
 	amavis_enabled, opensmtpd_enabled,
-	prosody_enabled
+	prosody_enabled,
+	znc_enabled
 ]).
