@@ -76,9 +76,11 @@ meet(i2p_enabled, freebsd) :-
 	sudo_sh('chmod 0777 /home/_i2p/i2p/i2psvc /home/_i2p/i2p/lib/wrapper.jar /home/_i2p/i2p/lib/libwrapper.so').
 
 pkg(nginx).
+depends(nginx, _, [libressl]).
 installs_with_ports(nginx, 'www/nginx', 'WITH="SPDY"'). % Also, looks like the pkgng version is statically linked to vulnerable openssl :(
 
 pkg(opensmtpd).
+depends(opensmtpd, _, [libressl, ca-root-nss]).
 installs_with_ports(opensmtpd, 'mail/opensmtpd').
 pkg(opensmtpd_enabled).
 depends(opensmtpd_enabled, _, [opensmtpd]).
@@ -87,7 +89,7 @@ met(opensmtpd_enabled, _) :- opensmtpd_enabled_set.
 meet(opensmtpd_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/smtpd.conf > /usr/local/etc/mail/smtpd.conf'),
 	sudo_sh('cat ./marelle-tpls/aliases > /etc/mail/aliases'),
-	sudo_sh('smtpctl update table aliases >/dev/null'),
+	sudo_sh('smtpctl update table aliases >/dev/null || true'),
 	sudo_sh('sysrc smtpd_enable=YES >/dev/null'),
 	assertz(opensmtpd_enabled_set).
 
@@ -105,9 +107,22 @@ meet(amavis_enabled, freebsd) :-
 	sudo_sh('sysrc amavisd_enable=YES >/dev/null'),
 	assertz(amavis_enabled_set).
 
+pkg(prosody).
+depends(prosody, _, [libressl, ca-root-nss]).
+installs_with_ports(prosody, 'net-im/prosody').
+pkg(prosody_enabled).
+depends(prosody_enabled, _, [prosody]).
+:- dynamic prosody_enabled_set/0.
+met(prosody_enabled, _) :- prosody_enabled_set.
+meet(prosody_enabled, freebsd) :-
+	sudo_sh('cat ./marelle-tpls/prosody.cfg.lua > /usr/local/etc/prosody/prosody.cfg.lua'),
+	sudo_sh('sysrc prosody_enable=YES >/dev/null'),
+	assertz(prosody_enabled_set).
+
 meta_pkg(server, [
 	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
 	% i2p_enabled, % too much ram usage :(
 	nginx,
-	amavis_enabled, opensmtpd_enabled
+	amavis_enabled, opensmtpd_enabled,
+	prosody_enabled
 ]).
