@@ -108,7 +108,7 @@ precmd() {
 	fi
 }
 
-prj() { cd "~/src/$(ghq list | peco)" }
+prj() { cd "$HOME/src/$(ghq list | peco)" }
 icd() { DIR="$(ls | peco)" && cd $DIR && icd }
 fuck() { sudo "$(fc -ln -1)" }
 

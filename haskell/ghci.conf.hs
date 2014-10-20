@@ -5,6 +5,7 @@
 -- thanks:
 --  http://redd.it/144biy
 
+:set -DGHC_INTERACTIVE -- http://www.mega-nerd.com/erikd/Blog/CodeHacking/Haskell/ghci-trick.html
 :set -XNoMonomorphismRestriction
 :set +m
 
