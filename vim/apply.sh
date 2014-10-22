@@ -5,12 +5,9 @@ mkdir -p ~/.vim/tmp
 mkdir -p ~/.vim/tmp/undo
 mkdir -p ~/.vim/tmp/backups
 mkdir -p ~/.vim/bundle
-
-if [ -d "$HOME/.vim/bundle/vundle" ]; then
-	(cd ~/.vim/bundle/vundle && git pull)
-else
-	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-fi
+mkdir -p ~/.vim/autoload
+curl -fLo ~/.vim/autoload/plug.vim \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 rm ~/.vimrc
 cp vimrc ~/.vimrc
@@ -30,6 +27,6 @@ cp -r ftplugin ~/.vim/ftplugin
 rm -r ~/.vim/syntax
 cp -r syntax ~/.vim/syntax
 
-vim +PluginClean +PluginInstall +qall
+vim +PlugClean! +PlugUpdate +qall
 
 echo "==> Installed vim"
