@@ -9,7 +9,6 @@
 # Loading plugins, setting variables {{{
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Just in case local isn't in PATH
-[[ -d /usr/local/lib/python2.7/site-packages ]] && export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 source $HOME/.zsh/zshuery/zshuery.sh
 load_defaults
