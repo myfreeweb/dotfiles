@@ -19,3 +19,6 @@ Host nfsn
 
 Host *.local
   ForwardAgent yes
+
+Host unrelenting.technology
+	ForwardAgent yes

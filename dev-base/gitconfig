@@ -61,7 +61,7 @@
 	# [c]ommit
 	ca  = commit --amend
 	cc  = commit
-	cl  = !git log --decorate --graph --abbrev-commit --date=relative --pretty='tformat:%C(yellow)%h%Creset}%Cgreen(%ar)%Creset}%C(bold blue)<%an>%Creset}%C(red)%d%Creset %s' $* | sed -Ee 's/(^[^<]*) ago)/\\1)/' | sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\\1)/' | column -t -s '}' | less -FXRS
+	cl  = "!f() { git log --decorate --graph --abbrev-commit --date=relative --pretty='tformat:%C(yellow)%h%Creset}%Cgreen%ar%Creset}%C(bold blue)%an%Creset}%C(red)%d%Creset %s' $@ | sed -Ee 's/(^[^<]*) ago)/\\1)/' | sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\\1)/' | column -t -s '}' | less -FXRS; }; f"
 	cp  = cherry-pick -x
 	cr  = reset --hard HEAD^
 	cs  = show
@@ -72,7 +72,6 @@
 	fa  = add
 	faa = !git add --all && git ws
 	fap = add --patch
-	fc  = !touch $@ && git add $@ && $EDITOR $1
 	ff  = rm --cached # [f]orget
 	fm  = mv # [m]ove
 	fr  = rm
@@ -90,7 +89,7 @@
 	rco = remote add origin
 	rl  = remote -v
 	rr  = remote rm
-	rp  = !git push $@ && git push --tags $@
+	rp  = "!f() { git push $@ && git push --tags $@; }; f"
 	# [s]ubmodule
 	sc  = submodule add
 	scm = submodule foreach --recursive git checkout master

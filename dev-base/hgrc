@@ -56,7 +56,6 @@ cr  = rollback
 # [f]ile
 fa  = add
 faa = add
-fc  = !touch $@ && $HG add $@ && $EDITOR $1
 ff  = forget
 fi  = ![ -n "$@" ] && echo '$@' >> `$HG root`/.hgignore && $HG commit `$HG root`/.hgignore -Am 'Add "$@" to .hgignore.'
 fm  = mv
