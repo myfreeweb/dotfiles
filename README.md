@@ -3,9 +3,10 @@
 Modular dotfiles!
 Easy installation on virtual machines and servers via SSH.
 No symlinks.
-[Marelle] for optional automated installation.
 
 A module is a directory with an `apply.sh` file that installs the dotfiles.
+
+Also: [Marelle] deps for OS X desktop and FreeBSD server.
 
 ![Screenshot](https://files.app.net/2nnl9Hsmq.png)
 

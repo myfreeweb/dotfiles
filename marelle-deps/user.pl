@@ -81,11 +81,14 @@ cask_pkg(evernote).
 cask_pkg(skitch).
 cask_pkg(skype).
 cask_pkg('istat-menus').
+cask_pkg(imageoptim).
 cask_pkg(qlcolorcode).
 cask_pkg(qlmarkdown).
 cask_pkg(qlprettypatch).
 cask_pkg(qlimagesize).
 cask_pkg(qlstephen).
+cask_pkg('colorpicker-developer').
+cask_pkg('colorpicker-hex').
 cask_pkg('iterm2-beta').
 depends('iterm2-beta', _, ['cask-versions-tap']).
 cask_pkg(java).
@@ -138,8 +141,9 @@ meta_pkg(mac, [
 	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured', pulse,
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
-	evernote, skitch, skype, 'istat-menus',
+	evernote, skitch, skype, 'istat-menus', imageoptim,
 	qlcolorcode, qlmarkdown, qlprettypatch, qlimagesize, qlstephen,
+	'colorpicker-developer', 'colorpicker-hex',
 	'iterm2-beta', java, java7,
 	'google-chrome', 'google-chrome-canary',
 	'firefox', 'firefox-nightly',
