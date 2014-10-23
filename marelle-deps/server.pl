@@ -137,6 +137,7 @@ meet(znc_enabled, freebsd) :-
 
 pkg(pulse).
 installs_with_pkgng(pulse, 'net/syncthing').
+installs_with_brew(pulse, 'syncthing').
 pkg(pulse_enabled).
 depends(pulse_enabled, _, [pulse]).
 :- dynamic pulse_enabled_set/0.

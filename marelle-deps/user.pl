@@ -135,7 +135,7 @@ meta_pkg(fonts, [
 ]).
 
 meta_pkg(mac, [
-	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured',
+	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured', pulse,
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
 	evernote, skitch, skype, 'istat-menus',
