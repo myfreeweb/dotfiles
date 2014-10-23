@@ -5,6 +5,7 @@
 # thanks:
 # http://selena.deckelmann.usesthis.com/
 # https://github.com/mathiasbynens/dotfiles/blob/master/.functions
+# https://superuser.com/questions/180148/how-do-you-get-screen-to-automatically-connect-to-the-current-ssh-agent-when-re
 
 # Loading plugins, setting variables {{{
 
@@ -22,6 +23,12 @@ export BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 export PATH=$HOME/bin:$PATH
+
+# SSH
+if [[ -S "$SSH_AUTH_SOCK" ]] && [[ ! -h "$SSH_AUTH_SOCK" ]]; then # socket and not symlink
+	ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 
 # Go
 export GOPATH=$HOME
