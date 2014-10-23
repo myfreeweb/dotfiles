@@ -1,3 +1,4 @@
+let g:plug_url_format = 'git@github.com:%s'
 call plug#begin('~/.vim/bundle')
 
 " Languages
@@ -17,7 +18,7 @@ Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'fs111/pydoc.vim', { 'for': 'python' }
 
 " Features
-Plug 'Shougo/vimproc', { 'do': 'make' }
+Plug 'Shougo/vimproc', { 'do': 'gmake \|\| make' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimfiler.vim'
