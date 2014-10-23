@@ -135,11 +135,26 @@ meet(znc_enabled, freebsd) :-
 	sudo_sh('sysrc znc_enable=YES >/dev/null'),
 	assertz(znc_enabled_set).
 
+pkg(pulse).
+installs_with_pkgng(pulse, 'net/syncthing').
+pkg(pulse_enabled).
+depends(pulse_enabled, _, [pulse]).
+:- dynamic pulse_enabled_set/0.
+met(pulse_enabled, _) :- pulse_enabled_set.
+meet(pulse_enabled, freebsd) :-
+	sudo_sh('sysrc syncthing_enable=YES syncthing_user=greg >/dev/null'),
+	sudo_sh('mkdir -p /var/tmp/syncthing'),
+	sudo_sh('cat /usr/local/etc/certs/bundle.pem > /var/tmp/syncthing/https-cert.pem'),
+	sudo_sh('cat /usr/local/etc/certs/key.pem > /var/tmp/syncthing/https-key.pem'),
+	sudo_sh('chown greg:syncthing /var/tmp/syncthing/ /var/tmp/syncthing/*'),
+	assertz(pulse_enabled_set).
+
 meta_pkg(server, [
 	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
 	% i2p_enabled, % too much ram usage :(
 	nginx,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
-	znc_enabled
+	znc_enabled,
+	pulse_enabled
 ]).
