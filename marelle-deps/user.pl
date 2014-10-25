@@ -18,6 +18,17 @@ pkg(libressl).
 installs_with_brew(libressl).
 installs_with_ports(libressl, 'security/libressl').
 
+% Mail
+pkg(mutt).
+depends(mutt, freebsd, [libressl]).
+installs_with_brew(mutt, mutt, '--with-trash-patch --with-gpgme').
+installs_with_ports(mutt, 'mail/mutt', 'WITH="FLOCK GPGME IDN SIDEBAR_PATCH TRASH_PATCH" WITHOUT="XML DOCS EXAMPLES"').
+managed_pkg(msmtp).
+managed_pkg(urlview).
+meta_pkg(mail, [
+	mutt, msmtp, urlview
+]).
+
 % Shell
 managed_pkg(tmux).
 managed_pkg(zsh).
@@ -151,5 +162,5 @@ meta_pkg(mac, [
 ]).
 
 meta_pkg(desktop, [
-	shell, dev, mac, keychain, rkhunter
+	shell, dev, mail, mac, keychain, rkhunter
 ]).
