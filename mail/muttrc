@@ -1,0 +1,173 @@
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+#
+# Thanks:
+#  http://stevelosh.com/blog/2012/10/the-homely-mutt/
+#  http://henrytodd.org/notes/2014/simpler-gnupg-mutt-config-with-gpgme/
+#  https://github.com/altercation/mutt-colors-solarized
+#  https://wiki.archlinux.org/index.php/Mutt
+
+# Paths
+set folder                   = ~/Mail
+# set alias_file               = ~/.alias
+set mailcap_path             = ~/.mailcap
+set header_cache             = ~/.tmp/mutt/cache/headers
+set message_cachedir         = ~/.tmp/mutt/cache/bodies
+set tmpdir                   = ~/.tmp/mutt
+
+# Folders
+set spoolfile = "+INBOX"
+set mbox      = "+archive"
+set postponed = "+drafts"
+set record    = "+sent"
+mailboxes +INBOX +archive +drafts +sent
+
+# Basic Options
+set wait_key   = no        # shut up, mutt
+set mbox_type  = Maildir   # mailbox type
+set timeout    = 3         # idle time before scanning
+set mail_check = 0         # minimum time between scans
+set delete                 # don't ask, just do
+unset confirmappend        # don't ask, just do!
+set quit                   # don't ask, just do!!
+unset mark_old             # read/new is good enough for me
+set pipe_decode            # strip headers and eval mimes when piping
+set thorough_search        # strip headers and eval mimes before searching
+
+# Status Bar
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Index View Options
+set date_format  = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+folder-hook   .*[sS]ent.* 'set index_format = "[%Z]  %D  %-20.20t  %s"'
+folder-hook ! .*[sS]ent.* 'set index_format = "[%Z]  %D  %-20.20F  %s"'
+set sort         = threads
+set sort_aux     = reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+bind index \#       noop
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index j        previous-entry
+bind index k        next-entry
+bind index gg       first-entry
+bind index G        last-entry
+bind index p        recall-message
+bind index <space>  collapse-thread
+bind index N        search-opposite
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index a "<limit>all\n" "show all messages (undo limit)"
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro index / "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.tmp/mutt/cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.tmp/mutt/cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+
+# Pager View Options
+ignore *
+unignore subject: from: to: cc: date:
+unhdr_order *
+hdr_order subject: from: to: cc: date:
+set quote_regexp      = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set pager_index_lines = 10 # number of index lines to show
+set pager_context     = 3  # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+alternative_order text/plain text/enriched text/html
+bind pager \# noop
+bind pager j  previous-line
+bind pager k  next-line
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply
+bind pager N  search-opposite
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+
+# Compose Options
+set sendmail_wait = 0
+set send_charset  = "utf-8"
+set from          = "greg@unrelenting.technology"
+set realname      = "Greg"
+set editor        = "~/bin/edit-and-hashcash"
+set envelope_from
+set sig_dashes
+set edit_headers
+set fast_reply
+set askcc
+set fcc_attach
+unset mime_forward
+set forward_decode
+set forward_format = "Fwd: %s"
+set attribution    = "On %d, %n wrote:"
+set reply_to
+set reverse_name
+set include
+set forward_quote
+bind compose p postpone-message
+bind compose P pgp-menu
+bind editor <Tab> complete-query
+bind editor ^T    complete
+
+# Attachment View Options
+set attach_format = "[%D %t] %2n [%-7.7m/%10.10M] %.40d %> [%s] "
+bind attach <return> view-mailcap
+
+# GPG
+set crypt_use_gpgme
+set crypt_use_pka
+set crypt_verify_sig
+set crypt_replyencrypt
+set crypt_replysignencrypted
+# my_hdr X-PGP-Key: https://unrelenting.technology/pubkey.asc # TODO
+
+# Stuff
+my_hdr User-Agent: the one that sucks less
+
+# Colors
+color error        brightred       default
+color status       color21         color8
+color tree         yellow          default
+color indicator    black           yellow
+color tilde        black           default
+color hdrdefault   black           default
+color header       yellow          default          "^(From)"
+color header       brightgreen     default          "^(Subject)"
+color index        yellow          default          "~A" # all messages
+color index        blue            default          "~N" # new messages
+color index        brightblue      default          "~U" # unread messages
+color index        black           red              "~D" # deleted messages
+color quoted       blue            default
+color quoted1      cyan            default
+color quoted2      yellow          default
+color quoted3      red             default
+color quoted4      brightred       default
+color body         cyan            default          "(finger|ftp|http|https|irc|xmpp|news|telnet|git|hg|ssh)://[^ >]*"
+color body         cyan            default          "<URL:[^ ]*>"
+color body         cyan            default          "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body         cyan            default          "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body         brightred       default          "^-.*"
+color body         brightgreen     default          "^[+].*"
+color body         brightwhite     default          "^diff .*"
+color body         brightyellow    default          "^@@.*"
+color body         yellow          default          "[;:][-o][)/(|]" # emoticons
+color body         cyan            default          "[;:][)(|]" # emoticons
+color body         cyan            default          "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
+color body         red             default          "(BAD signature)"
+color body         cyan            default          "(Good signature)"
+color body         brightblack     default          "^gpg: Good signature .*"
+color body         brightyellow    default          "^gpg: "
+color body         brightyellow    red              "^gpg: BAD signature from.*"
+mono  body         bold                             "^gpg: Good signature"
+mono  body         bold                             "^gpg: BAD signature from.*"
+mono  bold         bold
+mono  error        bold
+mono  underline    underline
+mono  indicator    reverse
+
+# Local Settings
+source `FILE=$HOME/.muttrc+osx;   if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
+source `FILE=$HOME/.muttrc.local; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`

@@ -1,0 +1,36 @@
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+#
+# Thanks:
+#  http://stevelosh.com/blog/2012/10/the-homely-mutt/
+
+# MS Excel
+application/x-msexcel; ~/bin/view-attachment %s
+application/ms-exc; ~/bin/view-attachment %s
+application/excel; ~/bin/view-attachment %s
+application/msexcel; ~/bin/view-attachment %s
+application/vnd.ms-exc; ~/bin/view-attachment %s
+application/vnd.ms-excel; ~/bin/view-attachment %s
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; ~/bin/view-attachment %s
+
+# MS Word
+application/msword; ~/bin/view-attachment %s
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; ~/bin/view-attachment %s
+
+# Images
+image/jpg; ~/bin/view-attachment %s jpg
+image/jpeg; ~/bin/view-attachment %s jpg
+image/pjpeg; ~/bin/view-attachment %s jpg
+image/png; ~/bin/view-attachment %s png
+image/gif; ~/bin/view-attachment %s gif
+image/webp; ~/bin/view-attachment %s webp
+
+# PDF
+application/pdf; ~/bin/view-attachment %s pdf
+
+# HTML
+text/html; ~/bin/view-attachment %s html
+
+# Unidentified.
+application/octet-stream; ~/bin/view-attachment %s "-" 

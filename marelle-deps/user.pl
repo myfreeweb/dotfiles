@@ -24,10 +24,14 @@ depends(mutt, freebsd, [libressl]).
 installs_with_brew(mutt, mutt, '--with-trash-patch --with-gpgme').
 installs_with_ports(mutt, 'mail/mutt', 'WITH="FLOCK GPGME IDN SIDEBAR_PATCH TRASH_PATCH" WITHOUT="XML DOCS EXAMPLES"').
 managed_pkg(msmtp).
+managed_pkg(contacts).
 managed_pkg(urlview).
+managed_pkg(hashcash).
+managed_pkg(notmuch).
 meta_pkg(mail, [
-	mutt, msmtp, urlview
+	mutt, urlview, hashcash, notmuch
 ]).
+depends(mail, osx, [msmtp, contacts]).
 
 % Shell
 managed_pkg(tmux).
