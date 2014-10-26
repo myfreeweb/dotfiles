@@ -24,6 +24,7 @@ au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal omnifunc=csscomplete#
 au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+au FileType mail exe "normal! }"
 
 " Folds
 au FileType {vim,javascript} setlocal foldmethod=marker

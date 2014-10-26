@@ -5,4 +5,5 @@
 # Thanks:
 #  https://wiki.archlinux.org/index.php/Mutt
 
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; w3m -F -I %{charset} -T text/html -dump %s; copiousoutput;
+application/msword; antiword %s; copiousoutput;
