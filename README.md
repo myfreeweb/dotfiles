@@ -10,6 +10,8 @@ Also: [Marelle] deps for OS X desktop and FreeBSD server.
 
 ![Screenshot](https://files.app.net/2nnl9Hsmq.png)
 
+[Marelle]: https://github.com/larsyencken/marelle
+
 ## Installation
 
 Prepare OS X:
@@ -35,6 +37,8 @@ $ marelle meet desktop
 
 Also, get [base16] colorschemes for the terminal.
 
+[base16]: https://github.com/chriskempson/base16
+
 ### Local (example)
 
     ./install.sh dev-base bin tmux zsh vim osx python ruby
@@ -50,42 +54,57 @@ Also, get [base16] colorschemes for the terminal.
 
 ### Common
 
-- **dev-base** -- configs for ssh, git, ack, ctags, curl, gpg and other small but essential programs
+- **dev-base** -- configs for [ssh], [git], [ack], [ctags], [curl], [gpg] and other small but essential programs
 - **bin** -- various useful scripts that mostly work
-- **tmux** -- tmux configuration and command helper
-- **zsh** -- Z Shell configuration and plugins
-- **vim** -- Vim (or [neovim]) text editor configuration and plugins
-- **emacs** -- GNU Emacs text editor configuration and plugins
+- **tmux** -- [tmux] configuration and command helper
+- **zsh** -- [Z Shell] configuration and plugins
+- **vim** -- [Vim] *or [neovim]* text editor configuration and plugins
+- **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
-- **firefox** -- userChrome.css for Mozilla Firefox
+- **firefox** -- userChrome.css for [Mozilla Firefox]
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 
-### Language-specific
-
-- **python** -- Python
-- **ruby** -- irb, Rails, RubyGems
-- **lein** -- [Leiningen]
-- **ocaml** -- [OPAM], [utop]
-- **haskell** -- [Cabal], ghci, [hi]
-- **lua** -- [luarocks]
-
-[Marelle]: https://github.com/larsyencken/marelle
-[Homebrew]: http://brew.sh
-[base16]: https://github.com/chriskempson/base16
+[ssh]: http://www.openssh.com
+[git]: http://git-scm.com
+[ack]: http://beyondgrep.com
+[ctags]: http://ctags.sourceforge.net
+[curl]: http://curl.haxx.se
+[gpg]: https://www.gnupg.org
+[tmux]: http://tmux.sourceforge.net
+[Z Shell]: http://zsh.sourceforge.net
+[Vim]: http://www.vim.org
 [neovim]: https://github.com/neovim/neovim
+[GNU Emacs]: https://www.gnu.org/software/emacs/
 [keybindings]: https://github.com/ttscoff/KeyBindings
 [Karabiner]: https://pqrs.org/osx/karabiner/index.html.en
 [Seil]: https://pqrs.org/osx/karabiner/seil.html.en
 [Mjolnir]: http://mjolnir.io/ 
 [A Modern Space Cadet]: http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
+[Mozilla Firefox]: https://www.mozilla.org/en-US/firefox/desktop/
 [mutt]: http://www.mutt.org
 [notmuch]: http://notmuchmail.org
 [msmtp]: https://wiki.archlinux.org/index.php/MSMTP
 [urlview]: https://github.com/sigpipe/urlview
 [hashcash]: http://hashcash.org
-[Leiningen]: http://leiningen.org/
-[OPAM]: http://opam.ocaml.org/
+
+### Language-specific
+
+- **python** -- [Python] REPL configuration
+- **ruby** -- [Ruby] irb, Rails, RubyGems configuration
+- **lein** -- [Clojure]'s [Leiningen] configuration
+- **ocaml** -- [OCaml] [OPAM] and [utop] configuration
+- **haskell** -- [Haskell] [Cabal], ghci, [hi] configuration
+- **lua** -- [Lua] [luarocks] configuration
+
+[Python]: https://www.python.org
+[Ruby]: https://www.ruby-lang.org/en/
+[Clojure]: http://clojure.org
+[Leiningen]: http://leiningen.org
+[OCaml]: https://ocaml.org
+[OPAM]: https://opam.ocaml.org
 [utop]: https://github.com/diml/utop
-[Cabal]: http://www.haskell.org/cabal/
+[Haskell]: https://www.haskell.org
+[Cabal]: https://www.haskell.org/cabal/
 [hi]: https://github.com/fujimura/hi
-[luarocks]: https://rocks.moonscript.org/
+[Lua]: http://www.lua.org
+[luarocks]: https://rocks.moonscript.org
