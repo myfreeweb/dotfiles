@@ -12,6 +12,7 @@ command_pkg(fortune).
 installs_with_brew(fortune).
 
 % Internets
+managed_pkg(w3m).
 managed_pkg(curl).
 managed_pkg(wget).
 pkg(libressl).
@@ -32,6 +33,7 @@ meta_pkg(mail, [
 	mutt, urlview, hashcash, notmuch
 ]).
 depends(mail, osx, [msmtp, contacts]).
+depends(mail, freebsd, [w3m]).
 
 % Shell
 managed_pkg(tmux).
