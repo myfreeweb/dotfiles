@@ -77,7 +77,7 @@ meet(i2p_enabled, freebsd) :-
 
 pkg(nginx).
 depends(nginx, _, [libressl]).
-installs_with_ports(nginx, 'www/nginx', 'WITH="SPDY"'). % Also, looks like the pkgng version is statically linked to vulnerable openssl :(
+installs_with_ports(nginx, 'www/nginx', 'WITH="SPDY LUA FILE_AIO SYSLOG_SUPPORT"'). % Also, looks like the pkgng version is statically linked to vulnerable openssl :(
 
 pkg(opensmtpd).
 depends(opensmtpd, _, [libressl, ca_root_nss]).
