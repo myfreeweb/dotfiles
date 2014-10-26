@@ -12,12 +12,15 @@ command_pkg(fortune).
 installs_with_brew(fortune).
 
 % Internets
-managed_pkg(w3m).
-managed_pkg(curl).
-managed_pkg(wget).
 pkg(libressl).
 installs_with_brew(libressl).
 installs_with_ports(libressl, 'security/libressl').
+managed_pkg(w3m).
+depends(w3m, freebsd, [libressl]).
+managed_pkg(curl).
+depends(curl, freebsd, [libressl]).
+managed_pkg(wget).
+depends(wget, freebsd, [libressl]).
 
 % Mail
 pkg(mutt).
@@ -30,11 +33,11 @@ managed_pkg(antiword).
 managed_pkg(urlview).
 managed_pkg(hashcash).
 managed_pkg(notmuch).
-meta_pkg(mail, [
+meta_pkg('mail-base', [
 	mutt, urlview, hashcash, notmuch
 ]).
-depends(mail, osx, [msmtp, contacts]).
-depends(mail, freebsd, [w3m, antiword]).
+meta_pkg(mail, osx,     ['mail-base', msmtp, contacts]).
+meta_pkg(mail, freebsd, ['mail-base', w3m, antiword]).
 
 % Shell
 managed_pkg(tmux).
@@ -56,7 +59,7 @@ managed_pkg(keychain).
 managed_pkg(rkhunter).
 
 % OS X
-managed_pkg('reattach-to-user-namespace') :- platform(osx).
+managed_pkg('reattach-to-user-namespace').
 
 cask_pkg(karabiner).
 cask_pkg(seil).
