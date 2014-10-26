@@ -92,8 +92,8 @@ Also, get [base16] colorschemes for the terminal.
 - **python** -- [Python] REPL configuration
 - **ruby** -- [Ruby] irb, Rails, RubyGems configuration
 - **lein** -- [Clojure]'s [Leiningen] configuration
-- **ocaml** -- [OCaml] [OPAM] and [utop] configuration
-- **haskell** -- [Haskell] [Cabal], ghci, [hi] configuration
+- **ocaml** -- [OCaml]'s [OPAM] and [utop] configuration
+- **haskell** -- [Haskell]'s [Cabal], ghci, [hi] configuration
 - **lua** -- [Lua] [luarocks] configuration
 
 [Python]: https://www.python.org
