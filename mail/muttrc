@@ -129,11 +129,11 @@ my_hdr User-Agent: the one that sucks less
 
 # Colors
 color error        brightred       default
-color status       color21         color8
+color status       color231        color244
 color tree         yellow          default
 color indicator    black           yellow
 color tilde        black           default
-color hdrdefault   black           default
+color hdrdefault   color245        default
 color header       yellow          default          "^(From)"
 color header       brightgreen     default          "^(Subject)"
 color index        yellow          default          "~A" # all messages
