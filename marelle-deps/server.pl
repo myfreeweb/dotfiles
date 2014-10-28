@@ -7,7 +7,7 @@
 managed_pkg(ca_root_nss).
 
 pkg(freebsd_conf).
-depends(freebsd_conf, _, [libressl, ca_root_nss]).
+depends(freebsd_conf, _, [libressl, ca_root_nss, rkhunter]).
 :- dynamic freebsd_conf_set/0.
 met(freebsd_conf, _) :- freebsd_conf_set.
 meet(freebsd_conf, freebsd) :-
@@ -15,8 +15,14 @@ meet(freebsd_conf, freebsd) :-
 	'sendmail_enable=NO sendmail_submit_enable=NO sendmail_outbound_enable=NO sendmail_msp_queue_enable=NO ',
 	'portmap_enable=NO inetd_enable=NO icmp_drop_redirect=YES icmp_log_redirect=YES ',
 	'clear_tmp_enable=YES syslogd_flags="-ss" ',
+	'pf_enable=YES pflog_enable=YES ',
+	'>/dev/null']),
+	sudo_sh(['sysrc -f /etc/periodic.conf ',
+	'daily_rkhunter_check_enable=YES daily_rkhunter_update_flags="--update --nocolors" ',
+	'daily_rkhunter_update_enable=YES daily_rkhunter_check_flags="--checkall --nocolors --skip-keypress" ',
 	'>/dev/null']),
 	sudo_sh('cp -f ./marelle-tpls/make.conf /etc'),
+	sudo_sh('cp -f ./marelle-tpls/pf.conf /etc'),
 	assertz(freebsd_conf_set).
 
 managed_pkg(openntpd).
