@@ -1,7 +1,7 @@
 $ORIGIN unrelenting.technology.
 $TTL 3600
 
-@ IN SOA unrelenting.technology. unrelenting.technology. ( 2014102801 6h      1h    1w     1d  )
+@ IN SOA unrelenting.technology. unrelenting.technology. ( 2014102901 6h      1h    1w     1d  )
 ;                                                          serial     refresh retry expire min
 
 @                                         IN NS        ( ns1.mfwb.us. )
@@ -24,7 +24,9 @@ _587._tcp.unrelenting.technology          IN TLSA      ( 1 0 1 687fa451382278fff
 _5222._tcp.unrelenting.technology         IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
 _5269._tcp.unrelenting.technology         IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
 _6667._tcp.unrelenting.technology         IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
+_8080._tcp.unrelenting.technology         IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
 _xmpp-client._tcp.unrelenting.technology. IN SRV       ( 0 5 5222 unrelenting.technology. )
 _xmpp-server._tcp.unrelenting.technology. IN SRV       ( 0 5 5269 unrelenting.technology. )
 _adsp._domainkey                          IN TXT       ( "dkim-all" )
 main._domainkey                           IN TXT       ( "v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCit1pjkQIeSQuJ0o8WSQDssau+3mR+XyKZ7i2kBto2n0vuJwvcxbNBhRuqOBjqOsDVnm/5birDBMHu4T6JHKjh4Q5Vg8T4jT/DBYLJCf9fZxFpupGwx+3L2nfM0qZeWEgZwyoEzNvVu0mHOkjpctsH5nMyVJ+65TWTm6ixBKD5UwIDAQAB" )
+greg._pka.unrelenting.technology          IN TXT       ( "v=pka1;fpr=EB1AB07D30A6D61E3D00E0A7E0043F919E4AACE9;uri=https://unrelenting.technology/pub/9E4AACE9.pub.asc" )
