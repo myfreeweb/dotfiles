@@ -92,8 +92,10 @@ macro pager \Cu "|urlview<enter>" "call urlview to open links"
 set sendmail_wait = 0
 set send_charset  = "utf-8"
 set from          = "greg@unrelenting.technology"
+set hostname      = "unrelenting.technology" # hide the .local hostname from Message-ID
 set realname      = "Greg"
 set editor        = "~/bin/edit-and-hashcash"
+unset use_domain
 set envelope_from
 set sig_dashes
 set edit_headers

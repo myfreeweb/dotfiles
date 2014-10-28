@@ -5,39 +5,36 @@
 # Thanks:
 #  https://pthree.org/2011/03/24/hashcash-and-mutt/
 
+from email.generator import Generator
+from email.parser import FeedParser
+from email.utils import getaddresses
 import fileinput
-import rfc822
 import subprocess
 import sys
 import os
 
-subprocess.call("%s %s" % (os.environ.get("EDITOR", "vim"), sys.argv[1]), shell=True)
+filename = sys.argv[1]
+subprocess.call("%s %s" % (os.environ.get("EDITOR", "vim"), filename), shell=True)
 
-file = open(sys.argv[1], 'r')
-headers = rfc822.Message(file)
+parser = FeedParser()
+for line in fileinput.FileInput(filename, inplace=1):
+    parser.feed(line)
+msg = parser.close()
 
 # Harvest all email addresses from the header
 # Bcc ignored for privacy reasons / can't do multiple mails from editor script
-addrs = lambda h: map(lambda m: m[1], headers.getaddrlist(h))
+addrs = lambda h: [m[1].lower() for m in getaddresses(msg.get_all(h, []))]
 email_addrs = set(addrs("To")).union(set(addrs("Cc")))
 
 # Check if an appropriate token is already generated for the mail
-if headers.has_key("X-Hashcash"):
-    for list in headers.getheaders("X-Hashcash"):
-        email_addrs.remove(list.split(":")[3])
+for hash in msg.get_all("X-Hashcash", []):
+    email_addrs.discard(hash.split(":")[3])
 
 # Call the hashcash function from the operating system to mint tokens
-tokens = []
 for email in email_addrs:
-    t = subprocess.Popen("hashcash -mX -Z 2 %s" % email, shell=True, stdout=subprocess.PIPE)
-    tokens.append(t.stdout.read().strip())
+    t = subprocess.Popen("hashcash -mq -Z 2 %s" % email, shell=True, stdout=subprocess.PIPE)
+    msg["X-Hashcash"] = t.stdout.read().strip()
 
-# Write the newly minted tokens to the header
-f = fileinput.FileInput(sys.argv[1], inplace=1)
-for line in f:
-    line = line.strip()
-    print line
-    if line.startswith("In-Reply-To"):
-        print "\n".join(tokens)
-
-file.close()
+# Write out the message!
+with open(filename, 'w') as msg_out:
+    Generator(msg_out, mangle_from_=False).flatten(msg)
