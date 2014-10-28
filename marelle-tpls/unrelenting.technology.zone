@@ -1,0 +1,30 @@
+$ORIGIN unrelenting.technology.
+$TTL 3600
+
+@ IN SOA unrelenting.technology. unrelenting.technology. ( 2014102801 6h      1h    1w     1d  )
+;                                                          serial     refresh retry expire min
+
+@                                         IN NS        ( ns1.mfwb.us. )
+@                                         IN NS        ( ns2.mfwb.us. )
+ns1                                       IN A         ( 46.149.26.115 )
+ns2                                       IN A         ( 46.149.26.115 )
+@                                         IN MX        ( 10 46.149.18.65 )
+@                                         IN A         ( 46.149.26.115 )
+@                                         IN TXT       ( "v=spf1 mx a -all" )
+_dmarc                                    IN TXT       ( "v=DMARC1; p=reject" )
+@                                         IN SSHFP     ( 1 1 a7b22dd30b74a6389a5de090ef29fd8b98ca4d03 )
+@                                         IN SSHFP     ( 1 2 23053e582c16eb459609d262065dbc8a7404c609baabe4ad66142489584d9fbc )
+@                                         IN SSHFP     ( 2 1 e7b9615eafac7c25a425e3ca7a24622a2b2c8095 )
+@                                         IN SSHFP     ( 2 2 064112424364da6ff8b262a5b9dab1ab1ee8cc8fd122db9518e6b2850411926e )
+@                                         IN SSHFP     ( 3 1 6d835a665676f539e582bdde12852fca104c704c )
+@                                         IN SSHFP     ( 3 2 0954d06886ea8e5d578028eb1523576a0c7585c4393b64b9f69dbdadb753dba2 )
+_25._tcp.unrelenting.technology           IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
+_443._tcp.unrelenting.technology          IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
+_587._tcp.unrelenting.technology          IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
+_5222._tcp.unrelenting.technology         IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
+_5269._tcp.unrelenting.technology         IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
+_6667._tcp.unrelenting.technology         IN TLSA      ( 1 0 1 687fa451382278fff0c8b11f8d43d576671c6eb2bceab413fb83d965d06d2ff2 )
+_xmpp-client._tcp.unrelenting.technology. IN SRV       ( 0 5 5222 unrelenting.technology. )
+_xmpp-server._tcp.unrelenting.technology. IN SRV       ( 0 5 5269 unrelenting.technology. )
+_adsp._domainkey                          IN TXT       ( "dkim-all" )
+main._domainkey                           IN TXT       ( "v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCit1pjkQIeSQuJ0o8WSQDssau+3mR+XyKZ7i2kBto2n0vuJwvcxbNBhRuqOBjqOsDVnm/5birDBMHu4T6JHKjh4Q5Vg8T4jT/DBYLJCf9fZxFpupGwx+3L2nfM0qZeWEgZwyoEzNvVu0mHOkjpctsH5nMyVJ+65TWTm6ixBKD5UwIDAQAB" )

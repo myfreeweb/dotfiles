@@ -63,8 +63,22 @@ depends(unbound_enabled, _, [dnscrypt_enabled]).
 met(unbound_enabled, _) :- unbound_enabled_set.
 meet(unbound_enabled, freebsd) :-
 	sudo_sh('cp -f ./marelle-tpls/unbound.conf /var/unbound'),
-	sudo_sh('sysrc local_unbound_enable=YES >/dev/null'),
+	sudo_sh('ifconfig lo0 alias 127.0.0.53 netmask 0xffffffff'),
+	sudo_sh('sysrc local_unbound_enable=YES ifconfig_lo0_alias3="inet 127.0.0.53 netmask 0xffffffff" >/dev/null'),
+	sudo_sh('echo "nameserver 127.0.0.53" > /etc/resolv.conf'),
 	assertz(unbound_enabled_set).
+
+pkg(knot).
+installs_with_ports(knot, 'dns/knot'). % pkgng version has a hard dep on openssl
+pkg(knot_enabled).
+depends(knot_enabled, _, [knot]).
+:- dynamic knot_enabled_set/0.
+met(knot_enabled, _) :- knot_enabled_set.
+meet(knot_enabled, freebsd) :-
+	sudo_sh('cp -f ./marelle-tpls/knot.conf /usr/local/etc/knot/knot.conf'),
+	sudo_sh('cp -f ./marelle-tpls/unrelenting.technology.zone /usr/local/etc/knot/'),
+	sudo_sh('sysrc knot_enable=YES >/dev/null'),
+	assertz(knot_enabled_set).
 
 managed_pkg(i2p).
 managed_pkg(javaservicewrapper).
@@ -109,7 +123,7 @@ meet(amavis_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/amavisd.conf > /usr/local/etc/amavisd.conf'),
 	sudo_sh('mkdir -p /var/amavis/tmp /var/amavis/var /var/amavis/db'),
 	sudo_sh('chown vscan /var/amavis/tmp /var/amavis/var /var/amavis/db'),
-	sudo_sh('sa-update || true'),
+	% sudo_sh('sa-update || true'),
 	sudo_sh('sysrc amavisd_enable=YES >/dev/null'),
 	assertz(amavis_enabled_set).
 
@@ -159,7 +173,7 @@ meet(pulse_enabled, freebsd) :-
 meta_pkg(server, [
 	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
 	% i2p_enabled, % too much ram usage :(
-	nginx,
+	knot_enabled, nginx,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
 	znc_enabled,
