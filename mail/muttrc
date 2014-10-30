@@ -125,7 +125,7 @@ set crypt_use_pka
 set crypt_verify_sig
 set crypt_replyencrypt
 set crypt_replysignencrypted
-my_hdr X-PGP-Key: https://unrelenting.technology/pub/3B011BAF.asc # TODO
+my_hdr X-PGP-Key: https://unrelenting.technology/pub/3B011BAF.asc
 
 # Stuff
 my_hdr User-Agent: the one that sucks less
