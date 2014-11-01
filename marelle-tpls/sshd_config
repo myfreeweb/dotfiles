@@ -1,0 +1,16 @@
+Protocol 2
+Subsystem	sftp	internal-sftp
+UsePrivilegeSeparation yes
+StrictModes yes
+PermitRootLogin no
+PasswordAuthentication no
+AllowAgentForwarding no
+AllowTcpForwarding no
+X11Forwarding no
+
+Match User dovahkiin
+	AllowAgentForwarding yes
+	AllowTcpForwarding yes
+
+Match User greg
+	PasswordAuthentication yes

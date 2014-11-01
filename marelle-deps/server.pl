@@ -23,6 +23,7 @@ meet(freebsd_conf, freebsd) :-
 	'>/dev/null']),
 	sudo_sh('cp -f ./marelle-tpls/make.conf /etc'),
 	sudo_sh('cp -f ./marelle-tpls/pf.conf /etc'),
+	sudo_sh('cp -f ./marelle-tpls/sshd_config /etc/ssh'),
 	assertz(freebsd_conf_set).
 
 managed_pkg(openntpd).
