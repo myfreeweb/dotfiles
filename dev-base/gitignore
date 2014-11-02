@@ -28,8 +28,12 @@ tags
 TAGS
 codex.tags
 .netrwhist
+.cabal-sandbox
 *.sublime-workspace
 *.sublime-project
+*.iml
+*.ipr
+*.iws
 
 # http://blog.illuminex.com/2009/10/better-sample-gitignore-file-for-xcode.html
 dsa_priv.pem

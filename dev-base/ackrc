@@ -16,6 +16,7 @@
 --ignore-dir=migrations
 --ignore-dir=coverage
 --ignore-dir=.sass-cache
+--ignore-dir=.cabal-sandbox
 --ignore-dir=build
 --ignore-dir=dist
 --ignore-dir=node_modules

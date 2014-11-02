@@ -102,7 +102,8 @@ let g:FactorRoot='/Applications/factor'
 let g:haskell_conceal_enumerations = 0
 
 " Unite
-call unite#filters#matcher_default#use(['sorter_rank'])
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_grep_encoding = 'utf-8'
 let g:unite_source_grep_default_opts = '--nogroup --nocolor'
@@ -110,13 +111,17 @@ let g:unite_source_grep_recursive_opt = ''
 if executable('ack-grep')
 	let g:unite_source_grep_command = 'ack-grep'
 	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
+	let g:unite_source_rec_async_command = 'ack-grep -f --nofilter'
 elseif executable('ack')
 	let g:unite_source_grep_command = 'ack'
 	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
+	let g:unite_source_rec_async_command = 'ack -f --nofilter'
 elseif executable('ag')
 	let g:unite_source_grep_command = 'ag'
+	let g:unite_source_rec_async_command = 'ag --nogroup --nocolor -g ""' " no --hidden
 elseif executable('pt')
 	let g:unite_source_grep_command = 'pt'
+	let g:unite_source_rec_async_command = 'pt --nogroup --nocolor -g .'
 endif
 
 " Vimfiler
