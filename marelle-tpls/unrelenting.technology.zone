@@ -8,7 +8,6 @@ $TTL 3600
 @                                         IN NS        ( ns2.mfwb.us. )
 ns1                                       IN A         ( 46.149.26.115 )
 ns2                                       IN A         ( 46.149.26.115 )
-@                                         IN MX        ( 10 46.149.18.65 )
 @                                         IN A         ( 46.149.26.115 )
 @                                         IN TXT       ( "v=spf1 ip4:46.149.18.65 a -all" )
 _dmarc                                    IN TXT       ( "v=DMARC1; p=reject" )
