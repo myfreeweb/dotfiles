@@ -21,8 +21,9 @@
 [apply]
 	whitespace = fix
 [user]
-	name = myfreeweb
-	email = floatboth@me.com
+	name = Greg V
+	email = greg@unrelenting.technology
+	signingkey = 0x5F9F528D3B011BAF
 [github]
 	user = myfreeweb
 [web]
