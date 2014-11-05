@@ -9,7 +9,7 @@ fi
 for module in "$@"; do
 	if [[ -d "$module" ]]; then
 		if [[ -f "$module/apply.sh" ]]; then
-			cd $module && sh apply.sh && cd .. 
+			cd "$module" && sh apply.sh && cd .. 
 		else
 			echo "=> $module is not a module, where is $module/apply.sh ?!"
 		fi

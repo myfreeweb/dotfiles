@@ -16,10 +16,10 @@ rm ~/.nvimrc
 cp vimrc ~/.nvimrc
 
 rm ~/.vim/*.vim
-cp *.vim ~/.vim/
+cp ./*.vim ~/.vim/
 
 rm ~/.nvim
-ln -s $HOME/.vim $HOME/.nvim
+ln -s "$HOME/.vim" "$HOME/.nvim"
 
 rm -r ~/.vim/ftplugin
 cp -r ftplugin ~/.vim/ftplugin

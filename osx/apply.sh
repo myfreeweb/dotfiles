@@ -1,24 +1,24 @@
 #!/usr/bin/env zsh
 echo "==> Installing osx"
 
-mkdir -p $HOME/Library/KeyBindings
-rm $HOME/Library/KeyBindings/DefaultKeyBinding.dict
-cp ./keybindings/DefaultKeyBinding.dict $HOME/Library/KeyBindings/DefaultKeyBinding.dict
+mkdir -p ~/Library/KeyBindings
+rm ~/Library/KeyBindings/DefaultKeyBinding.dict
+cp ./keybindings/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
 
-mkdir -p $HOME/.mjolnir
-rm $HOME/.mjolnir/init.lua
-cp ./mjolnir.lua $HOME/.mjolnir/init.lua
+mkdir -p ~/.mjolnir
+rm ~/.mjolnir/init.lua
+cp ./mjolnir.lua ~/.mjolnir/init.lua
 
 ./defaults.sh
 
 SEIL=/Applications/Seil.app/Contents/Library/bin/seil
-if [ -e $SEIL ]; then
+if [ -e "$SEIL" ]; then
 	# Hyper (sends F19, Karabiner turns that into Cmd+Opt+Ctrl+Shift)
 	$SEIL set enable_control_l 1
 	$SEIL set keycode_control_l 80
 	$SEIL set enable_control_r 1
 	$SEIL set keycode_control_r 80
-	if [ -z $PCKEYBOARD ]; then
+	if [ -z "$PCKEYBOARD" ]; then
 		echo "==> osx: Mac keyboard"
 	else
 		echo "==> osx: PC keyboard"
@@ -36,12 +36,12 @@ else
 	echo "==> Warning: Seil.app not found < https://pqrs.org/osx/karabiner/seil.html >"
 fi
 
-mkdir -p $HOME/Library/Application\ Support/Karabiner
-rm $HOME/Library/Application\ Support/Karabiner/private.xml
-cp ./private.xml $HOME/Library/Application\ Support/Karabiner/private.xml
+mkdir -p "$HOME/Library/Application Support/Karabiner"
+rm "$HOME/Library/Application Support/Karabiner/private.xml"
+cp ./private.xml "$HOME/Library/Application Support/Karabiner/private.xml"
 
 KARABINER=/Applications/Karabiner.app/Contents/Library/bin/karabiner
-if [ -e $KARABINER ]; then
+if [ -e "$KARABINER" ]; then
 	$KARABINER reloadxml
 	$KARABINER set parameter.keyoverlaidmodifier_timeout 300
 	$KARABINER set remap.controlL2controlL_escape 1

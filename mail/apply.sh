@@ -18,7 +18,7 @@ rm ~/.mail.ca.pem
 cp mail.ca.pem ~/.mail.ca.pem
 
 rm ~/.mailcap
-if [ `uname` == "Darwin" ]; then
+if [ "$(uname)" = "Darwin" ]; then
 	cp osx.mailcap ~/.mailcap
 
 	rm ~/.urlview
