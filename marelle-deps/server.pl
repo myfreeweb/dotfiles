@@ -99,6 +99,14 @@ meet(i2p_enabled, freebsd) :-
 pkg(nginx).
 depends(nginx, _, [libressl]).
 installs_with_ports(nginx, 'www/nginx', 'WITH="SPDY LUA FILE_AIO SYSLOG_SUPPORT"'). % Also, looks like the pkgng version is statically linked to vulnerable openssl :(
+pkg(nginx_enabled).
+depends(nginx_enabled, _, [nginx]).
+:- dynamic nginx_enabled_set/0.
+met(nginx_enabled, _) :- nginx_enabled_set.
+meet(nginx_enabled, freebsd) :-
+	sudo_sh('cat ./marelle-tpls/nginx.conf > /usr/local/etc/nginx/nginx.conf'),
+	sudo_sh('sysrc nginx_enable=YES >/dev/null'),
+	assertz(nginx_enabled_set).
 
 pkg(opensmtpd).
 depends(opensmtpd, _, [libressl, ca_root_nss]).
@@ -174,7 +182,7 @@ meet(pulse_enabled, freebsd) :-
 meta_pkg(server, [
 	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
 	% i2p_enabled, % too much ram usage :(
-	knot_enabled, nginx,
+	knot_enabled, nginx_enabled,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
 	znc_enabled,
