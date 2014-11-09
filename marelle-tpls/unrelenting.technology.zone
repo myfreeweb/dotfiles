@@ -1,7 +1,7 @@
 $ORIGIN unrelenting.technology.
 $TTL 3600
 
-@ IN SOA unrelenting.technology. unrelenting.technology. ( 2014110302 6h      1h    1w     1d  )
+@ IN SOA unrelenting.technology. unrelenting.technology. ( 2014110901 6h      1h    1w     1d  )
 ;                                                          serial     refresh retry expire min
 
 @                                         IN NS        ( ns1.mfwb.us. )
@@ -9,6 +9,7 @@ $TTL 3600
 ns1                                       IN A         ( 46.149.26.115 )
 ns2                                       IN A         ( 46.149.26.115 )
 @                                         IN A         ( 46.149.26.115 )
+www                                       IN A         ( 46.149.26.115 )
 @                                         IN TXT       ( "v=spf1 ip4:46.149.18.65 a -all" )
 _dmarc                                    IN TXT       ( "v=DMARC1; p=reject" )
 @                                         IN SSHFP     ( 1 1 a7b22dd30b74a6389a5de090ef29fd8b98ca4d03 )
