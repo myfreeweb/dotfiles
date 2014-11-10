@@ -118,8 +118,8 @@ cask_pkg('google-chrome').
 cask_pkg('google-chrome-canary').
 depends('google-chrome-canary', _, ['cask-versions-tap']).
 cask_pkg('firefox').
-% cask_pkg('firefox-aurora').
-% depends('firefox-aurora', _, ['cask-versions-tap']).
+cask_pkg('firefoxdeveloperedition').
+depends('firefoxdeveloperedition', _, ['cask-versions-tap']).
 cask_pkg('firefox-nightly').
 depends('firefox-nightly', _, ['cask-versions-tap']).
 
@@ -167,7 +167,7 @@ meta_pkg(mac, [
 	'colorpicker-developer', 'colorpicker-hex',
 	'iterm2-beta', java, java7,
 	'google-chrome', 'google-chrome-canary',
-	'firefox', 'firefox-nightly',
+	'firefox', 'firefoxdeveloperedition', 'firefox-nightly',
 	fonts
 ]).
 

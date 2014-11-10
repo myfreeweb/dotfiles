@@ -61,7 +61,6 @@ Also, get [base16] colorschemes for the terminal.
 - **vim** -- [Vim] *or [neovim]* text editor configuration and plugins
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
-- **firefox** -- userChrome.css for [Mozilla Firefox]
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 
 [ssh]: http://www.openssh.com
@@ -80,7 +79,6 @@ Also, get [base16] colorschemes for the terminal.
 [Seil]: https://pqrs.org/osx/karabiner/seil.html.en
 [Mjolnir]: http://mjolnir.io/ 
 [A Modern Space Cadet]: http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
-[Mozilla Firefox]: https://www.mozilla.org/en-US/firefox/desktop/
 [mutt]: http://www.mutt.org
 [notmuch]: http://notmuchmail.org
 [msmtp]: https://wiki.archlinux.org/index.php/MSMTP
