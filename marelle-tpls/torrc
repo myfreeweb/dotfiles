@@ -1,0 +1,37 @@
+# System
+Log notice syslog # edit /usr/local/etc/rc.d/tor to disable the file
+
+# Private services (client)
+
+## SOCKS proxy
+SocksPort 127.0.0.1:9050
+
+## Control
+ControlPort 9051
+HashedControlPassword %torpwd%
+
+## DNS resolver, why not
+DNSPort 127.0.0.5:53
+VirtualAddrNetworkIPv4 10.192.0.0/11
+AutomapHostsOnResolve 1
+AutomapHostsSuffixes .exit,.onion
+
+## Raw TCP proxy
+TransPort 9040
+
+## Freenode address
+mapaddress 10.40.40.40 p4fsi4ockecnea7l.onion
+
+# Public services (bridge relay)
+
+## Relay -- needs to be allowed on the firewall
+BridgeRelay 1
+ORPort 9001
+RelayBandwidthRate "256 KB"
+RelayBandwidthBurst "512 KB"
+
+## NOT AN EXIT NODE!!!
+ExitPolicy reject *:*
+
+## Directory mirror
+DirPort 9030

@@ -1,0 +1,33 @@
+set daemon 120
+set alert %pushoverkey%@api.pushover.net
+set mailserver 127.0.0.1
+set httpd
+	port 2812
+	ssl enable
+	pemfile /usr/local/etc/certs/bundle+key.pem
+	allow @wheel
+
+check host localhost with address 10.1.1.165
+	if failed port 25  protocol smtp  for 2 cycles then alert
+	if failed port 53  protocol dns   for 2 cycles then alert
+	if failed port 80  protocol http  for 2 cycles then alert
+	if failed port 443 protocol https for 2 cycles then alert
+
+check process nginx with pidfile /var/run/nginx.pid
+check process pulse with pidfile /var/run/syncthing.pid
+check process smtpd with pidfile /var/run/smtpd.pid
+check process amavisd with pidfile /var/amavis/amavisd.pid
+check process prosody with pidfile /usr/local/var/lib/prosody/prosody.pid
+check process i2p with pidfile /home/_i2p/.i2p/i2p.pid
+check process tor with pidfile /var/run/tor/tor.pid
+check process knot with pidfile /var/run/knot/knot.pid
+check process local_unbound with pidfile /var/run/local_unbound.pid
+check process dnscrypt-proxy-cloudns-syd with pidfile /var/run/dnscrypt-proxy-cloudns-syd.pid
+check process dnscrypt-proxy-cloudns-can with pidfile /var/run/dnscrypt-proxy-cloudns-can.pid
+check process dnscrypt-proxy-opennic-ca-ns3 with pidfile /var/run/dnscrypt-proxy-opennic-ca-ns3.pid
+
+check directory certs with path /usr/local/etc/certs/
+	if changed timestamp then alert
+
+check filesystem root with path /dev/vtbd0p2
+	if space usage > 90% then alert

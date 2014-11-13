@@ -21,6 +21,12 @@ meet(freebsd_conf, freebsd) :-
 	'daily_rkhunter_check_enable=YES daily_rkhunter_update_flags="--update --nocolors" ',
 	'daily_rkhunter_update_enable=YES daily_rkhunter_check_flags="--checkall --nocolors --skip-keypress" ',
 	'>/dev/null']),
+	sudo_sh(['sysrc -f /etc/sysctl.conf ',
+	'net.inet.ip.portrange.reservedhigh=0 ',
+	'>/dev/null']),
+	sudo_sh(['sysctl ',
+	'net.inet.ip.portrange.reservedhigh=0 ',
+	'>/dev/null']),
 	sudo_sh('cp -f ./marelle-tpls/make.conf /etc'),
 	sudo_sh('cp -f ./marelle-tpls/pf.conf /etc'),
 	sudo_sh('cp -f ./marelle-tpls/sshd_config /etc/ssh'),
@@ -67,6 +73,7 @@ meet(unbound_enabled, freebsd) :-
 	sudo_sh('ifconfig lo0 alias 127.0.0.53 netmask 0xffffffff'),
 	sudo_sh('sysrc local_unbound_enable=YES ifconfig_lo0_alias3="inet 127.0.0.53 netmask 0xffffffff" >/dev/null'),
 	sudo_sh('echo "nameserver 127.0.0.53" > /etc/resolv.conf'),
+	sudo_sh('echo "supersede domain-name-servers 127.0.0.53;" > /etc/dhclient.conf'),
 	assertz(unbound_enabled_set).
 
 pkg(knot).
@@ -83,18 +90,36 @@ meet(knot_enabled, freebsd) :-
 
 managed_pkg(i2p).
 managed_pkg(javaservicewrapper).
-pkg(i2p_enabled).
-depends(i2p_enabled, _, [i2p, javaservicewrapper]).
-met(i2p_enabled, _) :- isfile('/home/_i2p/i2p/i2psvc').
-meet(i2p_enabled, freebsd) :-
+pkg(i2p_installed).
+depends(i2p_installed, _, [i2p, javaservicewrapper]).
+met(i2p_installed, _) :- isfile('/home/_i2p/i2p/i2psvc').
+meet(i2p_installed, freebsd) :-
 	sudo_sh('pw useradd -n _i2p -m || true'),
-	sudo_sh('sysrc i2p_enable=YES i2p_user=_i2p'),
 	sudo_sh('service i2p install >/dev/null 2>/dev/null'),
 	sudo_sh('cp -f /usr/local/bin/javaservicewrapper /home/_i2p/i2p/i2psvc'),
 	sudo_sh('cp -f /usr/local/lib/javaservicewrapper/lib/wrapper.jar /home/_i2p/i2p/lib/'),
 	sudo_sh('cp -f /usr/local/lib/javaservicewrapper/lib/libwrapper.so /home/_i2p/i2p/lib/'),
 	sudo_sh('sed -e s/\\$SYSTEM_java_io_tmpdir/\\\\/var\\\\/tmp/ -e s/\\$INSTALL_PATH/./ -I bak /home/_i2p/i2p/wrapper.config'),
 	sudo_sh('chmod 0777 /home/_i2p/i2p/i2psvc /home/_i2p/i2p/lib/wrapper.jar /home/_i2p/i2p/lib/libwrapper.so').
+pkg(i2p_enabled).
+depends(i2p_enabled, _, [i2p_installed]).
+:- dynamic i2p_enabled_set/0.
+met(i2p_enabled, _) :- i2p_enabled_set.
+meet(i2p_enabled, freebsd) :-
+	sudo_sh('sysrc i2p_enable=YES i2p_user=_i2p >/dev/null'),
+	assertz(i2p_enabled_set).
+
+managed_pkg(tor). % does not build with libressl :(
+depends(tor, _, [libressl]).
+pkg(tor_enabled).
+depends(tor_enabled, _, [tor, freebsd_conf]).
+:- dynamic tor_enabled_set/0.
+met(tor_enabled, _) :- tor_enabled_set.
+meet(tor_enabled, freebsd) :-
+	sudo_sh('cat ./marelle-tpls/torrc | sed -e s/%torpwd%/`cat /usr/local/etc/tor/torpwd`/g > /usr/local/etc/tor/torrc'),
+	sudo_sh('sysrc tor_enable=YES ifconfig_lo0_alias3="inet 127.0.0.5 netmask 0xffffffff" >/dev/null'),
+	sudo_sh('ifconfig lo0 alias 127.0.0.5 netmask 0xffffffff'),
+	assertz(tor_enabled_set).
 
 pkg(nginx).
 depends(nginx, _, [libressl]).
@@ -179,12 +204,24 @@ meet(pulse_enabled, freebsd) :-
 	sudo_sh('chown greg:syncthing /var/tmp/syncthing/ /var/tmp/syncthing/*'),
 	assertz(pulse_enabled_set).
 
+managed_pkg(monit).
+pkg(monit_enabled).
+depends(monit_enabled, _, [monit]).
+:- dynamic monit_enabled_set/0.
+met(monit_enabled, _) :- monit_enabled_set.
+meet(monit_enabled, freebsd) :-
+	sudo_sh('sysrc monit_enable=YES >/dev/null'),
+	sudo_sh('cat ./marelle-tpls/monitrc | sed -e s/%pushoverkey%/`cat /usr/local/etc/pushoverkey`/g > /usr/local/etc/monitrc'),
+	sudo_sh('chmod 0600 /usr/local/etc/monitrc'),
+	assertz(monit_enabled_set).
+
 meta_pkg(server, [
 	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
-	% i2p_enabled, % too much ram usage :(
+	i2p_enabled, tor_enabled,
 	knot_enabled, nginx_enabled,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
 	znc_enabled,
-	pulse_enabled
+	pulse_enabled,
+	monit_enabled
 ]).
