@@ -20,6 +20,7 @@ check process amavisd with pidfile /var/amavis/amavisd.pid
 check process prosody with pidfile /usr/local/var/lib/prosody/prosody.pid
 check process i2p with pidfile /home/_i2p/.i2p/i2p.pid
 check process tor with pidfile /var/run/tor/tor.pid
+check process privoxy with pidfile /var/run/privoxy/privoxy.pid
 check process knot with pidfile /var/run/knot/knot.pid
 check process local_unbound with pidfile /var/run/local_unbound.pid
 check process dnscrypt-proxy-cloudns-syd with pidfile /var/run/dnscrypt-proxy-cloudns-syd.pid

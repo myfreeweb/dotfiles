@@ -121,6 +121,16 @@ meet(tor_enabled, freebsd) :-
 	sudo_sh('ifconfig lo0 alias 127.0.0.5 netmask 0xffffffff'),
 	assertz(tor_enabled_set).
 
+managed_pkg(privoxy).
+pkg(privoxy_enabled).
+depends(privoxy_enabled, _, [privoxy, freebsd_conf]).
+:- dynamic privoxy_enabled_set/0.
+met(privoxy_enabled, _) :- privoxy_enabled_set.
+meet(privoxy_enabled, freebsd) :-
+	sudo_sh('cat ./marelle-tpls/privoxy.conf > /usr/local/etc/privoxy/config'),
+	sudo_sh('sysrc privoxy_enable=YES >/dev/null'),
+	assertz(privoxy_enabled_set).
+
 pkg(nginx).
 depends(nginx, _, [libressl]).
 installs_with_ports(nginx, 'www/nginx', 'WITH="SPDY LUA FILE_AIO SYSLOG_SUPPORT"'). % Also, looks like the pkgng version is statically linked to vulnerable openssl :(
@@ -217,7 +227,7 @@ meet(monit_enabled, freebsd) :-
 
 meta_pkg(server, [
 	freebsd_conf, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
-	i2p_enabled, tor_enabled,
+	i2p_enabled, tor_enabled, privoxy_enabled,
 	knot_enabled, nginx_enabled,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
