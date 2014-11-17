@@ -6,7 +6,7 @@ No symlinks.
 
 A module is a directory with an `apply.sh` file that installs the dotfiles.
 
-Also: [Marelle] deps for OS X desktop and FreeBSD server.
+Also: [Marelle] deps.
 
 ![Screenshot](https://files.app.net/2nnl9Hsmq.png)
 
@@ -62,6 +62,7 @@ Also, get [base16] colorschemes for the terminal.
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
+- **x11** -- [xmonad], [xmobar] and other x.org stuff
 
 [ssh]: http://www.openssh.com
 [git]: http://git-scm.com
@@ -84,6 +85,8 @@ Also, get [base16] colorschemes for the terminal.
 [msmtp]: https://wiki.archlinux.org/index.php/MSMTP
 [urlview]: https://github.com/sigpipe/urlview
 [hashcash]: http://hashcash.org
+[xmonad]: http://xmonad.org
+[xmobar]: http://projects.haskell.org/xmobar/
 
 ### Language-specific
 

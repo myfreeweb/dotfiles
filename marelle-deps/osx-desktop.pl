@@ -2,62 +2,6 @@
 %      https://github.com/myfreeweb/dotfiles
 % Feel free to steal it, but attribution is nice
 
-% Nice login welcome message
-managed_pkg(archey).
-managed_pkg(bsdinfo).
-meta_pkg(welcome, freebsd, [bsdinfo]).
-meta_pkg(welcome, osx, [archey]).
-managed_pkg(cowsay).
-command_pkg(fortune).
-installs_with_brew(fortune).
-
-% Internets
-pkg(libressl).
-installs_with_brew(libressl).
-installs_with_ports(libressl, 'security/libressl').
-managed_pkg(w3m).
-depends(w3m, freebsd, [libressl]).
-managed_pkg(curl).
-depends(curl, freebsd, [libressl]).
-managed_pkg(wget).
-depends(wget, freebsd, [libressl]).
-
-% Mail
-pkg(mutt).
-depends(mutt, freebsd, [libressl]).
-installs_with_brew(mutt, mutt, '--with-trash-patch --with-gpgme').
-installs_with_ports(mutt, 'mail/mutt', 'WITH="FLOCK GPGME IDN SIDEBAR_PATCH TRASH_PATCH" WITHOUT="XML DOCS EXAMPLES"').
-managed_pkg(msmtp).
-managed_pkg(contacts).
-managed_pkg(antiword).
-managed_pkg(urlview).
-managed_pkg(hashcash).
-managed_pkg(notmuch).
-meta_pkg('mail-base', [
-	mutt, urlview, hashcash, notmuch
-]).
-meta_pkg(mail, osx,     ['mail-base', msmtp, contacts]).
-meta_pkg(mail, freebsd, ['mail-base', w3m, antiword]).
-
-% Shell
-managed_pkg(tmux).
-managed_pkg(zsh).
-managed_pkg(tree).
-command_pkg(ghq).
-installs_with_go(ghq, 'github.com/motemen/ghq').
-command_pkg(peco).
-installs_with_go(peco, 'github.com/peco/peco/cmd/peco').
-
-meta_pkg(shell, [
-	welcome, cowsay, fortune,
-	curl, wget,
-	tmux, zsh, tree, ghq, peco
-]).
-
-% Security
-managed_pkg(keychain).
-managed_pkg(rkhunter).
-
 % OS X
 managed_pkg('reattach-to-user-namespace').
 
@@ -158,7 +102,8 @@ meta_pkg(fonts, [
 	'font-averia-libre', 'font-averia-gruesa-libre', 'font-averia-sans-libre', 'font-averia-serif-libre'
 ]).
 
-meta_pkg(mac, [
+meta_pkg(desktop, osx, [
+	shell, dev, mail,
 	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured', pulse,
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
@@ -169,8 +114,4 @@ meta_pkg(mac, [
 	'google-chrome', 'google-chrome-canary',
 	'firefox', 'firefoxdeveloperedition', 'firefox-nightly',
 	fonts
-]).
-
-meta_pkg(desktop, [
-	shell, dev, mail, mac, keychain, rkhunter
 ]).

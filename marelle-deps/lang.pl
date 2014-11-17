@@ -22,7 +22,7 @@ meet(N, _) :-
 npm_install(NpmPkgUrl) :-
 	join(['Installing ', NpmPkgUrl, ' with npm'], Msg),
 	writeln(Msg),
-	sh(['npm install -g ', NpmPkgUrl]).
+	sh(['npm config set prefix ~ && npm install -g ', NpmPkgUrl]).
 command_pkg(grunt).
 installs_with_npm(grunt, 'grunt-cli').
 

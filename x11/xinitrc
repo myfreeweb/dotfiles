@@ -1,0 +1,7 @@
+#!/bin/sh
+setxkbmap 'us(colemak),ru' -option ctrl:nocaps -option grp:ctrl_shift_toggle
+xsetroot -cursor_name left_ptr
+xrdb ~/.Xresources
+sh ~/.fehbg &
+xcompmgr -cf &
+exec xmonad

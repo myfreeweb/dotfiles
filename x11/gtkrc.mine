@@ -1,0 +1,7 @@
+gtk-theme-name = "Clearlooks"
+gtk-font-name = "Fira Sans 9"
+style "user-font"
+{
+	font_name = "Fira Sans 9"
+}
+widget_class "*" style "user-font"

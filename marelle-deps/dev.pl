@@ -28,5 +28,5 @@ managed_pkg(emacs).
 managed_pkg(sloccount).
 
 meta_pkg(dev, [
-	ack, ctags, pt, git, mercurial, bzr, 'heroku-toolbelt', vim, sloccount, grunt
+	ack, ctags, pt, git, mercurial, bzr, vim, sloccount, grunt
 ]).

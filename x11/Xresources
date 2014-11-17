@@ -1,0 +1,15 @@
+Xft.rgba:             rgb
+Xft.antialias:        true
+Xft.hinting:          true
+Xft.hintstyle:        hintfull
+Xft.lcdfilter:        lcdlight
+
+#include "%home%/.base16-xresources/base16-monokai.dark.256.xresources"
+
+URxvt.scrollBar:      false
+URxvt.loginShell:     true
+URxvt.font:           xft:Fira Mono:size=9,xft:PT Mono:size=9,xft:DejaVu Sans Mono:size=9
+URxvt.letterSpace:    -2
+URxvt.termName:       xterm-256color
+URxvt.depth:          32
+URxvt.background:     rgba:2700/2800/2200/ee00
