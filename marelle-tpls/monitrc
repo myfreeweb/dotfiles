@@ -14,7 +14,7 @@ check host localhost with address 10.1.1.165
 	if failed port 443 protocol https for 2 cycles then alert
 
 check process nginx with pidfile /var/run/nginx.pid
-check process pulse with pidfile /var/run/syncthing.pid
+check process syncthing with pidfile /var/run/syncthing.pid
 check process smtpd with pidfile /var/run/smtpd.pid
 check process amavisd with pidfile /var/amavis/amavisd.pid
 check process prosody with pidfile /usr/local/var/lib/prosody/prosody.pid

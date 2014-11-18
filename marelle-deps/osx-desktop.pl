@@ -104,7 +104,7 @@ meta_pkg(fonts, [
 
 meta_pkg(desktop, osx, [
 	shell, dev, mail,
-	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured', pulse,
+	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured', syncthing,
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
 	evernote, skitch, skype, 'istat-menus', imageoptim,

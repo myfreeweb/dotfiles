@@ -102,17 +102,17 @@ meet(znc_enabled, freebsd) :-
 	sudo_sh('sysrc znc_enable=YES >/dev/null'),
 	assertz(znc_enabled_set).
 
-pkg(pulse_server_enabled).
-depends(pulse_server_enabled, _, [pulse]).
-:- dynamic pulse_server_enabled_set/0.
-met(pulse_server_enabled, _) :- pulse_server_enabled_set.
-meet(pulse_server_enabled, freebsd) :-
+pkg(syncthing_server_enabled).
+depends(syncthing_server_enabled, _, [syncthing]).
+:- dynamic syncthing_server_enabled_set/0.
+met(syncthing_server_enabled, _) :- syncthing_server_enabled_set.
+meet(syncthing_server_enabled, freebsd) :-
 	sudo_sh('sysrc syncthing_enable=YES syncthing_user=greg >/dev/null'),
 	sudo_sh('mkdir -p /var/tmp/syncthing'),
 	sudo_sh('cat /usr/local/etc/certs/bundle.pem > /var/tmp/syncthing/https-cert.pem'),
 	sudo_sh('cat /usr/local/etc/certs/key.pem > /var/tmp/syncthing/https-key.pem'),
 	sudo_sh('chown greg:syncthing /var/tmp/syncthing/ /var/tmp/syncthing/*'),
-	assertz(pulse_server_enabled_set).
+	assertz(syncthing_server_enabled_set).
 
 managed_pkg(monit).
 pkg(monit_enabled).
@@ -132,6 +132,6 @@ meta_pkg(server, freebsd, [
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
 	znc_enabled,
-	pulse_server_enabled,
+	syncthing_server_enabled,
 	monit_enabled
 ]).

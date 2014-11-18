@@ -96,6 +96,4 @@ meet(tor_enabled, freebsd) :-
 	sudo_sh('ifconfig lo0 alias 127.0.0.5 netmask 0xffffffff'),
 	assertz(tor_enabled_set).
 
-pkg(pulse).
-installs_with_pkgng(pulse, 'net/syncthing').
-installs_with_brew(pulse, 'syncthing').
+managed_pkg(syncthing).
