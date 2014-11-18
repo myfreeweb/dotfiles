@@ -58,11 +58,11 @@ depends(xorg_conf, freebsd, [xorg, vbox_client_enabled]).
 execute(xorg_conf, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/xorg.vbox.conf ./marelle-tpls/xorg.conf > /etc/X11/xorg.conf').
 
-managed_pkg(xcompmgr).
-depends(xcompmgr, freebsd, [xorg]).
+managed_pkg(compton).
+depends(compton, freebsd, [xorg]).
 
 pkg(xmonad).
-depends(xmonad, freebsd, [xcompmgr, xorg_conf]).
+depends(xmonad, freebsd, [compton, xorg_conf]).
 installs_with_pkgng(xmonad, 'x11-wm/hs-xmonad').
 
 pkg(xmonad_contrib).
@@ -77,7 +77,13 @@ pkg(dmenu).
 depends(dmenu, freebsd, [xorg_conf]).
 installs_with_ports(dmenu, 'x11/dmenu', 'WITH="XFT"').
 
+pkg(sterm).
+depends(sterm, freebsd, [xorg_conf]).
+installs_with_ports(sterm, 'x11/sterm', 'ST_CONF="$HOME/src/github.com/myfreeweb/dotfiles/x11/st.conf.h"').
+
 managed_pkg(feh).
+managed_pkg(dunst).
+managed_pkg(xclip).
 managed_pkg('gtk-murrina-aqua').
 pkg(webfonts).
 installs_with_ports(webfonts, 'x11-fonts/webfonts', 'WITH="MSWINDOWS_LICENSE"').
@@ -86,13 +92,12 @@ managed_pkg(noto).
 managed_pkg(paratype).
 managed_pkg('sourcecodepro-ttf').
 managed_pkg('sourcesanspro-ttf').
-managed_pkg('rxvt-unicode').
 managed_pkg(firefox).
 
 meta_pkg(desktop, freebsd, [
 	freebsd_conf_desktop,
 	shell, dev, mail,
-	xorg_conf, xmonad, xmobar, dmenu, feh,
+	xorg_conf, xmonad, xmobar, dmenu, feh, dunst, xclip,
 	'gtk-murrina-aqua', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
-	'rxvt-unicode', firefox
+	sterm, firefox
 ]).

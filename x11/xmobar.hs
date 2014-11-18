@@ -1,4 +1,4 @@
-Config { font = "xft:Fira Mono:size=9:antialias=true"
+Config { font = "xft:monospace:size=9" -- set in fonts.conf
        , borderColor = "black"
        , border = TopB
        , bgColor = "#282828"

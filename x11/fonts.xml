@@ -23,12 +23,14 @@
 		<prefer>
 			<family>Fira Sans</family>
 			<family>PT Sans</family>
+			<family>Helvetica Neue</family>
 		</prefer>
 	</alias>
 	<alias>
 		<family>sans-serif</family>
 		<prefer>
 			<family>PT Serif</family>
+			<family>Times New Roman</family>
 		</prefer>
 	</alias>
 	<alias>
@@ -36,6 +38,8 @@
 		<prefer>
 			<family>Fira Mono</family>
 			<family>PT Mono</family>
+			<family>Source Code Pro</family>
+			<family>DejaVu Sans Mono</family>
 		</prefer>
 	</alias>
 

@@ -13,7 +13,7 @@ import qualified Data.Map        as M
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    [ ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -fn 'Fira Mono-9'")
+    [ ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -fn 'monospace-9'")
     , ((modm .|. shiftMask, xK_c     ), kill) -- close focused window
     , ((modm,               xK_space ), sendMessage NextLayout) -- Rotate through the available layout algorithms
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- Reset the layouts on the current workspace to default

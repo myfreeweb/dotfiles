@@ -8,7 +8,8 @@ Xft.lcdfilter:        lcdlight
 
 URxvt.scrollBar:      false
 URxvt.loginShell:     true
-URxvt.font:           xft:Fira Mono:size=9,xft:PT Mono:size=9,xft:DejaVu Sans Mono:size=9
+URxvt.font:           xft:monospace:size=9,xft:DejaVu Sans Mono:size=9
+! Monospace is set in fonts.conf
 URxvt.letterSpace:    -2
 URxvt.termName:       xterm-256color
 URxvt.depth:          32
