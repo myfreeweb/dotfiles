@@ -28,4 +28,8 @@ echo "include '$HOME/.gtkrc.mine'" > ~/.gtkrc-2.0
 rm ~/.gtkrc-1.2-gnome2
 echo "include '$HOME/.gtkrc.mine'" > ~/.gtkrc-1.2-gnome2
 
+mkdir -p ~/.config/fontconfig
+rm ~/.config/fontconfig/fonts.conf
+cp fonts.xml ~/.config/fontconfig/fonts.conf
+
 echo "==> Installed x11"

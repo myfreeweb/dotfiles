@@ -1,4 +1,4 @@
-gtk-theme-name = "Clearlooks"
+include "/usr/local/share/themes/Murrina-Aqua/gtk-2.0/gtkrc"
 gtk-font-name = "Fira Sans 9"
 style "user-font"
 {

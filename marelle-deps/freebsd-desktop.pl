@@ -75,10 +75,9 @@ depends(dmenu, freebsd, [xorg_conf]).
 installs_with_ports(dmenu, 'x11/dmenu', 'WITH="XFT"').
 
 managed_pkg(feh).
-managed_pkg(clearlooks).
+managed_pkg('gtk-murrina-aqua').
 pkg(webfonts).
 installs_with_ports(webfonts, 'x11-fonts/webfonts', 'WITH="MSWINDOWS_LICENSE"').
-managed_pkg(urwfonts).
 managed_pkg(fira).
 managed_pkg(noto).
 managed_pkg(paratype).
@@ -91,6 +90,6 @@ meta_pkg(desktop, freebsd, [
 	freebsd_conf_desktop,
 	shell, dev, mail,
 	xorg_conf, xmonad, xmobar, dmenu, feh,
-	clearlooks, webfonts, urwfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
+	'gtk-murrina-aqua', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
 	'rxvt-unicode', firefox
 ]).
