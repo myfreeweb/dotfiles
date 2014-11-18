@@ -64,6 +64,7 @@ alias gaes="dev_appserver.py -a 0.0.0.0 ."
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 alias emacs="TERM=xterm-256color emacs"
 alias vi="vim"
+alias meet="marelle meet"
 alias whois="whois -h whois-servers.net"
 ## Intuitive map function
 ## For example, to list all directories that contain a certain file:  find . -name .gitattributes | map dirname
