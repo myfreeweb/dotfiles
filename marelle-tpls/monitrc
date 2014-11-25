@@ -7,12 +7,6 @@ set httpd
 	pemfile /usr/local/etc/certs/bundle+key.pem
 	allow @wheel
 
-check host localhost with address 10.1.1.165
-	if failed port 25  protocol smtp  for 2 cycles then alert
-	if failed port 53  protocol dns   for 2 cycles then alert
-	if failed port 80  protocol http  for 2 cycles then alert
-	if failed port 443 protocol https for 2 cycles then alert
-
 check process nginx with pidfile /var/run/nginx.pid
 check process syncthing with pidfile /var/run/syncthing.pid
 check process smtpd with pidfile /var/run/smtpd.pid

@@ -2,9 +2,9 @@
 %      https://github.com/myfreeweb/dotfiles
 % Feel free to steal it, but attribution is nice
 
-idempotent_pkg(freebsd_conf_server).
-depends(freebsd_conf_server, _, [freebsd_conf_common]).
-execute(freebsd_conf_server, freebsd) :-
+idempotent_pkg(freebsd_conf_common_server).
+depends(freebsd_conf_common_server, _, [freebsd_conf_common]).
+execute(freebsd_conf_common_server, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/make.conf ./marelle-tpls/make.server.conf > /etc/make.conf'),
 	sudo_sh('cat ./marelle-tpls/sshd_config > /etc/ssh/sshd_config'),
 	sudo_sh('cat ./marelle-tpls/pf.server.conf > /etc/pf.conf'),
@@ -21,7 +21,7 @@ execute(knot_enabled, freebsd) :-
 
 managed_pkg(privoxy).
 idempotent_pkg(privoxy_enabled).
-depends(privoxy_enabled, _, [privoxy, freebsd_conf]).
+depends(privoxy_enabled, _, [privoxy, freebsd_conf_common]).
 execute(privoxy_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/privoxy.conf > /usr/local/etc/privoxy/config'),
 	sysrc('privoxy_enable').
@@ -75,7 +75,7 @@ depends(znc, _, [libressl, ca_root_nss]).
 installs_with_pkgng(znc).
 idempotent_pkg(znc_enabled).
 depends(znc_enabled, _, [znc]).
-meet(znc_enabled, freebsd) :-
+execute(znc_enabled, freebsd) :-
 	sudo_sh('pw useradd -n znc -m >/dev/null || true'),
 	sudo_sh('mkdir -p /usr/local/etc/znc/configs'),
 	sudo_sh('cat ./marelle-tpls/znc.conf | sed -e s/%passwordhash%/`cat /usr/local/etc/znc/passwordhash`/g > /usr/local/etc/znc/configs/znc.conf'),
@@ -102,7 +102,7 @@ execute(monit_enabled, freebsd) :-
 	sudo_sh('chmod 0600 /usr/local/etc/monitrc').
 
 meta_pkg(server, freebsd, [
-	freebsd_conf_server, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
+	freebsd_conf_common_server, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
 	i2p_enabled, tor_enabled, privoxy_enabled,
 	knot_enabled, nginx_enabled,
 	amavis_enabled, opensmtpd_enabled,

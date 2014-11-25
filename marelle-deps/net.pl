@@ -72,7 +72,7 @@ execute(i2p_enabled, freebsd) :-
 
 managed_pkg(tor). % does not build with libressl :(
 idempotent_pkg(tor_enabled).
-depends(tor_enabled, _, [tor, freebsd_conf]).
+depends(tor_enabled, _, [tor, freebsd_conf_common]).
 execute(tor_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/torrc | sed -e s/%torpwd%/`cat /usr/local/etc/tor/torpwd`/g > /usr/local/etc/tor/torrc'),
 	sysrc('tor_enable'),
