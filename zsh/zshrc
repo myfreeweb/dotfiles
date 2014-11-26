@@ -133,6 +133,6 @@ bindkey '^[[B' history-substring-search-down
 [[ -e $(which archey) ]] && archey -c
 [[ -e $(which bsdinfo) ]] && bsdinfo
 [[ -e $(which fortune) ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
-[[ -e $(which keychain) ]] && eval "$(keychain --eval --agents ssh,gpg winterhold github bitbucket heroku 0x5F9F528D3B011BAF)"
+[[ -e $(which keychain) ]] && eval "$(keychain --eval --agents ssh,gpg winterhold github bitbucket clojars heroku 0x5F9F528D3B011BAF)"
 [[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 [[ $PRIVATE == 1 ]] && unset HISTFILE
