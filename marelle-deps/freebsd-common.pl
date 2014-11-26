@@ -12,6 +12,7 @@ bootloader(Key) :- bootloader(Key, 'YES').
 sysctl(Key, Val) :-
 	sysrc('/etc/sysctl.conf', Key, Val), % https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=187461 :(
 	sudo_sh(['sysctl ', Key, '=', Val, ' >/dev/null']).
+sysctl(Key) :- sysctl(Key, '1').
 lo_alias(N, Ip) :-
 	join(['ifconfig_lo0_alias', N], Key),
 	join(['inet ', Ip, ' netmask 0xffffffff'], Val),
@@ -33,4 +34,5 @@ execute(freebsd_conf_common, freebsd) :-
 	periodic('daily_rkhunter_check_flags', '--checkall --nocolors --skip-keypress'),
 	periodic('daily_rkhunter_update_enable'),
 	periodic('daily_rkhunter_update_flags', '--update --nocolors'),
-	sysctl('net.inet.ip.portrange.reservedhigh', '0').
+	sysctl('net.inet.ip.portrange.reservedhigh', '0'),
+	sysctl('net.inet.ip.fastforwarding'). % I don't use IPSec
