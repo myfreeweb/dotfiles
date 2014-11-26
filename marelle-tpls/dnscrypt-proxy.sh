@@ -2,7 +2,7 @@
 #
 # PROVIDE: dnscrypt_proxy_%resolver%
 # REQUIRE: SERVERS cleanvar
-# BEFORE: named
+# BEFORE: local_unbound
 # KEYWORD: shutdown
 #
 

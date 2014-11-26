@@ -28,7 +28,7 @@ s2s_secure_auth = true -- For more information see http://prosody.im/doc/s2s#sec
 s2s_insecure_domains = { "gmail.com" }
 authentication = "internal_hashed"
 allow_registration = false -- For more information see http://prosody.im/doc/creating_accounts
-pidfile = "/usr/local/var/lib/prosody/prosody.pid"
+pidfile = "/var/run/prosody/prosody.pid"
 log = "*syslog"
 
 VirtualHost "localhost"

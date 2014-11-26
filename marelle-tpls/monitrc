@@ -7,19 +7,92 @@ set httpd
 	pemfile /usr/local/etc/certs/bundle+key.pem
 	allow @wheel
 
+check process sshd with pidfile /var/run/sshd.pid
+	start = "/usr/sbin/service sshd start"
+	stop  = "/usr/sbin/service sshd stop"
+	if failed port 22 protocol ssh for 3 cycles then restart
+
 check process nginx with pidfile /var/run/nginx.pid
+	start = "/usr/sbin/service nginx start"
+	stop  = "/usr/sbin/service nginx stop"
+	depends on local_unbound
+	if failed port 80  protocol http  for 3 cycles then restart
+	if failed port 443 protocol https for 3 cycles then restart
+
+check process sweetroll with pidfile /var/run/sweetroll.pid
+	start = "/usr/sbin/service sweetroll start"
+	stop  = "/usr/sbin/service sweetroll stop"
+	depends on local_unbound
+	if failed port 80  protocol http  for 3 cycles then restart
+	if failed port 443 protocol https for 3 cycles then restart
+
 check process syncthing with pidfile /var/run/syncthing.pid
+	start = "/usr/sbin/service syncthing start"
+	stop  = "/usr/sbin/service syncthing stop"
+
 check process smtpd with pidfile /var/run/smtpd.pid
+	start = "/usr/sbin/service smtpd start"
+	stop  = "/usr/sbin/service smtpd stop"
+	depends on local_unbound
+	if failed port 25    protocol smtp  for 3 cycles then restart
+	if failed port 10025 protocol smtp  for 3 cycles then restart
+	if failed port 10027 protocol smtp  for 3 cycles then restart
+
 check process amavisd with pidfile /var/amavis/amavisd.pid
-check process prosody with pidfile /usr/local/var/lib/prosody/prosody.pid
+	start = "/usr/sbin/service amavisd start"
+	stop  = "/usr/sbin/service amavisd stop"
+	if failed port 10024 protocol smtp for 3 cycles then restart
+	if failed port 10026 protocol smtp for 3 cycles then restart
+
+check process znc with pidfile /var/run/znc/znc.pid
+	start = "/usr/sbin/service znc start"
+	stop  = "/usr/sbin/service znc stop"
+	if failed port 6667 type tcpssl for 3 cycles then restart
+
+check process prosody with pidfile /var/run/prosody/prosody.pid
+	start = "/usr/sbin/service prosody start"
+	stop  = "/usr/sbin/service prosody stop"
+	if failed port 5222 for 3 cycles then restart
+	if failed port 5269 for 3 cycles then restart
+
 check process i2p with pidfile /home/_i2p/.i2p/i2p.pid
+	start = "/usr/sbin/service i2p start"
+	stop  = "/usr/sbin/service i2p stop"
+
 check process tor with pidfile /var/run/tor/tor.pid
+	start = "/usr/sbin/service tor start"
+	stop  = "/usr/sbin/service tor stop"
+
 check process privoxy with pidfile /var/run/privoxy/privoxy.pid
+	start = "/usr/sbin/service privoxy start"
+	stop  = "/usr/sbin/service privoxy stop"
+
 check process knot with pidfile /var/run/knot/knot.pid
+	start = "/usr/sbin/service knot start"
+	stop  = "/usr/sbin/service knot stop"
+	if failed host 10.1.1.165 port 53 protocol dns for 3 cycles then restart
+
 check process local_unbound with pidfile /var/run/local_unbound.pid
-check process dnscrypt-proxy-cloudns-syd with pidfile /var/run/dnscrypt-proxy-cloudns-syd.pid
+	start = "/usr/sbin/service local_unbound start"
+	stop  = "/usr/sbin/service local_unbound stop"
+	depends on dnscrypt-proxy-cloudns-can
+	depends on dnscrypt-proxy-cloudns-syd
+	depends on dnscrypt-proxy-opennic-ca-ns3
+	if failed host 127.0.0.53 port 53 protocol dns for 3 cycles then restart
+
 check process dnscrypt-proxy-cloudns-can with pidfile /var/run/dnscrypt-proxy-cloudns-can.pid
+	start = "/usr/sbin/service dnscrypt-proxy-cloudns-can start"
+	stop  = "/usr/sbin/service dnscrypt-proxy-cloudns-can stop"
+	if failed host 127.0.0.2 port 53 protocol dns for 3 cycles then restart
+
+check process dnscrypt-proxy-cloudns-syd with pidfile /var/run/dnscrypt-proxy-cloudns-syd.pid
+	start = "/usr/sbin/service dnscrypt-proxy-cloudns-syd start"
+	stop  = "/usr/sbin/service dnscrypt-proxy-cloudns-syd stop"
+
 check process dnscrypt-proxy-opennic-ca-ns3 with pidfile /var/run/dnscrypt-proxy-opennic-ca-ns3.pid
+	start = "/usr/sbin/service dnscrypt-proxy-opennic-ca-ns3 start"
+	stop  = "/usr/sbin/service dnscrypt-proxy-opennic-ca-ns3 stop"
+	if failed host 127.0.0.4 port 53 protocol dns for 3 cycles then restart
 
 check directory certs with path /usr/local/etc/certs/
 	if changed timestamp then alert

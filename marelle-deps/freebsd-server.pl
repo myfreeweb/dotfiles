@@ -5,6 +5,7 @@
 idempotent_pkg(freebsd_conf_common_server).
 depends(freebsd_conf_common_server, _, [freebsd_conf_common]).
 execute(freebsd_conf_common_server, freebsd) :-
+	bootloader('accf_http_load'),
 	sudo_sh('cat ./marelle-tpls/make.conf ./marelle-tpls/make.server.conf > /etc/make.conf'),
 	sudo_sh('cat ./marelle-tpls/sshd_config > /etc/ssh/sshd_config'),
 	sudo_sh('cat ./marelle-tpls/pf.server.conf > /etc/pf.conf'),
@@ -68,6 +69,8 @@ idempotent_pkg(prosody_enabled).
 depends(prosody_enabled, _, [prosody]).
 execute(prosody_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/prosody.cfg.lua > /usr/local/etc/prosody/prosody.cfg.lua'),
+	sudo_sh('mkdir -p /var/run/prosody'),
+	sudo_sh('chown prosody:prosody /var/run/prosody'),
 	sysrc('prosody_enable').
 
 pkg(znc).
@@ -77,10 +80,11 @@ idempotent_pkg(znc_enabled).
 depends(znc_enabled, _, [znc]).
 execute(znc_enabled, freebsd) :-
 	sudo_sh('pw useradd -n znc -m >/dev/null || true'),
+	sudo_sh('mkdir -p /var/run/znc'),
 	sudo_sh('mkdir -p /usr/local/etc/znc/configs'),
 	sudo_sh('cat ./marelle-tpls/znc.conf | sed -e s/%passwordhash%/`cat /usr/local/etc/znc/passwordhash`/g > /usr/local/etc/znc/configs/znc.conf'),
 	sudo_sh('cat /usr/local/etc/certs/bundle.pem /usr/local/etc/certs/key.pem > /usr/local/etc/znc/znc.pem'),
-	sudo_sh('chown znc:znc /usr/local/etc/znc/configs/znc.conf /usr/local/etc/znc/znc.pem'),
+	sudo_sh('chown znc:znc /var/run/znc /usr/local/etc/znc/configs/znc.conf /usr/local/etc/znc/znc.pem'),
 	sysrc('znc_enable').
 
 idempotent_pkg(syncthing_server_enabled).
