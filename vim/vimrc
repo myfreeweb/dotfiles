@@ -21,7 +21,10 @@ syntax on
 set noswapfile backup undofile undoreload=5000 history=500
 set noequalalways
 set wrapscan incsearch ignorecase smartcase
-set clipboard+=unnamed
+set clipboard^=unnamedplus
+if has('nvim')
+	set unnamedclip
+end
 set autoread autowrite
 set magic
 set nojoinspaces

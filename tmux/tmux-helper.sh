@@ -7,16 +7,16 @@ case $1 in
 	launch-shell)
 		if [ "`uname`" = "Darwin" ]; then
 			if [ -x "`which reattach-to-user-namespace`" ]; then
-				reattach-to-user-namespace -l $2
+				exec reattach-to-user-namespace -l $2
 			else
 				echo "install reattach-to-user-namespace!"
-				$2
+				exec $2
 			fi
 		else
-			$2
+			exec $2
 		fi ;;
 
-	top) if [ -x "`which htop`" ]; then htop; else top; fi ;;
+	top) if [ -x "`which htop`" ]; then exec htop; else exec top; fi ;;
 
 	copy-buf) if [ -x "`which reattach-to-user-namespace`" ] && [ -x "`which pbcopy`" ]; then
 		tmux save-buffer - | reattach-to-user-namespace pbcopy
@@ -27,9 +27,9 @@ case $1 in
 	fi ;;
 
 	copy-pipe) if [ -x "`which reattach-to-user-namespace`" ] && [ -x "`which pbcopy`" ]; then
-		reattach-to-user-namespace pbcopy
+		exec reattach-to-user-namespace pbcopy
 	elif [ -x "`which xclip`" ]; then
-		xclip
+		exec xclip
 	else
 		echo "Copy not supported"
 	fi ;;

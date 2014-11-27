@@ -84,7 +84,9 @@ installs_with_ports(sterm, 'x11/sterm', 'ST_CONF="$HOME/src/github.com/myfreeweb
 managed_pkg(feh).
 managed_pkg(dunst).
 managed_pkg(xclip).
-managed_pkg('gtk-murrina-aqua').
+managed_pkg(xsel).
+managed_pkg(scrot).
+managed_pkg('gnome-themes-standard').
 pkg(webfonts).
 installs_with_ports(webfonts, 'x11-fonts/webfonts', 'WITH="MSWINDOWS_LICENSE"').
 managed_pkg(fira).
@@ -97,7 +99,7 @@ managed_pkg(firefox).
 meta_pkg(desktop, freebsd, [
 	freebsd_conf_desktop,
 	shell, dev, mail,
-	xorg_conf, xmonad, xmobar, dmenu, feh, dunst, xclip,
-	'gtk-murrina-aqua', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
+	xorg_conf, xmonad, xmobar, dmenu, feh, dunst, xclip, xsel, scrot,
+	'gnome-themes-standard', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
 	sterm, firefox
 ]).

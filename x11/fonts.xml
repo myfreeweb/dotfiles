@@ -19,7 +19,7 @@
 
 	<!-- Defaults -->
 	<alias>
-		<family>serif</family>
+		<family>sans-serif</family>
 		<prefer>
 			<family>Fira Sans</family>
 			<family>PT Sans</family>
@@ -27,7 +27,7 @@
 		</prefer>
 	</alias>
 	<alias>
-		<family>sans-serif</family>
+		<family>serif</family>
 		<prefer>
 			<family>PT Serif</family>
 			<family>Times New Roman</family>
@@ -47,5 +47,11 @@
 	<selectfont>
 		<rejectfont><pattern><patelt name="scalable"><bool>false</bool></patelt></pattern></rejectfont>
 	</selectfont>
+
+	<!-- No Courier! -->
+	<match target="pattern">
+		<test qual="any" name="family"><string>Courier</string></test>
+		<edit name="family" mode="assign" binding="same"><string>monospace</string></edit>
+	</match>
 
 </fontconfig>

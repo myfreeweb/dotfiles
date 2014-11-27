@@ -4,8 +4,9 @@
 --
 -- thanks:
 --  http://redd.it/144biy
+--  http://www.mega-nerd.com/erikd/Blog/CodeHacking/Haskell/ghci-trick.html
 
-:set -DGHC_INTERACTIVE -- http://www.mega-nerd.com/erikd/Blog/CodeHacking/Haskell/ghci-trick.html
+:set -DGHC_INTERACTIVE
 :set -XNoMonomorphismRestriction
 :set -XOverloadedStrings
 :set +m
