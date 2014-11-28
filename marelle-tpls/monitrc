@@ -19,6 +19,10 @@ check process nginx with pidfile /var/run/nginx.pid
 	if failed port 80  protocol http  for 3 cycles then restart
 	if failed port 443 protocol https for 3 cycles then restart
 
+check process klaus with pidfile /var/run/klaus/klaus.pid
+	start = "/usr/sbin/service klaus start"
+	stop  = "/usr/sbin/service klaus stop"
+
 check process sweetroll with pidfile /var/run/sweetroll.pid
 	start = "/usr/sbin/service sweetroll start"
 	stop  = "/usr/sbin/service sweetroll stop"

@@ -36,6 +36,20 @@ execute(nginx_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/nginx.conf > /usr/local/etc/nginx/nginx.conf'),
 	sysrc('nginx_enable').
 
+managed_pkg(uwsgi).
+pip_pkg(klaus).
+pip_pkg(markdown).
+pip_pkg(watchdog).
+idempotent_pkg(klaus_enabled).
+depends(klaus_enabled, _, [nginx, uwsgi, klaus, markdown, watchdog]).
+execute(klaus_enabled, freebsd) :-
+	sudo_sh('mkdir -p /var/run/klaus && chown www:www /var/run/klaus'),
+	sudo_sh('mkdir -p /var/log/klaus && chown www:www /var/log/klaus'),
+	sudo_sh('cat ./marelle-tpls/klaus.sh > /usr/local/etc/rc.d/klaus'),
+	sudo_sh('cat ./marelle-tpls/klaus.wsgi.py > /usr/local/lib/python2.7/site-packages/klauswsgireload.py'),
+	sudo_sh('chmod +x /usr/local/etc/rc.d/klaus'),
+	sysrc('klaus_enable').
+
 pkg(opensmtpd).
 depends(opensmtpd, _, [libressl, ca_root_nss]).
 installs_with_ports(opensmtpd, 'mail/opensmtpd').
@@ -69,8 +83,7 @@ idempotent_pkg(prosody_enabled).
 depends(prosody_enabled, _, [prosody]).
 execute(prosody_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/prosody.cfg.lua > /usr/local/etc/prosody/prosody.cfg.lua'),
-	sudo_sh('mkdir -p /var/run/prosody'),
-	sudo_sh('chown prosody:prosody /var/run/prosody'),
+	sudo_sh('mkdir -p /var/run/prosody && chown prosody:prosody /var/run/prosody'),
 	sysrc('prosody_enable').
 
 pkg(znc).
@@ -108,7 +121,7 @@ execute(monit_enabled, freebsd) :-
 meta_pkg(server, freebsd, [
 	freebsd_conf_common_server, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
 	i2p_enabled, tor_enabled, privoxy_enabled,
-	knot_enabled, nginx_enabled,
+	knot_enabled, nginx_enabled, klaus_enabled,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
 	znc_enabled,
