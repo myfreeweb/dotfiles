@@ -1,0 +1,18 @@
+#!/bin/sh
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+
+REMOTE="$1"
+
+if [ -z "$REMOTE" ]; then
+	echo "You need to specify the remote"
+else
+	ORIGINAL_URL="`git remote -v | grep "$REMOTE" | grep push | head -n 1 | cut -w -f2`"
+	if [ "`expr "$ORIGINAL_URL" : ".*.git$" `" -eq 0 ]; then
+		ORIGINAL_URL="$ORIGINAL_URL.git"
+	fi
+	git remote set-url "$REMOTE" "`printf "$ORIGINAL_URL" | sed -e 's|ssh://||' -e 's|git@github.com.|https://github.com/|'`"
+	git remote set-url --push "$REMOTE" "$ORIGINAL_URL"
+	git config legit.remote "$REMOTE"
+fi

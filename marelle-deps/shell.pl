@@ -40,10 +40,12 @@ command_pkg(ghq).
 installs_with_go(ghq, 'github.com/motemen/ghq').
 command_pkg(peco).
 installs_with_go(peco, 'github.com/peco/peco/cmd/peco').
+pip_pkg(httpie).
+pip_pkg(requests). % used by pinboard_xml
 
 meta_pkg(shell, [
 	welcome, cowsay, fortune,
 	curl, wget,
-	tmux, zsh, tree, ghq, peco,
+	tmux, zsh, tree, ghq, peco, httpie, requests,
 	keychain
 ]).
