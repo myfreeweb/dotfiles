@@ -2,8 +2,12 @@ import XMonad
 import XMonad.Util.Run
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Spacing
-import XMonad.Layout.NoBorders
+import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.Roledex
+import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Accordion
 import Data.Monoid
 import System.Exit
 import System.IO
@@ -19,12 +23,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- Reset the layouts on the current workspace to default
     , ((modm,               xK_n     ), refresh) -- Resize viewed windows to the correct size
     , ((modm,               xK_Tab   ), windows W.focusDown)
-    , ((modm,               xK_j     ), windows W.focusDown)
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    , ((modm,               xK_k     ), windows W.focusDown)
+    , ((modm,               xK_j     ), windows W.focusUp  )
     , ((modm,               xK_m     ), windows W.focusMaster  )
     , ((modm,               xK_Return), windows W.swapMaster)
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((modm .|. shiftMask, xK_k     ), windows W.swapDown  )
+    , ((modm .|. shiftMask, xK_j     ), windows W.swapUp    )
     , ((modm,               xK_h     ), sendMessage Shrink)
     , ((modm,               xK_l     ), sendMessage Expand)
     , ((modm,               xK_t     ), withFocused $ windows . W.sink) -- Push window back into tiling
@@ -54,18 +58,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
     -- mod-button2, Raise the window to the top of the stack
     , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
-    -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
-                                       >> windows W.shiftMaster))
-    -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
 -- If you change layout bindings be sure to use 'mod-shift-space' after restarting
-myLayout = avoidStruts $ smartBorders $ spacing 9 $ tiled ||| Mirror tiled ||| Full
-  where tiled   = Tall nmaster delta ratio -- default tiling algorithm partitions the screen into two panes
-        nmaster = 1 -- The default number of windows in the master pane
-        ratio   = 1/2 -- Default proportion of screen occupied by master pane
-        delta   = 3/100 -- Percent of screen to increment by when resizing panes
+myLayout = avoidStruts $ smartBorders $ smartSpacing 8 $ layouts
+  where layouts  = three ||| tall ||| Mirror tall ||| Accordion ||| Roledex
+        three    = ThreeColMid 1 resize (3/7)
+        tall     = Tall 1 resize (1/2)
+        resize   = 3/100
 
 -- To find the property name associated with a program, use
 -- > xprop | grep WM_CLASS
@@ -80,13 +80,21 @@ myManageHook = composeAll
 -- Event handling
 myEventHook = mempty
 myPP = xmobarPP { ppCurrent = xmobarColor "#282828" "#a1b56c"
-                , ppTitle   = xmobarColor "#a16946" "" . shorten 128 }
+                , ppUrgent  = xmobarColor "#282828" "#ab4642"
+                , ppTitle   = xmobarColor "#a16946" "" . shorten 128
+                , ppLayout  = (\x -> case x of
+                                "SmartSpacing 8 ThreeCol" -> "Columns"
+                                "SmartSpacing 8 Tall" -> "Tall Vertical"
+                                "SmartSpacing 8 Mirror Tall" -> "Tall Horizontal"
+                                "SmartSpacing 8 Accordion" -> "Accordion"
+                                "SmartSpacing 8 Roledex" -> "Roledex"
+                                _ -> x)}
 myStartupHook = return ()
 main = do
   barProc <- spawnPipe "/usr/local/bin/xmobar"
-  xmonad defaultConfig {
-    terminal           = "urxvt"
-  , focusFollowsMouse  = True
+  xmonad $ withUrgencyHook NoUrgencyHook
+         $ defaultConfig {
+    focusFollowsMouse  = True
   , clickJustFocuses   = False
   , borderWidth        = 3
   , modMask            = mod1Mask
@@ -99,5 +107,4 @@ main = do
   , manageHook         = myManageHook
   , handleEventHook    = myEventHook
   , logHook            = dynamicLogWithPP $ myPP { ppOutput = hPutStrLn barProc }
-  , startupHook        = myStartupHook
-  }
+  , startupHook        = myStartupHook }
