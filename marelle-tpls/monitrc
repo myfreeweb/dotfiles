@@ -1,6 +1,6 @@
 set daemon 120
-set alert %pushoverkey%@api.pushover.net
-set mailserver 127.0.0.1
+set alert %pushoverkey%@api.pushover.net with reminder on 5 cycles
+set mailserver 108.59.13.232
 set httpd
 	port 2812
 	ssl enable
@@ -22,13 +22,19 @@ check process nginx with pidfile /var/run/nginx.pid
 check process klaus with pidfile /var/run/klaus/klaus.pid
 	start = "/usr/sbin/service klaus start"
 	stop  = "/usr/sbin/service klaus stop"
+	depends on nginx
+	if failed port 443 protocol https
+		request "/git/" hostheader "unrelenting.technology"
+		for 3 cycles then restart
 
 check process sweetroll with pidfile /var/run/sweetroll.pid
 	start = "/usr/sbin/service sweetroll start"
 	stop  = "/usr/sbin/service sweetroll stop"
 	depends on local_unbound
-	if failed port 80  protocol http  for 3 cycles then restart
-	if failed port 443 protocol https for 3 cycles then restart
+	depends on nginx
+	if failed port 443 protocol https
+		request "/notes" hostheader "unrelenting.technology"
+		for 3 cycles then restart
 
 check process syncthing with pidfile /var/run/syncthing.pid
 	start = "/usr/sbin/service syncthing start"

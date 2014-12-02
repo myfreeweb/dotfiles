@@ -3,7 +3,7 @@
 #      https://github.com/myfreeweb/dotfiles
 # Feel free to steal it, but attribution is nice
 
-REPOS="$HOME/src/github.com/myfreeweb"
+REPOS="/home/dovahkiin/src/github.com/myfreeweb"
 
 CMD=`cat << _EOF_
 cd {}
@@ -17,4 +17,4 @@ git push --mirror origin
 _EOF_
 `
 
-exec find "$REPOS" -maxdepth 1 -type d ! -path "$REPOS" -exec sh -c "$CMD" ";"
+exec find "$REPOS" -maxdepth 1 -type d ! -path "$REPOS" -exec sh -c "$CMD" ";" > /tmp/sync-repos.log 2>/tmp/sync-repos.log
