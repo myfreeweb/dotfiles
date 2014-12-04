@@ -94,7 +94,7 @@ main = do
   barProc <- spawnPipe "/usr/local/bin/xmobar"
   xmonad $ withUrgencyHook NoUrgencyHook
          $ defaultConfig {
-    focusFollowsMouse  = True
+    focusFollowsMouse  = False -- Kinda disrupts the keyboard control thing...
   , clickJustFocuses   = False
   , borderWidth        = 3
   , modMask            = mod1Mask
