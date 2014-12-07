@@ -1,3 +1,7 @@
+RunScript "use_unbound.lua"
+VirtualHost "localhost"
+VirtualHost "unrelenting.technology"
+
 admins = { "greg@unrelenting.technology" }
 
 modules_enabled = { -- Documentation on modules can be found at: http://prosody.im/doc/modules
@@ -9,7 +13,7 @@ modules_enabled = { -- Documentation on modules can be found at: http://prosody.
 	"version"; "uptime"; "time"; "ping"; "pep"; "register";
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
-	"posix";
+	-- "s2s_auth_dane";
 }
 
 modules_disabled = { }
@@ -28,8 +32,5 @@ s2s_secure_auth = true -- For more information see http://prosody.im/doc/s2s#sec
 s2s_insecure_domains = { "gmail.com" }
 authentication = "internal_hashed"
 allow_registration = false -- For more information see http://prosody.im/doc/creating_accounts
-pidfile = "/var/run/prosody/prosody.pid"
-log = "*syslog"
-
-VirtualHost "localhost"
-VirtualHost "unrelenting.technology"
+prosody_user = "prosody"
+log = "*console"

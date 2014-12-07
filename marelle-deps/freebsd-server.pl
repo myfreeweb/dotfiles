@@ -95,27 +95,42 @@ execute(amavis_enabled, freebsd) :-
 
 pkg(prosody).
 depends(prosody, _, [libressl, ca_root_nss]).
-installs_with_ports(prosody, 'net-im/prosody').
+installs_with_ports(prosody, 'net-im/prosody', 'WITH="LUAJIT"').
+managed_pkg(unbound).
+pkg(prosody_plugins).
+depends(prosody_plugins, _, [prosody, unbound]).
+met(prosody_plugins, freebsd) :-
+	isdir('/usr/local/lib/prosody/luaunbound'),
+	isdir('/usr/local/lib/prosody/contrib').
+meet(prosody_plugins, freebsd) :-
+	sudo_sh('hg clone http://code.zash.se/luaunbound/ /usr/local/lib/prosody/luaunbound'),
+	sudo_sh('cd /usr/local/lib/prosody/luaunbound && ./squish.sh > /usr/local/etc/prosody/use_unbound.lua'),
+	sudo_sh('hg clone http://prosody-modules.googlecode.com/hg/ /usr/local/lib/prosody/contrib'),
+	sudo_sh('cp -r /usr/local/lib/prosody/contrib/mod_s2s_auth_dane /usr/local/lib/prosody/modules/').
 idempotent_pkg(prosody_enabled).
-depends(prosody_enabled, _, [prosody]).
+depends(prosody_enabled, _, [prosody, prosody_plugins, supervisord_enabled]).
 execute(prosody_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/prosody.cfg.lua > /usr/local/etc/prosody/prosody.cfg.lua'),
-	sudo_sh('mkdir -p /var/run/prosody && chown prosody:prosody /var/run/prosody'),
-	sysrc('prosody_enable').
+	supervise('prosody', [
+		'command=/usr/local/bin/prosody --config=/usr/local/etc/prosody/prosody.cfg.lua\n',
+		'user=prosody'
+	]).
 
 pkg(znc).
-depends(znc, _, [libressl, ca_root_nss]).
+depends(znc, _, [libressl, ca_root_nss, supervisord_enabled]).
 installs_with_pkgng(znc).
 idempotent_pkg(znc_enabled).
 depends(znc_enabled, _, [znc]).
 execute(znc_enabled, freebsd) :-
 	sudo_sh('pw useradd -n znc -m >/dev/null || true'),
-	sudo_sh('mkdir -p /var/run/znc'),
 	sudo_sh('mkdir -p /usr/local/etc/znc/configs'),
 	sudo_sh('cat ./marelle-tpls/znc.conf | sed -e s/%passwordhash%/`cat /usr/local/etc/znc/passwordhash`/g > /usr/local/etc/znc/configs/znc.conf'),
 	sudo_sh('cat /usr/local/etc/certs/bundle.pem /usr/local/etc/certs/key.pem > /usr/local/etc/znc/znc.pem'),
-	sudo_sh('chown znc:znc /var/run/znc /usr/local/etc/znc/configs/znc.conf /usr/local/etc/znc/znc.pem'),
-	sysrc('znc_enable').
+	sudo_sh('chown znc:znc /usr/local/etc/znc/configs/znc.conf /usr/local/etc/znc/znc.pem'),
+	supervise('znc', [
+		'command=/usr/local/bin/znc --foreground --datadir=/usr/local/etc/znc\n',
+		'user=znc'
+	]).
 
 idempotent_pkg(syncthing_server_enabled).
 depends(syncthing_server_enabled, _, [syncthing]).
