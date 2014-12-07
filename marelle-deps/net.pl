@@ -28,18 +28,14 @@ execute(openntpd_enabled, freebsd) :-
 
 managed_pkg('dnscrypt-proxy').
 idempotent_pkg(dnscrypt_enabled).
-depends(dnscrypt_enabled, _, ['dnscrypt-proxy']).
+depends(dnscrypt_enabled, _, ['dnscrypt-proxy', supervisord_enabled]).
 execute(dnscrypt_enabled, freebsd) :-
-	sudo_sh('cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/cloudns-can/g    -e s/%name%/cloudns_can/g    -e s/%ip%/127.0.0.2/g > /usr/local/etc/rc.d/dnscrypt-proxy-cloudns-can'),
-	sudo_sh('cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/cloudns-syd/g    -e s/%name%/cloudns_syd/g    -e s/%ip%/127.0.0.3/g > /usr/local/etc/rc.d/dnscrypt-proxy-cloudns-syd'),
-	sudo_sh('cat ./marelle-tpls/dnscrypt-proxy.sh | sed -e s/%resolver%/opennic-ca-ns3/g -e s/%name%/opennic_ca_ns3/g -e s/%ip%/127.0.0.4/g > /usr/local/etc/rc.d/dnscrypt-proxy-opennic-ca-ns3'),
-	sudo_sh('chmod +x /usr/local/etc/rc.d/dnscrypt-proxy*'),
+	supervise('dnscrypt-cloudns-can',    [ 'command=/usr/local/sbin/dnscrypt-proxy -R cloudns-can -a 127.0.0.2\n', 'user=_dnscrypt-proxy' ]),
+	supervise('dnscrypt-cloudns-syd',    [ 'command=/usr/local/sbin/dnscrypt-proxy -R cloudns-syd -a 127.0.0.3\n', 'user=_dnscrypt-proxy' ]),
+	supervise('dnscrypt-opennic-ca-ns3', [ 'command=/usr/local/sbin/dnscrypt-proxy -R opennic-ca-ns3 -a 127.0.0.4\n', 'user=_dnscrypt-proxy' ]),
 	lo_alias('0', '127.0.0.2'),
 	lo_alias('1', '127.0.0.3'),
-	lo_alias('2', '127.0.0.4'),
-	sysrc('dnscrypt_proxy_cloudns_can_enable'),
-	sysrc('dnscrypt_proxy_cloudns_syd_enable'),
-	sysrc('dnscrypt_proxy_opennic_ca_ns3_enable').
+	lo_alias('2', '127.0.0.4').
 
 idempotent_pkg(unbound_enabled).
 depends(unbound_enabled, _, [dnscrypt_enabled]).

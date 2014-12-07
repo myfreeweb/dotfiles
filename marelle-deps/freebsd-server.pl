@@ -11,6 +11,23 @@ execute(freebsd_conf_common_server, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/pf.server.conf > /etc/pf.conf'),
 	sudo_sh('pfctl -f /etc/pf.conf 2>/dev/null').
 
+pkg(supervisord).
+installs_with_pkgng(supervisord, 'py27-supervisor').
+idempotent_pkg(supervisord_enabled).
+depends(supervisord_enabled, _, [supervisord]).
+execute(supervisord_enabled, freebsd) :-
+	sysrc('supervisord_enable'),
+	sudo_sh('mkdir -p /usr/local/etc/supervisord.d'),
+	sudo_sh('cat ./marelle-tpls/supervisord.ini > /usr/local/etc/supervisord.conf').
+
+supervise(Name, Options) :-
+	join(Options, OptStr),
+	sudo_sh(['cat <<EOF > /usr/local/etc/supervisord.d/', Name, '.ini\n',
+					 '[program:', Name, ']\n',
+					 'autostart=true\nautorestart=true\nstartretries=3\n',
+					 'stderr_logfile=syslog\nstdout_logfile=syslog\n',
+					 OptStr]).
+
 pkg(knot).
 installs_with_ports(knot, 'dns/knot'). % pkgng version has a hard dep on openssl
 idempotent_pkg(knot_enabled).
@@ -41,14 +58,14 @@ pip_pkg(klaus).
 pip_pkg(markdown).
 pip_pkg(watchdog).
 idempotent_pkg(klaus_enabled).
-depends(klaus_enabled, _, [nginx, uwsgi, klaus, markdown, watchdog]).
+depends(klaus_enabled, _, [nginx, uwsgi, klaus, markdown, watchdog, supervisord_enabled]).
 execute(klaus_enabled, freebsd) :-
 	sudo_sh('mkdir -p /var/run/klaus && chown www:www /var/run/klaus'),
-	sudo_sh('mkdir -p /var/log/klaus && chown www:www /var/log/klaus'),
-	sudo_sh('cat ./marelle-tpls/klaus.sh > /usr/local/etc/rc.d/klaus'),
 	sudo_sh('cat ./marelle-tpls/klaus.wsgi.py > /usr/local/lib/python2.7/site-packages/klauswsgireload.py'),
-	sudo_sh('chmod +x /usr/local/etc/rc.d/klaus'),
-	sysrc('klaus_enable').
+	supervise('klaus', [
+		'command=/usr/local/bin/uwsgi -w klauswsgireload --master --socket /var/run/klaus/klaus.sock --die-on-term --enable-threads --queue 16 --env KLAUS_SITE_NAME=\'unrelenting.technology/git\' --env KLAUS_REPOS=\'/home/dovahkiin/src/github.com/myfreeweb\' --env KLAUS_USE_SMARTHTTP=1\n',
+		'user=www'
+	]).
 
 pkg(opensmtpd).
 depends(opensmtpd, _, [libressl, ca_root_nss]).
@@ -110,21 +127,13 @@ execute(syncthing_server_enabled, freebsd) :-
 	sysrc('syncthing_enable'),
 	sysrc('syncthing_user', 'greg').
 
-managed_pkg(monit).
-idempotent_pkg(monit_enabled).
-depends(monit_enabled, _, [monit]).
-execute(monit_enabled, freebsd) :-
-	sysrc('monit_enable'),
-	sudo_sh('cat ./marelle-tpls/monitrc | sed -e s/%pushoverkey%/`cat /usr/local/etc/pushoverkey`/g > /usr/local/etc/monitrc'),
-	sudo_sh('chmod 0600 /usr/local/etc/monitrc').
-
 meta_pkg(server, freebsd, [
-	freebsd_conf_common_server, openntpd_enabled, dnscrypt_enabled, unbound_enabled,
+	freebsd_conf_common_server, supervisord_enabled,
+	openntpd_enabled, dnscrypt_enabled, unbound_enabled,
 	i2p_enabled, tor_enabled, privoxy_enabled,
 	knot_enabled, nginx_enabled, klaus_enabled,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
 	znc_enabled,
-	syncthing_server_enabled,
-	monit_enabled
+	syncthing_server_enabled
 ]).
