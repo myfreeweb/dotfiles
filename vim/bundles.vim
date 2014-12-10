@@ -1,4 +1,7 @@
-let g:plug_url_format = 'git@github.com:%s'
+if !windows
+	let g:plug_url_format = 'git@github.com:%s'
+end
+
 call plug#begin('~/.vim/bundle')
 
 " Languages

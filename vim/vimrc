@@ -13,6 +13,11 @@
 " https://github.com/mutewinter/dot_vim
 " https://github.com/terryma/dotfiles
 
+let windows = has('win32') || has('win64')
+
+if windows
+	set runtimepath+=~/.vim
+end
 set nocompatible
 source ~/.vim/bundles.vim
 syntax on
@@ -24,6 +29,9 @@ set wrapscan incsearch ignorecase smartcase
 set clipboard^=unnamedplus
 if has('nvim')
 	set unnamedclip
+end
+if windows
+	set clipboard=unnamed
 end
 set autoread autowrite
 set magic
@@ -53,8 +61,10 @@ set backspace=indent,eol,start
 set noerrorbells
 set noshowmode
 set showbreak=↪
-set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,nbsp:␣
-set fillchars=diff:⣿,vert:│
+if !windows
+	set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,nbsp:␣
+	set fillchars=diff:⣿,vert:│
+end
 set ttyfast lazyredraw title
 "set cursorline
 set hidden
@@ -83,11 +93,13 @@ set wildignore+=target                             " JVM compiled stuff
 set wildignore+=node_modules,build,.cabal-sandbox,.hpc
 
 " paths
-set shell=zsh
-set formatprg=par\ -eq
-set tags=tags;/,codex.tags;/
-set dictionary=/usr/share/dict/words
-set backupskip=/tmp/*,/private/tmp/*
+if !windows
+	set shell=zsh
+	set formatprg=par\ -eq
+	set tags=tags;/,codex.tags;/
+	set dictionary=/usr/share/dict/words
+	set backupskip=/tmp/*,/private/tmp/*
+end
 set backupdir=~/.vim/tmp/backups/
 set undodir=~/.vim/tmp/undo/
 

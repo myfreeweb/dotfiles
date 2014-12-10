@@ -63,6 +63,7 @@ Also, get [base16] colorschemes for the terminal.
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 - **x11** -- [xmonad], [xmobar] and other x.org stuff
+- **windows** -- PowerShell and other Microsoft Windows stuff
 
 [ssh]: http://www.openssh.com
 [git]: http://git-scm.com
