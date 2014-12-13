@@ -116,7 +116,8 @@ precmd() {
 
 prj() { cd "$HOME/src/$(ghq list | peco)" }
 icd() { DIR="$(ls | peco)" && cd $DIR && icd }
-fuck() { sudo "$(fc -ln -1)" }
+hst() { eval "$(history -n 1 | tail -r | peco --layout=bottom-up)" }
+fuck() { sudo "$(history -n -1)" }
 
 prompts '%{$SCOLOR%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} ' '%{$fg[red]%}$(ruby_version)%{$reset_color%}'
 setopt auto_pushd
@@ -128,6 +129,8 @@ bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+zle -N hst
+bindkey '^R' hst
 # }}}
 
 [[ -e $(which archey) ]] && archey -c
