@@ -5,7 +5,6 @@
 idempotent_pkg(freebsd_conf_common_server).
 depends(freebsd_conf_common_server, _, [freebsd_conf_common]).
 execute(freebsd_conf_common_server, freebsd) :-
-	bootloader('accf_http_load'),
 	sudo_sh('cat ./marelle-tpls/make.conf ./marelle-tpls/make.server.conf > /etc/make.conf'),
 	sudo_sh('cat ./marelle-tpls/sshd_config > /etc/ssh/sshd_config'),
 	sudo_sh('cat ./marelle-tpls/pf.server.conf > /etc/pf.conf'),
