@@ -32,10 +32,8 @@ depends(dnscrypt_enabled, _, ['dnscrypt-proxy', supervisord_enabled]).
 execute(dnscrypt_enabled, freebsd) :-
 	supervise('dnscrypt-cloudns-can',    [ 'command=/usr/local/sbin/dnscrypt-proxy -R cloudns-can -a 127.0.0.2\n', 'user=_dnscrypt-proxy' ]),
 	supervise('dnscrypt-cloudns-syd',    [ 'command=/usr/local/sbin/dnscrypt-proxy -R cloudns-syd -a 127.0.0.3\n', 'user=_dnscrypt-proxy' ]),
-	supervise('dnscrypt-opennic-ca-ns3', [ 'command=/usr/local/sbin/dnscrypt-proxy -R opennic-ca-ns3 -a 127.0.0.4\n', 'user=_dnscrypt-proxy' ]),
 	lo_alias('0', '127.0.0.2'),
-	lo_alias('1', '127.0.0.3'),
-	lo_alias('2', '127.0.0.4').
+	lo_alias('1', '127.0.0.3').
 
 idempotent_pkg(unbound_enabled).
 depends(unbound_enabled, _, [dnscrypt_enabled]).

@@ -9,8 +9,8 @@ periodic(Key, Val) :- sysrc('/etc/periodic.conf', Key, Val).
 periodic(Key) :- periodic(Key, 'YES').
 bootloader(Key, Val) :- sysrc('/boot/loader.conf', Key, Val).
 bootloader(Key) :- bootloader(Key, 'YES').
-sysctl_w(Key, Val) :-
-	sysrc('/etc/sysctl.conf', Key, Val). % https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=187461 :(
+auth_conf(Key, Val) :- sysrc('/etc/auth.conf', Key, Val) .
+sysctl_w(Key, Val) :- sysrc('/etc/sysctl.conf', Key, Val). % https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=187461 :(
 sysctl(Key, Val) :-
 	sysctl_w(Key, Val),
 	sudo_sh(['sysctl ', Key, '=', Val, ' >/dev/null']).
@@ -31,13 +31,15 @@ execute(freebsd_conf_common, freebsd) :-
 	sysrc('pf_enable'),
 	sysrc('pflog_enable'),
 	sysrc('clear_tmp_enable'),
-	sysrc('syslogd_flags', '-ss'),
+	sysrc('syslogd_flags', '-ss'), % Do not bind to remote socket
+	auth_conf('crypt_default', 'blf'), % bcrypt
 	periodic('daily_rkhunter_check_enable'),
 	periodic('daily_rkhunter_check_flags', '--checkall --nocolors --skip-keypress'),
 	periodic('daily_rkhunter_update_enable'),
 	periodic('daily_rkhunter_update_flags', '--update --nocolors'),
 	sudo_sh('grep portsnap /etc/crontab >/dev/null || echo "0	7	*	*	*	root	/usr/sbin/portsnap -I cron update" >> /etc/crontab'),
 	sudo_sh('grep freebsd-update /etc/crontab >/dev/null || echo "2	8	*	*	*	root	/usr/sbin/freebsd-update cron" >> /etc/crontab'),
+	sudo_sh('chflags sappnd /var/log/security'), % append only
 	bootloader('accf_http_load'),
 	bootloader('accf_dns_load'),
 	bootloader('cc_htcp_load'),
@@ -55,7 +57,6 @@ execute(freebsd_conf_common, freebsd) :-
 	sysctl('net.inet.tcp.keepidle', '60000'),
 	sysctl('net.inet.tcp.msl', '6000'),
 	sysctl('net.inet.tcp.fast_finwait2_recycle'),
-	sysctl('net.inet.ip.redirect', '0'),
 	sysctl('net.inet.ip.sourceroute', '0'),
 	sysctl('net.inet.ip.accept_sourceroute', '0'),
 	sysctl('net.inet.ip.random_id'),

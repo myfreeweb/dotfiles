@@ -8,7 +8,7 @@ execute(freebsd_conf_common_server, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/make.conf ./marelle-tpls/make.server.conf > /etc/make.conf'),
 	sudo_sh('cat ./marelle-tpls/sshd_config > /etc/ssh/sshd_config'),
 	sudo_sh('cat ./marelle-tpls/pf.server.conf > /etc/pf.conf'),
-	sudo_sh('pfctl -f /etc/pf.conf 2>/dev/null').
+	sudo_sh('pfctl -F all -f /etc/pf.conf 2>/dev/null').
 
 pkg(supervisord).
 installs_with_pkgng(supervisord, 'py27-supervisor').
@@ -23,6 +23,7 @@ supervise(Name, Options) :-
 	join(Options, OptStr),
 	sudo_sh(['cat <<EOF > /usr/local/etc/supervisord.d/', Name, '.ini\n',
 					 '[program:', Name, ']\n',
+					 'environment=PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"\n',
 					 'autostart=true\nautorestart=true\nstartretries=3\n',
 					 'stderr_logfile=syslog\nstdout_logfile=syslog\n',
 					 OptStr]).
@@ -52,18 +53,18 @@ execute(nginx_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/nginx.conf > /usr/local/etc/nginx/nginx.conf'),
 	sysrc('nginx_enable').
 
-managed_pkg(uwsgi).
+pip_pkg(waitress).
 pip_pkg(klaus).
 pip_pkg(markdown).
 pip_pkg(watchdog).
 idempotent_pkg(klaus_enabled).
-depends(klaus_enabled, _, [nginx, uwsgi, klaus, markdown, watchdog, supervisord_enabled]).
+depends(klaus_enabled, _, [nginx, waitress, klaus, markdown, watchdog, supervisord_enabled]).
 execute(klaus_enabled, freebsd) :-
 	sudo_sh('mkdir -p /var/run/klaus && chown www:www /var/run/klaus'),
 	sudo_sh('cat ./marelle-tpls/klaus.wsgi.py > /usr/local/lib/python2.7/site-packages/klauswsgireload.py'),
 	supervise('klaus', [
-		'command=/usr/local/bin/uwsgi -w klauswsgireload --master --socket /var/run/klaus/klaus.sock --die-on-term --enable-threads --queue 16 --env KLAUS_SITE_NAME=\'unrelenting.technology/git\' --env KLAUS_REPOS=\'/home/dovahkiin/src/github.com/myfreeweb\' --env KLAUS_USE_SMARTHTTP=1\n',
-		'user=www'
+		'command=/usr/local/bin/python -m klauswsgireload\n',
+		'user=www\n'
 	]).
 
 pkg(opensmtpd).
@@ -138,14 +139,17 @@ execute(syncthing_server_enabled, freebsd) :-
 	sudo_sh('cat /usr/local/etc/certs/bundle.pem > /var/tmp/syncthing/https-cert.pem'),
 	sudo_sh('cat /usr/local/etc/certs/key.pem > /var/tmp/syncthing/https-key.pem'),
 	sudo_sh('chown greg:syncthing /var/tmp/syncthing/ /var/tmp/syncthing/*'),
-	sysrc('syncthing_enable'),
-	sysrc('syncthing_user', 'greg').
+	supervise('syncthing', [
+		'command=/usr/local/bin/syncthing -no-browser -home=/var/tmp/syncthing\n',
+		'user=greg'
+	]).
 
 meta_pkg(server, freebsd, [
 	freebsd_conf_common_server, supervisord_enabled,
-	openntpd_enabled, dnscrypt_enabled, unbound_enabled,
+	openntpd_enabled, unbound_enabled,
 	i2p_enabled, tor_enabled, privoxy_enabled,
-	knot_enabled, nginx_enabled, klaus_enabled,
+	knot_enabled, nginx_enabled,
+	klaus_enabled,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
 	znc_enabled,
