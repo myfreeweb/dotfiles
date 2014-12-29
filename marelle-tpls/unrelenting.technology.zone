@@ -4,8 +4,8 @@ $TTL 3600
 @ IN SOA unrelenting.technology. unrelenting.technology. ( 2014110901 6h      1h    1w     1d  )
 ;                                                          serial     refresh retry expire min
 
-@                                         IN NS        ( ns1.mfwb.us. )
-@                                         IN NS        ( ns2.mfwb.us. )
+@                                         IN NS        ( ns1.unrelenting.technology. )
+@                                         IN NS        ( ns2.unrelenting.technology. )
 ns1                                       IN A         ( 46.149.26.115 )
 ns2                                       IN A         ( 46.149.26.115 )
 @                                         IN A         ( 46.149.26.115 )
