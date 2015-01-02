@@ -28,6 +28,7 @@ cp inputrc ~/.inputrc
 
 rm ~/.lesskey
 cp lesskey ~/.lesskey
+lesskey
 
 rm ~/.psqlrc
 cp psqlrc ~/.psqlrc

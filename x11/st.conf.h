@@ -17,23 +17,23 @@ static char font[] = "monospace:size=11.5";
 static char termname[] = "xterm-256color";
 static unsigned int tabspaces = 2;
 
-/* base16-monokai dark 256 */
-#define base00 "#272822"
-#define base01 "#383830"
-#define base02 "#49483e"
-#define base03 "#75715e"
-#define base04 "#a59f85"
-#define base05 "#f8f8f2"
-#define base06 "#f5f4f1"
-#define base07 "#f9f8f5"
-#define base08 "#f92672"
-#define base09 "#fd971f"
-#define base0A "#f4bf75"
-#define base0B "#a6e22e"
-#define base0C "#a1efe4"
-#define base0D "#66d9ef"
-#define base0E "#ae81ff"
-#define base0F "#cc6633"
+/* base16-twilight dark 256 */
+#define base00 "#1e1e1e"
+#define base01 "#323537"
+#define base02 "#464b50"
+#define base03 "#5f5a60"
+#define base04 "#838184"
+#define base05 "#a7a7a7"
+#define base06 "#c3c3c3"
+#define base07 "#ffffff"
+#define base08 "#cf6a4c"
+#define base09 "#cda869"
+#define base0A "#f9ee98"
+#define base0B "#8f9d6a"
+#define base0C "#afc4db"
+#define base0D "#7587a6"
+#define base0E "#9b859d"
+#define base0F "#9b703f"
 
 static const char *colorname[] = {
 	/* 8 normal colors */

@@ -159,6 +159,7 @@ color body         brightyellow    default          "^@@.*"
 color body         yellow          default          "[;:][-o][)/(|]" # emoticons
 color body         cyan            default          "[;:][)(|]" # emoticons
 color body         cyan            default          "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
+color body         red             default          "[*]?([Dd]ick(head)?|[Cc]ock|([Mm]other)?[Ff]uck(ing|er|boy|head)?|([Bb]ull|[Hh]orse)?[Ss]hit(e|ty)?)[*]?"
 color body         red             default          "(BAD signature)"
 color body         cyan            default          "(Good signature)"
 color body         brightblack     default          "^gpg: Good signature .*"

@@ -6,75 +6,22 @@
 # http://selena.deckelmann.usesthis.com/
 # https://github.com/mathiasbynens/dotfiles/blob/master/.functions
 # https://superuser.com/questions/180148/how-do-you-get-screen-to-automatically-connect-to-the-current-ssh-agent-when-re
+# https://github.com/nummi/my-config/blob/master/.zsh/completion.zsh
 
-# Loading plugins, setting variables {{{
-
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Just in case local isn't in PATH
-
-source $HOME/.zsh/zshuery/zshuery.sh
-load_defaults
-load_aliases
-load_completion $HOME/.zsh/zshuery/completion/src
-
-source $HOME/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
-source $HOME/.zsh/zsh-hss/zsh-history-substring-search.zsh
-[[ -z $BASE16_SCHEME ]] && export BASE16_SCHEME="monokai"
-export BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
+# External plugins {{{
+source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
+[[ -z $BASE16_SCHEME ]] && export BASE16_SCHEME=twilight
+local BASE16_SHELL=~/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# }}}
 
-export PATH=$HOME/bin:$PATH
-
-# SSH
-if [[ -S "$SSH_AUTH_SOCK" ]] && [[ ! -h "$SSH_AUTH_SOCK" ]]; then # socket and not symlink
-	ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+# Support for tools, programming languages, etc {{{
+# SSH (Agent forwarding through tmux)
+if [[ -S $SSH_AUTH_SOCK ]] && [[ ! -h $SSH_AUTH_SOCK ]]; then # socket and not symlink
+	ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
 fi
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-
-# Go
-export GOPATH=$HOME
-if [[ $HAS_BREW == 1 ]]; then
-	BREWGO=$(brew --prefix go)
-	[[ -d $BREWGO ]] && export GOROOT=$BREWGO/libexec && export PATH=$BREWGO/bin:$BREWGO/libexec/bin:$PATH
-fi
-[[ -d /usr/local/go/bin ]] && export PATH=/usr/local/go/bin:$PATH
-
-# JS
-export NODE_PATH=/usr/local/lib/node_modules
-[[ -d /usr/local/share/npm/bin ]] && export PATH=/usr/local/share/npm/bin:$PATH
-
-# Java
-if [[ -e /usr/libexec/java_home ]]; then
-	export JAVA_HOME=$(/usr/libexec/java_home)
-	export PATH=$JAVA_HOME/bin:$PATH
-fi
-export ANDROID_HOME=/usr/local/opt/android-sdk
-export JRUBY_OPTS="-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify"
-runjava() {
-	cp $1 /tmp/Main.java
-	(cd /tmp && javac Main.java && echo "--- compiled, running" && java Main)
-}
-
-# Ruby
-export RBXOPT=-X19
-export RBENV_ROOT=/usr/local/var/rbenv
-bforkify() {
-	bundle config "local.$1" "$HOME/src/github.com/myfreeweb/$1"
-}
-bunforkify() {
-	bundle config --delete "local.$1"
-}
-
-# Python
-export PYTHONDONTWRITEBYTECODE=true
-export VIRTUALENV_DISTRIBUTE=true
-export PIP_USE_MIRRORS=true
-export PYTHONSTARTUP=$HOME/.pythonrc
-
-# OCaml
-[[ -e "$(which opam)" ]] && eval "$(opam config env)"
-
-# Emacs
-[[ -d "$HOME/.cask/bin" ]] && export PATH=$HOME/.cask/bin:$PATH
+export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
 
 # Less
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -85,57 +32,160 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;33;146m'
 export LESS="-R"
 
-# Generic settings
-export CLICOLOR="yes"
-export EDITOR="vim"
-[[ -e "$(which nvim)" ]] && export EDITOR="nvim" && alias vi="nvim"
-export PAGER="less"
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+# Go
+export GOPATH=$HOME
+[[ -e ${commands[brew]} ]] && export BREWGO=$(brew --prefix go)
+
+# JS
+[[ -d /usr/local/lib/node_modules ]] && export NODE_PATH=/usr/local/lib/node_modules
+
+# Java
+[[ -e /usr/libexec/java_home ]] && export JAVA_HOME=$(/usr/libexec/java_home)
+[[ -d /usr/local/opt/android-sdk ]] && export ANDROID_HOME=/usr/local/opt/android-sdk
+export JRUBY_OPTS="-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify"
+runjava() {
+	cp $1 /tmp/Main.java
+	(cd /tmp && javac Main.java && echo "--- compiled, running" && java Main)
+}
+
+# Ruby
+export RBXOPT=-X19
+export RBENV_ROOT=/usr/local/var/rbenv
+bforkify() {
+	bundle config local.$1 ~/src/github.com/myfreeweb/$1
+}
+bunforkify() {
+	bundle config --delete local.$1
+}
+
+# Python
+export PYTHONDONTWRITEBYTECODE=true
+export VIRTUALENV_DISTRIBUTE=true
+export PIP_USE_MIRRORS=true
+export PYTHONSTARTUP=$HOME/.pythonrc
+
+# Compiling stuff on OS X
+[[ -e ${commands[brew]} ]] && export ARCHFLAGS="-arch x86_64"
+
+# OCaml
+[[ -e ${commands[opam]} ]] && eval $(opam config env)
 # }}}
 
-# Custom settings, aliases and functions {{{
-[[ -e $HOME/.rc ]] && source $HOME/.rc
+# Aliases and functions {{{
+[[ -e ~/.rc ]] && source ~/.rc
 dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
+mcd() { mkdir -p "$1" && cd "$1"; }
+icd() { DIR=$(ls | peco) && cd $DIR && icd }
+prj() { cd ~/src/$(ghq list | peco) }
+hst() { eval $(history -n 1 | tail -r | peco --layout=bottom-up) }
+fuck() { sudo $(history -n -1) }
 
-chpwd() { update_terminal_cwd; }
 precmd() {
 	# $? in prompt is wrong, can't pass %? to conditionals
 	if [[ $? == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
 	if [[ $PRIVATE == 1 ]]; then
-		SCOLOR="$bg[magenta]$fg_bold[black]"
+		SCOLOR=$bg[magenta]$fg_bold[black]
 	elif [[ ${HOST##*\.} == 'local' || ${HOST##*\.} == 'localdomain' || $HOST =~ '^[^\.]+$' ]]; then
 		# green on *.local, *.localdomain and hostnames without dots
-		SCOLOR="$fg_bold[green]"
+		SCOLOR=$fg_bold[green]
 	else
 		# red everything else - that is, on production servers!
-		SCOLOR="$fg_bold[red]"
+		SCOLOR=$fg_bold[red]
 	fi
 }
+# }}}
 
-prj() { cd "$HOME/src/$(ghq list | peco)" }
-icd() { DIR="$(ls | peco)" && cd $DIR && icd }
-hst() { eval "$(history -n 1 | tail -r | peco --layout=bottom-up)" }
-fuck() { sudo "$(history -n -1)" }
-
-prompts '%{$SCOLOR%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} ' '%{$fg[red]%}$(ruby_version)%{$reset_color%}'
-setopt auto_pushd
+# Basic settings {{{
+# Modules
+autoload -U colors && colors
+autoload -U compinit && zmodload -i zsh/complist
+autoload -U edit-command-line && zle -N edit-command-line
+autoload -U url-quote-magic && zle -N self-insert url-quote-magic
+autoload -U select-word-style && select-word-style bash
+autoload -U zmv
+zle -N hst
+# Keybindings
 bindkey -e # Emacs style keys in shell
-autoload -U edit-command-line
-zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-zle -N hst
 bindkey '^R' hst
+# Stuff
+setopt pushd_ignore_dups; setopt auto_pushd
+setopt auto_name_dirs; setopt auto_cd
+setopt transient_rprompt; setopt prompt_subst
+setopt no_beep; setopt multios
+setopt extended_glob; setopt interactive_comments
+# History
+setopt hist_ignore_dups; setopt hist_ignore_space
+setopt hist_reduce_blanks; setopt hist_verify
+setopt hist_expire_dups_first; setopt hist_find_no_dups
+setopt share_history; setopt extended_history
+setopt append_history; setopt inc_append_history
+# Completion
+setopt complete_in_word
+setopt no_complete_aliases # Actually: completes aliases! (I guess that means "no ~separate functions~ for aliases")
+unsetopt always_to_end
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' insert-tab pending
+zstyle ':completion:*' expand "yes"
+zstyle ':completion:*' matcher-list "m:{a-zA-Z}={A-Za-z}" # ignore case
+zstyle ':completion:*' list-colors ""
+zstyle ':completion:*' menu select=2 _complete _ignored _approximate
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format "- %{${fg[yellow]}%}%d%{${reset_color}%} -"
+zstyle ':completion:*:messages' format $'\e[00;31m%d'
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections true
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:*:*:processes' list-colors "=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01"
+zstyle ':completion:*:*:*:processes' command "ps -u $(whoami) -o pid,user,comm -w -w"
+zstyle ':completion:*:*:*:*:hosts' list-colors "=*=$color[cyan];$color[bg-black]"
+zstyle ':completion:*:functions' ignored-patterns "_*"
+zstyle ':completion:*:original' list-colors "=*=$color[red];$color[bold]"
+zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[red]"
+zstyle ':completion:*:aliases' list-colors "=*=$color[green]"
+fpath=(~/.zsh/zsh-completions/src(N) /usr/local/share/zsh/site-functions(N) $fpath)
+fignore+=.DS_Store
+compinit -i
+compdef mcd=cd
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=4096
+SAVEHIST=4096
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # Like default, but without / -- ^W must be useful in paths, like it is in vim, bash, tcsh
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export CLICOLOR="yes"
+export PAGER="less"
+export EDITOR="vim"
+[[ -e ${commands[nvim]} ]] && export EDITOR="nvim" && alias vi="nvim"
+
+PROMPT='%{$SCOLOR%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} '
+
+typeset -U path # U for Unique, like a set; (N) == only if exists
+path=(
+	~/bin(N) ~/.cask/bin(N)
+	$BREWGO/bin(N) $BREWGO/libexec/bin(N) /usr/local/go/bin(N)
+	$JAVA_HOME/bin(N)
+	/var/lib/gems/1.8/bin(N) $RBENV_ROOT/bin(N)
+	/usr/local/share/npm/bin(N)
+	/usr/local/bin /usr/local/sbin $path
+)
+export PATH
 # }}}
 
-[[ -e $(which archey) ]] && archey -c
-[[ -e $(which bsdinfo) ]] && bsdinfo
-[[ -e $(which fortune) ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
-[[ -e $(which keychain) ]] && eval "$(keychain --eval --agents ssh,gpg --inherit any  winterhold github bitbucket clojars heroku 0x5F9F528D3B011BAF)"
-[[ -e $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+[[ -e ${commands[archey]} ]] && archey -c
+[[ -e ${commands[bsdinfo]} ]] && bsdinfo
+[[ -e ${commands[fortune]} ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
+[[ -e ${commands[keychain]} ]] && eval $(keychain --eval --agents ssh,gpg --inherit any  winterhold github bitbucket clojars heroku 0x5F9F528D3B011BAF)
+[[ -e $HOME/.zshrc.local ]] && source ~/.zshrc.local
 [[ $PRIVATE == 1 ]] && unset HISTFILE

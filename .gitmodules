@@ -1,18 +1,18 @@
-[submodule "vendor/zsh-hl"]
+[submodule "zsh/zsh-hl"]
 	path = zsh/zsh-hl
 	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "vendor/zsh-hss"]
+[submodule "zsh/zsh-hss"]
 	path = zsh/zsh-hss
 	url = git://github.com/zsh-users/zsh-history-substring-search.git
 [submodule "zsh/base16-shell"]
 	path = zsh/base16-shell
 	url = git://github.com/chriskempson/base16-shell.git
-[submodule "zshuery"]
-	path = zsh/zshuery
-	url = git://github.com/myfreeweb/zshuery.git
+[submodule "zsh/zsh-completions"]
+	path = zsh/zsh-completions
+	url = git://github.com/zsh-users/zsh-completions.git
 [submodule "keybindings"]
 	path = osx/keybindings
 	url = git://github.com/ttscoff/KeyBindings.git
 [submodule "x11/base16-xresources"]
 	path = x11/base16-xresources
-	url = git://github.com/chriskempson/base16-xresources
+	url = git://github.com/chriskempson/base16-xresources.git

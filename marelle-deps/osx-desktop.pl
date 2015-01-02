@@ -4,6 +4,7 @@
 
 % OS X
 managed_pkg('reattach-to-user-namespace').
+managed_pkg(less).
 
 cask_pkg(karabiner).
 cask_pkg(seil).
@@ -73,6 +74,8 @@ installs_with_brew_cask(P) :- font_pkg(P).
 depends(P, _, ['cask-fonts-tap']) :- font_pkg(P).
 
 font_pkg('font-fira-sans').
+font_pkg('font-fantasque-sans-mono').
+font_pkg('font-input').
 font_pkg('font-signika').
 font_pkg('font-open-sans').
 font_pkg('font-source-sans-pro').
@@ -94,7 +97,7 @@ font_pkg('font-averia-sans-libre').
 font_pkg('font-averia-serif-libre').
 
 meta_pkg(fonts, [
-	'font-fira-sans', 'font-signika', 'font-open-sans',
+	'font-fira-sans', 'font-fantasque-sans-mono', 'font-input', 'font-signika', 'font-open-sans',
 	'font-source-sans-pro', 'font-source-code-pro', 'font-source-serif-pro',
 	'font-inconsolata-for-powerline', 'font-comic-neue', 'font-redacted',
 	'font-londrina-outline', 'font-londrina-shadow', 'font-londrina-sketch', 'font-londrina-solid',
@@ -104,7 +107,7 @@ meta_pkg(fonts, [
 
 meta_pkg(desktop, osx, [
 	shell, dev, mail,
-	'reattach-to-user-namespace', karabiner, seil, flux, 'mjolnir-configured', syncthing,
+	'reattach-to-user-namespace', less, karabiner, seil, flux, 'mjolnir-configured', syncthing,
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
 	evernote, skitch, skype, 'istat-menus', imageoptim,

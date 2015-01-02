@@ -4,7 +4,7 @@ Xft.hinting:          true
 Xft.hintstyle:        hintfull
 Xft.lcdfilter:        lcdlight
 
-#include "%home%/.base16-xresources/base16-monokai.dark.256.xresources"
+#include "%home%/.base16-xresources/base16-twilight.dark.256.xresources"
 
 URxvt.scrollBar:      false
 URxvt.loginShell:     true
