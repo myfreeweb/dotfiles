@@ -35,3 +35,7 @@ ExitPolicy reject *:*
 
 ## Directory mirror
 DirPort 9030
+
+## Onion service for unrelenting.technology
+HiddenServiceDir /usr/local/etc/tor/hs/
+HiddenServicePort 80 127.0.0.1:80
