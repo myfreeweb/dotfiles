@@ -36,6 +36,7 @@ managed_pkg(rkhunter).
 managed_pkg(tmux).
 managed_pkg(zsh).
 managed_pkg(tree).
+managed_pkg(ncdu).
 command_pkg(ghq).
 installs_with_go(ghq, 'github.com/motemen/ghq').
 command_pkg(peco).
@@ -46,6 +47,7 @@ pip_pkg(requests). % used by pinboard_xml
 meta_pkg(shell, [
 	welcome, cowsay, fortune,
 	curl, wget,
-	tmux, zsh, tree, ghq, peco, httpie, requests,
+	tmux, zsh, tree, ncdu,
+	ghq, peco, httpie, requests,
 	keychain
 ]).

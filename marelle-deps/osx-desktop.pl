@@ -6,6 +6,7 @@
 managed_pkg('reattach-to-user-namespace').
 managed_pkg(less, 'homebrew/dupes/less').
 managed_pkg(openssh, 'homebrew/dupes/openssh').
+managed_pkg(bsdmake).
 
 cask_pkg(karabiner).
 cask_pkg(seil).
@@ -108,7 +109,7 @@ meta_pkg(fonts, [
 
 meta_pkg(desktop, osx, [
 	shell, dev, mail,
-	'reattach-to-user-namespace', less, openssh, synching,
+	'reattach-to-user-namespace', less, bsdmake, openssh, synching,
 	karabiner, seil, flux, 'mjolnir-configured',
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
