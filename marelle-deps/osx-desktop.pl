@@ -5,7 +5,6 @@
 % OS X
 managed_pkg('reattach-to-user-namespace').
 managed_pkg(less, 'homebrew/dupes/less').
-managed_pkg(openssh, 'homebrew/dupes/openssh').
 managed_pkg(bsdmake).
 
 cask_pkg(karabiner).

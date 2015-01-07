@@ -145,7 +145,7 @@ execute(syncthing_server_enabled, freebsd) :-
 	]).
 
 meta_pkg(server, freebsd, [
-	freebsd_conf_common_server, supervisord_enabled,
+	freebsd_conf_common_server, openssh, supervisord_enabled,
 	openntpd_enabled, unbound_enabled,
 	i2p_enabled, tor_enabled, privoxy_enabled,
 	knot_enabled, nginx_enabled,
