@@ -3,6 +3,7 @@
 " Feel free to steal it, but attribution is nice
 "
 " Thanks: see vimrc
+" https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
 
 " File types
 au BufRead,BufNewFile *.{mdown,ronn} setf markdown
@@ -36,6 +37,15 @@ au InsertEnter * set number
 au InsertLeave * set relativenumber
 
 " Misc
+function s:MkNonExDir(file, buf)
+	if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+		let dir=fnamemodify(a:file, ':h')
+		if !isdirectory(dir)
+			call mkdir(dir, 'p')
+		endif
+	endif
+endfunction
+au BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 au BufReadPost fugitive://* setlocal bufhidden=delete
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 au VimResized * exe "normal! \<c-w>="

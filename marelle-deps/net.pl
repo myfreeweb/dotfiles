@@ -20,7 +20,7 @@ depends(wget, freebsd, [libressl, ca_root_nss]).
 pkg(openssh).
 depends(openssh, freebsd, [libressl]).
 installs_with_ports(openssh, 'security/openssh-portable', 'WITH="AES_THREADED BSM" WITHOUT="NONECIPHER"').
-installs_with_brew(openssh, 'homebrew/dupes/openssh').
+installs_with_brew(openssh, 'homebrew/dupes/openssh', '--with-ldns').
 
 managed_pkg(openntpd).
 idempotent_pkg(openntpd_enabled).

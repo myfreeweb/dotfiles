@@ -3,8 +3,13 @@
 OS="$(uname -s)"
 
 case "$OS" in
-	Darwin)  diskutil erasevolume HFS+ 'ramdisk' "$(hdiutil attach -nomount ram://4194304)";;
-	Linux)   mount -t ramfs -o size=1g ramfs /mnt/ramdisk;;
-	FreeBSD) mount_mfs -s 2097152 md /mnt/ramdisk;;
-	*)       echo "Unknown OS";;
+	Darwin)
+		DISK=$(hdiutil attach -nomount ram://$(echo $@ "/ 512" | bc)) # 512 is the block size
+		diskutil erasevolume HFS+ "ramdisk" $DISK;; # no quotes around DISK... INTENTIONALLY!
+	FreeBSD)
+		mount_mfs -s "$(echo $@ | bc)" md /mnt/ramdisk;;
+	# Linux)
+	# 	mount -t ramfs -o "size=$(echo $@ | bc)" ramfs /mnt/ramdisk;;
+	*)
+		echo "Unknown OS: $OS";;
 esac

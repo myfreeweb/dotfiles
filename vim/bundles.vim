@@ -24,7 +24,6 @@ Plug 'fs111/pydoc.vim', { 'for': 'python' }
 Plug 'Shougo/vimproc', { 'do': 'gmake \|\| make' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
-Plug 'Shougo/vimfiler.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
@@ -36,6 +35,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-sleuth'
 Plug 'sjl/strftimedammit.vim'
 Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] }
 Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] }
