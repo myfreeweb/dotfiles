@@ -7,6 +7,7 @@
 # https://github.com/mathiasbynens/dotfiles/blob/master/.functions
 # https://superuser.com/questions/180148/how-do-you-get-screen-to-automatically-connect-to-the-current-ssh-agent-when-re
 # https://github.com/nummi/my-config/blob/master/.zsh/completion.zsh
+# http://robots.thoughtbot.com/silver-searcher-tab-completion-with-exuberant-ctags
 
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
@@ -17,12 +18,6 @@ local BASE16_SHELL=~/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh
 # }}}
 
 # Support for tools, programming languages, etc {{{
-# SSH (Agent forwarding through tmux)
-if [[ -S $SSH_AUTH_SOCK ]] && [[ ! -h $SSH_AUTH_SOCK ]]; then # socket and not symlink
-	ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
-fi
-export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
-
 # Less
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -33,8 +28,8 @@ export LESS_TERMCAP_us=$'\E[04;33;146m'
 export LESS="-R"
 
 # Go
-export GOPATH=$HOME
-[[ -e ${commands[brew]} ]] && export BREWGO=$(brew --prefix go)
+export GOPATH=~
+[[ -e $commands[brew] ]] && export BREWGO=$(brew --prefix go)
 
 # JS
 [[ -d /usr/local/lib/node_modules ]] && export NODE_PATH=/usr/local/lib/node_modules
@@ -62,13 +57,13 @@ bunforkify() {
 export PYTHONDONTWRITEBYTECODE=true
 export VIRTUALENV_DISTRIBUTE=true
 export PIP_USE_MIRRORS=true
-export PYTHONSTARTUP=$HOME/.pythonrc
+export PYTHONSTARTUP=~/.pythonrc
 
 # Compiling stuff on OS X
-[[ -e ${commands[brew]} ]] && export ARCHFLAGS="-arch x86_64"
+[[ -e $commands[brew] ]] && export ARCHFLAGS="-arch x86_64"
 
 # OCaml
-[[ -e ${commands[opam]} ]] && eval $(opam config env)
+[[ -e $commands[opam] ]] && eval $(opam config env)
 # }}}
 
 # Aliases and functions {{{
@@ -79,6 +74,7 @@ icd() { DIR=$(ls | peco) && cd $DIR && icd }
 prj() { cd ~/src/$(ghq list | peco) }
 hst() { eval $(history -n 1 | tail -r | peco --layout=bottom-up) }
 fuck() { sudo $(history -n -1) }
+loadkeys() { eval $(keychain --eval --agents ssh,gpg --inherit any  winterhold github bitbucket clojars heroku 0x5F9F528D3B011BAF) }
 
 precmd() {
 	# $? in prompt is wrong, can't pass %? to conditionals
@@ -156,8 +152,12 @@ fpath=(~/.zsh/zsh-completions/src(N) /usr/local/share/zsh/site-functions(N) $fpa
 fignore+=.DS_Store
 compinit -i
 compdef mcd=cd
+_ctagscomp() { (( CURRENT == 2 )) && compadd $(cut -f 1 tags ctags .git/tags tmp/tags 2>/dev/null | grep -v '!_TAG') }
+compdef _ctagscomp ack
+compdef _ctagscomp ag
+compdef _ctagscomp pt
 
-HISTFILE=$HOME/.zsh_history
+HISTFILE=~/.zsh_history
 HISTSIZE=4096
 SAVEHIST=4096
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
@@ -167,25 +167,46 @@ export LC_ALL="en_US.UTF-8"
 export CLICOLOR="yes"
 export PAGER="less"
 export EDITOR="vim"
-[[ -e ${commands[nvim]} ]] && export EDITOR="nvim" && alias vi="nvim"
+[[ -e $commands[nvim] ]] && export EDITOR="nvim" && alias vi="nvim"
 
-PROMPT='%{$SCOLOR%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} '
+PROMPT='%{$SCOLOR%}${PWD/#~/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} '
+
+cdpath=(~/src/github.com/myfreeweb ~/src/bitbucket.org/wmru)
 
 typeset -U path # U for Unique, like a set; (N) == only if exists
 path=(
+	.git/safe/../../bin
 	~/bin(N) ~/.cask/bin(N)
 	$BREWGO/bin(N) $BREWGO/libexec/bin(N) /usr/local/go/bin(N)
 	$JAVA_HOME/bin(N)
-	/var/lib/gems/1.8/bin(N) $RBENV_ROOT/bin(N)
+	$RBENV_ROOT/bin(N)
 	/usr/local/share/npm/bin(N)
 	/usr/local/bin /usr/local/sbin $path
 )
 export PATH
 # }}}
 
-[[ -e ${commands[archey]} ]] && archey -c
-[[ -e ${commands[bsdinfo]} ]] && bsdinfo
-[[ -e ${commands[fortune]} ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
-[[ -e ${commands[keychain]} ]] && eval $(keychain --eval --agents ssh,gpg --inherit any  winterhold github bitbucket clojars heroku 0x5F9F528D3B011BAF)
-[[ -e $HOME/.zshrc.local ]] && source ~/.zshrc.local
+# Arcane SSH/GPG agent stuff {{{
+SSH_SOCK_LN=~/.ssh/ssh_auth_sock
+if [[ $SSH_AUTH_SOCK =~ '^/private/tmp/com.apple.*' || -z $SSH_AUTH_SOCK ]]; then
+	# Apple-provided or none => run agent right at $SSH_SOCK_LN
+	[[ ! -e $SSH_SOCK_LN && -e $commands[ssh-agent] ]] && eval $(ssh-agent -a $SSH_SOCK_LN)
+elif [[ -S $SSH_AUTH_SOCK && ! -h $SSH_AUTH_SOCK ]]; then
+	# Socket and not symlink (== forwarded!) => make the symlink
+	ln -sf $SSH_AUTH_SOCK $SSH_SOCK_LN
+fi
+export SSH_AUTH_SOCK=$SSH_SOCK_LN
+
+if [[ -e ~/.gnupg/enable-agent ]]; then
+	[[ -e ~/.gnupg/agent-info ]] && source ~/.gnupg/agent-info
+	[[ ! -S $(echo $GPG_AGENT_INFO | cut -d : -f 1) ]] && eval $(gpg-agent --daemon --write-env-file ~/.gnupg/agent-info)
+	export GPG_AGENT_INFO # not exported in the env-file
+fi
+export GPG_TTY=$(tty)
+# }}}
+
+[[ -e $commands[archey] ]] && archey -c
+[[ -e $commands[bsdinfo] ]] && bsdinfo
+[[ -e $commands[fortune] ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
+[[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ $PRIVATE == 1 ]] && unset HISTFILE

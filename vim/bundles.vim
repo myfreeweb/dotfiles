@@ -9,6 +9,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
 Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 "" Web
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
