@@ -74,7 +74,6 @@ icd() { DIR=$(ls | peco) && cd $DIR && icd }
 prj() { cd ~/src/$(ghq list | peco) }
 hst() { eval $(history -n 1 | tail -r | peco --layout=bottom-up) }
 fuck() { sudo $(history -n -1) }
-loadkeys() { eval $(keychain --eval --agents ssh,gpg --inherit any  winterhold github bitbucket clojars heroku 0x5F9F528D3B011BAF) }
 
 precmd() {
 	# $? in prompt is wrong, can't pass %? to conditionals
@@ -156,6 +155,8 @@ _ctagscomp() { (( CURRENT == 2 )) && compadd $(cut -f 1 tags ctags .git/tags tmp
 compdef _ctagscomp ack
 compdef _ctagscomp ag
 compdef _ctagscomp pt
+_loadkeys() { compadd $(find ~/.ssh -perm 0600 ! -type s | xargs basename) }
+compdef _loadkeys loadkeys
 
 HISTFILE=~/.zsh_history
 HISTSIZE=4096

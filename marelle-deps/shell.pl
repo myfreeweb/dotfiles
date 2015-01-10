@@ -29,7 +29,6 @@ meta_pkg(mail, osx,     ['mail-base', msmtp, contacts]).
 meta_pkg(mail, freebsd, ['mail-base', w3m, antiword]).
 
 % Security
-managed_pkg(keychain).
 managed_pkg(rkhunter).
 
 % Shell
@@ -48,6 +47,5 @@ meta_pkg(shell, [
 	welcome, cowsay, fortune,
 	curl, wget,
 	tmux, zsh, tree, ncdu,
-	ghq, peco, httpie, requests,
-	keychain
+	ghq, peco, httpie, requests
 ]).
