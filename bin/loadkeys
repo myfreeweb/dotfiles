@@ -7,22 +7,6 @@
 
 autoload colors && colors
 
-COLORIZE=$(cat << _EOF_
-{
-	FS = " "; ORS = ""; OFS = "";
-	print " $fg_bold[cyan]",\$1,"$reset_color\t$fg_no_bold[magenta]",\$2,"$reset_color ";
-	\$1 = \$2 = "";
-	OFS = " ";
-	sub("\\\(DSA\\\)",       "[_$fg_bold[red]DSA${reset_color}_]");
-	sub("\\\(RSA\\\)",       "[_$fg_bold[red]RSA${reset_color}_]");
-	sub("\\\(ED25519\\\)",   "[$fg_bold[green]EdDSA$reset_color]");
-	sub("\\\(ECDSA\\\)",     "[$fg_bold[yellow]ECDSA$reset_color]");
-	print \$NF," ";
-	\$NF = "";
-	print \$0,"\n";
-}
-_EOF_)
-
 keynames=(winterhold github bitbucket clojars heroku)
 (( $# > 0 )) && keynames=($@)
 keys=()
@@ -32,8 +16,7 @@ done
 
 echo " *  $fg_bold[blue]load$fg_bold[green]keys$reset_color  * "
 
-ssh-add $keys 2>/dev/null && echo " $fg_bold[green]✔ SSH$reset_color"
-ssh-add -l | awk $COLORIZE
+ssh-add $keys 2>/dev/null && echo " $fg_bold[green]✔ SSH$reset_color" && showkeys
 
 if [[ -e ~/.gnupg/enable-agent ]]; then
 	GPG_KEY="0x5F9F528D3B011BAF"

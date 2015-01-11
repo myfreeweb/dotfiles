@@ -45,7 +45,7 @@ runjava() {
 
 # Ruby
 export RBXOPT=-X19
-export RBENV_ROOT=/usr/local/var/rbenv
+[[ -d /usr/local/var/rbenv ]] && export RBENV_ROOT=/usr/local/var/rbenv
 bforkify() {
 	bundle config local.$1 ~/src/github.com/myfreeweb/$1
 }
@@ -58,6 +58,7 @@ export PYTHONDONTWRITEBYTECODE=true
 export VIRTUALENV_DISTRIBUTE=true
 export PIP_USE_MIRRORS=true
 export PYTHONSTARTUP=~/.pythonrc
+export PYTHONUSERBASE=~ # pip install --user
 
 # Compiling stuff on OS X
 [[ -e $commands[brew] ]] && export ARCHFLAGS="-arch x86_64"
@@ -192,7 +193,7 @@ SSH_SOCK_LN=~/.ssh/ssh_auth_sock
 if [[ $SSH_AUTH_SOCK =~ '^/private/tmp/com.apple.*' || -z $SSH_AUTH_SOCK ]]; then
 	# Apple-provided or none => run agent right at $SSH_SOCK_LN
 	[[ ! -e $SSH_SOCK_LN && -e $commands[ssh-agent] ]] && eval $(ssh-agent -a $SSH_SOCK_LN)
-elif [[ -S $SSH_AUTH_SOCK && ! -h $SSH_AUTH_SOCK ]]; then
+elif [[ -S $SSH_AUTH_SOCK && ! -h $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != $SSH_SOCK_LN ]]; then
 	# Socket and not symlink (== forwarded!) => make the symlink
 	ln -sf $SSH_AUTH_SOCK $SSH_SOCK_LN
 fi
@@ -208,6 +209,7 @@ export GPG_TTY=$(tty)
 
 [[ -e $commands[archey] ]] && archey -c
 [[ -e $commands[bsdinfo] ]] && bsdinfo
+[[ -e $commands[showkeys] ]] && showkeys
 [[ -e $commands[fortune] ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
 [[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ $PRIVATE == 1 ]] && unset HISTFILE
