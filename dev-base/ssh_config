@@ -9,12 +9,16 @@
 ControlMaster auto
 ControlPath ~/.tmp/ssh_%r@%h:%p
 ControlPersist 5m
-GSSAPIAuthentication no
-HashKnownHosts no
 TCPKeepAlive no
 ServerAliveInterval 60
 ServerAliveCountMax 10
+GSSAPIAuthentication no
+HostbasedAuthentication no
+RhostsRSAAuthentication no
+HashKnownHosts no
+CheckHostIP yes
 VerifyHostKeyDNS yes
+StrictHostKeyChecking ask
 
 Host *
 	KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group1-sha1
@@ -30,3 +34,4 @@ Host *.local
 
 Host unrelenting.technology
 	ForwardAgent yes
+	PasswordAuthentication no

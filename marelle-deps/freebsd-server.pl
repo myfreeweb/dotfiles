@@ -34,7 +34,7 @@ idempotent_pkg(knot_enabled).
 depends(knot_enabled, _, [knot]).
 execute(knot_enabled, freebsd) :-
 	sudo_sh('cp -f ./marelle-tpls/knot.conf /usr/local/etc/knot/knot.conf'),
-	sudo_sh('cp -f ./marelle-tpls/unrelenting.technology.zone /usr/local/etc/knot/'),
+	sudo_sh('cp -f ./marelle-tpls/*.zone /usr/local/etc/knot/'),
 	sysrc('knot_enable').
 
 managed_pkg(privoxy).
