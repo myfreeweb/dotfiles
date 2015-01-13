@@ -8,4 +8,3 @@ $TTL 3600
 @                                         IN NS        ( ns2.unrelenting.technology. )
 @                                         IN A         ( 46.149.26.115 )
 www                                       IN A         ( 46.149.26.115 )
-labs                                      IN CNAME     ( floatbothlabs.herokuapp.com. )
