@@ -190,7 +190,7 @@ export PATH
 
 # Arcane SSH/GPG agent stuff {{{
 SSH_SOCK_LN=~/.ssh/ssh_auth_sock
-if [[ $SSH_AUTH_SOCK =~ '^/private/tmp/com.apple.*' || -z $SSH_AUTH_SOCK ]]; then
+if [[ $SSH_AUTH_SOCK =~ '^/private/tmp/com.apple.*' || ! -e $SSH_AUTH_SOCK ]]; then
 	# Apple-provided or none => run agent right at $SSH_SOCK_LN
 	[[ ! -e $SSH_SOCK_LN && -e $commands[ssh-agent] ]] && eval $(ssh-agent -a $SSH_SOCK_LN)
 elif [[ -S $SSH_AUTH_SOCK && ! -h $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != $SSH_SOCK_LN ]]; then
