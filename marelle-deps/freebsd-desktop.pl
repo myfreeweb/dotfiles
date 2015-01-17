@@ -29,8 +29,8 @@ execute(freebsd_conf_desktop, freebsd) :-
 	bootloader('snd_driver_load'),
 	sudo_sh('cat ./marelle-tpls/make.conf ./marelle-tpls/make.desktop.conf > /etc/make.conf'),
 	sudo_sh('cat ./marelle-tpls/pf.desktop.conf > /etc/pf.conf'),
-	sudo_sh('cat ./marelle-tpls/pf.desktop.conf > /etc/pf.conf'),
-	sudo_sh('pfctl -f /etc/pf.conf 2>/dev/null').
+	sudo_sh('cat ./marelle-tpls/pf.desktop.conf > /etc/pf.conf').
+%	sudo_sh('pfctl -f /etc/pf.conf 2>/dev/null').
 
 pkg(freetype2).
 installs_with_ports(freetype2, 'print/freetype2', 'WITH="LCD_FILTERING"').
