@@ -1,7 +1,7 @@
 Config { font = "xft:monospace:size=9" -- set in fonts.conf
-       , borderColor = "black"
+       , borderColor = "#464b50"
        , border = TopB
-       , bgColor = "#282828"
+       , bgColor = "#1e1e1e"
        , fgColor = "#e8e8e8"
        , position = Top
        , lowerOnStart = True
@@ -17,5 +17,5 @@ Config { font = "xft:monospace:size=9" -- set in fonts.conf
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ <fc=#dc9656>%kbd%</fc> <fc=#a1b56c>%date%</fc> <fc=#ab4642>%uname%</fc>"
+       , template = " %StdinReader% }{ <fc=#f9ee98>%kbd%</fc> <fc=#afc4db>%date%</fc> <fc=#cf6a4c>%uname%</fc>"
        }

@@ -70,15 +70,15 @@ depends(xmonad_contrib, freebsd, [xmonad]).
 installs_with_pkgng(xmonad_contrib, 'x11-wm/hs-xmonad-contrib').
 
 pkg(xmobar).
-depends(xmobar, freebsd, [xorg_conf]).
-installs_with_ports(xmobar, 'x11/hs-xmobar', 'WITH="LLVM THREADED XFT"').
+depends(xmobar, freebsd, [xorg_conf, freetype2]).
+installs_with_ports(xmobar, 'x11/hs-xmobar', 'WITH="THREADED XFT"').
 
 pkg(dmenu).
-depends(dmenu, freebsd, [xorg_conf]).
+depends(dmenu, freebsd, [xorg_conf, freetype2]).
 installs_with_ports(dmenu, 'x11/dmenu', 'WITH="XFT"').
 
 pkg(sterm).
-depends(sterm, freebsd, [xorg_conf]).
+depends(sterm, freebsd, [xorg_conf, freetype2]).
 installs_with_ports(sterm, 'x11/sterm', 'ST_CONF="$HOME/src/github.com/myfreeweb/dotfiles/x11/st.conf.h"').
 
 managed_pkg(feh).
@@ -94,12 +94,11 @@ managed_pkg(noto).
 managed_pkg(paratype).
 managed_pkg('sourcecodepro-ttf').
 managed_pkg('sourcesanspro-ttf').
-managed_pkg(firefox).
 
 meta_pkg(desktop, freebsd, [
 	freebsd_conf_desktop,
 	shell, dev, mail,
-	xorg_conf, xmonad, xmobar, dmenu, feh, dunst, xclip, xsel, scrot,
+	xorg_conf, xmonad_contrib, xmobar, dmenu, feh, dunst, xclip, xsel, scrot,
 	'gnome-themes-standard', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
-	sterm, firefox
+	sterm
 ]).

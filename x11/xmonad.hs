@@ -17,7 +17,7 @@ import qualified Data.Map        as M
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    [ ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -fn 'monospace-9'")
+    [ ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -sf '#8F9D6A'")
     , ((modm .|. shiftMask, xK_c     ), kill) -- close focused window
     , ((modm,               xK_space ), sendMessage NextLayout) -- Rotate through the available layout algorithms
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- Reset the layouts on the current workspace to default
@@ -79,10 +79,11 @@ myManageHook = composeAll
 
 -- Event handling
 myEventHook = mempty
-myPP = xmobarPP { ppCurrent = xmobarColor "#282828" "#a1b56c"
-                , ppUrgent  = xmobarColor "#282828" "#ab4642"
+myPP = xmobarPP { ppCurrent = xmobarColor "#282828" "#8f9d6a"
+                , ppUrgent  = xmobarColor "#282828" "#cf6a4c"
                 , ppTitle   = xmobarColor "#a16946" "" . shorten 128
-                , ppLayout  = (\x -> case x of
+                , ppSep     = "  "
+                , ppLayout  = (\x -> xmobarColor "#a7a7a7" "" $ case x of
                                 "SmartSpacing 8 ThreeCol" -> "Columns"
                                 "SmartSpacing 8 Tall" -> "Tall Vertical"
                                 "SmartSpacing 8 Mirror Tall" -> "Tall Horizontal"
@@ -98,7 +99,7 @@ main = do
   , clickJustFocuses   = False
   , borderWidth        = 3
   , modMask            = mod1Mask
-  , workspaces         = ["1","2","3","4","5","6","7","8","9"]
+  , workspaces         = map (: []) ['α'..'ω']
   , normalBorderColor  = "#383838"
   , focusedBorderColor = "#585858"
   , keys               = myKeys

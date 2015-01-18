@@ -1,7 +1,7 @@
 #!/bin/sh
 killall ssh-agent
 rm -f ~/.ssh/ssh_auth_sock
-setxkbmap 'us(colemak),ru' -option ctrl:nocaps -option grp:alt_space_toggle
+setxkbmap 'us(colemak),ru' -option -option ctrl:nocaps -option grp:win_space_toggle
 xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 sh ~/.fehbg &
