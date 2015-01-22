@@ -12,6 +12,7 @@ au BufRead,BufNewFile *.gradle setf groovy
 au BufRead,BufNewFile *.scaml setf haml
 au BufRead,BufNewFile *.sjs setf javascript
 au BufRead,BufNewFile *.swig setf htmldjango
+au BufRead,BufNewFile *.gv setf dot
 au BufRead,BufNewFile quakelive.cfg setf quake
 au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal iskeyword+=-
 au BufRead,BufNewFile *.{jar,war,ear,sar} setf zip

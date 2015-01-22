@@ -1,3 +1,4 @@
+(source gnu)
 (source melpa)
 
 ; General
@@ -11,10 +12,18 @@
 (depends-on "drag-stuff")
 (depends-on "find-file-in-project")
 
+; Usability
+(depends-on "evil")
+(depends-on "evil-leader")
+(depends-on "evil-numbers")
+(depends-on "evil-surround")
+(depends-on "evil-search-highlight-persist")
+(depends-on "evil-terminal-cursor-changer")
+(depends-on "powerline-evil")
+
 ; Theme
 (depends-on "base16-theme")
 
 ; Clojure
 (depends-on "clojure-mode")
-(depends-on "clojure-test-mode")
 (depends-on "cider")

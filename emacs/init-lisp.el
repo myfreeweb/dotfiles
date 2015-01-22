@@ -23,9 +23,9 @@
 
 (require 'clojure-mode)
 
-(eval-after-load "clojure-mode" '(require 'cider))
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-(add-hook 'cider-repl-mode-hook 'subword-mode)
+;(eval-after-load "clojure-mode" '(require 'cider))
+;(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+;(add-hook 'cider-repl-mode-hook 'subword-mode)
 
 (setq nrepl-hide-special-buffers t
       nrepl-lein-command "lein"

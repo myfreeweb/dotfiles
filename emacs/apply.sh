@@ -9,7 +9,7 @@ cp Cask ~/.emacs.d/Cask
 rm ~/.emacs.d/*.el
 cp ./*.el ~/.emacs.d/
 
-git clone https://github.com/cask/cask.git ~/.cask
+[[ ! -e ~/.cask ]] && git clone https://github.com/cask/cask.git ~/.cask
 ~/.cask/bin/cask upgrade
 cd ~/.emacs.d && ~/.cask/bin/cask install
 
