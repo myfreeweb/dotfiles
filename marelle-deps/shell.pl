@@ -30,12 +30,19 @@ meta_pkg(mail, freebsd, ['mail-base', w3m, antiword]).
 
 % Security
 managed_pkg(rkhunter).
+command_pkg(signify).
+installs_with_ports(signify, 'security/signify').
+installs_with_brew(signify, 'signify-osx').
 
 % Shell
 managed_pkg(tmux).
 managed_pkg(zsh).
 managed_pkg(tree).
 managed_pkg(ncdu).
+managed_pkg(toilet).
+command_pkg(ranger).
+installs_with_pkgng(ranger, 'sysutils/py-ranger').
+installs_with_brew(ranger).
 command_pkg(ghq).
 installs_with_go(ghq, 'github.com/motemen/ghq').
 command_pkg(peco).
@@ -46,6 +53,6 @@ pip_pkg(requests). % used by pinboard_xml
 meta_pkg(shell, [
 	welcome, cowsay, fortune,
 	curl, wget,
-	tmux, zsh, tree, ncdu,
+	tmux, zsh, tree, ncdu, toilet,
 	ghq, peco, httpie, requests
 ]).

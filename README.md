@@ -1,4 +1,25 @@
-# myfreeweb/dotfiles 2.0
+```
+                                                                             
+                 ▄▀▀                                     █                  ▄
+ ▄▄▄▄▄  ▄   ▄  ▄▄█▄▄   ▄ ▄▄   ▄▄▄    ▄▄▄  ▄     ▄  ▄▄▄   █▄▄▄              █ 
+ █ █ █  ▀▄ ▄▀    █     █▀  ▀ █▀  █  █▀  █ ▀▄ ▄ ▄▀ █▀  █  █▀ ▀█            █  
+ █ █ █   █▄█     █     █     █▀▀▀▀  █▀▀▀▀  █▄█▄█  █▀▀▀▀  █   █           █   
+ █ █ █   ▀█      █     █     ▀█▄▄▀  ▀█▄▄▀   █ █   ▀█▄▄▀  ██▄█▀          █    
+         ▄▀                                                            ▀     
+        ▀▀                                                                   
+                                                        
+     █           ▄      ▄▀▀    ▀    ▀▀█                 
+  ▄▄▄█   ▄▄▄   ▄▄█▄▄  ▄▄█▄▄  ▄▄▄      █     ▄▄▄    ▄▄▄  
+ █▀ ▀█  █▀ ▀█    █      █      █      █    █▀  █  █   ▀ 
+ █   █  █   █    █      █      █      █    █▀▀▀▀   ▀▀▀▄ 
+ ▀█▄██  ▀█▄█▀    ▀▄▄    █    ▄▄█▄▄    ▀▄▄  ▀█▄▄▀  ▀▄▄▄▀ 
+                                                        
+
+I definitely spend waaaaaay too much time configuring software I use.
+
+```
+
+# dotfiles 2.0
 
 Modular dotfiles!
 Easy installation on virtual machines and servers via SSH.
@@ -8,34 +29,25 @@ A module is a directory with an `apply.sh` file that installs the dotfiles.
 
 Also: [Marelle] deps.
 
-![Screenshot](https://files.app.net/2nnl9Hsmq.png)
-
 [Marelle]: https://github.com/larsyencken/marelle
 
 ## Installation
 
-Prepare OS X:
-
-```bash
-$ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" 
-$ brew install zsh swi-prolog
-```
+Required: [git], [SWI-Prolog], [Z Shell], [base16] colorschemes.
 
 Common setup:
 
 ```bash
-$ git clone git@github.com:larsyencken/marelle ~/.local/marelle
-$ git clone git@github.com:myfreeweb/dotfiles ~/src/github.com/myfreeweb/dotfiles
+$ git clone git@github.com:larsyencken/marelle ~/src/github.com/larsyencken/marelle
+$ git clone git@github.com:myfreeweb/dotfiles  ~/src/github.com/myfreeweb/dotfiles
 $ cd ~/src/github.com/myfreeweb/dotfiles
 $ git submodule update --init --recursive
-$ ./install.sh dev-base bin zsh
+$ ./install.sh dev-base bin zsh tmux
 $ sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
 $ chsh -s /usr/local/bin/zsh
 $ zsh
 $ marelle meet desktop
 ```
-
-Also, get [base16] colorschemes for the terminal.
 
 [base16]: https://github.com/chriskempson/base16
 
@@ -62,7 +74,7 @@ Also, get [base16] colorschemes for the terminal.
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
-- **x11** -- [xmonad], [xmobar] and other x.org stuff
+- **x11** -- [xmonad], [xmobar], [dunst], [st] and other x.org stuff
 - **windows** -- PowerShell and other Microsoft Windows stuff
 
 [ssh]: http://www.openssh.com
@@ -88,6 +100,8 @@ Also, get [base16] colorschemes for the terminal.
 [hashcash]: http://hashcash.org
 [xmonad]: http://xmonad.org
 [xmobar]: http://projects.haskell.org/xmobar/
+[dunst]: https://github.com/knopwob/dunst
+[st]: http://st.suckless.org/
 
 ### Language-specific
 
@@ -98,6 +112,7 @@ Also, get [base16] colorschemes for the terminal.
 - **haskell** -- [Haskell]'s [Cabal], ghci, [hi] configuration
 - **lua** -- [Lua] [luarocks] configuration
 
+[SWI-Prolog]: http://www.swi-prolog.org/
 [Python]: https://www.python.org
 [Ruby]: https://www.ruby-lang.org/en/
 [Clojure]: http://clojure.org
