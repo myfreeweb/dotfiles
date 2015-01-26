@@ -3,8 +3,12 @@
 % Feel free to steal it, but attribution is nice
 
 % OS X
+brew_tap('tap-dupes', 'homebrew/dupes').
+
 managed_pkg('reattach-to-user-namespace').
-managed_pkg(less, 'homebrew/dupes/less').
+command_pkg(less).
+depends(less, osx, ['tap-dupes']).
+installs_with_brew(less).
 managed_pkg(bsdmake).
 
 cask_pkg(karabiner).
@@ -108,7 +112,7 @@ meta_pkg(fonts, [
 
 meta_pkg(desktop, osx, [
 	shell, dev, mail,
-	'reattach-to-user-namespace', less, bsdmake, openssh, synching,
+	'reattach-to-user-namespace', less, bsdmake, openssh, syncthing,
 	karabiner, seil, flux, 'mjolnir-configured',
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,

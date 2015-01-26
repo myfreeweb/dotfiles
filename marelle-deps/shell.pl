@@ -52,7 +52,7 @@ pip_pkg(requests). % used by pinboard_xml
 
 meta_pkg(shell, [
 	welcome, cowsay, fortune,
-	curl, wget,
+	curl, wget, signify,
 	tmux, zsh, tree, ncdu, toilet,
 	ghq, peco, httpie, requests
 ]).

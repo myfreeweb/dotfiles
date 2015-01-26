@@ -59,7 +59,7 @@ hotkey.bind(hyper, "2", gridset(3, 0, 3, 2))
 -- App switching
 
 local app_shortcuts = {
-	n = "Nightly", -- Firefox
+	n = "Firefox",
 	e = "iTerm",
 	i = "Dash",
 	o = "Mail"
