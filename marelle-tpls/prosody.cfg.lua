@@ -4,16 +4,20 @@ VirtualHost "unrelenting.technology"
 
 admins = { "greg@unrelenting.technology" }
 
+plugin_paths = { "/usr/local/lib/prosody/contrib", "/usr/local/lib/prosody/modules" }
+
 modules_enabled = { -- Documentation on modules can be found at: http://prosody.im/doc/modules
 -- Generally required
 	"roster"; "saslauth"; "tls"; "dialback"; "disco";
 -- Not essential, but recommended
-	"private"; "vcard"; "privacy";
+	"private"; "vcard"; "privacy"; "blocking";
+-- Great for mobile: http://op-co.de/blog/posts/mobile_xmpp_in_2014/
+	"smacks"; "carbons"; -- "mam"; -- requires prosody 0.10, sql
 -- Nice to have
 	"version"; "uptime"; "time"; "ping"; "pep"; "register";
 	"admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
 	"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
-	-- "s2s_auth_dane";
+	"onions"; "s2s_auth_dane";
 }
 
 modules_disabled = { }

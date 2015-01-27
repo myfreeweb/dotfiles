@@ -105,8 +105,7 @@ met(prosody_plugins, freebsd) :-
 meet(prosody_plugins, freebsd) :-
 	sudo_sh('hg clone http://code.zash.se/luaunbound/ /usr/local/lib/prosody/luaunbound'),
 	sudo_sh('cd /usr/local/lib/prosody/luaunbound && ./squish.sh > /usr/local/etc/prosody/use_unbound.lua'),
-	sudo_sh('hg clone http://prosody-modules.googlecode.com/hg/ /usr/local/lib/prosody/contrib'),
-	sudo_sh('cp -r /usr/local/lib/prosody/contrib/mod_s2s_auth_dane /usr/local/lib/prosody/modules/').
+	sudo_sh('hg clone http://prosody-modules.googlecode.com/hg/ /usr/local/lib/prosody/contrib').
 idempotent_pkg(prosody_enabled).
 depends(prosody_enabled, _, [prosody, prosody_plugins, supervisord_enabled]).
 execute(prosody_enabled, freebsd) :-
