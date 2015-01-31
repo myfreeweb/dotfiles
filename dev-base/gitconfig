@@ -62,7 +62,7 @@
 	# [c]ommit
 	ca  = commit --amend
 	cc  = commit
-	cl  = "!f() { git log --decorate --graph --abbrev-commit --date=relative --pretty='tformat:%C(yellow)%h %G?%Creset}%Cgreen%ar%Creset}%C(bold blue)%an%Creset}%C(red)%d%Creset %s' $@ | sed -Ee 's/(^[^<]*) ago)/\\1)/' | sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\\1)/' | column -t -s '}' | less -FXRS; }; f"
+	cl  = "!f() { git log --decorate --graph --abbrev-commit --date=relative --pretty='tformat:%C(yellow)%h %G?%Creset}%Cgreen%ar%Creset}%C(bold blue)%aN%Creset}%C(red)%d%Creset %s' $@ | sed -Ee 's/(^[^<]*) ago)/\\1)/' | sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\\1)/' | column -t -s '}' | less -FXRS; }; f"
 	cp  = cherry-pick -x
 	cr  = reset --hard HEAD^
 	cs  = show
