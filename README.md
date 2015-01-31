@@ -72,9 +72,10 @@ $ marelle meet desktop
 - **zsh** -- [Z Shell] configuration and plugins
 - **vim** -- [Vim] *or [neovim]* text editor configuration and plugins
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
-- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
+- **ranger** -- [ranger] file manager
 - **x11** -- [xmonad], [xmobar], [dunst], [st] and other x.org stuff
+- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
 - **windows** -- PowerShell and other Microsoft Windows stuff
 
 [ssh]: http://www.openssh.com
@@ -102,6 +103,7 @@ $ marelle meet desktop
 [xmobar]: http://projects.haskell.org/xmobar/
 [dunst]: https://github.com/knopwob/dunst
 [st]: http://st.suckless.org/
+[ranger]: http://ranger.nongnu.org/
 
 ### Language-specific
 
