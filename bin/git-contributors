@@ -1,0 +1,6 @@
+#!/bin/sh
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+
+git shortlog -sn | cut -f 2 | awk 'BEGIN { ORS = ", "; FS = "\n"; OFS = "" } { print "\"",$1,"\"" }'
