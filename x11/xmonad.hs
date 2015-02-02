@@ -17,7 +17,7 @@ import qualified Data.Map        as M
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    [ ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -sf '#8F9D6A'")
+    [ ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -fn 'monospace-9' -sb '#8F9D6A' -sf '#282828' -p '$'")
     , ((modm .|. shiftMask, xK_c     ), kill) -- close focused window
     , ((modm,               xK_space ), sendMessage NextLayout) -- Rotate through the available layout algorithms
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- Reset the layouts on the current workspace to default
@@ -75,6 +75,8 @@ myManageHook = composeAll
     [ className =? "Xmessage"       --> doFloat
     , className =? "Pinentry"       --> doFloat
     , className =? "Gimp"           --> doFloat
+    , className =? "stalonetray"    --> doIgnore
+    , title     =? "gromit-mpx"     --> doIgnore
     , resource  =? "desktop_window" --> doIgnore ]
 
 -- Event handling
@@ -83,13 +85,7 @@ myPP = xmobarPP { ppCurrent = xmobarColor "#282828" "#8f9d6a"
                 , ppUrgent  = xmobarColor "#282828" "#cf6a4c"
                 , ppTitle   = xmobarColor "#a16946" "" . shorten 128
                 , ppSep     = "  "
-                , ppLayout  = (\x -> xmobarColor "#a7a7a7" "" $ case x of
-                                "SmartSpacing 8 ThreeCol" -> "Columns"
-                                "SmartSpacing 8 Tall" -> "Tall Vertical"
-                                "SmartSpacing 8 Mirror Tall" -> "Tall Horizontal"
-                                "SmartSpacing 8 Accordion" -> "Accordion"
-                                "SmartSpacing 8 Roledex" -> "Roledex"
-                                _ -> x)}
+                , ppLayout  = \x -> ""}
 myStartupHook = return ()
 main = do
   barProc <- spawnPipe "/usr/local/bin/xmobar"
@@ -99,7 +95,7 @@ main = do
   , clickJustFocuses   = False
   , borderWidth        = 3
   , modMask            = mod1Mask
-  , workspaces         = map (: []) ['α'..'ω']
+  , workspaces         = map (\x -> [' ', x, ' ']) ['α'..'ω']
   , normalBorderColor  = "#383838"
   , focusedBorderColor = "#585858"
   , keys               = myKeys

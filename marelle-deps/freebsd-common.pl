@@ -44,7 +44,6 @@ execute(freebsd_conf_common, freebsd) :-
 	bootloader('accf_dns_load'),
 	bootloader('cc_htcp_load'),
 	sysctl('vfs.read_max', '32'),
-	sysctl('kern.securelevel', '1'),
 	sysctl('kern.randompid', '1000'),
 	sysctl('kern.ps_arg_cache_limit', '4096'),
 	sysctl('security.bsd.stack_guard_page'),
