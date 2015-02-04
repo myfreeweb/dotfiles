@@ -17,6 +17,7 @@ au BufRead,BufNewFile quakelive.cfg setf quake
 au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal iskeyword+=-
 au BufRead,BufNewFile *.{jar,war,ear,sar} setf zip
 au BufRead,BufNewFile *.fish setf tcsh
+au BufRead,BufNewFile *.ledger setf ledger
 au BufRead,BufNewFile *psqlrc setf sql
 au BufRead,BufNewFile gitconfig setf gitconfig
 au BufRead,BufNewFile gitconfig setlocal noexpandtab

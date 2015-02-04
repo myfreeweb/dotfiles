@@ -69,6 +69,7 @@ export PYTHONUSERBASE=~ # pip install --user
 
 # Aliases and functions {{{
 [[ -e ~/.rc ]] && source ~/.rc
+[[ ! -e $commands[gmake] ]] && alias gmake='make'
 dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
 mcd() { mkdir -p "$1" && cd "$1"; }
 icd() { DIR=$(ls | peco) && cd $DIR && icd }

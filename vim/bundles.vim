@@ -10,6 +10,7 @@ Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
+Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 "" Web
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }

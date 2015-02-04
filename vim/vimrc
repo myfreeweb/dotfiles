@@ -115,6 +115,7 @@ let delimitMate_excluded_ft='clojure'
 let g:flake8_ignore='E128'
 let g:FactorRoot='/Applications/factor'
 let g:haskell_conceal_enumerations = 0
+let g:ledger_bin='hledger'
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
