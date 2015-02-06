@@ -16,6 +16,10 @@ nnoremap <silent> <Leader>p :<C-u>Unite file_rec/async:! -start-insert -no-split
 nnoremap <silent> <Leader>o :<C-u>Unite outline          -start-insert -no-split<CR>
 nnoremap <silent> <Leader>y :<C-u>Unite history/yank     -start-insert<CR>
 nnoremap <silent> <Leader>x :<C-u>Unite command          -start-insert<CR>
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+inoremap <expr><BS> neocomplete#smart_close_popup() . "\<C-h>"
+inoremap <expr><C-h> neocomplete#smart_close_popup() . "\<C-h>"
 
 " Inverted for Colemak + Improve up/down movement on wrapped lines http://vimbits.com/bits/25
 noremap k gj

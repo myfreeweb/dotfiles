@@ -114,8 +114,15 @@ let g:vimclojure#DynamicHighlighting=1
 let delimitMate_excluded_ft='clojure'
 let g:flake8_ignore='E128'
 let g:FactorRoot='/Applications/factor'
-let g:haskell_conceal_enumerations = 0
+let g:haskell_conceal_enumerations=0
 let g:ledger_bin='hledger'
+
+" Neocomplete
+let g:neocomplete#enable_smart_case=1
+let g:neocomplete#sources#syntax#min_keyword_length=3
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns={}
+endif
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])

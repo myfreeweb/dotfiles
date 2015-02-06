@@ -26,6 +26,7 @@ Plug 'fs111/pydoc.vim', { 'for': 'python' }
 Plug 'Shougo/vimproc', { 'do': 'gmake \|\| make' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
+Plug 'Shougo/neocomplete.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
@@ -49,7 +50,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sickill/vim-pasta'
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ervandew/supertab'
 
 " Colors
 Plug 'chriskempson/base16-vim'
