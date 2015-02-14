@@ -40,6 +40,7 @@ managed_pkg(zsh).
 managed_pkg(tree).
 managed_pkg(ncdu).
 managed_pkg(toilet).
+managed_pkg(jq).
 command_pkg(ranger).
 installs_with_pkgng(ranger, 'sysutils/py-ranger').
 installs_with_brew(ranger).
@@ -47,12 +48,14 @@ command_pkg(ghq).
 installs_with_go(ghq, 'github.com/motemen/ghq').
 command_pkg(peco).
 installs_with_go(peco, 'github.com/peco/peco/cmd/peco').
+command_pkg('syncthing-cli').
+installs_with_go('syncthing-cli', 'github.com/syncthing/syncthing-cli').
 pip_pkg(httpie).
 pip_pkg(requests). % used by pinboard_xml
 
 meta_pkg(shell, [
 	welcome, cowsay, fortune,
 	curl, wget, signify,
-	tmux, zsh, tree, ncdu, toilet,
+	tmux, zsh, tree, ncdu, toilet, jq,
 	ghq, peco, httpie, requests
 ]).
