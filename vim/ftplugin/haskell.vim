@@ -14,4 +14,5 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal iskeyword-=.
 
-noremap! <C-l> <Space>>>=<Space>
+imap <C-b> <Space>>>=<Space>
+imap <C-l> <Space>→<Space>

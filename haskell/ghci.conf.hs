@@ -9,6 +9,7 @@
 :set -DGHC_INTERACTIVE
 :set -XNoMonomorphismRestriction
 :set -XOverloadedStrings
+:set -XQuasiQuotes
 :set +m
 
 :set prompt "\ESC[1;34m[ \ESC[1;32m%s \ESC[1;34m]\n\955\ESC[m "

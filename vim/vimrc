@@ -17,7 +17,7 @@ let windows = has('win32') || has('win64')
 let mac = has('mac')
 
 if windows
-	set runtimepath+=~/.vim
+  set runtimepath+=~/.vim
 end
 set nocompatible
 source ~/.vim/bundles.vim
@@ -28,10 +28,10 @@ set noswapfile backup undofile undoreload=5000 history=500
 set noequalalways
 set wrapscan incsearch ignorecase smartcase
 if has('unnamedplus')
-	set clipboard^=unnamedplus
+  set clipboard^=unnamedplus
 endif
 if mac || windows
-	set clipboard=unnamed
+  set clipboard=unnamed
 endif
 set autoread autowrite
 set magic
@@ -52,7 +52,7 @@ set virtualedit=block
 
 " ui
 if !has('gui_running')
-	set t_Co=256
+  set t_Co=256
 endif
 set notimeout ttimeout ttimeoutlen=10
 set relativenumber
@@ -62,10 +62,13 @@ set noerrorbells
 set noshowmode
 set showbreak=↪
 if !windows
-	set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,nbsp:␣
-	set fillchars=diff:⣿,vert:│
+  set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,nbsp:␣
+  set fillchars=diff:⣿,vert:│
 end
-set ttyfast lazyredraw title
+if !has('nvim')
+  set ttyfast
+end
+set lazyredraw title
 "set cursorline
 set hidden
 set mouse=a
@@ -94,11 +97,11 @@ set wildignore+=node_modules,build,.cabal-sandbox,.hpc
 
 " paths
 if !windows
-	set shell=zsh
-	set formatprg=par\ -eq
-	set tags=tags;/,codex.tags;/
-	set dictionary=/usr/share/dict/words
-	set backupskip=/tmp/*,/private/tmp/*
+  set shell=zsh
+  set formatprg=par\ -eq
+  set tags=tags;/,codex.tags;/
+  set dictionary=/usr/share/dict/words
+  set backupskip=/tmp/*,/private/tmp/*
 end
 set backupdir=~/.vim/tmp/backups/
 set undodir=~/.vim/tmp/undo/
@@ -132,19 +135,19 @@ let g:unite_source_grep_encoding = 'utf-8'
 let g:unite_source_grep_default_opts = '--nogroup --nocolor'
 let g:unite_source_grep_recursive_opt = ''
 if executable('ack-grep')
-	let g:unite_source_grep_command = 'ack-grep'
-	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
-	let g:unite_source_rec_async_command = 'ack-grep -f --nofilter'
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
+  let g:unite_source_rec_async_command = 'ack-grep -f --nofilter'
 elseif executable('ack')
-	let g:unite_source_grep_command = 'ack'
-	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
-	let g:unite_source_rec_async_command = 'ack -f --nofilter'
+  let g:unite_source_grep_command = 'ack'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
+  let g:unite_source_rec_async_command = 'ack -f --nofilter'
 elseif executable('ag')
-	let g:unite_source_grep_command = 'ag'
-	let g:unite_source_rec_async_command = 'ag --nogroup --nocolor -g ""' " no --hidden
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_rec_async_command = 'ag --nogroup --nocolor -g ""' " no --hidden
 elseif executable('pt')
-	let g:unite_source_grep_command = 'pt'
-	let g:unite_source_rec_async_command = 'pt --nogroup --nocolor -g .'
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_rec_async_command = 'pt --nogroup --nocolor -g .'
 endif
 
 " Colors and lines
