@@ -65,6 +65,9 @@ export PYTHONUSERBASE=~ # pip install --user
 
 # OCaml
 [[ -e $commands[opam] ]] && eval $(opam config env)
+
+# Haskell
+:test() { make repl } # for the vimux/ghci trick
 # }}}
 
 # Aliases and functions {{{

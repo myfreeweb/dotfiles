@@ -32,8 +32,9 @@
 	algorithm = histogram
 	renames = copy
 	tool = Kaleidoscope
-	wordRegex = [^[:space:]]
+	wordregex = [^[:space:]]
 	mnemonicprefix = true
+	submodule = log
 [mergetool "splice"]
 	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
 	trustExitCode = true
@@ -42,8 +43,13 @@
 	tool = splice
 [push]
 	default = tracking
+[pull]
+	rebase = preserve
 [branch]
 	autosetupmerge = always
+[status]
+	submodulesummary = true
+	branch = true
 [color]
 	ui = auto
 	interactive = auto
@@ -105,7 +111,8 @@
 	# [w]orking copy
 	wr  = reset --hard HEAD
 	wf  = reset --mixed # [f]orget (make all changes unstaged)
-	ws  = status --short --branch --ignore-submodules=untracked
+	ws  = status --short --ignore-submodules=untracked
+	wss = status --ignore-submodules=untracked
 
 [url "git@github.com:"]
 	pushInsteadOf = "git://github.com/"
