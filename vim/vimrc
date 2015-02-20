@@ -108,6 +108,20 @@ set undodir=~/.vim/tmp/undo/
 
 " ////////////////////////////
 
+digraph CC 8450
+digraph NN 8469
+digraph QQ 8474
+digraph RR 8477
+digraph ZZ 8484
+digraph .. 8728
+digraph != 8800
+digraph == 8801
+digraph /= 8802
+digraph <= 8804
+digraph >= 8805
+digraph ++ 8853
+digraph __ 8869
+
 source ~/.vim/bindings.vim
 source ~/.vim/autocmd.vim
 

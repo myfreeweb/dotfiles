@@ -12,8 +12,8 @@ static char worddelimiters[] = " `'\"()[]{}";
 static unsigned int doubleclicktimeout = 300;
 static unsigned int tripleclicktimeout = 600;
 static unsigned int blinktimeout = 800;
-static char font[] = "monospace:size=11.5";
-/* monospace is set in fonts.conf; looks like st is the only program that uses normal font sizes (not weird ones like where 9 is big) */
+static char font[] = "monospace:pixelsize=12";
+/* monospace is set in fonts.conf */
 static char termname[] = "xterm-256color";
 static unsigned int tabspaces = 2;
 

@@ -17,7 +17,7 @@ import qualified Data.Map        as M
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    [ ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -fn 'monospace-9' -sb '#8F9D6A' -sf '#282828' -p '$'")
+    [ ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -fn 'ChicagoFLF-9' -sb '#8F9D6A' -sf '#282828' -p '$'")
     , ((modm .|. shiftMask, xK_c     ), kill) -- close focused window
     , ((modm,               xK_space ), sendMessage NextLayout) -- Rotate through the available layout algorithms
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- Reset the layouts on the current workspace to default
@@ -95,7 +95,7 @@ main = do
   , clickJustFocuses   = False
   , borderWidth        = 3
   , modMask            = mod1Mask
-  , workspaces         = map (\x -> [' ', x, ' ']) ['α'..'ω']
+  , workspaces         = map (\x -> [' ', x, ' ']) ['1'..'9'] -- ['α'..'ω'] -- not in the Chicago typeface
   , normalBorderColor  = "#383838"
   , focusedBorderColor = "#585858"
   , keys               = myKeys

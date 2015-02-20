@@ -26,7 +26,7 @@ Plug 'fs111/pydoc.vim', { 'for': 'python' }
 Plug 'Shougo/vimproc', { 'do': 'gmake \|\| make' }
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
-Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/neocomplete.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'

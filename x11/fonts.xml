@@ -54,4 +54,10 @@
 		<edit name="family" mode="assign" binding="same"><string>monospace</string></edit>
 	</match>
 
+	<!-- Don't antialias Chicago! -->
+	<match target="pattern">
+		<test qual="any" name="family"><string>ChicagoFLF</string></test>
+		<edit name="antialias" mode="assign"><bool>false</bool></edit>
+	</match>
+
 </fontconfig>
