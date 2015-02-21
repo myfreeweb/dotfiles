@@ -19,6 +19,8 @@ I definitely spend waaaaaay too much time configuring software I use.
 
 ```
 
+[![Screenshot](https://imgur.com/mIkLDkN.png)](https://imgur.com/mIkLDkN)
+
 # dotfiles 2.0
 
 Modular dotfiles!
