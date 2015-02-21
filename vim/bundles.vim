@@ -11,11 +11,12 @@ Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
+Plug 'lervag/vim-latex', { 'for': 'tex' }
 "" Web
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
 "" Haskell
-Plug 'ujihisa/neco-ghc', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'dag/vim2hs', { 'for': 'haskell' }
 "" Python
@@ -24,9 +25,12 @@ Plug 'fs111/pydoc.vim', { 'for': 'python' }
 
 " Features
 Plug 'Shougo/vimproc', { 'do': 'gmake \|\| make' }
+Plug 'Shougo/neocomplcache.vim' " doesn't require if_lua, which isn't in neovim
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
-" Plug 'Shougo/neocomplete.vim'
+Plug 'tsukkee/unite-tag'
+Plug 'ujihisa/unite-haskellimport'
+Plug 'sanford1/unite-unicode'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
@@ -50,7 +54,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sickill/vim-pasta'
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'benmills/vimux'
+Plug 'benmills/vimux', { 'on': ['VimuxOpenRunner'] }
 
 " Colors
 Plug 'chriskempson/base16-vim'

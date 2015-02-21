@@ -134,12 +134,9 @@ let g:FactorRoot='/Applications/factor'
 let g:haskell_conceal_enumerations=0
 let g:ledger_bin='hledger'
 
-" Neocomplete
-let g:neocomplete#enable_smart_case=1
-let g:neocomplete#sources#syntax#min_keyword_length=3
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns={}
-endif
+" Neocomplcache
+let g:neocomplcache_enable_smart_case=1
+let g:neocomplcache_min_syntax_length=3
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
