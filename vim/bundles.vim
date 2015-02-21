@@ -54,7 +54,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sickill/vim-pasta'
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'benmills/vimux', { 'on': ['VimuxOpenRunner'] }
+Plug 'benmills/vimux'
 
 " Colors
 Plug 'chriskempson/base16-vim'

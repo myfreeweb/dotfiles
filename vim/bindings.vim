@@ -23,7 +23,6 @@ nnoremap <silent> <Leader>i :<C-u>Unite unicode          -start-insert<CR>
 
 nnoremap <Leader>c :NeoComplCacheEnable<CR>
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 inoremap <expr><BS> neocomplcache#smart_close_popup() . "\<C-h>"
 inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
 

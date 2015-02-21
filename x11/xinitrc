@@ -3,7 +3,7 @@ sh ~/.fehbg &
 killall ssh-agent
 rm -f ~/.ssh/ssh_auth_sock
 setxkbmap 'us(colemak),ru' -option -option ctrl:nocaps -option grp:win_space_toggle
-xset r rate 300 35
+xset r rate 210 35
 xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 dunst &

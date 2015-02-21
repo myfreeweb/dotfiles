@@ -25,4 +25,4 @@ nnoremap <Leader>t :call VimuxSendText(":test\n")<CR>
 
 nnoremap <Leader>l :GhcModLintAsync<CR>
 
-nnoremap <silent> <Leader>i :<C-u>Unite haskellimport    -start-insert<CR>
+nnoremap <silent> <Leader>m :<C-u>Unite haskellimport    -start-insert<CR>
