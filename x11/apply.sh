@@ -26,11 +26,17 @@ cp dunstrc.ini ~/.config/dunst/dunstrc
 rm ~/.gtkrc.mine
 cp gtkrc.mine ~/.gtkrc.mine
 
+rm ~/.gtkrc-1.2-gnome2
+echo "include '$HOME/.gtkrc.mine'" > ~/.gtkrc-1.2-gnome2
+
 rm ~/.gtkrc-2.0
 echo "include '$HOME/.gtkrc.mine'" > ~/.gtkrc-2.0
 
-rm ~/.gtkrc-1.2-gnome2
-echo "include '$HOME/.gtkrc.mine'" > ~/.gtkrc-1.2-gnome2
+mkdir -p ~/.config/gtk-3.0
+rm ~/.config/gtk-3.0/settings.ini
+rm ~/.config/gtk-3.0/gtk.css
+cp gtk3.ini ~/.config/gtk-3.0/settings.ini
+cp gtk3.css ~/.config/gtk-3.0/gtk.css
 
 mkdir -p ~/.config/fontconfig
 rm ~/.config/fontconfig/fonts.conf
