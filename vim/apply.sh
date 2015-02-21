@@ -6,8 +6,6 @@ mkdir -p ~/.vim/tmp/undo
 mkdir -p ~/.vim/tmp/backups
 mkdir -p ~/.vim/bundle
 mkdir -p ~/.vim/autoload
-curl -fLo ~/.vim/autoload/plug.vim \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 rm ~/.vimrc
 cp vimrc ~/.vimrc
@@ -26,6 +24,9 @@ cp -r ftplugin ~/.vim/ftplugin
 
 rm -r ~/.vim/syntax
 cp -r syntax ~/.vim/syntax
+
+curl -fLo ~/.vim/autoload/plug.vim \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 vim +PlugClean! +PlugUpdate +qall
 

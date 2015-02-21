@@ -19,6 +19,7 @@ nnoremap <silent> <Leader>o :<C-u>Unite outline          -start-insert -no-split
 nnoremap <silent> <Leader>y :<C-u>Unite history/yank     -start-insert<CR>
 nnoremap <silent> <Leader>x :<C-u>Unite command          -start-insert<CR>
 nnoremap <silent> <Leader>j :<C-u>Unite tag              -start-insert<CR>
+nnoremap <silent> <Leader>i :<C-u>Unite unicode          -start-insert<CR>
 
 nnoremap <Leader>c :NeoComplCacheEnable<CR>
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
