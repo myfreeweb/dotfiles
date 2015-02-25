@@ -15,7 +15,7 @@ setlocal shiftwidth=2
 setlocal iskeyword-=.
 
 imap <C-b> <Space>>>=<Space>
-imap <C-l> <Space>→<Space>spec
+imap <C-l> <Space>→<Space>
 
 " GHCi repl for fast testing! Use per-project .ghci files.
 " Colemak home row keys... r is for retest, s is for... speed? :D t is for test
