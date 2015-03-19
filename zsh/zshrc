@@ -187,7 +187,7 @@ path=(
 	$JAVA_HOME/bin(N)
 	$RBENV_ROOT/bin(N)
 	/usr/local/share/npm/bin(N)
-	/usr/local/bin /usr/local/sbin $path
+	/usr/local/sbin /usr/local/bin /sbin /bin $path
 )
 export PATH
 # }}}
