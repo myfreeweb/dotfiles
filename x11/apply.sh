@@ -23,6 +23,10 @@ mkdir -p ~/.config/dunst
 rm ~/.config/dunst/dunstrc
 cp dunstrc.ini ~/.config/dunst/dunstrc
 
+mkdir -p ~/.config/zathura
+rm ~/.config/zathura/zathurarc
+cp zathurarc ~/.config/zathura/zathurarc
+
 rm ~/.gtkrc.mine
 cp gtkrc.mine ~/.gtkrc.mine
 
