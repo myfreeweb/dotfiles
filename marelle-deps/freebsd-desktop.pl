@@ -81,6 +81,12 @@ pkg(sterm).
 depends(sterm, freebsd, [xorg_conf, freetype2]).
 installs_with_ports(sterm, 'x11/sterm', 'ST_CONF="$HOME/src/github.com/myfreeweb/dotfiles/x11/st.conf.h"').
 
+managed_pkg(zathura).
+managed_pkg('zathura-ps').
+managed_pkg('zathura-djvu').
+managed_pkg('zathura-pdf-mupdf').
+depends(zathura, freebsd, [xorg_conf, freetype2, 'zathura-ps', 'zathura-djvu', 'zathura-pdf-mupdf']).
+
 managed_pkg(feh).
 managed_pkg(dunst).
 managed_pkg(xclip).
@@ -100,5 +106,5 @@ meta_pkg(desktop, freebsd, [
 	shell, dev, mail,
 	xorg_conf, xmonad_contrib, xmobar, dmenu, feh, dunst, xclip, xsel, scrot,
 	'gnome-themes-standard', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
-	sterm
+	sterm, zathura
 ]).
