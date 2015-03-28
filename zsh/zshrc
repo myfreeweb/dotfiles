@@ -8,6 +8,7 @@
 # https://superuser.com/questions/180148/how-do-you-get-screen-to-automatically-connect-to-the-current-ssh-agent-when-re
 # https://github.com/nummi/my-config/blob/master/.zsh/completion.zsh
 # http://robots.thoughtbot.com/silver-searcher-tab-completion-with-exuberant-ctags
+# http://iterm2.com/shell_integration.html
 
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
@@ -80,9 +81,35 @@ prj() { cd ~/src/$(ghq list | peco) }
 hst() { eval $(history -n 1 | tail -r | peco --layout=bottom-up) }
 fuck() { sudo $(history -n -1) }
 
+if [[ -n $TMUX ]]; then
+	escseq() { printf "\033Ptmux;\033\033]$1\007\033\\" }
+else
+	escseq() { printf "\033]$1\007" }
+fi
+
+if [[ -n $ITERM_PROFILE && -o login ]]; then
+	before_cmd_executes() { escseq "133;C" }
+	after_cmd_executes() {
+		escseq "133;D;$1"
+		escseq "1337;RemoteHost=$USER@$(hostname -f)"
+		escseq "1337;CurrentDir=$PWD"
+	}
+	escseq "1337;ShellIntegrationVersion=1"
+	after_cmd_executes 0
+else
+	before_cmd_executes() { }
+	after_cmd_executes() { }
+fi
+
+preexec() {
+	before_cmd_executes
+}
+
 precmd() {
 	# $? in prompt is wrong, can't pass %? to conditionals
-	if [[ $? == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
+	local exit_status="$?"
+	if [[ $exit_status == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
+	after_cmd_executes $exit_status
 	if [[ $PRIVATE == 1 ]]; then
 		SCOLOR=$bg[magenta]$fg_bold[black]
 	elif [[ ${HOST##*\.} == 'local' || ${HOST##*\.} == 'localdomain' || $HOST =~ '^[^\.]+$' ]]; then

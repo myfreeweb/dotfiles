@@ -60,8 +60,8 @@ cask_pkg(qlimagesize).
 cask_pkg(qlstephen).
 cask_pkg('colorpicker-developer').
 cask_pkg('colorpicker-hex').
-cask_pkg('iterm2-beta').
-depends('iterm2-beta', _, ['cask-versions-tap']).
+cask_pkg('iterm2-nightly').
+depends('iterm2-nightly', _, ['cask-versions-tap']).
 cask_pkg(java).
 cask_pkg(java7).
 cask_pkg('google-chrome').
@@ -119,7 +119,7 @@ meta_pkg(desktop, osx, [
 	evernote, skitch, skype, 'istat-menus', imageoptim,
 	qlcolorcode, qlmarkdown, qlprettypatch, qlimagesize, qlstephen,
 	'colorpicker-developer', 'colorpicker-hex',
-	'iterm2-beta', java, java7,
+	'iterm2-nightly', java, java7,
 	'google-chrome', 'google-chrome-canary',
 	'firefox', 'firefoxdeveloperedition', 'firefox-nightly',
 	fonts
