@@ -27,10 +27,8 @@ syntax on
 set noswapfile backup undofile undoreload=5000 history=500
 set noequalalways
 set wrapscan incsearch ignorecase smartcase
-if has('unnamedplus')
-  set clipboard^=unnamedplus
-endif
-if mac || windows
+set clipboard=unnamedplus
+if windows
   set clipboard=unnamed
 endif
 set autoread autowrite

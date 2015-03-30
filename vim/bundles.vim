@@ -12,6 +12,7 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'lervag/vim-latex', { 'for': 'tex' }
+Plug 'jceb/vim-orgmode', { 'for': 'org' }
 "" Web
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
