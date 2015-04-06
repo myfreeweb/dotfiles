@@ -9,7 +9,7 @@ idempotent_pkg(freebsd_conf_desktop).
 depends(freebsd_conf_desktop, _, [freebsd_conf_common]).
 execute(freebsd_conf_desktop, freebsd) :-
 	sysrc('background_dhclient'),
-	sysrc('moused_enable'),
+	% sysrc('moused_enable'),
 	sysrc('powerd_enable'),
 	sysrc('powerd_flags', '-a hiadaptive -b adaptive'),
 	sysctl('kern.ipc.shm_allow_removed', '1'),
