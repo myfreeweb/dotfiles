@@ -1,0 +1,20 @@
+#!/bin/sh
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+#
+# thanks:
+# http://stackoverflow.com/questions/18954527/self-daemonizing-bash-script
+
+echo "sleepd -- a test script that self-daemonizes and sleeps"
+
+TIME="$@"
+
+if [ -z "$TIME" ]; then
+	TIME="10"
+	echo "Time not specified, will sleep for $TIME seconds"
+fi
+
+(sleep "$TIME") </dev/null >/dev/null 2>&1 &
+echo "Started"
+disown

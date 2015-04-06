@@ -27,7 +27,7 @@ syntax on
 set noswapfile backup undofile undoreload=5000 history=500
 set noequalalways
 set wrapscan incsearch ignorecase smartcase
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 if windows
   set clipboard=unnamed
 endif

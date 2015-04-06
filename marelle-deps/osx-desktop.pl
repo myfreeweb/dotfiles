@@ -57,7 +57,8 @@ cask_pkg(qlcolorcode).
 cask_pkg(qlmarkdown).
 cask_pkg(qlprettypatch).
 cask_pkg(qlimagesize).
-cask_pkg(qlstephen).
+cask_pkg(qlstephen). % Tries to open binary executables & beachballs Finder!
+cask_pkg(webpquicklook).
 cask_pkg('colorpicker-developer').
 cask_pkg('colorpicker-hex').
 cask_pkg('iterm2-nightly').
@@ -117,7 +118,7 @@ meta_pkg(desktop, osx, [
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
 	evernote, skitch, skype, 'istat-menus', imageoptim,
-	qlcolorcode, qlmarkdown, qlprettypatch, qlimagesize, qlstephen,
+	qlcolorcode, qlmarkdown, qlprettypatch, qlimagesize, webpquicklook,
 	'colorpicker-developer', 'colorpicker-hex',
 	'iterm2-nightly', java, java7,
 	'google-chrome', 'google-chrome-canary',

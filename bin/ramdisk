@@ -1,13 +1,24 @@
 #!/bin/sh
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
 
 OS="$(uname -s)"
+SIZE="$@"
+echo $SIZE
+
+if [ -z "$SIZE" ]; then
+	echo "You need to specify the size in bytes as the argument."
+	echo "You can use bc expressions; mind the zsh expansions (example: 1024*1024*1024 w/o spaces -> 1 GiB)"
+	exit
+fi
 
 case "$OS" in
 	Darwin)
-		DISK=$(hdiutil attach -nomount ram://$(echo $@ "/ 512" | bc)) # 512 is the block size
+		DISK=$(hdiutil attach -nomount ram://$(echo $SIZE "/ 512" | bc)) # 512 is the block size
 		diskutil erasevolume HFS+ "ramdisk" $DISK;; # no quotes around DISK... INTENTIONALLY!
 	FreeBSD)
-		mount_mfs -s "$(echo $@ | bc)" md /mnt/ramdisk;;
+		mount_mfs -s "$(echo $SIZE | bc)" md /mnt/ramdisk;;
 	# Linux)
 	# 	mount -t ramfs -o "size=$(echo $@ | bc)" ramfs /mnt/ramdisk;;
 	*)
