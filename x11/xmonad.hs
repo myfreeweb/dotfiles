@@ -88,14 +88,14 @@ myPP = xmobarPP { ppCurrent = xmobarColor "#282828" "#8f9d6a"
                 , ppLayout  = \x -> ""}
 myStartupHook = return ()
 main = do
-  barProc <- spawnPipe "/usr/local/bin/xmobar"
+  barProc <- spawnPipe "~/bin/xmobar"
   xmonad $ withUrgencyHook NoUrgencyHook
          $ defaultConfig {
     focusFollowsMouse  = False -- Kinda disrupts the keyboard control thing...
   , clickJustFocuses   = False
   , borderWidth        = 3
   , modMask            = mod1Mask
-  , workspaces         = map (\x -> [' ', x, ' ']) ['1'..'9'] -- ['α'..'ω'] -- not in the Chicago typeface
+  , workspaces         = map (\x -> [' ', x, ' ']) ['α'..'ω']
   , normalBorderColor  = "#383838"
   , focusedBorderColor = "#585858"
   , keys               = myKeys

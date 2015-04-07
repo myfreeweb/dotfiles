@@ -71,6 +71,7 @@ alias whois="whois -h whois-servers.net"
 ## Intuitive map function
 ## For example, to list all directories that contain a certain file:  find . -name .gitattributes | map dirname
 alias map="xargs -n1"
+alias mus="ncmpcpp" # Is it even possible to remember this name correctly?!
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"

@@ -1,4 +1,4 @@
-Config { font = "xft:ChicagoFLF:size=9"
+Config { font = "xft:ChicagoFLF:size=9,Font Awesome:size=10,DejaVu Sans Mono:size=9"
        , borderColor = "#464b50"
        , border = TopB
        , bgColor = "#1e1e1e"
@@ -12,12 +12,11 @@ Config { font = "xft:ChicagoFLF:size=9"
        , overrideRedirect = True
        , commands = [ Run StdinReader
                     , Run Com "uname" ["-s","-r"] "" 36000
-                    -- , Run Com "mpc" ["current", "-h", "greg-imac.local"] "" 20
+                    , Run MPD ["-t", "<artist> - <title>"] 10
                     , Run Kbd [("us(colemak)", "EN"), ("ru", "RU")]
                     , Run Date "%a %b %_d %Y %H:%M" "date" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ <fc=#f9ee98>%kbd%</fc> <fc=#afc4db>%date%</fc> <fc=#cf6a4c>%uname%</fc>"
-       -- <fc=#8f9d6a>%mpc%</fc> 
+       , template = " %StdinReader% }{ <fc=#8f9d6a> %mpd%</fc>  <fc=#f9ee98> %kbd%</fc>  <fc=#afc4db> %date%</fc>  <fc=#cf6a4c> %uname%</fc>"
        }

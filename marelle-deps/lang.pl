@@ -14,7 +14,7 @@ npm_pkg(N, N) :- npm_pkg(N).
 installs_with_npm(N, NpmPkgUrl) :- npm_pkg(N, NpmPkgUrl).
 installs_with_npm(N, N) :- installs_with_npm(N).
 met(N, _) :-
-	npm_pkg(N, _),
+	installs_with_npm(N, _),
 	sh(['node -e "require(\'', N, '\')" >/dev/null 2>/dev/null']). % error returns a non-zero exit code
 meet(N, _) :-
 	installs_with_npm(N, NpmPkgUrl),
@@ -35,7 +35,7 @@ pkg(G) :- go_pkg(G, _).
 depends(G, _, [go]) :- installs_with_go(G, _).
 installs_with_go(G, GoPkgUrl) :- go_pkg(G, GoPkgUrl).
 met(G, _) :-
-	go_pkg(G, GoPkgUrl),
+	installs_with_go(G, GoPkgUrl),
 	getenv('GOPATH', GoPath),
 	join([GoPath, '/src/', GoPkgUrl], GoPkgPath),
 	isdir(GoPkgPath).
@@ -46,6 +46,32 @@ go_install(GoPkgUrl) :-
 	join(['Installing ', GoPkgUrl, ' with go'], Msg),
 	writeln(Msg),
 	sh(['go get ', GoPkgUrl]).
+
+% Haskell Cabal
+command_pkg(cabal).
+installs_with_brew(cabal, 'cabal-install').
+installs_with_pkgng(cabal, 'hs-cabal-install').
+:- multifile cabal_pkg/1.
+:- multifile cabal_pkg/2.
+:- multifile cabal_pkg/3.
+:- multifile installs_with_cabal/2.
+:- multifile installs_with_cabal/3.
+pkg(G) :- cabal_pkg(G, _, _).
+depends(G, _, [cabal]) :- installs_with_cabal(G, _, _).
+cabal_pkg(G, G, '') :- cabal_pkg(G).
+cabal_pkg(G, CabalPkgUrl, '') :- cabal_pkg(G, CabalPkgUrl).
+installs_with_cabal(G, CabalPkgUrl, '') :- installs_with_cabal(G, CabalPkgUrl).
+installs_with_cabal(G, CabalPkgUrl, CabalPkgOpts) :- cabal_pkg(G, CabalPkgUrl, CabalPkgOpts).
+met(G, _) :-
+	installs_with_cabal(G, CabalPkgUrl, _),
+	sh(['ghc-pkg describe "', CabalPkgUrl, '" >/dev/null']).
+meet(G, _) :-
+	installs_with_cabal(G, CabalPkgUrl, CabalPkgOpts),
+	cabal_install(CabalPkgUrl, CabalPkgOpts).
+cabal_install(CabalPkgUrl, CabalPkgOpts) :-
+	join(['Installing ', CabalPkgUrl, ' with cabal'], Msg),
+	writeln(Msg),
+	sh(['cabal install "', CabalPkgUrl, '" ', CabalPkgOpts]).
 
 % Lua
 managed_pkg(lua).
@@ -61,7 +87,7 @@ luarocks_pkg(N, N) :- luarocks_pkg(N).
 installs_with_luarocks(N, LuarocksPkgUrl) :- luarocks_pkg(N, LuarocksPkgUrl).
 installs_with_luarocks(N, N) :- installs_with_luarocks(N).
 met(N, _) :-
-	luarocks_pkg(N, _),
+	installs_with_luarocks(N, _),
 	sh(['which lua >/dev/null && ! (lua -e "require \'', N, '\'" 2>&1 | grep "module .* not found" >/dev/null)']). % only error when module not found, because mjolnir modules fail from lua cli
 meet(N, _) :-
 	installs_with_luarocks(N, LuarocksPkgUrl),

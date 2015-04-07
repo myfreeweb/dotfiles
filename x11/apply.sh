@@ -9,12 +9,10 @@ cp -r base16-xresources ~/.base16-xresources
 
 rm ~/.Xresources
 cat Xresources | sed -e "s|%home%|$HOME|" > ~/.Xresources
-xrdb ~/.Xresources
 
 mkdir -p ~/.xmonad
 rm ~/.xmonad/xmonad.hs
 cp xmonad.hs ~/.xmonad/xmonad.hs
-xmonad --recompile
 
 rm ~/.xmobarrc
 cp xmobar.hs ~/.xmobarrc
@@ -45,5 +43,8 @@ cp gtk3.css ~/.config/gtk-3.0/gtk.css
 mkdir -p ~/.config/fontconfig
 rm ~/.config/fontconfig/fonts.conf
 cp fonts.xml ~/.config/fontconfig/fonts.conf
+
+xrdb ~/.Xresources
+xmonad --recompile
 
 echo "==> Installed x11"

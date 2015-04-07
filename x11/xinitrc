@@ -1,4 +1,5 @@
 #!/bin/sh
+. ~/.xinitrc.local
 sh ~/.fehbg &
 killall ssh-agent
 rm -f ~/.ssh/ssh_auth_sock

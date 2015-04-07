@@ -69,9 +69,9 @@ pkg(xmonad_contrib).
 depends(xmonad_contrib, freebsd, [xmonad]).
 installs_with_pkgng(xmonad_contrib, 'x11-wm/hs-xmonad-contrib').
 
-pkg(xmobar).
+command_pkg(xmobar).
 depends(xmobar, freebsd, [xorg_conf, freetype2]).
-installs_with_ports(xmobar, 'x11/hs-xmobar', 'WITH="THREADED XFT"').
+installs_with_cabal(xmobar, 'xmobar', '--flags="with_xft with_mpd"').
 
 pkg(dmenu).
 depends(dmenu, freebsd, [xorg_conf, freetype2]).
