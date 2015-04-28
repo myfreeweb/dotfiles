@@ -1,0 +1,2 @@
+#!/bin/sh
+git commit -am "`curl -s http://whatthecommit.com/index.txt`"

@@ -17,16 +17,16 @@ alias be="bundle exec"
 alias gi="gem install"
 alias r="rails"
 alias rmig="rake db:migrate RAILS_ENV=development && rake db:migrate RAILS_ENV=test"
+alias brmig="bundle exec rake db:migrate RAILS_ENV=development && bundle exec rake db:migrate RAILS_ENV=test"
 
 # Python
-alias pinst="sudo python setup.py install; and sudo rm -r build dist *egg-info"
+alias pinst='sudo python setup.py install && sudo rm -r build && sudo rm -r dist && sudo rm -r *egg-info'
 alias pipup="pip freeze --local | cut -d = -f 1 | xargs pip install -U"
 alias pipfr="pip freeze --local > requirements.txt"
 
 # Git
 alias ci="git commit -am"
 alias g="git"
-alias git-yolo='git commit -am "`curl -s http://whatthecommit.com/index.txt `"'
 
 # Navigation
 alias p="popd"
@@ -60,9 +60,12 @@ alias s_http="python -m SimpleHTTPServer"
 alias s_smtp="python -m smtpd -n -c DebuggingServer localhost:1025"
 alias gaes="dev_appserver.py -a 0.0.0.0 ."
 
+# Quick clients
+alias wgetallthethings="wget -E -nH -k -K -p"
+alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
+
 # Stuff
 alias beep='echo -n "\a"'
-alias pinst='sudo python setup.py install && sudo rm -r build && sudo rm -r dist && sudo rm -r *egg-info' # install a Python package
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 alias emacs="TERM=xterm-256color emacs"
 alias vi="vim"
@@ -72,10 +75,6 @@ alias whois="whois -h whois-servers.net"
 ## For example, to list all directories that contain a certain file:  find . -name .gitattributes | map dirname
 alias map="xargs -n1"
 alias mus="ncmpcpp" # Is it even possible to remember this name correctly?!
-
-# View HTTP traffic
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Top
 # get top process eating memory

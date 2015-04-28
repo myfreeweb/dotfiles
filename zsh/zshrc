@@ -238,14 +238,6 @@ fi
 export GPG_TTY=$(tty)
 # }}}
 
-system_thingy() {
-	if [[ -e $commands[bsdinfo] ]]; then; bsdinfo
-	elif [[ -e $commands[screenfetch-dev] ]]; then; screenfetch-dev
-	elif [[ -e $commands[screenfetch] ]]; then; screenfetch
-	elif [[ -e $commands[archey] ]]; then; archey -c
-	fi
-}
-system_thingy
 [[ -e $commands[showkeys] ]] && showkeys
 [[ -e $commands[fortune] ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
 [[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
