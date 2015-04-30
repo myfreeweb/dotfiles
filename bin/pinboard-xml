@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # This came from Greg V's dotfiles:
 #      https://github.com/myfreeweb/dotfiles
+#      https://gist.github.com/myfreeweb/5189568   <- also on gist
 # Feel free to steal it, but attribution is nice
 import os
 import sys
 import json
 import netrc
 import errno
-import requests
+import urllib2
 
 def die(msg, err):
     sys.stderr.write(msg)
@@ -15,30 +16,29 @@ def die(msg, err):
 
 login = netrc.netrc().authenticators('pinboard.in')
 if not login:
-    die('pinboard.in not found in netrc', errno.ENODATA)
+    die('pinboard.in not found in netrc; add token as password', errno.ENODATA)
 
 try:
-    getreq = requests.get('https://api.pinboard.in/v1/posts/all?format=json',
-            auth=(login[0], login[2]))
+    getreq = urllib2.urlopen('https://api.pinboard.in/v1/posts/all?format=json&auth_token='+login[2])
 
-    if getreq.status_code == 429:
+    if getreq.code == 429:
         die('too often', errno.EPERM)
-    if getreq.status_code != requests.codes.ok:
+    if getreq.code != 200:
         die('http error %s on getting, maybe wrong password?' %
-                getreq.status_code, errno.EACCES)
+                getreq.code, errno.EACCES)
 
-    items = json.loads(getreq.text)
+    items = json.loads(getreq.read())
 
     res = '''<?xml version="1.0"?>
 <items>'''
 
     for item in items:
-        href = item['href'].encode('utf-8').replace('\n', '')
-        desc = item['description'].encode('utf-8').replace('\n', '')
+        href = item['href'].encode('utf-8').replace('\n', '').replace('&', '&amp;')
+        desc = item['description'].encode('utf-8').replace('\n', '').replace('&', '&amp;')
         res += '<item uid="%s" arg="%s"><title>%s</title><subtitle>%s</subtitle></item>\n' % \
         (href, href, desc, href)
     res += '</items>'
 
     open(os.environ['HOME']+'/.bookmarks.xml', 'w').write(res)
-except requests.exceptions.RequestException:
+except urllib2.HTTPError:
     die('connection error', errno.ECONNREFUSED)
