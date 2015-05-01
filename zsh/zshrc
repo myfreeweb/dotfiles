@@ -44,6 +44,9 @@ runjava() {
 	(cd /tmp && javac Main.java && echo "--- compiled, running" && java Main)
 }
 
+# .NET Core
+[[ -e $commands[dnvm.sh] ]] && source dnvm.sh
+
 # Ruby
 export RBXOPT=-X19
 [[ -d /usr/local/var/rbenv ]] && export RBENV_ROOT=/usr/local/var/rbenv
