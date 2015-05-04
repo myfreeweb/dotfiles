@@ -38,6 +38,10 @@ au BufRead,BufNewFile {,.}zshrc,*.fish setlocal foldmethod=marker
 au InsertEnter * set number
 au InsertLeave * set relativenumber
 
+" Colors
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
+
 " Misc
 function s:MkNonExDir(file, buf)
 	if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'

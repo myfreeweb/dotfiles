@@ -2,31 +2,42 @@ if !windows
 	let g:plug_url_format = 'git@github.com:%s'
 end
 
-call plug#begin('~/.vim/bundle')
+" GOPATH all the things. The option is added in vim/apply.sh because fuck everything.
+" Only `Plug 'username/repo'` works with this setup. I don't care about other types of paths!
+let g:plug_name_modifier = ':s?\.git$??'
+
+call plug#begin('~/src/github.com')
 
 " Languages
 Plug 'sheerun/vim-polyglot'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
-Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
+Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'lervag/vim-latex', { 'for': 'tex' }
-Plug 'jceb/vim-orgmode', { 'for': 'org' }
+Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
+Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 "" Web
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
-"" Haskell
-Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
-Plug 'dag/vim2hs', { 'for': 'haskell' }
-"" Python
-Plug 'nvie/vim-flake8', { 'for': 'python' }
-Plug 'fs111/pydoc.vim', { 'for': 'python' }
+if executable('python')
+	Plug 'nvie/vim-flake8', { 'for': 'python' }
+	Plug 'fs111/pydoc.vim', { 'for': 'python' }
+endif
+if executable('go')
+	Plug 'fatih/vim-go', { 'for': 'go' }
+endif
+if executable('ghc') " Haskell
+	Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+	Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+	Plug 'dag/vim2hs', { 'for': 'haskell' }
+endif
+if executable('cargo') " Rust
+	Plug 'phildawes/racer', { 'for': 'rust', 'do': 'cargo build --release' }
+endif
 
 " Features
 Plug 'Shougo/vimproc', { 'do': 'gmake \|\| make' }
-Plug 'Shougo/neocomplcache.vim' " doesn't require if_lua, which isn't in neovim
+Plug 'Shougo/neocomplcache.vim' " doesn't require if_lua, which isn't supported in neovim
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'tsukkee/unite-tag'
@@ -56,6 +67,9 @@ Plug 'sickill/vim-pasta'
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'benmills/vimux'
+Plug 'mhinz/vim-startify'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'airblade/vim-rooter'
 
 " Colors
 Plug 'chriskempson/base16-vim'

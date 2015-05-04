@@ -25,9 +25,10 @@ cp -r ftplugin ~/.vim/ftplugin
 rm -r ~/.vim/syntax
 cp -r syntax ~/.vim/syntax
 
-curl -fLo ~/.vim/autoload/plug.vim \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fL https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
+	| sed -e "s/':t:s?\\\\.git\$??'/get(g:, 'plug_name_modifier', ':t:s?.git\$??')/" \
+	> ~/.vim/autoload/plug.vim # See bundles.vim for explanation
 
-vim +PlugClean! +PlugUpdate +qall
+vim +PlugUpdate +qall
 
 echo "==> Installed vim"

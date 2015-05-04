@@ -20,6 +20,6 @@ cp -Recurse -Force ftplugin ~\.vim\ftplugin
 rm -Recurse -Force ~\.vim\syntax
 cp -Recurse -Force syntax ~\.vim\syntax
 
-vim +PlugClean! +PlugUpdate +qall
+vim +PlugUpdate +qall
 
 echo "==> Installed vim"

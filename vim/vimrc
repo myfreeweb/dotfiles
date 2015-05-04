@@ -95,8 +95,12 @@ set wildignore+=node_modules,build,.cabal-sandbox,.hpc
 
 " paths
 if !windows
-  set shell=zsh
-  set formatprg=par\ -eq
+  if executable('zsh')
+    set shell=zsh
+  endif
+  if executable('par')
+    set formatprg=par\ -eq
+  endif
   set tags=tags;/,codex.tags;/
   set dictionary=/usr/share/dict/words
   set backupskip=/tmp/*,/private/tmp/*
@@ -131,6 +135,8 @@ let g:flake8_ignore='E128'
 let g:FactorRoot='/Applications/factor'
 let g:haskell_conceal_enumerations=0
 let g:ledger_bin='hledger'
+let g:racer_cmd='~/src/github.com/phildawes/racer/target/release/racer'
+let g:indent_guides_auto_colors=0
 
 " Neocomplcache
 let g:neocomplcache_enable_smart_case=1
