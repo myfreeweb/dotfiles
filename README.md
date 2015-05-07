@@ -35,7 +35,7 @@ Also: [Marelle] deps.
 
 ## Installation
 
-Required: [git], [SWI-Prolog], [Z Shell], [base16] colorschemes.
+Required: [git], [SWI-Prolog], [Z Shell].
 
 Common setup:
 
@@ -50,8 +50,6 @@ $ chsh -s /usr/local/bin/zsh
 $ zsh
 $ marelle meet desktop
 ```
-
-[base16]: https://github.com/chriskempson/base16
 
 ### Local (example)
 

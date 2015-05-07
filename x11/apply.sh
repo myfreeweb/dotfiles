@@ -4,9 +4,6 @@ echo "==> Installing x11"
 rm ~/.xinitrc
 cp xinitrc ~/.xinitrc
 
-rm -r ~/.base16-xresources
-cp -r base16-xresources ~/.base16-xresources
-
 rm ~/.Xresources
 cat Xresources | sed -e "s|%home%|$HOME|" > ~/.Xresources
 

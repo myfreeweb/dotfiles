@@ -19,6 +19,7 @@ Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 "" Web
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
+Plug 'vim-perl/vim-perl', { 'for': ['perl', 'tt2', 'tt2html', 'tt2js', 'tap'] }
 if executable('python')
 	Plug 'nvie/vim-flake8', { 'for': 'python' }
 	Plug 'fs111/pydoc.vim', { 'for': 'python' }
@@ -70,6 +71,9 @@ Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'airblade/vim-rooter'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'reedes/vim-wordy'
 
 " Colors
 Plug 'chriskempson/base16-vim'

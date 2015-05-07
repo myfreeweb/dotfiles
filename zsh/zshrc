@@ -13,9 +13,23 @@
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
-[[ -z $BASE16_SCHEME ]] && export BASE16_SCHEME=twilight
-local BASE16_SHELL=~/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# }}}
+
+# Color {{{
+base16() {
+	local BASE16_SCHEME="$*"
+	local BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
+	if [[ -s $BASE16_SHELL ]]; then
+		source $BASE16_SHELL
+		export BASE16_SCHEME
+		echo -n $BASE16_SCHEME > ~/.base16.scheme
+	else
+		echo "Looks like $BASE16_SHELL does not exist :-("
+	fi
+}
+_base16() { compadd $(find ~/.zsh/base16-shell | grep dark.sh | xargs basename | sed -e "s/base16-//" -e "s/\.dark\.sh//") }
+export BASE16_SCHEME="$(cat ~/.base16.scheme 2>/dev/null || echo default)"
+base16 $BASE16_SCHEME
 # }}}
 
 # Support for tools, programming languages, etc {{{
@@ -192,6 +206,7 @@ compdef _ctagscomp ag
 compdef _ctagscomp pt
 _loadkeys() { compadd $(find ~/.ssh -perm 0600 ! -type s | xargs basename) }
 compdef _loadkeys loadkeys
+compdef _base16 base16
 
 HISTFILE=~/.zsh_history
 HISTSIZE=4096

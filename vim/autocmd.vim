@@ -12,6 +12,7 @@ au BufRead,BufNewFile *.gradle setf groovy
 au BufRead,BufNewFile *.scaml setf haml
 au BufRead,BufNewFile *.sjs setf javascript
 au BufRead,BufNewFile *.swig setf htmldjango
+au BufRead,BufNewFile *.tt setf tt2html
 au BufRead,BufNewFile *.gv setf dot
 au BufRead,BufNewFile quakelive.cfg setf quake
 au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal iskeyword+=-
@@ -39,8 +40,8 @@ au InsertEnter * set number
 au InsertLeave * set relativenumber
 
 " Colors
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
+au VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
+au VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
 
 " Misc
 function s:MkNonExDir(file, buf)
@@ -56,3 +57,5 @@ au BufReadPost fugitive://* setlocal bufhidden=delete
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 au VimResized * exe "normal! \<c-w>="
 au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+au User GoyoEnter Limelight
+au User GoyoLeave Limelight!

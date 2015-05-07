@@ -1,0 +1,16 @@
+#!/bin/sh
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+
+COMMAND="$SHELL"
+[ $# -ne 0 ] && COMMAND="$*"
+
+[ -e "`which osascript`" ] && exec osascript << EOF
+tell application "iTerm"
+	activate
+	create window with default profile command "$COMMAND"
+end tell
+EOF
+[ -e "`which st`" ] && exec st -f "monospace:pixelsize=12" -e "$COMMAND" &
+[ -e "`which xterm`" ] && exec xterm -e "$COMMAND" &

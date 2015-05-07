@@ -35,3 +35,5 @@ Host *.local
 Host unrelenting.technology
 	ForwardAgent yes
 	PasswordAuthentication no
+	IdentitiesOnly yes
+	IdentityFile ~/.ssh/unrelenting.technology

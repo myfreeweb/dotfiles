@@ -4,8 +4,6 @@ Xft.hinting:          true
 Xft.hintstyle:        hintfull
 Xft.lcdfilter:        lcdlight
 
-#include "%home%/.base16-xresources/base16-twilight.dark.256.xresources"
-
 URxvt.scrollBar:      false
 URxvt.loginShell:     true
 URxvt.font:           xft:monospace:size=9,xft:DejaVu Sans Mono:size=9

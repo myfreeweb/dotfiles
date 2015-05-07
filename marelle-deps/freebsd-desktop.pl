@@ -77,9 +77,8 @@ pkg(dmenu).
 depends(dmenu, freebsd, [xorg_conf, freetype2]).
 installs_with_ports(dmenu, 'x11/dmenu', 'WITH="XFT"').
 
-pkg(sterm).
+managed_pkg(sterm).
 depends(sterm, freebsd, [xorg_conf, freetype2]).
-installs_with_ports(sterm, 'x11/sterm', 'ST_CONF="$HOME/src/github.com/myfreeweb/dotfiles/x11/st.conf.h"').
 
 managed_pkg(zathura).
 managed_pkg('zathura-ps').
