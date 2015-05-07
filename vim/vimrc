@@ -167,13 +167,13 @@ endif
 
 " Colors and lines
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'solarized',
       \ 'component': {
       \   'readonly': '%{&readonly?"⭤":""}',
       \ }
       \ }
-set background=dark
 let base16colorspace=256
+execute 'set background='.$BASE16_BACKGROUND
 execute 'colorscheme base16-'.$BASE16_SCHEME
 " note: base16-*what* doesn't actually matter for the 256 color terminal
 

@@ -17,19 +17,27 @@ source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
 
 # Color {{{
 base16() {
-	local BASE16_SCHEME="$*"
-	local BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$BASE16_SCHEME.dark.sh"
+	local SCHEME="$*"
+	local BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$SCHEME.$BASE16_BACKGROUND.sh"
 	if [[ -s $BASE16_SHELL ]]; then
 		source $BASE16_SHELL
-		export BASE16_SCHEME
-		echo -n $BASE16_SCHEME > ~/.base16.scheme
+		export BASE16_SCHEME="$SCHEME"
+		echo -n $SCHEME > ~/.base16.scheme
 	else
 		echo "Looks like $BASE16_SHELL does not exist :-("
 	fi
 }
+background() {
+	echo -n "$*" > ~/.base16.background
+	export BASE16_BACKGROUND="$*"
+	base16 $BASE16_SCHEME
+}
+light() { background light }
+dark() { background dark }
 _base16() { compadd $(find ~/.zsh/base16-shell | grep dark.sh | xargs basename | sed -e "s/base16-//" -e "s/\.dark\.sh//") }
 export BASE16_SCHEME="$(cat ~/.base16.scheme 2>/dev/null || echo default)"
-base16 $BASE16_SCHEME
+export BASE16_BACKGROUND="$(cat ~/.base16.background 2>/dev/null || echo dark)"
+background $BASE16_BACKGROUND
 # }}}
 
 # Support for tools, programming languages, etc {{{
