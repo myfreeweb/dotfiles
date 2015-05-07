@@ -15,20 +15,7 @@ cask_pkg(karabiner).
 cask_pkg(seil).
 cask_pkg(flux).
 
-cask_pkg(mjolnir).
-luarocks_pkg('mjolnir.hotkey').
-luarocks_pkg('mjolnir.application').
-luarocks_pkg('mjolnir.geometry').
-luarocks_pkg('mjolnir.screen').
-luarocks_pkg('mjolnir.keycodes').
-luarocks_pkg('mjolnir.fnutils').
-luarocks_pkg('mjolnir.cmsj.appfinder').
-depends('mjolnir.cmsj.appfinder', _, ['mjolnir.fnutils']).
-luarocks_pkg('mjolnir.bg.grid').
-meta_pkg('mjolnir-configured', [
-	'mjolnir', 'mjolnir.hotkey', 'mjolnir.application', 'mjolnir.geometry', 'mjolnir.screen', 'mjolnir.keycodes',
-	'mjolnir.cmsj.appfinder', 'mjolnir.bg.grid'
-]).
+cask_pkg(amethyst).
 
 brew_tap('cask-versions-tap', 'caskroom/homebrew-versions').
 
@@ -114,7 +101,7 @@ meta_pkg(fonts, [
 meta_pkg(desktop, osx, [
 	shell, dev, mail,
 	'reattach-to-user-namespace', less, bsdmake, openssh, syncthing, 'syncthing-cli',
-	karabiner, seil, flux, 'mjolnir-configured',
+	karabiner, seil, flux, amethyst,
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,
 	evernote, skitch, skype, 'istat-menus', imageoptim,

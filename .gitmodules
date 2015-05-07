@@ -13,6 +13,3 @@
 [submodule "keybindings"]
 	path = osx/keybindings
 	url = git://github.com/ttscoff/KeyBindings.git
-[submodule "x11/base16-xresources"]
-	path = x11/base16-xresources
-	url = git://github.com/chriskempson/base16-xresources.git

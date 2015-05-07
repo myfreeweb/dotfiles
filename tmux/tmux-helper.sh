@@ -4,7 +4,6 @@
 # Feel free to steal it, but attribution is nice
 
 MAIL_INBOX="$HOME/Mail/INBOX/new"
-SYNCTHING_HOST="http://127.0.0.1:8080"
 
 case "$1" in
 	launch-shell)
@@ -24,13 +23,6 @@ case "$1" in
 	mail) if [ -d "$MAIL_INBOX" ]; then
 			MAIL_COUNT="$(ls "$MAIL_INBOX" | wc -l | sed -e 's/^[ \t]*//')"
 			[ "$MAIL_COUNT" != "0" ] && printf " ✉ %s " "$MAIL_COUNT"
-		fi ;;
-
-	syncthing)
-		if [ -x "$(which jq)" ] && [ -x "$(which curl)" ] && [ -x "$(which syncthing)" ]; then
-			# Sadly, it returns "syncing" only when downloading, but not uploading
-			[ "true" = "$(curl "$SYNCTHING_HOST/rest/events?limit=256" | jq -r "reverse | map(select(.type == 'StateChanged')) | unique_by(.data.folder) | [.[].data.to == 'syncing'] | any")" ] \
-				&& echo " S "
 		fi ;;
 
 	copy-buf) if [ -x "$(which reattach-to-user-namespace)" ] && [ -x "$(which pbcopy)" ]; then

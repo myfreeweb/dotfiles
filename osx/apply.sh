@@ -5,9 +5,8 @@ mkdir -p ~/Library/KeyBindings
 rm ~/Library/KeyBindings/DefaultKeyBinding.dict
 cp ./keybindings/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
 
-mkdir -p ~/.mjolnir
-rm ~/.mjolnir/init.lua
-cp ./mjolnir.lua ~/.mjolnir/init.lua
+rm ~/.amethyst
+cp ./amethyst.json ~/.amethyst
 
 ./defaults.sh
 
