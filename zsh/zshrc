@@ -41,6 +41,7 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;33;146m'
 export LESS="-R"
+export MANWIDTH="120"
 
 # Go
 export GOPATH=~

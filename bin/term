@@ -6,11 +6,15 @@
 COMMAND="$SHELL"
 [ $# -ne 0 ] && COMMAND="$*"
 
-[ -e "`which osascript`" ] && exec osascript << EOF
-tell application "iTerm"
-	activate
-	create window with default profile command "$COMMAND"
-end tell
+if [ -e "`which osascript`" ]; then
+	exec osascript << EOF
+		tell application "iTerm"
+			activate
+			create window with default profile command "$COMMAND"
+		end tell
 EOF
-[ -e "`which st`" ] && exec st -f "monospace:pixelsize=12" -e "$COMMAND" &
-[ -e "`which xterm`" ] && exec xterm -e "$COMMAND" &
+elif [ -e "`which st`" ]; then
+	exec st -f "monospace:pixelsize=12" -e "$COMMAND" &
+elif [ -e "`which xterm`" ]; then
+	exec xterm -e "$COMMAND" &
+fi
