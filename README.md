@@ -75,7 +75,7 @@ $ marelle meet desktop
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 - **ranger** -- [ranger] file manager
 - **x11** -- [xmonad], [xmobar], [dunst], [st] and other x.org stuff
-- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Mjolnir] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
+- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
 - **windows** -- PowerShell and other Microsoft Windows stuff
 
 [ssh]: http://www.openssh.com
@@ -92,7 +92,7 @@ $ marelle meet desktop
 [keybindings]: https://github.com/ttscoff/KeyBindings
 [Karabiner]: https://pqrs.org/osx/karabiner/index.html.en
 [Seil]: https://pqrs.org/osx/karabiner/seil.html.en
-[Mjolnir]: http://mjolnir.io/ 
+[Amethyst]: https://github.com/ianyh/Amethyst
 [A Modern Space Cadet]: http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
 [mutt]: http://www.mutt.org
 [notmuch]: http://notmuchmail.org

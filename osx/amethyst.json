@@ -1,4 +1,5 @@
 {
+	"enables-layout-hud-on-space-change": false,
 	"mod1": ["option", "shift"],
 	"mod2": ["command", "control", "option", "shift"],
 	"cycle-layout":          {"mod": "mod2", "key": "space"},
