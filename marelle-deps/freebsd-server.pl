@@ -28,8 +28,7 @@ supervise(Name, Options) :-
 					 'stderr_logfile=syslog\nstdout_logfile=syslog\n',
 					 OptStr]).
 
-pkg(knot).
-installs_with_ports(knot, 'dns/knot'). % pkgng version has a hard dep on openssl
+managed_pkg(knot).
 idempotent_pkg(knot_enabled).
 depends(knot_enabled, _, [knot]).
 execute(knot_enabled, freebsd) :-
@@ -67,9 +66,8 @@ execute(klaus_enabled, freebsd) :-
 		'user=www\n'
 	]).
 
-pkg(opensmtpd).
+managed_pkg(opensmtpd).
 depends(opensmtpd, _, [libressl, ca_root_nss]).
-installs_with_ports(opensmtpd, 'mail/opensmtpd').
 idempotent_pkg(opensmtpd_enabled).
 depends(opensmtpd_enabled, _, [opensmtpd]).
 execute(opensmtpd_enabled, freebsd) :-
@@ -115,9 +113,8 @@ execute(prosody_enabled, freebsd) :-
 		'user=prosody'
 	]).
 
-pkg(znc).
+managed_pkg(znc).
 depends(znc, _, [libressl, ca_root_nss, supervisord_enabled]).
-installs_with_pkgng(znc).
 idempotent_pkg(znc_enabled).
 depends(znc_enabled, _, [znc]).
 execute(znc_enabled, freebsd) :-

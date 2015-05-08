@@ -19,6 +19,15 @@ if [ -e "$SEIL" ]; then
 	$SEIL set keycode_control_r 80
 	if [ -z "$PCKEYBOARD" ]; then
 		echo "==> osx: Mac keyboard"
+		# Cmd is Cmd, Opt is Opt -- reset in case of accidental PCKEYBOARD=1 execution or switching back
+		$SEIL set enable_command_l 1
+		$SEIL set keycode_command_l 55
+		$SEIL set enable_option_l 1
+		$SEIL set keycode_option_l 58
+		$SEIL set enable_command_r 1
+		$SEIL set keycode_command_r 54
+		$SEIL set enable_option_r 1
+		$SEIL set keycode_option_r 61
 	else
 		echo "==> osx: PC keyboard"
 		# Swap Cmd and Opt for ANSI PC keyboard
