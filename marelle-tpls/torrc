@@ -5,6 +5,7 @@ Log notice syslog # edit /usr/local/etc/rc.d/tor to disable the file
 
 ## SOCKS proxy
 SocksPort 127.0.0.1:9050
+SocksPort [fc81:6134:ba6c:8458:c99f:6c01:6472:8f1e]:9050
 
 ## Control
 ControlPort 9051
