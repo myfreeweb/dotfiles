@@ -28,7 +28,8 @@ supervise(Name, Options) :-
 					 'stderr_logfile=syslog\nstdout_logfile=syslog\n',
 					 OptStr]).
 
-managed_pkg(knot).
+pkg(knot).
+installs_with_ports(knot, 'dns/knot').
 idempotent_pkg(knot_enabled).
 depends(knot_enabled, _, [knot]).
 execute(knot_enabled, freebsd) :-
@@ -66,8 +67,9 @@ execute(klaus_enabled, freebsd) :-
 		'user=www\n'
 	]).
 
-managed_pkg(opensmtpd).
+pkg(opensmtpd).
 depends(opensmtpd, _, [libressl, ca_root_nss]).
+installs_with_ports(opensmtpd, 'mail/opensmtpd').
 idempotent_pkg(opensmtpd_enabled).
 depends(opensmtpd_enabled, _, [opensmtpd]).
 execute(opensmtpd_enabled, freebsd) :-
