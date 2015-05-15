@@ -142,7 +142,7 @@ precmd() {
 		# green on *.local, *.localdomain and hostnames without dots
 		SCOLOR=$fg_bold[green]
 	else
-		# red everything else - that is, on production servers!
+		# red on everything else - that is, on production servers!
 		SCOLOR=$fg_bold[red]
 	fi
 }
@@ -205,7 +205,10 @@ zstyle ':completion:*:functions' ignored-patterns "_*"
 zstyle ':completion:*:original' list-colors "=*=$color[red];$color[bold]"
 zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[red]"
 zstyle ':completion:*:aliases' list-colors "=*=$color[green]"
-fpath=(~/.zsh/zsh-completions/src(N) /usr/local/share/zsh/site-functions(N) $fpath)
+fpath+=(
+	~/.zsh/zsh-completions/src(N)
+	/usr/local/share/zsh/site-functions(N)
+)
 fignore+=.DS_Store
 compinit -i
 compdef mcd=cd
@@ -225,8 +228,8 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # Like default, but without / -- ^W must be u
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export CLICOLOR="yes"
-export PAGER="less"
-export EDITOR="vim"
+[[ -e $commands[less] ]] && export PAGER="less"
+[[ -e $commands[vim]  ]] && export EDITOR="vim"  && alias vi="vim"
 [[ -e $commands[nvim] ]] && export EDITOR="nvim" && alias vi="nvim"
 
 PROMPT='%{$SCOLOR%}${PWD/#~/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} '

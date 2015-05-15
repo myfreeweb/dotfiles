@@ -13,7 +13,7 @@ alias sudo="sudo "
 
 # Ruby
 alias b="bundle"
-alias be="bundle exec"
+alias be="bundle exec "
 alias gi="gem install"
 alias r="rails"
 alias rmig="rake db:migrate RAILS_ENV=development && rake db:migrate RAILS_ENV=test"
@@ -27,6 +27,9 @@ alias pipfr="pip freeze --local > requirements.txt"
 # Git
 alias ci="git commit -am"
 alias g="git"
+
+# GPG
+alias gpgsign="gpg --detach-sign --armor"
 
 # Navigation
 alias p="popd"
@@ -68,7 +71,6 @@ alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlay
 alias beep='echo -n "\a"'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 alias emacs="TERM=xterm-256color emacs"
-alias vi="vim"
 alias meet="marelle meet"
 alias whois="whois -h whois-servers.net"
 ## Intuitive map function

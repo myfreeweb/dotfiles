@@ -14,7 +14,7 @@ rm ~/.ackrc
 cp ackrc ~/.ackrc
 
 rm ~/.ctags
-cp ctags ~/.ctags
+sed -e "s/^#.*$//" < ctags > ~/.ctags
 
 rm ~/.curlrc
 cp curlrc ~/.curlrc
