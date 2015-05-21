@@ -15,7 +15,6 @@ Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'lervag/vim-latex', { 'for': 'tex' }
 Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
-Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 "" Web
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
@@ -34,6 +33,11 @@ if executable('ghc') " Haskell
 endif
 if executable('cargo') " Rust
 	Plug 'phildawes/racer', { 'for': 'rust', 'do': 'cargo build --release' }
+endif
+if executable('mono') " .NET
+	Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
+	Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
+	Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 endif
 
 " Features
