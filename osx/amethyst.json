@@ -7,5 +7,8 @@
 	"focus-cw":  {"mod": "mod2", "key": "k"},
 	"focus-ccw": {"mod": "mod2", "key": "j"},
 	"swap-cw":   {"mod": "mod1", "key": "k"},
-	"swap-ccw":  {"mod": "mod1", "key": "j"}
+	"swap-ccw":  {"mod": "mod1", "key": "j"},
+	"floating": [
+		"com.twitter.twitter-mac"
+	]
 }
