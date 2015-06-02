@@ -3,6 +3,7 @@ echo "==> Installing x11"
 
 rm ~/.xinitrc
 cp xinitrc ~/.xinitrc
+touch ~/.xinitrc.local
 
 rm ~/.Xresources
 cat Xresources | sed -e "s|%home%|$HOME|" > ~/.Xresources

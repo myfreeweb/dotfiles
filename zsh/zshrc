@@ -9,6 +9,7 @@
 # https://github.com/nummi/my-config/blob/master/.zsh/completion.zsh
 # http://robots.thoughtbot.com/silver-searcher-tab-completion-with-exuberant-ctags
 # http://iterm2.com/shell_integration.html
+# http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
@@ -146,6 +147,16 @@ precmd() {
 		SCOLOR=$fg_bold[red]
 	fi
 }
+
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
 # }}}
 
 # Basic settings {{{
@@ -156,15 +167,18 @@ autoload -U edit-command-line && zle -N edit-command-line
 autoload -U url-quote-magic && zle -N self-insert url-quote-magic
 autoload -U select-word-style && select-word-style bash
 autoload -U zmv
-zle -N hst
 # Keybindings
+zmodload zsh/terminfo
 bindkey -e # Emacs style keys in shell
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-bindkey '^R' hst
+zle -N hst && bindkey '^R' hst
+zle -N fancy-ctrl-z && bindkey '^Z' fancy-ctrl-z
 # Stuff
 setopt pushd_ignore_dups; setopt auto_pushd
 setopt auto_name_dirs; setopt auto_cd
