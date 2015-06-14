@@ -21,6 +21,7 @@ COLORIZE=$(cat << _EOF_
 	\$NF = "";
 	print \$0,"\n";
 }
-_EOF_)
+_EOF_
+)
 
 ssh-add -l | awk $COLORIZE
