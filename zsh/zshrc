@@ -10,6 +10,7 @@
 # http://robots.thoughtbot.com/silver-searcher-tab-completion-with-exuberant-ctags
 # http://iterm2.com/shell_integration.html
 # http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+# https://github.com/xero/dotfiles
 
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
@@ -107,6 +108,7 @@ icd() { DIR=$(ls | peco) && cd $DIR && icd }
 prj() { cd ~/src/$(ghq list | peco) }
 hst() { eval $(history -n 1 | tail -r | peco --layout=bottom-up) }
 fuck() { sudo $(history -n -1) }
+mdown() { pandoc -s -f markdown -t man "$*" | man -l - } # read markdown files like manpages
 
 if [[ -n $TMUX ]]; then
 	escseq() { printf "\033Ptmux;\033\033]$1\007\033\\" }
@@ -237,6 +239,7 @@ compdef _base16 base16
 HISTFILE=~/.zsh_history
 HISTSIZE=4096
 SAVEHIST=4096
+setopt HIST_EXPIRE_DUPS_FIRST
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # Like default, but without / -- ^W must be useful in paths, like it is in vim, bash, tcsh
 export LANG="en_US.UTF-8"
