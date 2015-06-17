@@ -3,10 +3,7 @@
 % Feel free to steal it, but attribution is nice
 
 managed_pkg(ca_root_nss).
-
-pkg(libressl).
-installs_with_brew(libressl).
-installs_with_ports(libressl, 'security/libressl').
+managed_pkg(libressl).
 
 managed_pkg(w3m).
 depends(w3m, freebsd, [libressl, ca_root_nss]).
@@ -30,20 +27,10 @@ execute(openntpd_enabled, freebsd) :-
 	sysrc('ntpd_enable', 'NO'),
 	sysrc('openntpd_enable').
 
-managed_pkg('dnscrypt-proxy').
-idempotent_pkg(dnscrypt_enabled).
-depends(dnscrypt_enabled, _, ['dnscrypt-proxy', supervisord_enabled]).
-execute(dnscrypt_enabled, freebsd) :-
-	supervise('dnscrypt-cloudns-can',    [ 'command=/usr/local/sbin/dnscrypt-proxy -R cloudns-can -a 127.0.0.2\n', 'user=_dnscrypt-proxy' ]),
-	supervise('dnscrypt-cloudns-syd',    [ 'command=/usr/local/sbin/dnscrypt-proxy -R cloudns-syd -a 127.0.0.3\n', 'user=_dnscrypt-proxy' ]),
-	lo_alias('0', '127.0.0.2'),
-	lo_alias('1', '127.0.0.3').
-
 idempotent_pkg(unbound_enabled).
-depends(unbound_enabled, _, [dnscrypt_enabled]).
 execute(unbound_enabled, freebsd) :-
 	sudo_sh('cp -f ./marelle-tpls/unbound.conf /var/unbound'),
-	lo_alias('3', '127.0.0.53'),
+	lo_alias('53', '127.0.0.53'),
 	sysrc('local_unbound_enable'),
 	sudo_sh('echo "nameserver 127.0.0.53" > /etc/resolv.conf'),
 	sudo_sh('echo "supersede domain-name-servers 127.0.0.53;" > /etc/dhclient.conf').
@@ -56,6 +43,8 @@ depends(i2p_installed, freebsd, [i2p, javaservicewrapper]).
 met(i2p_installed, freebsd) :- isfile('/home/_i2p/i2p/i2psvc').
 meet(i2p_installed, freebsd) :-
 	sudo_sh('pw useradd -n _i2p -m || true'),
+	sysrc('i2p_enable'),
+	sysrc('i2p_user', '_i2p'),
 	sudo_sh('service i2p install >/dev/null 2>/dev/null'),
 	sudo_sh('cp -f /usr/local/bin/javaservicewrapper /home/_i2p/i2p/i2psvc'),
 	sudo_sh('cp -f /usr/local/lib/javaservicewrapper/lib/wrapper.jar /home/_i2p/i2p/lib/'),
@@ -73,6 +62,12 @@ idempotent_pkg(tor_enabled).
 depends(tor_enabled, _, [tor, freebsd_conf_common]).
 execute(tor_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/torrc | sed -e s/%torpwd%/`cat /usr/local/etc/tor/torpwd`/g > /usr/local/etc/tor/torrc'),
+	sudo_sh('chown _tor:_tor /usr/local/etc/tor'),
+	sudo_sh('chown _tor:_tor /usr/local/etc/tor/torrc'),
+	sudo_sh('chgrp _tor /dev/pf'),
+	sudo_sh('chmod 660 /dev/pf'),
+	sudo_sh('touch /var/log/tor'),
+	sudo_sh('chown _tor:_tor /var/log/tor'),
 	sysrc('tor_enable'),
 	lo_alias('4', '127.0.0.5').
 

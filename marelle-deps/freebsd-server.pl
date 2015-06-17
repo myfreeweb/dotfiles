@@ -17,7 +17,8 @@ depends(supervisord_enabled, _, [supervisord]).
 execute(supervisord_enabled, freebsd) :-
 	sysrc('supervisord_enable'),
 	sudo_sh('mkdir -p /usr/local/etc/supervisord.d'),
-	sudo_sh('cat ./marelle-tpls/supervisord.ini > /usr/local/etc/supervisord.conf').
+	sudo_sh('cat ./marelle-tpls/supervisord.ini > /usr/local/etc/supervisord.conf'),
+	sudo_sh('service supervisord start || true').
 
 supervise(Name, Options) :-
 	join(Options, OptStr),
@@ -25,8 +26,11 @@ supervise(Name, Options) :-
 					 '[program:', Name, ']\n',
 					 'environment=PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"\n',
 					 'autostart=true\nautorestart=true\nstartretries=3\n',
-					 'stderr_logfile=syslog\nstdout_logfile=syslog\n',
-					 OptStr]).
+					 %'stderr_logfile=syslog\nstdout_logfile=syslog\n',
+					 OptStr]),
+	sudo_sh(['supervisorctl reread']),
+	sudo_sh(['supervisorctl update']),
+	sudo_sh(['supervisorctl start ', Name]).
 
 pkg(knot).
 installs_with_ports(knot, 'dns/knot').
@@ -44,26 +48,17 @@ execute(privoxy_enabled, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/privoxy.conf > /usr/local/etc/privoxy/config'),
 	sysrc('privoxy_enable').
 
-pkg(nginx).
-depends(nginx, _, [libressl]).
-installs_with_ports(nginx, 'www/nginx', 'WITH="SPDY LUA FILE_AIO SYSLOG_SUPPORT"'). % Also, looks like the pkgng version is statically linked to vulnerable openssl :(
-idempotent_pkg(nginx_enabled).
-depends(nginx_enabled, _, [nginx]).
-execute(nginx_enabled, freebsd) :-
-	sudo_sh('cat ./marelle-tpls/nginx.conf > /usr/local/etc/nginx/nginx.conf'),
-	sysrc('nginx_enable').
-
 pip_pkg(waitress).
 pip_pkg(klaus).
 pip_pkg(markdown).
 pip_pkg(watchdog).
 idempotent_pkg(klaus_enabled).
-depends(klaus_enabled, _, [nginx, waitress, klaus, markdown, watchdog, supervisord_enabled]).
+depends(klaus_enabled, _, [waitress, klaus, markdown, watchdog, supervisord_enabled]).
 execute(klaus_enabled, freebsd) :-
 	sudo_sh('mkdir -p /var/run/klaus && chown www:www /var/run/klaus'),
 	sudo_sh('cat ./marelle-tpls/klaus.wsgi.py > /usr/local/lib/python2.7/site-packages/klauswsgireload.py'),
 	supervise('klaus', [
-		'command=/usr/local/bin/python -m klauswsgireload\n',
+		'command=/usr/local/bin/python2.7 -m klauswsgireload\n',
 		'user=www\n'
 	]).
 
@@ -93,12 +88,11 @@ execute(amavis_enabled, freebsd) :-
 	% sudo_sh('sa-update || true'),
 	sysrc('amavisd_enable').
 
-pkg(prosody).
-depends(prosody, _, [libressl, ca_root_nss]).
-installs_with_ports(prosody, 'net-im/prosody', 'WITH="LUAJIT"').
 managed_pkg(unbound).
+managed_pkg(prosody).
+depends(prosody, _, [libressl, ca_root_nss]).
 pkg(prosody_plugins).
-depends(prosody_plugins, _, [prosody, unbound]).
+depends(prosody_plugins, _, [prosody, unbound, mercurial]).
 met(prosody_plugins, freebsd) :-
 	isdir('/usr/local/lib/prosody/luaunbound'),
 	isdir('/usr/local/lib/prosody/contrib').
@@ -134,8 +128,6 @@ idempotent_pkg(syncthing_server_enabled).
 depends(syncthing_server_enabled, _, [syncthing]).
 execute(syncthing_server_enabled, freebsd) :-
 	sudo_sh('mkdir -p /var/tmp/syncthing'),
-	sudo_sh('cat /usr/local/etc/certs/bundle.pem > /var/tmp/syncthing/https-cert.pem'),
-	sudo_sh('cat /usr/local/etc/certs/key.pem > /var/tmp/syncthing/https-key.pem'),
 	sudo_sh('chown greg:syncthing /var/tmp/syncthing/ /var/tmp/syncthing/*'),
 	supervise('syncthing', [
 		'command=/usr/local/bin/syncthing -no-browser -home=/var/tmp/syncthing\n',
@@ -143,10 +135,10 @@ execute(syncthing_server_enabled, freebsd) :-
 	]).
 
 meta_pkg(server, freebsd, [
-	freebsd_conf_common_server, openssh, supervisord_enabled,
+	freebsd_conf_common_server, supervisord_enabled,
 	openntpd_enabled, unbound_enabled,
 	i2p_enabled, tor_enabled, privoxy_enabled,
-	knot_enabled, nginx_enabled,
+	knot_enabled,
 	klaus_enabled,
 	amavis_enabled, opensmtpd_enabled,
 	prosody_enabled,
