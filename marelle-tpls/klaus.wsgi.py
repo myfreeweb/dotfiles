@@ -15,7 +15,7 @@ class ReloadEventHandler(FileSystemEventHandler):
         global reload
         reload = True
 
-repos_root = "/home/dovahkiin/src/github.com/myfreeweb"
+repos_root = "/home/freebsd/src/github.com/myfreeweb"
 
 observer = Observer()
 observer.daemon = True
@@ -39,4 +39,5 @@ def application(environ, start_response):
     return inner_app(environ, start_response)
 
 waitress.serve(application, unix_socket="/var/run/klaus/klaus.sock",
+               unix_socket_perms='660',
                url_prefix="/git")

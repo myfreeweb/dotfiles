@@ -7,6 +7,10 @@ depends(freebsd_conf_common_server, _, [freebsd_conf_common]).
 execute(freebsd_conf_common_server, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/make.conf ./marelle-tpls/make.server.conf > /etc/make.conf'),
 	sudo_sh('cat ./marelle-tpls/sshd_config > /etc/ssh/sshd_config'),
+	sudo_sh('cat /dev/null > /etc/ssh/ssh_host_dsa_key   2>/dev/null || true'),
+	sudo_sh('cat /dev/null > /etc/ssh/ssh_host_ecdsa_key 2>/dev/null || true'),
+	sudo_sh('chflags schg /etc/ssh/ssh_host_dsa_key'),
+	sudo_sh('chflags schg /etc/ssh/ssh_host_ecdsa_key'),
 	sudo_sh('cat ./marelle-tpls/pf.server.conf > /etc/pf.conf').
 	% sudo_sh('pfctl -F all -f /etc/pf.conf 2>/dev/null').
 
