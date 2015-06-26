@@ -33,6 +33,13 @@ Host *.local
 	ForwardAgent yes
 
 Host unrelenting.technology
+	Port 443
+	ForwardAgent yes
+	PasswordAuthentication no
+	IdentitiesOnly yes
+	IdentityFile ~/.ssh/unrelenting.technology
+
+Host h.unrelenting.technology
 	ForwardAgent yes
 	PasswordAuthentication no
 	IdentitiesOnly yes
