@@ -1,7 +1,7 @@
 $ORIGIN unrelenting.technology.
 $TTL 3600
 
-@ IN SOA unrelenting.technology. unrelenting.technology. ( 2015062601 6h      1h    1w     1d  )
+@ IN SOA unrelenting.technology. unrelenting.technology. ( 2015062602 6h      1h    1w     1d  )
 ;                                                          serial     refresh retry expire min
 
 @                                         IN NS        ( ns1.unrelenting.technology. )
@@ -21,6 +21,10 @@ _dmarc                                    IN TXT       ( "v=DMARC1; p=reject" )
 @                                         IN SSHFP     ( 1 2 D1D1212D8ECF15A09E8DFE3C8E6FC31F8B89FF3240FE8045E8274FE041434D82 )
 @                                         IN SSHFP     ( 4 1 A9CEDD57D702C80BE7FE22ED7CD2B2BC6EB02E8D )
 @                                         IN SSHFP     ( 4 2 C946A35D2CB6850CA0681E3F9E3937D1E6E1A6004B608E02BCAE375E7602B335 )
+h                                         IN SSHFP     ( 1 1 F32B8DBDDE6D5C26071C038A06600873AA388948 )
+h                                         IN SSHFP     ( 1 2 D1D1212D8ECF15A09E8DFE3C8E6FC31F8B89FF3240FE8045E8274FE041434D82 )
+h                                         IN SSHFP     ( 4 1 A9CEDD57D702C80BE7FE22ED7CD2B2BC6EB02E8D )
+h                                         IN SSHFP     ( 4 2 C946A35D2CB6850CA0681E3F9E3937D1E6E1A6004B608E02BCAE375E7602B335 )
 _25._tcp                                  IN TLSA      ( 3 1 1 21e1fbb47578e9c1a471dfe4a2f49d93f2384382fbdd07c170a60a74f0a9156d )
 _443._tcp                                 IN TLSA      ( 1 1 1 21e1fbb47578e9c1a471dfe4a2f49d93f2384382fbdd07c170a60a74f0a9156d )
 _587._tcp                                 IN TLSA      ( 3 1 1 21e1fbb47578e9c1a471dfe4a2f49d93f2384382fbdd07c170a60a74f0a9156d )
