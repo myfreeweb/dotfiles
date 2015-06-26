@@ -1,7 +1,7 @@
 $ORIGIN unrelenting.technology.
 $TTL 3600
 
-@ IN SOA unrelenting.technology. unrelenting.technology. ( 2015062401 6h      1h    1w     1d  )
+@ IN SOA unrelenting.technology. unrelenting.technology. ( 2015062601 6h      1h    1w     1d  )
 ;                                                          serial     refresh retry expire min
 
 @                                         IN NS        ( ns1.unrelenting.technology. )
@@ -15,7 +15,7 @@ ns2                                       IN AAAA      ( 2a03:b0c0:2:d0::460:600
 www                                       IN A         ( 188.166.82.158 )
 www                                       IN AAAA      ( 2a03:b0c0:2:d0::460:6001 )
 h                                         IN AAAA      ( fc81:6134:ba6c:8458:c99f:6c01:6472:8f1e )
-@                                         IN TXT       ( "v=spf1 ip4:46.149.18.65 a -all" )
+@                                         IN TXT       ( "v=spf1 a mx ip4:46.149.18.65 -all" )
 _dmarc                                    IN TXT       ( "v=DMARC1; p=reject" )
 @                                         IN SSHFP     ( 1 1 F32B8DBDDE6D5C26071C038A06600873AA388948 )
 @                                         IN SSHFP     ( 1 2 D1D1212D8ECF15A09E8DFE3C8E6FC31F8B89FF3240FE8045E8274FE041434D82 )
@@ -27,7 +27,6 @@ _587._tcp                                 IN TLSA      ( 3 1 1 21e1fbb47578e9c1a
 _5222._tcp                                IN TLSA      ( 1 1 1 21e1fbb47578e9c1a471dfe4a2f49d93f2384382fbdd07c170a60a74f0a9156d )
 _5269._tcp                                IN TLSA      ( 1 1 1 21e1fbb47578e9c1a471dfe4a2f49d93f2384382fbdd07c170a60a74f0a9156d )
 _6667._tcp                                IN TLSA      ( 1 1 1 21e1fbb47578e9c1a471dfe4a2f49d93f2384382fbdd07c170a60a74f0a9156d )
-_8080._tcp                                IN TLSA      ( 1 1 1 21e1fbb47578e9c1a471dfe4a2f49d93f2384382fbdd07c170a60a74f0a9156d )
 _xmpp-client._tcp                         IN SRV       ( 0 5 5222 unrelenting.technology. )
 _xmpp-server._tcp                         IN SRV       ( 0 5 5269 unrelenting.technology. )
 _adsp._domainkey                          IN TXT       ( "dkim-all" )
