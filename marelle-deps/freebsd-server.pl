@@ -92,27 +92,6 @@ execute(amavis_enabled, freebsd) :-
 	% sudo_sh('sa-update || true'),
 	sysrc('amavisd_enable').
 
-managed_pkg(unbound).
-managed_pkg(prosody).
-depends(prosody, _, [libressl, ca_root_nss]).
-pkg(prosody_plugins).
-depends(prosody_plugins, _, [prosody, unbound, mercurial]).
-met(prosody_plugins, freebsd) :-
-	isdir('/usr/local/lib/prosody/luaunbound'),
-	isdir('/usr/local/lib/prosody/contrib').
-meet(prosody_plugins, freebsd) :-
-	sudo_sh('hg clone http://code.zash.se/luaunbound/ /usr/local/lib/prosody/luaunbound'),
-	sudo_sh('cd /usr/local/lib/prosody/luaunbound && ./squish.sh > /usr/local/etc/prosody/use_unbound.lua'),
-	sudo_sh('hg clone http://prosody-modules.googlecode.com/hg/ /usr/local/lib/prosody/contrib').
-idempotent_pkg(prosody_enabled).
-depends(prosody_enabled, _, [prosody, prosody_plugins, supervisord_enabled]).
-execute(prosody_enabled, freebsd) :-
-	sudo_sh('cat ./marelle-tpls/prosody.cfg.lua > /usr/local/etc/prosody/prosody.cfg.lua'),
-	supervise('prosody', [
-		'command=/usr/local/bin/prosody --config=/usr/local/etc/prosody/prosody.cfg.lua\n',
-		'user=prosody'
-	]).
-
 managed_pkg(znc).
 depends(znc, _, [libressl, ca_root_nss, supervisord_enabled]).
 idempotent_pkg(znc_enabled).
@@ -145,7 +124,6 @@ meta_pkg(server, freebsd, [
 	knot_enabled,
 	klaus_enabled,
 	amavis_enabled, opensmtpd_enabled,
-	prosody_enabled,
 	znc_enabled,
 	syncthing_server_enabled
 ]).
