@@ -69,7 +69,9 @@ end
 set lazyredraw title
 "set cursorline
 set hidden
-set mouse=a
+if windows || mac
+  set mouse=a
+end
 set shortmess=filtIoOA
 set laststatus=2
 set nostartofline
