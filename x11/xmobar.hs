@@ -16,5 +16,5 @@ Config { font = "xft:ChicagoFLF:size=9,Font Awesome:size=11:antialias=false,Deja
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{  <fc=#f9ee98> %kbd%</fc>  <fc=#afc4db> %date%</fc>"
+       , template = " %StdinReader% }{  <fc=#f9ee98> %kbd%</fc>  <fc=#afc4db> %date%</fc> "
        }
