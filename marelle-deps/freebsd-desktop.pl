@@ -35,13 +35,8 @@ execute(freebsd_conf_desktop, freebsd) :-
 pkg(freetype2).
 installs_with_ports(freetype2, 'print/freetype2', 'WITH="LCD_FILTERING"').
 
-pkg(xserver).
-depends(xserver, freebsd, [freetype2]).
-installs_with_ports(xserver, 'x11-servers/xorg-server', 'WITH="DEVD" WITHOUT="HAL"').
-
-pkg(xorg).
-depends(xorg, freebsd, [xserver]).
-installs_with_ports(xorg, 'x11/xorg', 'WITHOUT="DOCS"').
+managed_pkg(xorg).
+depends(xorg, freebsd, [freetype2]).
 
 pkg(vbox_client).
 depends(vbox_client, freebsd, [xorg]).
@@ -59,32 +54,26 @@ execute(xorg_conf, freebsd) :-
 	sudo_sh('cat ./marelle-tpls/xorg.vbox.conf ./marelle-tpls/xorg.conf > /etc/X11/xorg.conf').
 
 managed_pkg(compton).
-depends(compton, freebsd, [xorg]).
+depends(compton, freebsd, [xorg_conf]).
 
-pkg(xmonad).
-depends(xmonad, freebsd, [compton, xorg_conf]).
-installs_with_pkgng(xmonad, 'x11-wm/hs-xmonad').
+managed_pkg(unclutter).
+depends(unclutter, freebsd, [xorg_conf]).
 
-pkg(xmonad_contrib).
-depends(xmonad_contrib, freebsd, [xmonad]).
-installs_with_pkgng(xmonad_contrib, 'x11-wm/hs-xmonad-contrib').
-
-command_pkg(xmobar).
-depends(xmobar, freebsd, [xorg_conf, freetype2]).
-installs_with_cabal(xmobar, 'xmobar', '--flags="with_xft with_mpd"').
+managed_pkg(bspwm).
+depends(bspwm, freebsd, [xorg_conf]).
 
 pkg(dmenu).
-depends(dmenu, freebsd, [xorg_conf, freetype2]).
+depends(dmenu, freebsd, [xorg_conf]).
 installs_with_ports(dmenu, 'x11/dmenu', 'WITH="XFT"').
 
 managed_pkg(sterm).
-depends(sterm, freebsd, [xorg_conf, freetype2]).
+depends(sterm, freebsd, [xorg_conf]).
 
 managed_pkg(zathura).
 managed_pkg('zathura-ps').
 managed_pkg('zathura-djvu').
 managed_pkg('zathura-pdf-mupdf').
-depends(zathura, freebsd, [xorg_conf, freetype2, 'zathura-ps', 'zathura-djvu', 'zathura-pdf-mupdf']).
+depends(zathura, freebsd, [xorg_conf, 'zathura-ps', 'zathura-djvu', 'zathura-pdf-mupdf']).
 
 managed_pkg(feh).
 managed_pkg(dunst).
@@ -103,7 +92,7 @@ managed_pkg('sourcesanspro-ttf').
 meta_pkg(desktop, freebsd, [
 	freebsd_conf_desktop,
 	shell, dev, mail,
-	xorg_conf, xmonad_contrib, xmobar, dmenu, feh, dunst, xclip, xsel, scrot,
+	xorg_conf, feh, dunst, xclip, xsel, scrot, unclutter, bspwm,
 	'gnome-themes-standard', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
 	sterm, zathura
 ]).

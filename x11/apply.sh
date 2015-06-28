@@ -6,11 +6,19 @@ cp xinitrc ~/.xinitrc
 touch ~/.xinitrc.local
 
 rm ~/.Xresources
-cat Xresources | sed -e "s|%home%|$HOME|" > ~/.Xresources
+cp Xresources ~/.Xresources
 
-mkdir -p ~/.xmonad
-rm ~/.xmonad/xmonad.hs
-cp xmonad.hs ~/.xmonad/xmonad.hs
+mkdir -p ~/.config/bspwm
+rm ~/.config/bspwm/bspwmrc
+cp bspwmrc ~/.config/bspwm/bspwmrc
+rm ~/.config/bspwm/bspwmbar
+cp bspwmbar ~/.config/bspwm/bspwmbar
+
+mkdir -p ~/.config/sxhkd
+rm ~/.config/sxhkd/sxhkdrc
+cp sxhkdrc ~/.config/sxhkd/sxhkdrc
+
+pkill -USR1 -x sxhkd
 
 rm ~/.xmobarrc
 cp xmobar.hs ~/.xmobarrc
@@ -43,6 +51,5 @@ rm ~/.config/fontconfig/fonts.conf
 cp fonts.xml ~/.config/fontconfig/fonts.conf
 
 xrdb ~/.Xresources
-xmonad --recompile
 
 echo "==> Installed x11"

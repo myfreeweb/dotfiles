@@ -24,15 +24,19 @@
 			<family>Fira Sans</family>
 			<family>PT Sans</family>
 			<family>Helvetica Neue</family>
+			<family>Noto Sans</family>
 		</prefer>
 	</alias>
+
 	<alias>
 		<family>serif</family>
 		<prefer>
 			<family>PT Serif</family>
+			<family>Noto Serif</family>
 			<family>Times New Roman</family>
 		</prefer>
 	</alias>
+
 	<alias>
 		<family>monospace</family>
 		<prefer>
@@ -47,6 +51,12 @@
 	<selectfont>
 		<rejectfont><pattern><patelt name="scalable"><bool>false</bool></patelt></pattern></rejectfont>
 	</selectfont>
+
+	<!-- No Arial! -->
+	<match target="pattern">
+		<test qual="any" name="family"><string>Arial</string></test>
+		<edit name="family" mode="assign" binding="same"><string>Helvetica Neue</string></edit>
+	</match>
 
 	<!-- No Courier! -->
 	<match target="pattern">

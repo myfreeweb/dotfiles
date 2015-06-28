@@ -1,12 +1,14 @@
 #!/bin/sh
-. ~/.xinitrc.local
-sh ~/.fehbg &
 killall ssh-agent
 rm -f ~/.ssh/ssh_auth_sock
+. ~/.xinitrc.local
+sh ~/.fehbg &
 setxkbmap 'us(colemak),ru' -option -option ctrl:nocaps -option grp:win_space_toggle
 xset r rate 210 35
 xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 dunst &
+unclutter &
+sxhkd &
 compton -bc -o 0.35 --shadow-exclude 'n:e:gromit-mpx'
-exec xmonad
+exec bspwm

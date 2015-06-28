@@ -21,7 +21,7 @@ managed_pkg('heroku-toolbelt').
 % Editing
 command_pkg(vim).
 installs_with_brew(vim).
-installs_with_ports(vim, 'editors/vim', 'WITH="CONSOLE" WITHOUT="GTK2 TCL"').
+installs_with_pkgng(vim, 'vim-lite').
 managed_pkg(emacs).
 
 % Misc
