@@ -31,6 +31,7 @@ codex.tags
 .cabal-sandbox
 *.sublime-workspace
 *.sublime-project
+*.iws
 
 # http://blog.illuminex.com/2009/10/better-sample-gitignore-file-for-xcode.html
 dsa_priv.pem
