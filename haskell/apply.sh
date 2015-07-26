@@ -12,4 +12,8 @@ mkdir -p ~/.cabal
 rm ~/.cabal/config
 cat config.cabal | sed "s#~#$HOME#" > ~/.cabal/config
 
+mkdir -p ~/.stack/global
+rm ~/.stack/global/stack.yaml
+cp stack.yaml ~/.stack/global
+
 echo "==> Installed haskell"
