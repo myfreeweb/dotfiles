@@ -12,6 +12,7 @@
 " https://github.com/garybernhardt/dotfiles
 " https://github.com/mutewinter/dot_vim
 " https://github.com/terryma/dotfiles
+" https://gist.github.com/prabirshrestha/279d8b179d9353fe8694
 
 let windows = has('win32') || has('win64')
 let mac = has('mac')
@@ -84,16 +85,16 @@ set t_ti= t_te= " http://www.shallowsky.com/linux/noaltscreen.html
 
 " completion
 set wildmenu wildmode=list:longest,list:full
-set wildignore+=.hg,.git,.bzr,.svn                 " Version control
-set wildignore+=*.aux,*.out,*.toc                  " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg     " binary images
-set wildignore+=*.luac,*.pyc,*.rbc,*.class,classes " Byte code and stuff
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest   " compiled object files
-set wildignore+=*.spl                              " compiled spelling word lists
-set wildignore+=*.sw?                              " Vim swap files
-set wildignore+=.DS_Store,Thumbs.db                " Shit
-set wildignore+=target                             " JVM compiled stuff
-set wildignore+=node_modules,build,.cabal-sandbox,.hpc
+set wildignore+=.hg,.git,.bzr,.svn " Version control
+set wildignore+=*.aux,*.out,*.toc  " LaTeX
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.webp,*.otf,*.ttf,*.eot,*.woff
+set wildignore+=*.luac,*.pyc,*.rbc,*.class,classes
+set wildignore+=*.o,*.so,*.dylib,*.obj,*.exe,*.dll,*.manifest
+set wildignore+=*.spl,*.sw?
+set wildignore+=.DS_Store,Thumbs.db
+set wildignore+=target,node_modules,build,dist
+set wildignore+=.cabal-sandbox,.hpc
+set wildignore+=platforms,plugins
 
 " paths
 if !windows
@@ -144,13 +145,15 @@ let g:indent_guides_auto_colors=0
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_min_syntax_length=3
 if !exists('g:neocomplcache_omni_patterns')
-	let g:neocomplcache_omni_patterns = {}
+  let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.cs = '.*'
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \  'ignore_globs', split(&wildignore, ','))
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_grep_encoding = 'utf-8'
 let g:unite_source_grep_default_opts = '--nogroup --nocolor'

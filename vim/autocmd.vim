@@ -26,7 +26,7 @@ au BufRead,BufNewFile gitconfig setlocal noexpandtab
 " Completion
 au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+au FileType {html,jade,haml} call tern#Enable()
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 au FileType mail exe "normal! }"
 

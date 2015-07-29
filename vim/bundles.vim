@@ -6,25 +6,39 @@ end
 " Only `Plug 'username/repo'` works with this setup. I don't care about other types of paths!
 let g:plug_name_modifier = ':s?\.git$??'
 
+let g:make = 'gmake'
+if system('uname -o') =~ '^GNU/'
+	let g:make = 'make'
+endif
+
 call plug#begin('~/src/github.com')
 
 " Languages
 Plug 'sheerun/vim-polyglot'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
-Plug 'lervag/vim-latex', { 'for': 'tex' }
 Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
-"" Web
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
-Plug 'vim-perl/vim-perl', { 'for': ['perl', 'tt2', 'tt2html', 'tt2js', 'tap'] }
+if executable('perl')
+	Plug 'vim-perl/vim-perl', { 'for': ['perl', 'tt2', 'tt2html', 'tt2js', 'tap'] }
+endif
+if executable('npm')
+	Plug 'marijnh/tern_for_vim', { 'for': ['js', 'jsx', 'javascript', 'html', 'jade', 'haml'], 'do': 'npm install --update' }
+endif
+if executable('latex')
+	Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
+endif
 if executable('python')
+	Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'git submodule update --init' }
 	Plug 'nvie/vim-flake8', { 'for': 'python' }
-	Plug 'fs111/pydoc.vim', { 'for': 'python' }
 endif
 if executable('go')
 	Plug 'fatih/vim-go', { 'for': 'go' }
+endif
+if executable('idris')
+	Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
 endif
 if executable('ghc') " Haskell
 	Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
@@ -41,7 +55,7 @@ if executable('mono') " .NET
 endif
 
 " Features
-Plug 'Shougo/vimproc', { 'do': 'gmake \|\| make' }
+Plug 'Shougo/vimproc', { 'do': g:make }
 Plug 'Shougo/neocomplcache.vim' " doesn't require if_lua, which isn't supported in neovim
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
@@ -74,7 +88,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'airblade/vim-rooter'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'reedes/vim-wordy'

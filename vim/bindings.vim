@@ -13,6 +13,7 @@ nmap sj :SplitjoinJoin<CR>
 
 nnoremap <Leader>a :call VimuxOpenRunner()<CR>
 nnoremap <silent> <Leader>g :<C-u>Unite grep:.           -no-quit<CR>
+nnoremap <silent> <Leader>* :<C-u>Unite grep:.::         <CR><C-R><C-w><CR>
 nnoremap <silent> <Leader>b :<C-u>Unite buffer           -quick-match  -no-split<CR>
 nnoremap <silent> <Leader>p :<C-u>Unite file_rec/async:! -start-insert -no-split<CR>
 nnoremap <silent> <Leader>o :<C-u>Unite outline          -start-insert -no-split<CR>
@@ -94,14 +95,29 @@ nnoremap <Left>  :bprev<CR>
 nnoremap <Up>    :cprev<CR>zvzz
 nnoremap <Down>  :cnext<CR>zvzz
 
+" Toggles
+nnoremap <silent> <Leader>P :call ToggleOption('paste')<CR>
+nnoremap <silent> <Leader>W :call ToggleOption('wrap')<CR>
+nnoremap <silent> <Leader>S :call ToggleOption('spell')<CR>
+function! ToggleOption(option_name)
+	execute 'setlocal' a:option_name.'!'
+	execute 'setlocal' a:option_name.'?'
+endfunction
+
+" Settings
+nnoremap <silent> <Leader>tt :setlocal noexpandtab<CR>
+nnoremap <silent> <Leader>t2 :setlocal expandtab shiftwidth=2 softtabstop=2<CR>
+nnoremap <silent> <Leader>t4 :setlocal expandtab shiftwidth=4 softtabstop=4<CR>
+nnoremap <silent> <Leader>t8 :setlocal expandtab shiftwidth=8 softtabstop=8<CR>
+
 " Motion for numbers.  Great for CSS.  Lets you do things like this:
 " margin-top: 200px; -> daN -> margin-top: px;
-onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
-xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
-onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
-onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+onoremap N  :<C-u>call <SID>NumberTextObject(0)<cr>
+xnoremap N  :<C-u>call <SID>NumberTextObject(0)<cr>
+onoremap aN :<C-u>call <SID>NumberTextObject(1)<cr>
+xnoremap aN :<C-u>call <SID>NumberTextObject(1)<cr>
+onoremap iN :<C-u>call <SID>NumberTextObject(1)<cr>
+xnoremap iN :<C-u>call <SID>NumberTextObject(1)<cr>
 function! s:NumberTextObject(whole)
 	normal! v
 	while getline('.')[col('.')] =~# '\v[0-9]'
