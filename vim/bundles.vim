@@ -26,6 +26,7 @@ if executable('perl')
 endif
 if executable('npm')
 	Plug 'marijnh/tern_for_vim', { 'for': ['js', 'jsx', 'javascript', 'html', 'jade', 'haml'], 'do': 'npm install --update' }
+	Plug 'raichoo/purescript-vim', { 'for': ['purs', 'purescript'] }
 endif
 if executable('latex')
 	Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
