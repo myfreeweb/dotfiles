@@ -13,12 +13,13 @@
 " https://github.com/mutewinter/dot_vim
 " https://github.com/terryma/dotfiles
 " https://gist.github.com/prabirshrestha/279d8b179d9353fe8694
+" http://amix.dk/vim/vimrc.html
 
 let windows = has('win32') || has('win64')
 let mac = has('mac')
 
 if windows
-  set runtimepath+=~/.vim
+	set runtimepath+=~/.vim
 end
 set nocompatible
 source ~/.vim/bundles.vim
@@ -30,7 +31,7 @@ set noequalalways
 set wrapscan incsearch ignorecase smartcase
 set clipboard+=unnamedplus
 if windows
-  set clipboard=unnamed
+	set clipboard=unnamed
 endif
 set autoread autowrite
 set magic
@@ -51,7 +52,7 @@ set virtualedit=block
 
 " ui
 if !has('gui_running')
-  set t_Co=256
+	set t_Co=256
 endif
 set notimeout ttimeout ttimeoutlen=10
 set relativenumber
@@ -61,17 +62,18 @@ set noerrorbells
 set noshowmode
 set showbreak=↪
 if !windows
-  set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,nbsp:␣
-  set fillchars=diff:⣿,vert:│
+	set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,nbsp:␣
+	set fillchars=diff:⣿,vert:│
 end
 if !has('nvim')
-  set ttyfast
+	set ttyfast
+	set t_ti= t_te= " http://www.shallowsky.com/linux/noaltscreen.html
 end
 set lazyredraw title
 "set cursorline
 set hidden
 if windows || mac
-  set mouse=a
+	set mouse=a
 end
 set shortmess=filtIoOA
 set laststatus=2
@@ -81,7 +83,6 @@ set showmatch
 set mat=5
 set virtualedit=onemore
 set viewoptions=folds,options,cursor,unix,slash
-set t_ti= t_te= " http://www.shallowsky.com/linux/noaltscreen.html
 
 " completion
 set wildmenu wildmode=list:longest,list:full
@@ -98,15 +99,15 @@ set wildignore+=platforms,plugins
 
 " paths
 if !windows
-  if executable('zsh')
-    set shell=zsh
-  endif
-  if executable('par')
-    set formatprg=par\ -eq
-  endif
-  set tags=tags;/,codex.tags;/
-  set dictionary=/usr/share/dict/words
-  set backupskip=/tmp/*,/private/tmp/*
+	if executable('zsh')
+		set shell=zsh
+	endif
+	if executable('par')
+		set formatprg=par\ -eq
+	endif
+	set tags=tags;/,codex.tags;/
+	set dictionary=/usr/share/dict/words
+	set backupskip=/tmp/*,/private/tmp/*
 end
 set backupdir=~/.vim/tmp/backups/
 set undodir=~/.vim/tmp/undo/
@@ -145,7 +146,7 @@ let g:indent_guides_auto_colors=0
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_min_syntax_length=3
 if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+	let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.cs = '.*'
 
@@ -153,39 +154,39 @@ let g:neocomplcache_omni_patterns.cs = '.*'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \  'ignore_globs', split(&wildignore, ','))
+			\  'ignore_globs', split(&wildignore, ','))
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_grep_encoding = 'utf-8'
 let g:unite_source_grep_default_opts = '--nogroup --nocolor'
 let g:unite_source_grep_recursive_opt = ''
 if executable('ack-grep')
-  let g:unite_source_grep_command = 'ack-grep'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
-  let g:unite_source_rec_async_command = 'ack-grep -f --nofilter'
+	let g:unite_source_grep_command = 'ack-grep'
+	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
+	let g:unite_source_rec_async_command = 'ack-grep -f --nofilter'
 elseif executable('ack')
-  let g:unite_source_grep_command = 'ack'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
-  let g:unite_source_rec_async_command = 'ack -f --nofilter'
+	let g:unite_source_grep_command = 'ack'
+	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
+	let g:unite_source_rec_async_command = 'ack -f --nofilter'
 elseif executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_rec_async_command = 'ag --nogroup --nocolor -g ""' " no --hidden
+	let g:unite_source_grep_command = 'ag'
+	let g:unite_source_rec_async_command = 'ag --nogroup --nocolor -g ""' " no --hidden
 elseif executable('pt')
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_rec_async_command = 'pt --nogroup --nocolor -g .'
+	let g:unite_source_grep_command = 'pt'
+	let g:unite_source_rec_async_command = 'pt --nogroup --nocolor -g .'
 endif
 
 " Colors and lines
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"⭤":""}',
-      \ }
-      \ }
+			\ 'colorscheme': 'solarized',
+			\ 'component': {
+			\   'readonly': '%{&readonly?"⭤":""}',
+			\ }
+			\ }
 let base16colorspace=256
 execute 'set background='.$BASE16_BACKGROUND
 execute 'colorscheme base16-'.$BASE16_SCHEME
 " note: base16-*what* doesn't actually matter for the 256 color terminal
 
 if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+	source ~/.vimrc.local
 endif
