@@ -11,6 +11,7 @@ au BufRead,BufNewFile SCons* setf python
 au BufRead,BufNewFile *.gradle setf groovy
 au BufRead,BufNewFile *.scaml setf haml
 au BufRead,BufNewFile *.sjs setf javascript
+au BufRead,BufNewFile .{eslintrc,babelrc} setf json
 au BufRead,BufNewFile *.swig setf htmldjango
 au BufRead,BufNewFile *.tt setf tt2html
 au BufRead,BufNewFile *.gv setf dot
