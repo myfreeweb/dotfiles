@@ -105,10 +105,10 @@ function! ToggleOption(option_name)
 endfunction
 
 " Settings
-nnoremap <silent> <Leader>tt :setlocal noexpandtab<CR>
-nnoremap <silent> <Leader>t2 :setlocal expandtab shiftwidth=2 softtabstop=2<CR>
-nnoremap <silent> <Leader>t4 :setlocal expandtab shiftwidth=4 softtabstop=4<CR>
-nnoremap <silent> <Leader>t8 :setlocal expandtab shiftwidth=8 softtabstop=8<CR>
+nnoremap <silent> <Leader>Tt :setlocal noexpandtab<CR>
+nnoremap <silent> <Leader>T2 :setlocal expandtab shiftwidth=2 softtabstop=2<CR>
+nnoremap <silent> <Leader>T4 :setlocal expandtab shiftwidth=4 softtabstop=4<CR>
+nnoremap <silent> <Leader>T8 :setlocal expandtab shiftwidth=8 softtabstop=8<CR>
 
 " Motion for numbers.  Great for CSS.  Lets you do things like this:
 " margin-top: 200px; -> daN -> margin-top: px;

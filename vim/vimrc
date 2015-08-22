@@ -94,7 +94,7 @@ set wildignore+=*.o,*.so,*.dylib,*.obj,*.exe,*.dll,*.manifest
 set wildignore+=*.spl,*.sw?
 set wildignore+=.DS_Store,Thumbs.db
 set wildignore+=target,node_modules,build,dist
-set wildignore+=.cabal-sandbox,.hpc
+set wildignore+=.cabal-sandbox,.hpc,.stack-work
 set wildignore+=platforms,plugins
 
 " paths
