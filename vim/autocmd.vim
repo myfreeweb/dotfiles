@@ -16,7 +16,6 @@ au BufRead,BufNewFile *.swig setf htmldjango
 au BufRead,BufNewFile *.tt setf tt2html
 au BufRead,BufNewFile *.gv setf dot
 au BufRead,BufNewFile quakelive.cfg setf quake
-au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal iskeyword+=-
 au BufRead,BufNewFile *.{jar,war,ear,sar} setf zip
 au BufRead,BufNewFile *.fish setf tcsh
 au BufRead,BufNewFile *.ledger setf ledger
@@ -25,10 +24,13 @@ au BufRead,BufNewFile gitconfig setf gitconfig
 au BufRead,BufNewFile gitconfig setlocal noexpandtab
 
 " Completion
-au BufRead,BufNewFile *.{css,sass,scss,less,styl} setlocal omnifunc=csscomplete#CompleteCSS
+au FileType {css,sass,scss,less,stylus} setlocal omnifunc=csscomplete#CompleteCSS
+au FileType {css,sass,scss,less,stylus} setlocal iskeyword+=-
 au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-au FileType {html,jade,haml} call tern#Enable()
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+if executable('npm') && has('python')
+	au FileType {html,jade,haml} call tern#Enable()
+endif
 au FileType mail exe "normal! }"
 
 " Folds
@@ -39,10 +41,6 @@ au BufRead,BufNewFile {,.}zshrc,*.fish setlocal foldmethod=marker
 " Line numbers
 au InsertEnter * set number
 au InsertLeave * set relativenumber
-
-" Colors
-au VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
-au VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
 
 " Misc
 function s:MkNonExDir(file, buf)

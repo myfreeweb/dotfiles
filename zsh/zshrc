@@ -96,7 +96,7 @@ export PYTHONUSERBASE=~ # pip install --user
 [[ -e $commands[opam] ]] && eval $(opam config env)
 
 # Haskell
-:test() { make repl } # for the vimux/ghci trick
+:test() { stack ghci --ghc-options="-fno-hpc" } # for the vimux/ghci trick
 # }}}
 
 # Aliases and functions {{{
@@ -107,7 +107,6 @@ mcd() { mkdir -p "$1" && cd "$1"; }
 icd() { DIR=$(ls | peco) && cd $DIR && icd }
 prj() { cd ~/src/$(ghq list | peco) }
 hst() { eval $(history -n 1 | tail -r | peco --layout=bottom-up) }
-fuck() { sudo $(history -n -1) }
 mdown() { pandoc -s -f markdown -t man "$*" | man -l - } # read markdown files like manpages
 
 if [[ -n $TMUX ]]; then
@@ -169,6 +168,7 @@ autoload -U edit-command-line && zle -N edit-command-line
 autoload -U url-quote-magic && zle -N self-insert url-quote-magic
 autoload -U select-word-style && select-word-style bash
 autoload -U zmv
+
 # Keybindings
 zmodload zsh/terminfo
 bindkey -e # Emacs style keys in shell
@@ -179,21 +179,27 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '^H' backward-word
+bindkey '^L' forward-word
 zle -N hst && bindkey '^R' hst
 zle -N fancy-ctrl-z && bindkey '^Z' fancy-ctrl-z
+
 # Stuff
 setopt pushd_ignore_dups; setopt auto_pushd
 setopt auto_name_dirs; setopt auto_cd
 setopt transient_rprompt; setopt prompt_subst
 setopt no_beep; setopt multios
 setopt extended_glob; setopt interactive_comments
+
 # History
 setopt hist_ignore_dups; setopt hist_ignore_space
 setopt hist_reduce_blanks; setopt hist_verify
 setopt hist_expire_dups_first; setopt hist_find_no_dups
 setopt share_history; setopt extended_history
 setopt append_history; setopt inc_append_history
+
 # Completion
+setopt menu_complete # Autoselect the first suggestion
 setopt complete_in_word
 setopt no_complete_aliases # Actually: completes aliases! (I guess that means "no ~separate functions~ for aliases")
 unsetopt always_to_end
@@ -205,7 +211,9 @@ zstyle ':completion:*' list-colors ""
 zstyle ':completion:*' menu select=2 _complete _ignored _approximate
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format "- %{${fg[yellow]}%}%d%{${reset_color}%} -"
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*:prefix:*' add-space true
+zstyle ':completion:*:descriptions' format "|| %{${fg[yellow]}%}%d%{${reset_color}%}"
 zstyle ':completion:*:messages' format $'\e[00;31m%d'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
@@ -215,7 +223,7 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 zstyle ':completion:*:rm:*' ignore-line yes
 zstyle ':completion:*:*:*:processes' list-colors "=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01"
-zstyle ':completion:*:*:*:processes' command "ps -u $(whoami) -o pid,user,comm -w -w"
+zstyle ':completion:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':completion:*:*:*:*:hosts' list-colors "=*=$color[cyan];$color[bg-black]"
 zstyle ':completion:*:functions' ignored-patterns "_*"
 zstyle ':completion:*:original' list-colors "=*=$color[red];$color[bold]"

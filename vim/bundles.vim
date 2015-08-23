@@ -88,10 +88,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'reedes/vim-wordy'
+Plug 'terryma/vim-expand-region'
 
 " Colors
 Plug 'chriskempson/base16-vim'
