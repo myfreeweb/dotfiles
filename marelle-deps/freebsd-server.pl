@@ -37,7 +37,7 @@ supervise(Name, Options) :-
 	sudo_sh(['supervisorctl start ', Name]).
 
 pkg(knot).
-installs_with_ports(knot, 'dns/knot').
+installs_with_ports(knot, 'dns/knot1').
 idempotent_pkg(knot_enabled).
 depends(knot_enabled, _, [knot]).
 execute(knot_enabled, freebsd) :-
