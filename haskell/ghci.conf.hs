@@ -23,4 +23,3 @@
 -- cabal install ghci-pretty
 :def cp (\_ -> return "import IPPrint.Colored\n:set -interactive-print=IPPrint.Colored.cpprint")
 :def ncp (\_ -> return ":set -interactive-print=print")
-:cp

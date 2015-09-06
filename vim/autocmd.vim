@@ -6,6 +6,7 @@
 " https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
 
 " File types
+au BufRead,BufNewFile .ghci setf haskell
 au BufRead,BufNewFile *.{mdown,ronn} setf markdown
 au BufRead,BufNewFile SCons* setf python
 au BufRead,BufNewFile *.gradle setf groovy
