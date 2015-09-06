@@ -133,3 +133,5 @@ defaults write com.apple.appstore ShowDebugMenu -bool true
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 ## Disable Safari’s thumbnail cache for History and Top Sites
 defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+## Disable Safari's Spotlight
+defaults write com.apple.Safari UniversalSearchEnabled -bool false

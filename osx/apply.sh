@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
+# Thanks: https://github.com/drduh/OS-X-Yosemite-Security-and-Privacy-Guide
+
 echo "==> Installing osx"
+
+./defaults.sh
 
 mkdir -p ~/Library/KeyBindings
 rm ~/Library/KeyBindings/DefaultKeyBinding.dict
@@ -8,7 +12,28 @@ cp ./keybindings/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.
 rm ~/.amethyst
 cp ./amethyst.json ~/.amethyst
 
-./defaults.sh
+sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent; vacuum'
+
+disable_agent() { launchctl unload -w /System/Library/LaunchAgents/${1}.plist }
+# I don't call from OS X
+disable_agent com.apple.CallHistoryPluginHelper
+disable_agent com.apple.CallHistorySyncHelper
+disable_agent com.apple.telephonyutilities.callservicesd
+# I don't play on OS X
+disable_agent com.apple.gamed
+# I probably don't use this stuff...
+disable_agent com.apple.cloudfamilyrestrictionsd-mac
+disable_agent com.apple.SafariCloudHistoryPushAgent
+disable_agent com.apple.safaridavclient
+disable_agent com.apple.security.cloudkeychainproxy
+disable_agent com.apple.SocialPushAgent
+disable_agent com.apple.cloudphotosd
+disable_agent com.apple.CoreLocationAgent
+disable_agent com.apple.locationmenu
+disable_agent com.apple.EscrowSecurityAlert
+disable_agent com.apple.imagent
+disable_agent com.apple.IMLoggingAgent
+
 
 SEIL=/Applications/Seil.app/Contents/Library/bin/seil
 if [ -e "$SEIL" ]; then
@@ -48,6 +73,7 @@ mkdir -p "$HOME/Library/Application Support/Karabiner"
 rm "$HOME/Library/Application Support/Karabiner/private.xml"
 cp ./private.xml "$HOME/Library/Application Support/Karabiner/private.xml"
 
+
 KARABINER=/Applications/Karabiner.app/Contents/Library/bin/karabiner
 if [ -e "$KARABINER" ]; then
 	$KARABINER reloadxml
@@ -58,5 +84,6 @@ if [ -e "$KARABINER" ]; then
 else
 	echo "==> Warning: Karabiner.app not found < https://pqrs.org/osx/karabiner/index.html.en >"
 fi
+
 
 echo "==> Installed osx"
