@@ -86,8 +86,7 @@ bunforkify() {
 export PYTHONDONTWRITEBYTECODE=true
 export VIRTUALENV_DISTRIBUTE=true
 export PIP_USE_MIRRORS=true
-export PYTHONSTARTUP=~/.pythonrc
-export PYTHONUSERBASE=~ # pip install --user
+export PYTHONSTARTUP=~/.config/python/rc.py
 
 # Compiling stuff on OS X
 [[ -e $commands[brew] ]] && export ARCHFLAGS="-arch x86_64"
@@ -244,7 +243,7 @@ _loadkeys() { compadd $(find ~/.ssh -perm 0600 ! -type s | xargs basename) }
 compdef _loadkeys loadkeys
 compdef _base16 base16
 
-HISTFILE=~/.zsh_history
+HISTFILE=~/.tmp/history_zsh
 HISTSIZE=4096
 SAVEHIST=4096
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -264,10 +263,10 @@ cdpath=(~/src/github.com/myfreeweb ~/src/bitbucket.org/wmru)
 typeset -U path # U for Unique, like a set; (N) == only if exists
 path=(
 	.git/safe/../../bin
-	~/bin(N) ~/.cask/bin(N)
+	~/.local/bin(N) ~/bin(N) ~/.cask/bin(N)
 	$BREWGO/bin(N) $BREWGO/libexec/bin(N) /usr/local/go/bin(N)
 	$JAVA_HOME/bin(N)
-	$RBENV_ROOT/bin(N)
+	$RBENV_ROOT/shims(N)
 	/usr/local/share/npm/bin(N)
 	/usr/local/sbin /usr/local/bin /sbin /bin $path
 )

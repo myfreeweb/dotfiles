@@ -1,9 +1,9 @@
 remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
-remote-repo-cache: ~/.cabal/packages
-world-file: ~/.cabal/world
-build-summary: ~/.cabal/logs/build.log
+remote-repo-cache: ~/.local/lib/cabal/packages
+world-file: ~/.local/lib/cabal/world
+build-summary: ~/.local/lib/cabal/logs/build.log
 remote-build-reporting: anonymous
 
 install-dirs user
-  prefix: ~/.cabal
-  bindir: ~/bin
+  prefix: ~/.local/lib/cabal
+  bindir: ~/.local/bin

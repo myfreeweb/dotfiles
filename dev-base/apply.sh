@@ -1,6 +1,8 @@
 #!/bin/sh
 echo "==> Installing dev-base"
 
+mkdir -p ~/.tmp
+
 rm ~/.gitconfig
 cp gitconfig ~/.gitconfig
 
@@ -39,7 +41,5 @@ cp rc ~/.rc
 mkdir -p ~/.ssh
 rm ~/.ssh/config
 cp ssh_config ~/.ssh/config
-
-mkdir -p ~/.tmp
 
 echo "==> Installed dev-base"

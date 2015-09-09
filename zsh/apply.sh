@@ -1,6 +1,7 @@
 #!/bin/sh
 echo "==> Installing zsh"
 
+mkdir -p ~/.tmp
 mkdir -p ~/.zsh
 
 rm -r ~/.zsh/zshuery

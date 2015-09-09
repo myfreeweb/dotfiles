@@ -60,7 +60,7 @@ try:
         readline.parse_and_bind("bind '\t' rl_complete")
     else:
         readline.parse_and_bind(open("%s/.inputrc" % home).read())
-    HISTFILE = "%s/.pyhistory." % home
+    HISTFILE = "%s/.tmp/history_python" % home
     try:
         readline.read_history_file(HISTFILE)
     except: pass

@@ -1,8 +1,8 @@
 #!/bin/sh
 
-mkdir -p ~/bin
-cp -r ./* ~/bin
-chmod +x ~/bin/*
-rm ~/bin/apply.sh
+mkdir -p ~/.local/bin
+cp -r ./* ~/.local/bin
+chmod +x ~/.local/bin/*
+rm ~/.local/bin/apply.sh
 
 echo "==> Copied bin"
