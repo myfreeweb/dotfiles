@@ -91,7 +91,6 @@ managed_pkg('sourcesanspro-ttf').
 
 meta_pkg(desktop, freebsd, [
 	freebsd_conf_desktop,
-	shell, dev, mail,
 	xorg_conf, feh, dunst, xclip, xsel, scrot, unclutter, bspwm,
 	'gnome-themes-standard', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
 	sterm, zathura

@@ -99,8 +99,7 @@ meta_pkg(fonts, [
 ]).
 
 meta_pkg(desktop, osx, [
-	shell, dev, mail,
-	'reattach-to-user-namespace', less, bsdmake, openssh, syncthing, 'syncthing-cli',
+	'reattach-to-user-namespace', less, bsdmake, openssh, syncthing,
 	karabiner, seil, flux, amethyst,
 	alfred, dropbox, virtualbox, transmission, cleanmymac, tunnelblick,
 	vlc, clarify, forklift, gpgtools, 'android-file-transfer', fliqlo,

@@ -55,6 +55,7 @@ export MANWIDTH="120"
 
 # Go
 export GOPATH=~
+export GOBIN=~/.local/bin
 [[ -e $commands[brew] ]] && export BREWGO=$(brew --prefix go)
 
 # JS

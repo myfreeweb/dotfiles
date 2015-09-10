@@ -15,9 +15,6 @@ command_pkg(bzr).
 installs_with_brew(bzr, 'bazaar').
 installs_with_pkgng(bzr).
 
-% Deployment
-managed_pkg('heroku-toolbelt').
-
 % Editing
 command_pkg(vim).
 installs_with_brew(vim).
@@ -28,5 +25,5 @@ managed_pkg(emacs).
 managed_pkg(sloccount).
 
 meta_pkg(dev, [
-	ack, ctags, pt, git, mercurial, bzr, vim, sloccount, grunt
+	ack, ctags, pt, git, mercurial, vim, sloccount
 ]).

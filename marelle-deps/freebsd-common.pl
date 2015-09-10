@@ -37,6 +37,9 @@ execute(freebsd_conf_common, freebsd) :-
 	periodic('daily_rkhunter_check_flags', '--checkall --nocolors --skip-keypress'),
 	periodic('daily_rkhunter_update_enable'),
 	periodic('daily_rkhunter_update_flags', '--update --nocolors'),
+	periodic('daily_show_empty_output', 'NO'),
+	periodic('daily_show_success', 'NO'),
+	periodic('daily_show_info', 'NO'),
 	sudo_sh('grep portsnap /etc/crontab >/dev/null || echo "0	7	*	*	*	root	/usr/sbin/portsnap -I cron update" >> /etc/crontab'),
 	sudo_sh('grep freebsd-update /etc/crontab >/dev/null || echo "2	8	*	*	*	root	/usr/sbin/freebsd-update cron" >> /etc/crontab'),
 	sudo_sh('chflags sappnd /var/log/security'), % append only

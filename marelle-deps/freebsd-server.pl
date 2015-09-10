@@ -117,10 +117,11 @@ execute(syncthing_server_enabled, freebsd) :-
 		'user=greg'
 	]).
 
+
 meta_pkg(server, freebsd, [
 	freebsd_conf_common_server, supervisord_enabled,
 	openntpd_enabled, unbound_enabled,
-	i2p_enabled, tor_enabled, privoxy_enabled,
+	tor_enabled, privoxy_enabled,
 	knot_enabled,
 	klaus_enabled,
 	amavis_enabled, opensmtpd_enabled,

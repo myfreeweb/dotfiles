@@ -1,0 +1,2 @@
+#!/bin/sh
+exec find $HOME/src -type d -name .git -print -exec sh -c "cd '{}'; cd ..; touch .git/git-daemon-export-ok; git-remote-httpsify origin; git pull origin master" \;
