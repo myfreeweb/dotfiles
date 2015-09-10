@@ -29,11 +29,13 @@ base16() {
 		echo "Looks like $BASE16_SHELL does not exist :-("
 	fi
 }
+
 background() {
 	echo -n "$*" > ~/.base16.background
 	export BASE16_BACKGROUND="$*"
 	base16 $BASE16_SCHEME
 }
+
 light() { background light }
 dark() { background dark }
 _base16() { compadd $(find ~/.zsh/base16-shell | grep dark.sh | xargs basename | sed -e "s/base16-//" -e "s/\.dark\.sh//") }
@@ -101,12 +103,12 @@ export PYTHONSTARTUP=~/.config/python/rc.py
 
 # Aliases and functions {{{
 [[ -e ~/.rc ]] && source ~/.rc
-[[ ! -e $commands[gmake] ]] && alias gmake='make'
+[[ ! -e $commands[gmake] ]] && alias gmake=make
 dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
-mcd() { mkdir -p "$1" && cd "$1"; }
-icd() { DIR=$(ls | peco) && cd $DIR && icd }
-prj() { cd ~/src/$(ghq list | peco) }
-hst() { eval $(history -n 1 | tail -r | peco --layout=bottom-up) }
+mcd() { mkdir -p $1 && cd $1; }
+icd() { DIR=$(ls | $MENU) && cd $DIR && icd }
+prj() { cd ~/src/$(ghq list | $MENU) }
+hst() { eval $(history -n 1 | tail -r | $MENU --layout=bottom-up) }
 mdown() { pandoc -s -f markdown -t man "$*" | man -l - } # read markdown files like manpages
 
 if [[ -n $TMUX ]]; then
@@ -149,9 +151,9 @@ precmd() {
 	fi
 }
 
-fancy-ctrl-z () {
+fancy-ctrl-z() {
   if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
+    BUFFER=fg
     zle accept-line
   else
     zle push-input
@@ -253,9 +255,6 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # Like default, but without / -- ^W must be u
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export CLICOLOR="yes"
-[[ -e $commands[less] ]] && export PAGER="less"
-[[ -e $commands[vim]  ]] && export EDITOR="vim"  && alias vi="vim"
-[[ -e $commands[nvim] ]] && export EDITOR="nvim" && alias vi="nvim"
 
 PROMPT='%{$SCOLOR%}${PWD/#~/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} '
 
@@ -272,6 +271,28 @@ path=(
 	/usr/local/sbin /usr/local/bin /sbin /bin $path
 )
 export PATH
+# }}}
+
+# Default programs {{{
+# (must come after PATH)
+[[ -e $commands[more] ]] && export PAGER=more
+[[ -e $commands[less] ]] && export PAGER=less
+alias pg=$PAGER
+
+[[ -e $commands[vi]   ]] && export EDITOR=vi   VISUAL=vi
+[[ -e $commands[vim]  ]] && export EDITOR=vim  VISUAL=vim
+[[ -e $commands[nvim] ]] && export EDITOR=nvim VISUAL=nvim
+alias vi=$VISUAL
+
+[[ -e $commands[percol] ]] && export MENU=percol
+[[ -e $commands[peco]   ]] && export MENU=peco
+[[ -e $commands[fzf]    ]] && export MENU=fzf
+alias mn=$MENU
+
+[[ -e $commands[ack] ]] && export SEARCH=ack
+[[ -e $commands[ag]  ]] && export SEARCH=ag
+[[ -e $commands[pt]  ]] && export SEARCH=pt
+alias sr=$SEARCH
 # }}}
 
 # Arcane SSH/GPG agent stuff {{{
