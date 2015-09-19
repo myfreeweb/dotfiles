@@ -1,78 +1,62 @@
 #!/usr/bin/env zsh
-# Thanks: https://github.com/drduh/OS-X-Yosemite-Security-and-Privacy-Guide
 
 echo "==> Installing osx"
 
 ./defaults.sh
+./privacy.sh
 
 mkdir -p ~/Library/KeyBindings
-rm ~/Library/KeyBindings/DefaultKeyBinding.dict
-cp ./keybindings/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
+sed '$d' ./keybindings/DefaultKeyBinding.dict > ~/Library/KeyBindings/DefaultKeyBinding.dict
 
-rm ~/.amethyst
-cp ./amethyst.json ~/.amethyst
+if [ -e "../x11/Xcompose" ]; then
+	export PERL_MB_OPT="--install_base \"$HOME/.local\""
+	export PERL_MM_OPT="INSTALL_BASE=$HOME/.local"
+	[[ ! -e ~/.local/lib/perl5/X11/Keysyms.pm ]] && cpan -f -i X11:Keysyms
+	echo "\n  // Xcompose " >> ~/Library/KeyBindings/DefaultKeyBinding.dict
+	PERL5LIB=~/.local/lib/perl5 perl ./compose2keybindings.pl < ../x11/Xcompose | sed -e "s/\\\\UF710/^$\\\\UF710/" | tail -n +2 >> ~/Library/KeyBindings/DefaultKeyBinding.dict
+else
+	echo "==> Warning: x11 not found, not adding Xcompose to DefaultKeyBinding"
+	echo "}" >> ~/Library/KeyBindings/DefaultKeyBinding.dict
+fi
 
-sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent; vacuum'
-
-disable_agent() { launchctl unload -w /System/Library/LaunchAgents/${1}.plist }
-# I don't call from OS X
-disable_agent com.apple.CallHistoryPluginHelper
-disable_agent com.apple.CallHistorySyncHelper
-disable_agent com.apple.telephonyutilities.callservicesd
-# I don't play on OS X
-disable_agent com.apple.gamed
-# I probably don't use this stuff...
-disable_agent com.apple.cloudfamilyrestrictionsd-mac
-disable_agent com.apple.SafariCloudHistoryPushAgent
-disable_agent com.apple.safaridavclient
-disable_agent com.apple.security.cloudkeychainproxy
-disable_agent com.apple.SocialPushAgent
-disable_agent com.apple.cloudphotosd
-disable_agent com.apple.CoreLocationAgent
-disable_agent com.apple.locationmenu
-disable_agent com.apple.EscrowSecurityAlert
-disable_agent com.apple.imagent
-disable_agent com.apple.IMLoggingAgent
+cat ./amethyst.json > ~/.amethyst
 
 
 SEIL=/Applications/Seil.app/Contents/Library/bin/seil
 if [ -e "$SEIL" ]; then
-	# Hyper (sends F19, Karabiner turns that into Cmd+Opt+Ctrl+Shift)
 	$SEIL set enable_control_l 1
-	$SEIL set keycode_control_l 80
 	$SEIL set enable_control_r 1
+	$SEIL set enable_command_l 1
+	$SEIL set enable_command_r 1
+	$SEIL set enable_option_l 1
+	$SEIL set enable_option_r 1
+
+	# Hyper (sends F19, Karabiner turns that into Cmd+Opt+Ctrl+Shift)
+	$SEIL set keycode_control_l 80
 	$SEIL set keycode_control_r 80
+
 	if [ -z "$PCKEYBOARD" ]; then
 		echo "==> osx: Mac keyboard"
 		# Cmd is Cmd, Opt is Opt -- reset in case of accidental PCKEYBOARD=1 execution or switching back
-		$SEIL set enable_command_l 1
 		$SEIL set keycode_command_l 55
-		$SEIL set enable_option_l 1
 		$SEIL set keycode_option_l 58
-		$SEIL set enable_command_r 1
 		$SEIL set keycode_command_r 54
-		$SEIL set enable_option_r 1
 		$SEIL set keycode_option_r 61
 	else
 		echo "==> osx: PC keyboard"
 		# Swap Cmd and Opt for ANSI PC keyboard
-		$SEIL set enable_command_l 1
 		$SEIL set keycode_command_l 58
-		$SEIL set enable_option_l 1
 		$SEIL set keycode_option_l 55
-		$SEIL set enable_command_r 1
 		$SEIL set keycode_command_r 61
-		$SEIL set enable_option_r 1
 		$SEIL set keycode_option_r 54
 	fi
 else
 	echo "==> Warning: Seil.app not found < https://pqrs.org/osx/karabiner/seil.html >"
 fi
 
-mkdir -p "$HOME/Library/Application Support/Karabiner"
-rm "$HOME/Library/Application Support/Karabiner/private.xml"
-cp ./private.xml "$HOME/Library/Application Support/Karabiner/private.xml"
 
+mkdir -p "~/Library/Application Support/Karabiner"
+cat ./private.xml > "~/Library/Application Support/Karabiner/private.xml"
 
 KARABINER=/Applications/Karabiner.app/Contents/Library/bin/karabiner
 if [ -e "$KARABINER" ]; then
@@ -81,6 +65,7 @@ if [ -e "$KARABINER" ]; then
 	$KARABINER set remap.controlL2controlL_escape 1
 	$KARABINER set space_cadet.left_control_to_hyper 1
 	$KARABINER set private.shifts_to_parens 1
+	$KARABINER set private.send_shift_ctrl_f13_for_ropt 1
 else
 	echo "==> Warning: Karabiner.app not found < https://pqrs.org/osx/karabiner/index.html.en >"
 fi

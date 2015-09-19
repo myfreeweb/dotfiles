@@ -91,6 +91,11 @@ export VIRTUALENV_DISTRIBUTE=true
 export PIP_USE_MIRRORS=true
 export PYTHONSTARTUP=~/.config/python/rc.py
 
+# Perl
+export PERL_MB_OPT="--install_base \"$HOME/.local\""
+export PERL_MM_OPT="INSTALL_BASE=$HOME/.local"
+export PERL5LIB=~/.local/lib/perl5:$PERL5LIB
+
 # Compiling stuff on OS X
 [[ -e $commands[brew] ]] && export ARCHFLAGS="-arch x86_64"
 
