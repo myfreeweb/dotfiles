@@ -100,7 +100,7 @@ execute(znc_enabled, freebsd) :-
 	sudo_sh('pw useradd -n znc -m >/dev/null || true'),
 	sudo_sh('mkdir -p /usr/local/etc/znc/configs'),
 	sudo_sh('cat ./marelle-tpls/znc.conf | sed -e s/%passwordhash%/`cat /usr/local/etc/znc/passwordhash`/g > /usr/local/etc/znc/configs/znc.conf'),
-	sudo_sh('cat /usr/local/etc/certs/bundle.pem /usr/local/etc/certs/key.pem > /usr/local/etc/znc/znc.pem'),
+	sudo_sh('cat /usr/local/etc/certs/unrelenting.technology.bundle.pem /usr/local/etc/certs/unrelenting.technology.key.pem > /usr/local/etc/znc/znc.pem'),
 	sudo_sh('chown znc:znc /usr/local/etc/znc/configs/znc.conf /usr/local/etc/znc/znc.pem'),
 	supervise('znc', [
 		'command=/usr/local/bin/znc --foreground --datadir=/usr/local/etc/znc\n',
