@@ -1,7 +1,7 @@
 include "/usr/local/share/themes/Adwaita/gtk-2.0/gtkrc"
-gtk-font-name = "Fira Sans 9"
+gtk-font-name = "sans-serif 9"
 style "user-font"
 {
-	font_name = "Fira Sans 9"
+	font_name = "sans-serif 9"
 }
 widget_class "*" style "user-font"

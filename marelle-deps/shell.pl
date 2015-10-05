@@ -2,15 +2,6 @@
 %      https://github.com/myfreeweb/dotfiles
 % Feel free to steal it, but attribution is nice
 
-% Nice login welcome message
-managed_pkg(archey).
-managed_pkg(bsdinfo).
-meta_pkg(welcome, freebsd, [bsdinfo]).
-meta_pkg(welcome, osx, [archey]).
-managed_pkg(cowsay).
-command_pkg(fortune).
-installs_with_brew(fortune).
-
 % Mail
 pkg(mutt).
 depends(mutt, freebsd, [libressl]).
@@ -54,7 +45,6 @@ pip_pkg(httpie).
 pip_pkg(requests). % used by pinboard_xml
 
 meta_pkg(shell, [
-	welcome, cowsay, fortune,
 	curl, wget, signify,
 	tmux, zsh, tree, ncdu, toilet, jq,
 	ghq, peco, httpie, requests

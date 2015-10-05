@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+def command?(name)
+  `which #{name}`
+  $?.success?
+end
+
+xorglogin_path = File.join(ENV['HOME'], '.xorglogin')
+
+if File.exist? xorglogin_path
+  xorglogin = File.read(xorglogin_path).chomp
+  current = lambda { || `ssh #{xorglogin} cat /sys/class/backlight/nv_backlight/brightness`.to_i }
+  set = lambda { |v| `echo #{v} | ssh #{xorglogin} tee /sys/class/backlight/nv_backlight/brightness` }
+elsif command? 'xbacklight'
+  current = lambda { || `xbacklight -get`.to_i }
+  set = lambda { |v| `xbacklight -set #{v}` }
+else
+  current = lambda { || abort "Unsupported system!" }
+  set = lambda { |v| abort "Unsupported system!" }
+end
+
+ARGV.each do |arg|
+  if arg.start_with?('+') || arg.start_with?('-')
+    set.(current.() + arg.to_i)
+  else
+    set.(arg.to_i)
+  end
+end

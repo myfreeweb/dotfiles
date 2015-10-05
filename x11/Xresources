@@ -12,3 +12,14 @@ URxvt.letterSpace:    -2
 URxvt.termName:       xterm-256color
 URxvt.depth:          32
 URxvt.background:     rgba:2700/2800/2200/ee00
+
+xscreensaver.mode:           blank
+xscreensaver.selected:       -1
+xscreensaver.dpmsEnabled:    True
+xscreensaver.dpmsQuickOff:   True
+xscreensaver.splash:         True
+xscreensaver.timeout:        0:03:00
+xscreensaver.lock:           True
+xscreensaver.lockTimeout:    0:00:00
+xscreensaver.fade:           True
+xscreensaver.unfade:         True

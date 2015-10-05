@@ -9,10 +9,10 @@ bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config focus_by_distance   true
 
-bspc monitor -d α β γ δ ε ζ η θ ι κ λ # μ ν ξ ο π ρ ς σ τ υ φ χ ψ ω
+bspc monitor -d 1 2 3 4 5 6 7 8 9
 
 bspc rule -a Gimp desktop=^8 follow=on floating=on
 bspc rule -a gromit-mpx manage=off
 bspc rule -a stalonetray manage=off
 
-~/.config/bspwm/bspwmbar | xmobar &
+~/.config/bspwm/bspwmbar | lemonbar -f ChicagoFLF:size=9 &

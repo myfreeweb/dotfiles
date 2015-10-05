@@ -182,8 +182,8 @@ bindkey -e # Emacs style keys in shell
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+[[ "$terminfo[kcuu1]" != "" ]] && bindkey "$terminfo[kcuu1]" history-substring-search-up
+[[ "$terminfo[kcud1]" != "" ]] && bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^H' backward-word

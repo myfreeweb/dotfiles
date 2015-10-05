@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE fontconfig SYSTEM "../fonts.dtd">
+<!-- Thanks: http://eev.ee/blog/2015/05/20/i-stared-into-the-fontconfig-and-the-fontconfig-stared-back-at-me/ -->
 <fontconfig>
 
 	<match target="font">
@@ -25,6 +26,7 @@
 			<family>PT Sans</family>
 			<family>Helvetica Neue</family>
 			<family>Noto Sans</family>
+			<family>Symbola</family>
 		</prefer>
 	</alias>
 
@@ -34,6 +36,7 @@
 			<family>PT Serif</family>
 			<family>Noto Serif</family>
 			<family>Times New Roman</family>
+			<family>Symbola</family>
 		</prefer>
 	</alias>
 
@@ -41,11 +44,42 @@
 		<family>monospace</family>
 		<prefer>
 			<family>Fira Mono</family>
-			<family>PT Mono</family>
 			<family>Source Code Pro</family>
 			<family>DejaVu Sans Mono</family>
+			<family>Symbola</family>
 		</prefer>
 	</alias>
+
+	<!-- Monospace fonts are monospace -->
+	<alias>
+		<family>Fira Mono</family>
+		<default><family>monospace</family></default>
+	</alias>
+	<alias>
+		<family>Source Code Pro</family>
+		<default><family>monospace</family></default>
+	</alias>
+
+	<!-- Fix fonts marked as both sans-serif and monospace -->
+	<match>
+		<test compare="eq" name="family">
+			<string>sans-serif</string>
+		</test>
+		<test compare="eq" name="family">
+			<string>monospace</string>
+		</test>
+		<edit mode="delete" name="family"/>
+	</match>
+	<!-- Fix fonts marked as both sans-serif and cursive -->
+	<match>
+		<test compare="eq" name="family">
+			<string>sans-serif</string>
+		</test>
+		<test compare="eq" name="family">
+			<string>cursive</string>
+		</test>
+		<edit mode="delete" name="family"/>
+	</match>
 
 	<!-- No bitmaps! -->
 	<selectfont>

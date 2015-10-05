@@ -1,6 +1,10 @@
 #!/bin/sh
 echo "==> Installing x11"
 
+mkdir -p ~/.local/bin
+cat brightctl > ~/.local/bin/brightctl
+chmod +x ~/.local/bin/brightctl
+
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
 
@@ -11,6 +15,8 @@ cat Xcompose > ~/.Xcompose
 mkdir -p ~/.config/bspwm
 cat bspwmrc  > ~/.config/bspwm/bspwmrc
 cat bspwmbar > ~/.config/bspwm/bspwmbar
+chmod +x ~/.config/bspwm/bspwmrc
+chmod +x ~/.config/bspwm/bspwmbar
 
 mkdir -p ~/.config/sxhkd
 cat sxhkdrc > ~/.config/sxhkd/sxhkdrc

@@ -9,9 +9,6 @@ idempotent_pkg(freebsd_conf_desktop).
 depends(freebsd_conf_desktop, _, [freebsd_conf_common]).
 execute(freebsd_conf_desktop, freebsd) :-
 	sysrc('background_dhclient'),
-	% sysrc('moused_enable'),
-	sysrc('powerd_enable'),
-	sysrc('powerd_flags', '-a hiadaptive -b adaptive'),
 	sysctl('kern.ipc.shm_allow_removed', '1'),
 	sysctl('kern.ipc.shmmax', '67108864'),
 	sysctl('kern.ipc.shmall', '32768'),
@@ -26,7 +23,6 @@ execute(freebsd_conf_desktop, freebsd) :-
 	bootloader('cd9660_iconv_load'),
 	bootloader('msdosfs_iconv_load'),
 	bootloader('fuse_load'),
-	bootloader('snd_driver_load'),
 	sudo_sh('cat ./marelle-tpls/make.conf ./marelle-tpls/make.desktop.conf > /etc/make.conf'),
 	sudo_sh('cat ./marelle-tpls/pf.desktop.conf > /etc/pf.conf'),
 	sudo_sh('cat ./marelle-tpls/pf.desktop.conf > /etc/pf.conf').
@@ -48,32 +44,18 @@ execute(vbox_client_enabled, freebsd) :-
 	sysrc('vboxguest_enable'),
 	sysrc('vboxservice_enable').
 
-idempotent_pkg(xorg_conf).
-depends(xorg_conf, freebsd, [xorg, vbox_client_enabled]).
-execute(xorg_conf, freebsd) :-
-	sudo_sh('cat ./marelle-tpls/xorg.vbox.conf ./marelle-tpls/xorg.conf > /etc/X11/xorg.conf').
-
 managed_pkg(compton).
-depends(compton, freebsd, [xorg_conf]).
-
 managed_pkg(unclutter).
-depends(unclutter, freebsd, [xorg_conf]).
-
 managed_pkg(bspwm).
-depends(bspwm, freebsd, [xorg_conf]).
-
 pkg(dmenu).
-depends(dmenu, freebsd, [xorg_conf]).
 installs_with_ports(dmenu, 'x11/dmenu', 'WITH="XFT"').
-
 managed_pkg(sterm).
-depends(sterm, freebsd, [xorg_conf]).
 
 managed_pkg(zathura).
 managed_pkg('zathura-ps').
 managed_pkg('zathura-djvu').
 managed_pkg('zathura-pdf-mupdf').
-depends(zathura, freebsd, [xorg_conf, 'zathura-ps', 'zathura-djvu', 'zathura-pdf-mupdf']).
+depends(zathura, freebsd, ['zathura-ps', 'zathura-djvu', 'zathura-pdf-mupdf']).
 
 managed_pkg(feh).
 managed_pkg(dunst).
@@ -91,7 +73,7 @@ managed_pkg('sourcesanspro-ttf').
 
 meta_pkg(desktop, freebsd, [
 	freebsd_conf_desktop,
-	xorg_conf, feh, dunst, xclip, xsel, scrot, unclutter, bspwm,
+	feh, dunst, xclip, xsel, scrot, unclutter, bspwm,
 	'gnome-themes-standard', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
 	sterm, zathura
 ]).
