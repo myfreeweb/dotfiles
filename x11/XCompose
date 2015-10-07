@@ -1,5 +1,7 @@
 # Thanks:
 # https://github.com/kragen/xcompose/blob/master/dotXCompose
+#
+include "%L"
 
 # Typography
 <Multi_key> <period> <period>                                              : "…"    U2026      # HORIZONTAL ELLIPSIS

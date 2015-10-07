@@ -1,6 +1,7 @@
 #!/bin/sh
 export PATH=~/.local/bin:$PATH
-export GTK_IM_MODULE=xim # Makes the Compose key work in GTK
+export LC_ALL=en_US.UTF-8
+export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
 
 killall ssh-agent
 rm -f ~/.ssh/ssh_auth_sock
@@ -11,14 +12,14 @@ xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 
 xset r rate 270 35
-xcape -t 350 -e 'Control_L=Escape'
-xcape -t 350 -e 'Shift_L=Shift_L|9'
-xcape -t 350 -e 'Shift_R=Shift_R|0'
 setxkbmap 'us(colemak),ru' \
 	-option ctrl:nocaps \
 	-option ctrl:lctrl_meta \
 	-option compose:ralt \
 	-option grp:win_space_toggle
+xcape -t 350 -e 'Control_L=Escape'
+xcape -t 350 -e 'Shift_L=Shift_L|9'
+xcape -t 350 -e 'Shift_R=Shift_R|0'
 
 sxhkd &
 dunst &

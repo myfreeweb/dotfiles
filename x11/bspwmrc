@@ -2,7 +2,6 @@
 
 bspc config border_width        2
 bspc config window_gap          10
-bspc config top_padding         20
 
 bspc config split_ratio         0.52
 bspc config borderless_monocle  true
@@ -14,5 +13,3 @@ bspc monitor -d 1 2 3 4 5 6 7 8 9
 bspc rule -a Gimp desktop=^8 follow=on floating=on
 bspc rule -a gromit-mpx manage=off
 bspc rule -a stalonetray manage=off
-
-~/.config/bspwm/bspwmbar | lemonbar -f ChicagoFLF:size=9 &

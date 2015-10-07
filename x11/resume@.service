@@ -1,0 +1,15 @@
+# part of my virtualized desktop setup (FreeBSD on KVM/Linux)
+# on host: install as /etc/systemd/system/resume@.service
+# and:     sudo systemctl enable resume@$USER.service
+# on vm:   add date to sudoers as a passwordless command
+[Unit]
+Description=User resume actions
+After=suspend.target
+
+[Service]
+User=%I
+Type=oneshot
+ExecStart=/usr/bin/ssh frossel DISPLAY=192.168.122.1:0 xscreensaver-command -lock ; /bin/sh -c 'date "+%%Y%%m%%d%%H%%M.%%S" | ssh frossel xargs sudo date; true'
+
+[Install]
+WantedBy=suspend.target

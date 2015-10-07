@@ -10,20 +10,16 @@ touch ~/.xinitrc.local
 
 cat Xresources > ~/.Xresources
 
-cat Xcompose > ~/.Xcompose
+cat XCompose > ~/.XCompose
 
 mkdir -p ~/.config/bspwm
 cat bspwmrc  > ~/.config/bspwm/bspwmrc
-cat bspwmbar > ~/.config/bspwm/bspwmbar
 chmod +x ~/.config/bspwm/bspwmrc
-chmod +x ~/.config/bspwm/bspwmbar
 
 mkdir -p ~/.config/sxhkd
 cat sxhkdrc > ~/.config/sxhkd/sxhkdrc
 
 pkill -USR1 -x sxhkd
-
-cat xmobar.hs > ~/.xmobarrc
 
 mkdir -p ~/.config/dunst
 cat dunstrc.ini > ~/.config/dunst/dunstrc
