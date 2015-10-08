@@ -1,3 +1,4 @@
+# vim:set noexpandtab
 # This came from Greg V's dotfiles:
 #      https://github.com/myfreeweb/dotfiles
 # Feel free to steal it, but attribution is nice
@@ -157,13 +158,13 @@ precmd() {
 }
 
 fancy-ctrl-z() {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER=fg
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
+	if [[ $#BUFFER -eq 0 ]]; then
+		BUFFER=fg
+		zle accept-line
+	else
+		zle push-input
+		zle clear-screen
+	fi
 }
 # }}}
 

@@ -51,7 +51,6 @@ if executable('cargo') " Rust
 endif
 if executable('mono') " .NET
 	Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
-	Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 	Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 endif
 
@@ -61,7 +60,6 @@ Plug 'Shougo/neocomplcache.vim' " doesn't require if_lua, which isn't supported 
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'tsukkee/unite-tag'
-Plug 'ujihisa/unite-haskellimport'
 Plug 'sanford1/unite-unicode'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
@@ -75,7 +73,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-sleuth'
-Plug 'sjl/strftimedammit.vim'
 Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] }
 Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] }
 Plug 'sjl/vitality.vim'

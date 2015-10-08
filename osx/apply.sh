@@ -66,6 +66,8 @@ if [ -e "$KARABINER" ]; then
 	$KARABINER set space_cadet.left_control_to_hyper 1
 	$KARABINER set private.shifts_to_parens 1
 	$KARABINER set private.send_shift_ctrl_f13_for_ropt 1
+	$KARABINER set repeat.initial_wait 300
+	$KARABINER set repeat.wait 40
 else
 	echo "==> Warning: Karabiner.app not found < https://pqrs.org/osx/karabiner/index.html.en >"
 fi

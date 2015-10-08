@@ -11,7 +11,7 @@ rm -f ~/.ssh/ssh_auth_sock
 xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 
-xset r rate 270 35
+xset r rate 300 35
 setxkbmap 'us(colemak),ru' \
 	-option ctrl:nocaps \
 	-option ctrl:lctrl_meta \
