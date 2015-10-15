@@ -142,6 +142,14 @@ let g:ledger_bin='hledger'
 let g:racer_cmd=$HOME.'/src/github.com/phildawes/racer/target/release/racer'
 let $RUST_SRC_PATH=$HOME.'/src/github.com/rust-lang/rust/src/'
 let g:indent_guides_auto_colors=0
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+if exists('/usr/local/llvm35/lib')
+	let g:clang_library_path = '/usr/local/llvm35/lib'
+elseif exists('/usr/local/llvm36/lib')
+	let g:clang_library_path = '/usr/local/llvm36/lib'
+elseif exists('/usr/local/llvm37/lib')
+	let g:clang_library_path = '/usr/local/llvm37/lib'
+endif
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])

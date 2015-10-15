@@ -22,11 +22,6 @@ nnoremap <silent> <Leader>x :<C-u>Unite command          -start-insert<CR>
 nnoremap <silent> <Leader>j :<C-u>Unite tag              -start-insert<CR>
 nnoremap <silent> <Leader>i :<C-u>Unite unicode          -start-insert<CR>
 
-" nnoremap <Leader>c :NeoComplCacheEnable<CR>
-" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><BS> neocomplcache#smart_close_popup() . "\<C-h>"
-" inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
-
 " Inverted for Colemak + Improve up/down movement on wrapped lines http://vimbits.com/bits/25
 noremap k gj
 noremap j gk
