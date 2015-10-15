@@ -22,10 +22,10 @@ nnoremap <silent> <Leader>x :<C-u>Unite command          -start-insert<CR>
 nnoremap <silent> <Leader>j :<C-u>Unite tag              -start-insert<CR>
 nnoremap <silent> <Leader>i :<C-u>Unite unicode          -start-insert<CR>
 
-nnoremap <Leader>c :NeoComplCacheEnable<CR>
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><BS> neocomplcache#smart_close_popup() . "\<C-h>"
-inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
+" nnoremap <Leader>c :NeoComplCacheEnable<CR>
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><BS> neocomplcache#smart_close_popup() . "\<C-h>"
+" inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
 
 " Inverted for Colemak + Improve up/down movement on wrapped lines http://vimbits.com/bits/25
 noremap k gj
@@ -74,24 +74,25 @@ nnoremap <Leader>u :syntax sync fromstart<cr>:redraw!<cr>
 " great for pasting Python lines into REPLs.
 nnoremap vv ^vg_
 
-" windows
-map <C-h> <C-w>h
-map <C-k> <C-w>j
-map <C-j> <C-w>k
-map <C-l> <C-w>l
-
-" case-insensitive
+" Case-insensitive commands
 command! E e
 command! W w
 command! Q q
 command! Wq wq
 command! WQ wq
 
-" buffer nav
+" Window navigation
+map <C-h> <C-w>h
+nnoremap <BS> <C-w>h
+map <C-k> <C-w>j
+map <C-j> <C-w>k
+map <C-l> <C-w>l
+
+" Buffer navigation
 nnoremap <Right> :bnext<CR>
 nnoremap <Left>  :bprev<CR>
 
-" List nav
+" List navigation
 nnoremap <Up>    :cprev<CR>zvzz
 nnoremap <Down>  :cnext<CR>zvzz
 

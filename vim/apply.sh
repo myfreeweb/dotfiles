@@ -4,14 +4,12 @@ echo "==> Installing vim"
 mkdir -p ~/.vim/tmp
 mkdir -p ~/.vim/tmp/undo
 mkdir -p ~/.vim/tmp/backups
-mkdir -p ~/.vim/bundle
 mkdir -p ~/.vim/autoload
 
-rm ~/.vimrc
-cp vimrc ~/.vimrc
+cat vimrc > ~/.vimrc
 
 rm ~/.nvimrc
-ln -s .vimrc ~/.nvimrc
+echo "source ~/.vimrc" > ~/.nvimrc
 
 rm ~/.vim/*.vim
 cp ./*.vim ~/.vim/
@@ -29,6 +27,6 @@ curl -fL https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
 	| sed -e "s/':t:s?\\\\.git\$??'/get(g:, 'plug_name_modifier', ':t:s?.git\$??')/" \
 	> ~/.vim/autoload/plug.vim # See bundles.vim for explanation
 
-vim +PlugUpdate +qall
+nvim +PlugUpdate +qall || vim +PlugUpdate +qall
 
 echo "==> Installed vim"

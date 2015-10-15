@@ -5,6 +5,7 @@
 " Thanks: see vimrc
 " http://www.stephendiehl.com/posts/vim_haskell.html
 
+let g:haskellmode_completion_ghc = 0
 setlocal omnifunc=necoghc#omnifunc
 setlocal formatprg=pointfree
 
@@ -24,5 +25,3 @@ nnoremap <Leader>s :call VimuxSendText(":bench\n")<CR>
 nnoremap <Leader>t :call VimuxSendText(":test\n")<CR>
 
 nnoremap <Leader>l :GhcModLintAsync<CR>
-
-nnoremap <silent> <Leader>m :<C-u>Unite haskellimport    -start-insert<CR>

@@ -139,16 +139,9 @@ let g:flake8_ignore='E128'
 let g:FactorRoot='/Applications/factor'
 let g:haskell_conceal_enumerations=0
 let g:ledger_bin='hledger'
-let g:racer_cmd='~/src/github.com/phildawes/racer/target/release/racer'
+let g:racer_cmd=$HOME.'/src/github.com/phildawes/racer/target/release/racer'
+let $RUST_SRC_PATH=$HOME.'/src/github.com/rust-lang/rust/src/'
 let g:indent_guides_auto_colors=0
-
-" Neocomplcache
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length=3
-if !exists('g:neocomplcache_omni_patterns')
-	let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.cs = '.*'
 
 " Unite
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -159,11 +152,7 @@ let g:unite_source_history_yank_enable = 1
 let g:unite_source_grep_encoding = 'utf-8'
 let g:unite_source_grep_default_opts = '--nogroup --nocolor'
 let g:unite_source_grep_recursive_opt = ''
-if executable('ack-grep')
-	let g:unite_source_grep_command = 'ack-grep'
-	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
-	let g:unite_source_rec_async_command = 'ack-grep -f --nofilter'
-elseif executable('ack')
+if executable('ack')
 	let g:unite_source_grep_command = 'ack'
 	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
 	let g:unite_source_rec_async_command = 'ack -f --nofilter'

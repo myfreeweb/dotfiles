@@ -1,13 +1,8 @@
 #!/bin/sh
 echo "==> Installing ruby"
 
-rm ~/.irbrc
-cp irbrc.rb ~/.irbrc
-
-rm ~/.gemrc
-cp gemrc ~/.gemrc
-
-rm ~/.railsrc
-cp railsrc ~/.railsrc
+cat irbrc.rb > ~/.irbrc
+cat gemrc > ~/.gemrc
+cat railsrc > ~/.railsrc
 
 echo "==> Installed ruby"

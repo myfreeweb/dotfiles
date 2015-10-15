@@ -3,43 +3,31 @@ echo "==> Installing dev-base"
 
 mkdir -p ~/.tmp
 
-rm ~/.gitconfig
-cp gitconfig ~/.gitconfig
+cat gitconfig > ~/.gitconfig
 
-rm ~/.gitignore
-cp gitignore ~/.gitignore
+cat gitignore > ~/.gitignore
 
-rm ~/.hgrc
-cp hgrc ~/.hgrc
+cat hgrc > ~/.hgrc
 
-rm ~/.ackrc
-cp ackrc ~/.ackrc
+cat ackrc > ~/.ackrc
 
-rm ~/.ctags
 sed -e "s/^#.*$//" < ctags > ~/.ctags
 
-rm ~/.curlrc
-cp curlrc ~/.curlrc
+cat curlrc > ~/.curlrc
 
 mkdir -p ~/.gnupg
-rm ~/.gnupg/gpg.conf
-cp gpg.conf ~/.gnupg/gpg.conf
+cat gpg.conf > ~/.gnupg/gpg.conf
 
-rm ~/.inputrc
-cp inputrc ~/.inputrc
+cat inputrc > ~/.inputrc
 
-rm ~/.lesskey
-cp lesskey ~/.lesskey
+cat lesskey > ~/.lesskey
 lesskey
 
-rm ~/.psqlrc
-cp psqlrc ~/.psqlrc
+cat psqlrc > ~/.psqlrc
 
-rm ~/.rc
-cp rc ~/.rc
+cat rc > ~/.rc
 
 mkdir -p ~/.ssh
-rm ~/.ssh/config
-cp ssh_config ~/.ssh/config
+cat ssh_config > ~/.ssh/config
 
 echo "==> Installed dev-base"

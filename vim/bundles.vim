@@ -45,9 +45,10 @@ if executable('ghc') " Haskell
 	Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 	Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 	Plug 'dag/vim2hs', { 'for': 'haskell' }
+	" Maybe https://github.com/neovimhaskell will replace some of these
 endif
 if executable('cargo') " Rust
-	Plug 'phildawes/racer', { 'for': 'rust', 'do': 'cargo build --release' }
+	Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 endif
 if executable('mono') " .NET
 	Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
@@ -55,8 +56,10 @@ if executable('mono') " .NET
 endif
 
 " Features
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim'
+endif
 Plug 'Shougo/vimproc', { 'do': g:make }
-Plug 'Shougo/neocomplcache.vim' " doesn't require if_lua, which isn't supported in neovim
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'tsukkee/unite-tag'
@@ -77,7 +80,6 @@ Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] }
 Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] }
 Plug 'sjl/vitality.vim'
 Plug 'Raimondi/delimitMate'
-Plug 'vim-scripts/argtextobj.vim'
 Plug 'godlygeek/tabular'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sickill/vim-pasta'
@@ -88,7 +90,6 @@ Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'reedes/vim-wordy'
-Plug 'terryma/vim-expand-region'
 
 " Colors
 Plug 'chriskempson/base16-vim'
