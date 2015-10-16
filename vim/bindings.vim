@@ -10,17 +10,7 @@ let maplocalleader = "\\"
 " Plugins and stuff
 nmap sk :SplitjoinSplit<CR>
 nmap sj :SplitjoinJoin<CR>
-
 nnoremap <Leader>a :call VimuxOpenRunner()<CR>
-nnoremap <silent> <Leader>g :<C-u>Unite grep:.           -no-quit<CR>
-nnoremap <silent> <Leader>* :<C-u>Unite grep:.::         <CR><C-R><C-w><CR>
-nnoremap <silent> <Leader>b :<C-u>Unite buffer           -quick-match  -no-split<CR>
-nnoremap <silent> <Leader>p :<C-u>Unite file_rec/async:! -start-insert -no-split<CR>
-nnoremap <silent> <Leader>o :<C-u>Unite outline          -start-insert -no-split<CR>
-nnoremap <silent> <Leader>y :<C-u>Unite history/yank     -start-insert<CR>
-nnoremap <silent> <Leader>x :<C-u>Unite command          -start-insert<CR>
-nnoremap <silent> <Leader>j :<C-u>Unite tag              -start-insert<CR>
-nnoremap <silent> <Leader>i :<C-u>Unite unicode          -start-insert<CR>
 
 " Inverted for Colemak + Improve up/down movement on wrapped lines http://vimbits.com/bits/25
 noremap k gj

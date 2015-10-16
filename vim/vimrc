@@ -21,7 +21,11 @@ let mac = has('mac')
 if windows
 	set runtimepath+=~/.vim
 end
-set nocompatible
+if !has('nvim')
+	set nocompatible
+	set ttyfast
+	set t_ti= t_te= " http://www.shallowsky.com/linux/noaltscreen.html
+end
 source ~/.vim/bundles.vim
 syntax on
 
@@ -51,9 +55,6 @@ set whichwrap+=<,>,[,]
 set virtualedit=block
 
 " ui
-if !has('gui_running')
-	set t_Co=256
-endif
 set notimeout ttimeout ttimeoutlen=10
 set relativenumber
 set hlsearch
@@ -64,10 +65,6 @@ set showbreak=↪
 if !windows
 	set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,nbsp:␣
 	set fillchars=diff:⣿,vert:│
-end
-if !has('nvim')
-	set ttyfast
-	set t_ti= t_te= " http://www.shallowsky.com/linux/noaltscreen.html
 end
 set lazyredraw title
 "set cursorline
@@ -83,6 +80,7 @@ set showmatch
 set mat=5
 set virtualedit=onemore
 set viewoptions=folds,options,cursor,unix,slash
+set completeopt-=preview
 
 " completion
 set wildmenu wildmode=list:longest,list:full
@@ -130,19 +128,24 @@ digraph __ 8869
 
 source ~/.vim/bindings.vim
 source ~/.vim/autocmd.vim
+source ~/.vim/fuzzy.vim
 
 " Misc
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+let g:gitgutter_sign_added = '⇒'
+let g:gitgutter_sign_modified = '⇔'
+let g:gitgutter_sign_removed = '⇐'
+let g:gitgutter_sign_removed_first_line = '⇐'
+let g:gitgutter_sign_modified_removed = '⇔'
+
+let delimitMate_excluded_ft='clojure'
 let vimclojure#SplitPos='bottom'
 let g:vimclojure#DynamicHighlighting=1
-let delimitMate_excluded_ft='clojure'
-let g:flake8_ignore='E128'
-let g:FactorRoot='/Applications/factor'
 let g:haskell_conceal_enumerations=0
+let g:jedi#popup_on_dot = 0
 let g:ledger_bin='hledger'
+let g:FactorRoot='/Applications/factor'
 let g:racer_cmd=$HOME.'/src/github.com/phildawes/racer/target/release/racer'
-let $RUST_SRC_PATH=$HOME.'/src/github.com/rust-lang/rust/src/'
-let g:indent_guides_auto_colors=0
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 if exists('/usr/local/llvm35/lib')
 	let g:clang_library_path = '/usr/local/llvm35/lib'
 elseif exists('/usr/local/llvm36/lib')
@@ -151,32 +154,11 @@ elseif exists('/usr/local/llvm37/lib')
 	let g:clang_library_path = '/usr/local/llvm37/lib'
 endif
 
-" Unite
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-			\  'ignore_globs', split(&wildignore, ','))
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_grep_encoding = 'utf-8'
-let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-let g:unite_source_grep_recursive_opt = ''
-if executable('ack')
-	let g:unite_source_grep_command = 'ack'
-	let g:unite_source_grep_default_opts = '--nogroup --nocolor -i -k -H'
-	let g:unite_source_rec_async_command = 'ack -f --nofilter'
-elseif executable('ag')
-	let g:unite_source_grep_command = 'ag'
-	let g:unite_source_rec_async_command = 'ag --nogroup --nocolor -g ""' " no --hidden
-elseif executable('pt')
-	let g:unite_source_grep_command = 'pt'
-	let g:unite_source_rec_async_command = 'pt --nogroup --nocolor -g .'
-endif
-
 " Colors and lines
 let g:lightline = {
 			\ 'colorscheme': 'solarized',
 			\ 'component': {
-			\   'readonly': '%{&readonly?"⭤":""}',
+			\   'readonly': '%{&readonly ? "⭤" : ""}',
 			\ }
 			\ }
 let base16colorspace=256

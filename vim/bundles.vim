@@ -34,7 +34,6 @@ if executable('latex')
 endif
 if executable('python')
 	Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'git submodule update --init' }
-	Plug 'nvie/vim-flake8', { 'for': 'python' }
 endif
 if executable('go')
 	Plug 'fatih/vim-go', { 'for': 'go' }
@@ -58,11 +57,7 @@ endif
 
 " Features
 Plug 'ervandew/supertab'
-Plug 'Shougo/vimproc', { 'do': g:make }
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/unite-outline'
-Plug 'tsukkee/unite-tag'
-Plug 'sanford1/unite-unicode'
+Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
