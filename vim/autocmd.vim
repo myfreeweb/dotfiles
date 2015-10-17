@@ -30,7 +30,7 @@ au FileType {css,sass,scss,less,stylus} setlocal iskeyword+=-
 au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if executable('npm') && has('python')
-	au FileType {html,jade,haml} call tern#Enable()
+	au FileType {html,jade,haml} silent! call tern#Enable()
 endif
 au FileType mail exe "normal! }"
 

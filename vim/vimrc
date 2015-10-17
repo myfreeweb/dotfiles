@@ -12,6 +12,7 @@
 " https://github.com/garybernhardt/dotfiles
 " https://github.com/mutewinter/dot_vim
 " https://github.com/terryma/dotfiles
+" https://github.com/tpope/tpope
 " https://gist.github.com/prabirshrestha/279d8b179d9353fe8694
 " http://amix.dk/vim/vimrc.html
 
@@ -139,20 +140,23 @@ let g:gitgutter_sign_removed_first_line = '⇐'
 let g:gitgutter_sign_modified_removed = '⇔'
 
 let delimitMate_excluded_ft='clojure'
-let vimclojure#SplitPos='bottom'
-let g:vimclojure#DynamicHighlighting=1
-let g:haskell_conceal_enumerations=0
 let g:jedi#popup_on_dot = 0
 let g:ledger_bin='hledger'
 let g:FactorRoot='/Applications/factor'
 let g:racer_cmd=$HOME.'/src/github.com/phildawes/racer/target/release/racer'
-if exists('/usr/local/llvm35/lib')
+
+if exists('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/')
+	let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+elseif exists('/usr/local/llvm35/lib')
 	let g:clang_library_path = '/usr/local/llvm35/lib'
 elseif exists('/usr/local/llvm36/lib')
 	let g:clang_library_path = '/usr/local/llvm36/lib'
 elseif exists('/usr/local/llvm37/lib')
 	let g:clang_library_path = '/usr/local/llvm37/lib'
 endif
+
+
+command! -bar -count=0 RFC :e http://www.ietf.org/rfc/rfc<count>.txt | setl ro noma
 
 " Colors and lines
 let g:lightline = {
