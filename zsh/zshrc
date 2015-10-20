@@ -12,6 +12,7 @@
 # http://iterm2.com/shell_integration.html
 # http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 # https://github.com/xero/dotfiles
+# https://github.com/eevee/rc
 
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
@@ -169,6 +170,10 @@ fancy-ctrl-z() {
 		zle clear-screen
 	fi
 }
+
+page-up-within-tmux() {
+	[[ -n $TMUX ]] && tmux copy-mode -u
+}
 # }}}
 
 # Basic settings {{{
@@ -186,28 +191,24 @@ bindkey -e # Emacs style keys in shell
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
-[[ "$terminfo[kcuu1]" != "" ]] && bindkey "$terminfo[kcuu1]" history-substring-search-up
-[[ "$terminfo[kcud1]" != "" ]] && bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^H' backward-word
 bindkey '^L' forward-word
 zle -N hst && bindkey '^R' hst
 zle -N fancy-ctrl-z && bindkey '^Z' fancy-ctrl-z
+[[ -n $terminfo[kpp] ]] && zle -N page-up-within-tmux && bindkey $terminfo[kpp] page-up-within-tmux
+[[ -n $terminfo[kcuu1] ]] && bindkey $terminfo[kcuu1] history-substring-search-up
+[[ -n $terminfo[kcud1] ]] && bindkey $terminfo[kcud1] history-substring-search-down
 
 # Stuff
-setopt pushd_ignore_dups; setopt auto_pushd
-setopt auto_name_dirs; setopt auto_cd
-setopt transient_rprompt; setopt prompt_subst
-setopt no_beep; setopt multios
-setopt extended_glob; setopt interactive_comments
+setopt pushd_ignore_dups auto_pushd auto_name_dirs auto_cd \
+	transient_rprompt prompt_subst no_beep multios extended_glob interactive_comments
 
 # History
-setopt hist_ignore_dups; setopt hist_ignore_space
-setopt hist_reduce_blanks; setopt hist_verify
-setopt hist_expire_dups_first; setopt hist_find_no_dups
-setopt share_history; setopt extended_history
-setopt append_history; setopt inc_append_history
+setopt hist_ignore_dups hist_ignore_space hist_reduce_blanks hist_verify \
+ hist_expire_dups_first hist_find_no_dups share_history extended_history \
+ append_history inc_append_history
 
 # Completion
 setopt menu_complete # Autoselect the first suggestion
@@ -255,6 +256,9 @@ _loadkeys() { compadd $(find ~/.ssh -perm 0600 ! -type s | xargs basename) }
 compdef _loadkeys loadkeys
 compdef _base16 base16
 
+alias find="noglob find"
+alias wget="noglob wget"
+
 HISTFILE=~/.tmp/history_zsh
 HISTSIZE=4096
 SAVEHIST=4096
@@ -267,7 +271,7 @@ export CLICOLOR="yes"
 
 PROMPT='%{$SCOLOR%}${PWD/#~/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} '
 
-cdpath=(~/src/github.com/myfreeweb ~/src/bitbucket.org/wmru)
+cdpath=(~/src/github.com/myfreeweb)
 
 typeset -U path # U for Unique, like a set; (N) == only if exists
 path=(

@@ -7,6 +7,7 @@
 # https://github.com/paulirish/dotfiles/blob/master/.gitconfig
 # https://github.com/garybernhardt/dotfiles/blob/master/.githelpers
 # http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+# https://github.com/eevee/rc/blob/master/.gitconfig
 
 [core]
 	excludesfile = ~/.gitignore
@@ -31,7 +32,6 @@
 [diff]
 	algorithm = histogram
 	renames = copy
-	tool = Kaleidoscope
 	wordregex = [^[:space:]]
 	mnemonicprefix = true
 	submodule = log
@@ -41,6 +41,7 @@
 [merge]
 	summary = true
 	tool = splice
+	conflictstyle = diff3
 [push]
 	default = tracking
 [pull]
