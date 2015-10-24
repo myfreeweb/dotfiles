@@ -24,6 +24,6 @@ xcape -t 350 -e 'Shift_R=Shift_R|0'
 sxhkd &
 dunst &
 unclutter &
-xscreensaver -no-splash &
-compton -bc -o 0.35 --shadow-exclude 'n:e:gromit-mpx'
+xautolock -time 4 -locker "brightctl 0; slock; brightctl restore" &
+compton -c -o 0.35 --shadow-exclude 'n:e:gromit-mpx' &
 exec bspwm

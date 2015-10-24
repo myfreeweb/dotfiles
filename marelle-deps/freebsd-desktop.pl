@@ -34,18 +34,10 @@ installs_with_ports(freetype2, 'print/freetype2', 'WITH="LCD_FILTERING"').
 managed_pkg(xorg).
 depends(xorg, freebsd, [freetype2]).
 
-pkg(vbox_client).
-depends(vbox_client, freebsd, [xorg]).
-installs_with_pkgng(vbox_client, 'emulators/virtualbox-ose-additions').
-
-idempotent_pkg(vbox_client_enabled).
-depends(vbox_client_enabled, freebsd, [vbox_client]).
-execute(vbox_client_enabled, freebsd) :-
-	sysrc('vboxguest_enable'),
-	sysrc('vboxservice_enable').
-
 managed_pkg(compton).
 managed_pkg(unclutter).
+managed_pkg(xautolock).
+managed_pkg(slock).
 managed_pkg(bspwm).
 pkg(dmenu).
 installs_with_ports(dmenu, 'x11/dmenu', 'WITH="XFT"').
@@ -73,7 +65,8 @@ managed_pkg('sourcesanspro-ttf').
 
 meta_pkg(desktop, freebsd, [
 	freebsd_conf_desktop,
-	feh, dunst, xclip, xsel, scrot, unclutter, bspwm,
-	'gnome-themes-standard', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf',
-	sterm, zathura
+	compton, unclutter, xautolock, slock,
+	bspwm, dmenu, sterm, zathura,
+	feh, dunst, xclip, xsel, scrot,
+	'gnome-themes-standard', webfonts, fira, noto, paratype, 'sourcecodepro-ttf', 'sourcesanspro-ttf'
 ]).

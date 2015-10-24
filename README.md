@@ -19,19 +19,23 @@ I definitely spend waaaaaay too much time configuring software I use.
 
 ```
 
-[![Screenshot](https://imgur.com/mIkLDkN.png)](https://imgur.com/mIkLDkN)
-
-# dotfiles 2.0
+# dotfiles
 
 Modular dotfiles!
-Easy installation on virtual machines and servers via SSH.
-No symlinks.
 
-A module is a directory with an `apply.sh` file that installs the dotfiles.
+- A module is a directory with an `apply.sh` file that installs the dotfiles the module contains
+- `install.sh` installs multiple modules on the local machine
+- `rinstall.sh` installs multiple modules on a remote machine using SSH
+- [Marelle] is used for installing software and changing system-wide configuration
 
-Also: [Marelle] deps.
+- XDG-style `~/.config/application-name/config-file-name` paths are preferred
+- Binaries are placed into `~/.local/bin` (and `go`, `pip`, `npm`, `cpan`, `cargo`, etc. are configured to use that directory)
+- Repos are placed into `~/src` using Go conventions (e.g. `~/src/github.com/myfreeweb/dotfiles`). `$GOPATH` is `~` and [ghq] is used to clone non-Go repos there
+- Keyboard configuration is mostly based on [A Modern Space Cadet]
 
 [Marelle]: https://github.com/larsyencken/marelle
+[ghq]: https://github.com/motemen/ghq
+[A Modern Space Cadet]: http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
 
 ## Installation
 
@@ -70,12 +74,12 @@ $ marelle meet desktop
 - **bin** -- various useful scripts that mostly work
 - **tmux** -- [tmux] configuration and command helper
 - **zsh** -- [Z Shell] configuration and plugins
-- **vim** -- [Vim] *or [neovim]* text editor configuration and plugins
+- **vim** -- [neovim] text editor configuration and plugins
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 - **ranger** -- [ranger] file manager
-- **x11** -- [bspwm], [xmobar], [dunst], [st] and other x.org stuff
-- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst] -- a lot of the keyboard stuff is based on [A Modern Space Cadet]
+- **x11** -- [bspwm], [dunst], [st] and other x.org stuff
+- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst]
 - **windows** -- PowerShell and other Microsoft Windows stuff
 
 [ssh]: http://www.openssh.com
@@ -86,21 +90,18 @@ $ marelle meet desktop
 [gpg]: https://www.gnupg.org
 [tmux]: http://tmux.sourceforge.net
 [Z Shell]: http://zsh.sourceforge.net
-[Vim]: http://www.vim.org
 [neovim]: https://github.com/neovim/neovim
 [GNU Emacs]: https://www.gnu.org/software/emacs/
 [keybindings]: https://github.com/ttscoff/KeyBindings
 [Karabiner]: https://pqrs.org/osx/karabiner/index.html.en
 [Seil]: https://pqrs.org/osx/karabiner/seil.html.en
 [Amethyst]: https://github.com/ianyh/Amethyst
-[A Modern Space Cadet]: http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
 [mutt]: http://www.mutt.org
 [notmuch]: http://notmuchmail.org
 [msmtp]: https://wiki.archlinux.org/index.php/MSMTP
 [urlview]: https://github.com/sigpipe/urlview
 [hashcash]: http://hashcash.org
 [bspwm]: https://github.com/baskerville/bspwm
-[xmobar]: http://projects.haskell.org/xmobar/
 [dunst]: https://github.com/knopwob/dunst
 [st]: http://st.suckless.org/
 [ranger]: http://ranger.nongnu.org/
@@ -109,6 +110,7 @@ $ marelle meet desktop
 
 - **python** -- [Python] REPL configuration
 - **ruby** -- [Ruby] irb, Rails, RubyGems configuration
+- **node** -- [Node.js] npm configuration
 - **lein** -- [Clojure]'s [Leiningen] configuration
 - **ocaml** -- [OCaml]'s [OPAM] and [utop] configuration
 - **haskell** -- [Haskell]'s [Cabal], ghci, [hi] configuration
@@ -117,6 +119,7 @@ $ marelle meet desktop
 [SWI-Prolog]: http://www.swi-prolog.org/
 [Python]: https://www.python.org
 [Ruby]: https://www.ruby-lang.org/en/
+[Node.js]: https://nodejs.org/en/
 [Clojure]: http://clojure.org
 [Leiningen]: http://leiningen.org
 [OCaml]: https://ocaml.org

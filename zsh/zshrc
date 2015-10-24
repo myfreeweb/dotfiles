@@ -26,14 +26,14 @@ base16() {
 	if [[ -s $BASE16_SHELL ]]; then
 		source $BASE16_SHELL
 		export BASE16_SCHEME="$SCHEME"
-		echo -n $SCHEME > ~/.base16.scheme
+		echo -n $SCHEME > ~/.config/base16/scheme
 	else
 		echo "Looks like $BASE16_SHELL does not exist :-("
 	fi
 }
 
 background() {
-	echo -n "$*" > ~/.base16.background
+	echo -n "$*" > ~/.config/base16/background
 	export BASE16_BACKGROUND="$*"
 	base16 $BASE16_SCHEME
 }
@@ -41,8 +41,8 @@ background() {
 light() { background light }
 dark() { background dark }
 _base16() { compadd $(find ~/.zsh/base16-shell | grep dark.sh | xargs basename | sed -e "s/base16-//" -e "s/\.dark\.sh//") }
-export BASE16_SCHEME="$(cat ~/.base16.scheme 2>/dev/null || echo default)"
-export BASE16_BACKGROUND="$(cat ~/.base16.background 2>/dev/null || echo dark)"
+export BASE16_SCHEME="$(cat ~/.config/base16/scheme 2>/dev/null || echo default)"
+export BASE16_BACKGROUND="$(cat ~/.config/base16/background 2>/dev/null || echo dark)"
 background $BASE16_BACKGROUND
 # }}}
 
@@ -109,6 +109,7 @@ export PERL5LIB=~/.local/lib/perl5:$PERL5LIB
 
 # Rust
 export RUST_SRC_PATH="$HOME/src/github.com/rust-lang/rust/src"
+export CARGO_INSTALL_ROOT="$HOME/.local"
 # }}}
 
 # Aliases and functions {{{

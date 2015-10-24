@@ -3,6 +3,7 @@ echo "==> Installing zsh"
 
 mkdir -p ~/.tmp
 mkdir -p ~/.zsh
+mkdir -p ~/.config/base16
 
 rm -r ~/.zsh/zshuery
 

@@ -20,9 +20,15 @@ else
 end
 
 ARGV.each do |arg|
-  if arg.start_with?('+') || arg.start_with?('-')
-    set.(current.() + arg.to_i)
+  cur = current.()
+  if arg == "get"
+    puts cur
+  elsif arg == "restore"
+    set.(File.read('/tmp/prev_brightness').to_i)
+  elsif arg.start_with?('+') || arg.start_with?('-')
+    set.(cur + arg.to_i)
   else
     set.(arg.to_i)
   end
+  File.write('/tmp/prev_brightness', cur)
 end
