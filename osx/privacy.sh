@@ -1,9 +1,13 @@
-#!/usr/bin/env zsh
-# Thanks: https://github.com/drduh/OS-X-Yosemite-Security-and-Privacy-Guide
+#!/bin/sh
+# Thanks:
+#  https://github.com/drduh/OS-X-Yosemite-Security-and-Privacy-Guide
 
-sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent; vacuum'
+sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent; vacuum' 2>/dev/null
 
-disable_agent() { launchctl unload -w /System/Library/LaunchAgents/${1}.plist 2>/dev/null }
+disable_agent() {
+	launchctl unload -w "/System/Library/LaunchAgents/${1}.plist" 2>/dev/null
+}
+
 # I don't call from OS X
 disable_agent com.apple.CallHistoryPluginHelper
 disable_agent com.apple.CallHistorySyncHelper

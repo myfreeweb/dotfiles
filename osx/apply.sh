@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 echo "==> Installing osx"
 
@@ -11,9 +11,9 @@ sed '$d' ./keybindings/DefaultKeyBinding.dict > ~/Library/KeyBindings/DefaultKey
 if [ -e "../x11/XCompose" ]; then
 	export PERL_MB_OPT="--install_base \"$HOME/.local\""
 	export PERL_MM_OPT="INSTALL_BASE=$HOME/.local"
-	[[ ! -e ~/.local/lib/perl5/X11/Keysyms.pm ]] && cpan -f -i X11:Keysyms
+	[[ ! -e "$HOME/.local/lib/perl5/X11/Keysyms.pm" ]] && cpan -f -i X11:Keysyms
 	echo "\n  // XCompose " >> ~/Library/KeyBindings/DefaultKeyBinding.dict
-	PERL5LIB=~/.local/lib/perl5 perl ./compose2keybindings.pl < ../x11/XCompose | sed -e "s/\\\\UF710/^$\\\\UF710/" | tail -n +2 >> ~/Library/KeyBindings/DefaultKeyBinding.dict
+	PERL5LIB="$HOME/.local/lib/perl5" perl ./compose2keybindings.pl < ../x11/XCompose | sed -e "s/\\\\UF710/^$\\\\UF710/" | tail -n +2 >> ~/Library/KeyBindings/DefaultKeyBinding.dict
 else
 	echo "==> Warning: x11 not found, not adding XCompose to DefaultKeyBinding"
 	echo "}" >> ~/Library/KeyBindings/DefaultKeyBinding.dict
@@ -22,8 +22,8 @@ fi
 cat ./amethyst.json > ~/.amethyst
 
 
-SEIL=/Applications/Seil.app/Contents/Library/bin/seil
-if [ -e "$SEIL" ]; then
+SEIL="/Applications/Seil.app/Contents/Library/bin/seil"
+if [[ -e "$SEIL" ]]; then
 	$SEIL set enable_control_l 1
 	$SEIL set enable_control_r 1
 	$SEIL set enable_command_l 1
@@ -35,7 +35,7 @@ if [ -e "$SEIL" ]; then
 	$SEIL set keycode_control_l 80
 	$SEIL set keycode_control_r 80
 
-	if [ -z "$PCKEYBOARD" ]; then
+	if [[ -z "$PCKEYBOARD" ]]; then
 		echo "==> osx: Mac keyboard"
 		# Cmd is Cmd, Opt is Opt -- reset in case of accidental PCKEYBOARD=1 execution or switching back
 		$SEIL set keycode_command_l 55
@@ -55,11 +55,11 @@ else
 fi
 
 
-mkdir -p "~/Library/Application Support/Karabiner"
-cat ./private.xml > "~/Library/Application Support/Karabiner/private.xml"
+mkdir -p "$HOME/Library/Application Support/Karabiner"
+cat ./private.xml > "$HOME/Library/Application Support/Karabiner/private.xml"
 
-KARABINER=/Applications/Karabiner.app/Contents/Library/bin/karabiner
-if [ -e "$KARABINER" ]; then
+KARABINER="/Applications/Karabiner.app/Contents/Library/bin/karabiner"
+if [[ -e "$KARABINER" ]]; then
 	$KARABINER reloadxml
 	$KARABINER set parameter.keyoverlaidmodifier_timeout 300
 	$KARABINER set remap.controlL2controlL_escape 1

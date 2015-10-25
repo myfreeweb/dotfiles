@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 # This came from Greg V's dotfiles:
 #      https://github.com/myfreeweb/dotfiles
 # Feel free to steal it, but attribution is nice
@@ -104,7 +104,7 @@ defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 # Transmission
 ## Use `~/Downloads/Incomplete` to store incomplete downloads
 defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Incomplete"
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/Downloads/Incomplete"
 ## Don't prompt for confirmation before downloading
 defaults write org.m0k.transmission DownloadAsk -bool false
 ## Trash original torrent files
