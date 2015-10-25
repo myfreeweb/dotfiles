@@ -39,7 +39,22 @@ Modular dotfiles!
 
 ## Installation
 
-Common setup:
+### Common setup (FreeBSD)
+
+```bash
+# portsnap fetch extract
+# pkg install git sudo
+# visudo
+$ git clone git@github.com:myfreeweb/dotfiles ~/src/github.com/myfreeweb/dotfiles
+$ cd ~/src/github.com/myfreeweb/dotfiles
+$ git submodule update --init --recursive
+$ (cd freebsd && sudo ./desktop.sh)
+$ ./install.sh dev-base bin tmux zsh vim x11 python ruby
+$ chsh -s /usr/local/bin/zsh
+$ zsh
+```
+
+### Common setup (OS X)
 
 ```bash
 $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -109,7 +124,6 @@ $ zsh
 - **haskell** -- [Haskell]'s [Cabal], ghci, [hi] configuration
 - **lua** -- [Lua] [luarocks] configuration
 
-[SWI-Prolog]: http://www.swi-prolog.org/
 [Python]: https://www.python.org
 [Ruby]: https://www.ruby-lang.org/en/
 [Node.js]: https://nodejs.org/en/

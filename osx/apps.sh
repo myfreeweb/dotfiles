@@ -1,11 +1,11 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 # This came from Greg V's dotfiles:
 #      https://github.com/myfreeweb/dotfiles
 # Feel free to steal it, but attribution is nice
 
 if [[ ! -e "`which brew`" ]]; then
 	echo "Homebrew is required: http://brew.sh"
-	exit
+	exit 1
 fi
 
 brew tap caskroom/cask

@@ -5,7 +5,7 @@
 
 if [[ ! -e "`which brew`" ]]; then
 	echo "Homebrew is required: http://brew.sh"
-	exit
+	exit 1
 fi
 
 brew tap homebrew/dupes
