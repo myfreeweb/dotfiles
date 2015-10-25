@@ -6,11 +6,6 @@ end
 " Only `Plug 'username/repo'` works with this setup. I don't care about other types of paths!
 let g:plug_name_modifier = ':s?\.git$??'
 
-let g:make = 'gmake'
-if system('uname -o') =~ '^GNU/'
-	let g:make = 'make'
-endif
-
 call plug#begin('~/src/github.com')
 
 " Languages
@@ -28,6 +23,7 @@ endif
 if executable('npm')
 	Plug 'marijnh/tern_for_vim', { 'for': ['js', 'jsx', 'javascript', 'html', 'jade', 'haml'], 'do': 'npm install --update' }
 	Plug 'raichoo/purescript-vim', { 'for': ['purs', 'purescript'] }
+	Plug 'Quramy/tsuquyomi', { 'for': ['ts', 'typescript'] }
 endif
 if executable('latex')
 	Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
@@ -56,12 +52,10 @@ if executable('mono') " .NET
 endif
 
 " Features
-Plug 'ervandew/supertab'
-Plug 'airblade/vim-gitgutter'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-speeddating'
+plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-abolish'
@@ -73,17 +67,20 @@ Plug 'tpope/vim-sleuth'
 Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] }
 Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] }
 Plug 'sjl/vitality.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'reedes/vim-wordy'
+Plug 'ervandew/supertab'
+Plug 'airblade/vim-gitgutter'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'Raimondi/delimitMate'
-Plug 'godlygeek/tabular'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sickill/vim-pasta'
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'reedes/vim-wordy'
 
 " Colors
 Plug 'chriskempson/base16-vim'

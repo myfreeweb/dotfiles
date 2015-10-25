@@ -11,6 +11,8 @@ let maplocalleader = "\\"
 nmap sk :SplitjoinSplit<CR>
 nmap sj :SplitjoinJoin<CR>
 nnoremap <Leader>a :call VimuxOpenRunner()<CR>
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " Inverted for Colemak + Improve up/down movement on wrapped lines http://vimbits.com/bits/25
 noremap k gj

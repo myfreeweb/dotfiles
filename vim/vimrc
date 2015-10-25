@@ -28,7 +28,6 @@ if !has('nvim')
 	set t_ti= t_te= " http://www.shallowsky.com/linux/noaltscreen.html
 end
 source ~/.vim/bundles.vim
-syntax on
 
 " basics
 set noswapfile backup undofile undoreload=5000 history=500
