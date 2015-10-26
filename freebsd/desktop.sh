@@ -35,10 +35,10 @@ pkg lock -y mutt
 
 pkg install -y \
 	ack ctags mercurial sloccount npm \
-	msmtp urlview hashcash notmuch antiword w3m \
+	msmtp urlview hashcash notmuch antiword w3m py27-ranger \
 	xorg compton unclutter xautolock slock bspwm sterm \
 	zathura zathura-ps zathura-djvu zathura-pdf-poppler \
-	feh dunst xclip xsel scrot xev \
+	dmenu feh dunst xclip xsel scrot xev \
 	gnome-themes-standard \
 	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf droid-fonts-ttf
 

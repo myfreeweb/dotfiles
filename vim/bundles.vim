@@ -55,7 +55,7 @@ endif
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-abolish'

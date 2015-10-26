@@ -86,10 +86,10 @@ XF86MonBrightness{Up,Down}
 	~/.local/bin/brightctl {+,-}1
 
 super + shift + 3
-	sleep 0.2; scrot -s || scrot -s # sometimes it fails with "couldn't grab pointer"
+	scrot
 
 super + shift + 4
-	scrot
+	sleep 0.2; scrot -s || scrot -s # sometimes it fails with "couldn't grab pointer"
 
 # make sxhkd reload its configuration files:
 alt + Escape

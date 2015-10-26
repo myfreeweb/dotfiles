@@ -32,6 +32,6 @@ sysrc portmap_enable="NO" \
 	ntpd_enable="NO" \
 	openntpd_enable="YES"
 
-pkg install -y libressl openntpd git go vim-lite
+pkg install -y libressl openntpd git go zsh tmux tree vim-lite
 
 chflags sappnd /var/log/security
