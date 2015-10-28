@@ -19,13 +19,16 @@ setxkbmap 'us(colemak),ru' \
 	-option grp:win_space_toggle \
 	$XKB_OPTS
 # Non-Mac keyboard: echo 'XKB_OPTS="-option altwin:swap_lalt_lwin"' >> ~/.xinitrc.local
-xcape -t 350 -e 'Control_L=Escape'
-xcape -t 350 -e 'Shift_L=Shift_L|9'
-xcape -t 350 -e 'Shift_R=Shift_R|0'
+
+if [ -x "`which xcape`" ]; then
+	xcape -t 350 -e 'Control_L=Escape'
+	xcape -t 350 -e 'Shift_L=Shift_L|9'
+	xcape -t 350 -e 'Shift_R=Shift_R|0'
+fi
 
 sxhkd &
 dunst &
 unclutter &
-xautolock -time 4 -corners -000 -locker "brightctl 0; slock; brightctl restore" &
+xautolock -time 4 -corners -000 -locker "brightctl 0; xset dpms force off; slock; brightctl restore" &
 compton -c -o 0.35 --vsync opengl --dbe --shadow-exclude 'n:e:gromit-mpx' &
 exec bspwm

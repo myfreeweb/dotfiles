@@ -1,4 +1,5 @@
 .DS_Store
+*.core
 .rbx
 *.pyc
 *.pyo

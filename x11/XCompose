@@ -39,6 +39,8 @@ include "%L"
 <Multi_key> <less> <3>                                                     : "♥"    U2665      # BLACK HEART SUIT
 <Multi_key> <Multi_key> <g> <e> <n> <d> <e> <r> <q>                        : "⚧"    U26A7      # MALE WITH STROKE AND MALE AND FEMALE SIGN
 <Multi_key> <Multi_key> <t> <r> <a> <n> <s>                                : "⚥"    U26A5      # MALE AND FEMALE SIGN
+<Multi_key> <Multi_key> <t> <a> <b> <l> <e>                                : "(╯°□°）╯︵ ┻━┻"
+<Multi_key> <Multi_key> <s> <h> <r> <u> <g>                                : "¯\\_(ツ)_/¯"
 <Multi_key> <Multi_key> <p> <e> <a> <c> <e>                                : "☮"    U262E      # PEACE SYMBOL
 <Multi_key> <Multi_key> <a> <t> <o> <m>                                    : "⚛"    U269B      # ATOM SYMBOL
 <Multi_key> <Multi_key> <c> <c> <c> <p>                                    : "☭"    U262D      # HAMMER AND SICKLE

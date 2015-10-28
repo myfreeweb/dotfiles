@@ -35,7 +35,6 @@
 		<prefer>
 			<family>PT Serif</family>
 			<family>Noto Serif</family>
-			<family>Times New Roman</family>
 			<family>Symbola</family>
 		</prefer>
 	</alias>
@@ -86,16 +85,26 @@
 		<rejectfont><pattern><patelt name="scalable"><bool>false</bool></patelt></pattern></rejectfont>
 	</selectfont>
 
-	<!-- No Arial! -->
+	<!-- Better sans-serif font! -->
 	<match target="pattern">
 		<test qual="any" name="family"><string>Arial</string></test>
-		<edit mode="assign" binding="same" name="family"><string>Helvetica Neue</string></edit>
+		<edit mode="assign" binding="same" name="family"><string>Fira Sans</string></edit>
 	</match>
 
-	<!-- No Courier! -->
+	<!-- Better serif font! -->
+	<match target="pattern">
+		<test qual="any" name="family"><string>Times New Roman</string></test>
+		<edit mode="assign" binding="same" name="family"><string>PT Serif</string></edit>
+	</match>
+
+	<!-- Better monospace font! -->
 	<match target="pattern">
 		<test qual="any" name="family"><string>Courier</string></test>
-		<edit mode="assign" binding="same" name="family"><string>monospace</string></edit>
+		<edit mode="assign" binding="same" name="family"><string>Fira Mono</string></edit>
+	</match>
+	<match target="pattern">
+		<test qual="any" name="family"><string>Consolas</string></test>
+		<edit mode="assign" binding="same" name="family"><string>Fira Mono</string></edit>
 	</match>
 
 	<!-- Don't antialias Chicago! -->

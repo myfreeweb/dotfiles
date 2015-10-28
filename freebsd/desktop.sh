@@ -24,7 +24,7 @@ sysctl_set kern.ipc.shm_allow_removed=1 \
 	net.inet.ip.fastforwarding=1 # NOTE: breaks IPSec
 
 sysrc background_dhclient="YES" \
-	syslogd_flags="-ss"
+	syslogd_flags="-ss" 
 
 pkg info freetype2 >/dev/null || make BATCH=yes WITH="LCD_FILTERING PNG" -C /usr/ports/print/freetype2 install clean
 pkg lock -y freetype2
@@ -35,12 +35,15 @@ pkg lock -y mutt
 
 pkg install -y \
 	ack ctags mercurial sloccount npm \
-	msmtp urlview hashcash notmuch antiword w3m py27-ranger \
+	msmtp urlview hashcash notmuch antiword w3m \
+	py27-ranger py27-pip python35 \
 	xorg compton unclutter xautolock slock bspwm sterm \
 	zathura zathura-ps zathura-djvu zathura-pdf-poppler \
-	dmenu feh dunst xclip xsel scrot xev \
+	dmenu feh dunst xclip xsel scrot xev automount \
 	gnome-themes-standard \
 	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf droid-fonts-ttf
+
+python3.5 -m ensurepip --upgrade --user
 
 pkg info webfonts >/dev/null || make BATCH=yes WITH=MSWINDOWS_LICENSE -C /usr/ports/x11-fonts/webfonts install clean
 pkg lock -y webfonts
