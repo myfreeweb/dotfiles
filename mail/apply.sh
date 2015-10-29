@@ -19,7 +19,7 @@ chmod 0600 ~/.msmtprc
 if [ "$(uname)" = "Darwin" ]; then
 	cat osx.mailcap > ~/.mailcap
 
-	cat osx.urlview > ~/.urlview
+	echo "COMMAND open %s" > ~/.urlview
 
 	cat muttrc+osx > ~/.muttrc+osx
 
@@ -27,6 +27,8 @@ if [ "$(uname)" = "Darwin" ]; then
 	chmod +x ~/bin/view-attachment
 else
 	cat mailcap > ~/.mailcap
+
+	echo "COMMAND xdg-open %s" > ~/.urlview
 fi
 
 echo "==> Installed mail"

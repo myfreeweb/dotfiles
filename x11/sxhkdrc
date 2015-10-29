@@ -91,6 +91,9 @@ super + shift + 3
 super + shift + 4
 	sleep 0.2; scrot -s || scrot -s # sometimes it fails with "couldn't grab pointer"
 
+super + l
+	xautolock -locknow
+
 # make sxhkd reload its configuration files:
 alt + Escape
 	pkill -USR1 -x sxhkd

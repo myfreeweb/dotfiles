@@ -1,16 +1,28 @@
 #!/bin/sh
-export PATH=~/.local/bin:$PATH
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+
 export LC_ALL=en_US.UTF-8
+
+# E.g. xcape is in ~/.local/bin
+export PATH=~/.local/bin:$PATH
+
+# Make sure XCompose works!
 export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
 
+# For some reason...
 killall ssh-agent
 rm -f ~/.ssh/ssh_auth_sock
 
+# Local settings stuff
 . ~/.xinitrc.local
 . ~/.fehbg
 xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 
+# Keyboard setup inspired by http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
+# // Non-Mac keyboard: echo 'XKB_OPTS="-option altwin:swap_lalt_lwin"' >> ~/.xinitrc.local
 xset r rate 300 35
 setxkbmap 'us(colemak),ru' \
 	-option ctrl:nocaps \
@@ -18,17 +30,20 @@ setxkbmap 'us(colemak),ru' \
 	-option compose:ralt \
 	-option grp:win_space_toggle \
 	$XKB_OPTS
-# Non-Mac keyboard: echo 'XKB_OPTS="-option altwin:swap_lalt_lwin"' >> ~/.xinitrc.local
-
 if [ -x "`which xcape`" ]; then
 	xcape -t 350 -e 'Control_L=Escape'
 	xcape -t 350 -e 'Shift_L=Shift_L|9'
 	xcape -t 350 -e 'Shift_R=Shift_R|0'
 fi
 
+# What the fuck. bspwm, why are you *crashing* when this is left over from a hard reboot?
+rm -f /tmp/bspwm_0_0-socket
+
+# All the things
 sxhkd &
 dunst &
 unclutter &
-xautolock -time 4 -corners -000 -locker "brightctl 0; xset dpms force off; slock; brightctl restore" &
+xautolock -time 5 -corners -000 -notify 5 -notifier "xset dpms force off" -locker "xset dpms force off; slock" &
 compton -c -o 0.35 --vsync opengl --dbe --shadow-exclude 'n:e:gromit-mpx' &
+redshift -l 55.75:37.616 -t 6500:4200 &
 exec bspwm

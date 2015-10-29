@@ -39,7 +39,7 @@ pkg install -y \
 	py27-ranger py27-pip python35 \
 	xorg compton unclutter xautolock slock bspwm sterm \
 	zathura zathura-ps zathura-djvu zathura-pdf-poppler \
-	dmenu feh dunst xclip xsel scrot xev automount \
+	dmenu feh dunst xclip xsel scrot xev redshift automount \
 	gnome-themes-standard \
 	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf droid-fonts-ttf
 
