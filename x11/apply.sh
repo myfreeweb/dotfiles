@@ -2,8 +2,12 @@
 echo "==> Installing x11"
 
 mkdir -p ~/.local/bin
+
 cat brightctl > ~/.local/bin/brightctl
 chmod +x ~/.local/bin/brightctl
+
+cat floatyoutube > ~/.local/bin/floatyoutube
+chmod +x ~/.local/bin/floatyoutube
 
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local

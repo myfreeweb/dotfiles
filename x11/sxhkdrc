@@ -92,7 +92,13 @@ super + shift + 4
 	sleep 0.2; scrot -s || scrot -s # sometimes it fails with "couldn't grab pointer"
 
 super + l
-	xautolock -locknow
+	xset dpms force off; xautolock -locknow
+
+super + f
+	~/.local/bin/floatyoutube start
+
+super + h
+	~/.local/bin/floatyoutube toggleopacity
 
 # make sxhkd reload its configuration files:
 alt + Escape
