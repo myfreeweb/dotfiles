@@ -11,6 +11,9 @@ export PATH=~/.local/bin:$PATH
 # Make sure XCompose works!
 export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
 
+# Just in case I'll use some Java GUI
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # For some reason...
 killall ssh-agent
 rm -f ~/.ssh/ssh_auth_sock

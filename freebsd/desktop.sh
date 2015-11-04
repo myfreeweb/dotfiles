@@ -29,6 +29,9 @@ sysrc background_dhclient="YES" \
 pkg info freetype2 >/dev/null || make BATCH=yes WITH="LCD_FILTERING PNG" -C /usr/ports/print/freetype2 install clean
 pkg lock -y freetype2
 
+pkg info dmenu >/dev/null || make BATCH=yes WITH="XFT" -C /usr/ports/x11/dmenu install clean
+pkg lock -y dmenu
+
 pkg install -y gmake-lite automake autoconf libidn libiconv gettext-runtime gettext-tools p5-Locale-gettext mime-support db5 cyrus-sasl gpgme
 pkg info mutt >/dev/null || make BATCH=yes WITH="FLOCK GPGME" WITHOUT="XML DOCS EXAMPLES" -C /usr/ports/mail/mutt install clean
 pkg lock -y mutt
@@ -39,7 +42,7 @@ pkg install -y \
 	py27-ranger py27-pip python35 \
 	xorg compton unclutter xautolock slock bspwm sterm \
 	zathura zathura-ps zathura-djvu zathura-pdf-poppler \
-	dmenu feh dunst xclip xsel scrot xev redshift automount \
+	feh dunst xclip xsel scrot xev redshift automount \
 	xdotool xvkbd transset surf-browser \
 	gnome-themes-standard \
 	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf droid-fonts-ttf
