@@ -85,6 +85,15 @@ alt + space
 XF86MonBrightness{Up,Down}
 	~/.local/bin/brightctl {+,-}1
 
+{F7,XF86AudioPrev}
+	cmus-remote -C player-prev
+
+{F8,XF86AudioPlay}
+	cmus-remote -C player-pause
+
+{F9,XF86AudioNext}
+	cmus-remote -C player-next
+
 super + shift + 3
 	scrot
 

@@ -4,7 +4,7 @@
 # Feel free to steal it, but attribution is nice
 
 if [ "$1" == "start" ]; then
-	sleep 0.15
+	sleep 0.3
 	xvkbd -text "\Cl\Cc" # For some reason this doesn't work with xdotool
 	bspc rule -a surf -o floating=on sticky=on
 	surf "https://www.youtube.com/embed/`xclip -o | sed -E -e "s/.*v=([^&]+).*/\1/"`" &

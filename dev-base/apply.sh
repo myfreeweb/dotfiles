@@ -30,4 +30,7 @@ cat rc > ~/.rc
 mkdir -p ~/.ssh
 cat ssh_config > ~/.ssh/config
 
+mkdir -p ~/.config/peco
+cat peco.json > ~/.config/peco/config.json
+
 echo "==> Installed dev-base"
