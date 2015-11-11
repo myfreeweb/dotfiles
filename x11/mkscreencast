@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+
+# h264 is used because there are problems with vp8 and vp9
+# (something with the framerate -- playback is too fast;
+#  bitrate doesn't seem to increase when you start actively moving stuff on the screen -- bad quality)
+
+if [[ -f ~/.tmp/screencast_pid ]]; then
+	(kill $(cat ~/.tmp/screencast_pid) && \
+		rm ~/.tmp/screencast_pid && \
+		notify-send -t 1000 "Recording stopped!") || \
+		notify-send -t 10000 -u critical "Couldn't stop recording!"
+else
+	read -r X Y W H < <(slop -f "%x %y %w %h")
+	(daemon -p ~/.tmp/screencast_pid ffmpeg -f x11grab -r 25 -s "$W"x"$H" -i ":0.0+$X,$Y" -f oss -i /dev/dsp \
+			-c:v h264 -b:v 10000 -crf 5 -c:a libfaac -b:a 96k ~/Video/Screencasts/$(date +%F-%T).mp4 && \
+		notify-send -t 1000 "Recording started! Run again to stop.") || \
+		notify-send  -t 4000 -u critical "Couldn't start recording!"
+fi

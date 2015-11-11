@@ -9,6 +9,9 @@ chmod +x ~/.local/bin/brightctl
 cat floatyoutube > ~/.local/bin/floatyoutube
 chmod +x ~/.local/bin/floatyoutube
 
+cat mkscreencast > ~/.local/bin/mkscreencast
+chmod +x ~/.local/bin/mkscreencast
+
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
 

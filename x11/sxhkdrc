@@ -95,10 +95,13 @@ XF86MonBrightness{Up,Down}
 	cmus-remote -C player-next
 
 super + shift + 3
-	scrot
+	maim ~/Screen_$(date +%F-%T).png
 
 super + shift + 4
-	sleep 0.2; scrot -s || scrot -s # sometimes it fails with "couldn't grab pointer"
+	maim -s ~/Screen_$(date +%F-%T).png
+
+super + shift + 5
+	~/.local/bin/mkscreencast
 
 super + l
 	xset dpms force off; xautolock -locknow
