@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+
+FILENAME=~/Screen_$(date +%F-%T).png
+maim $* $FILENAME
+pngquant --force --ext .png --quality 85-100 $FILENAME

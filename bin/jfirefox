@@ -1,3 +1,0 @@
-#!/bin/sh
-SRC="$HOME/src/github.com/myfreeweb/sandblast"
-exec sandblast -E "/var/log/firefox.err.log" -p "$SRC/plugins" "$SRC/examples/firefox_run.json"

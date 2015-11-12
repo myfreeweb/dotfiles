@@ -12,6 +12,9 @@ chmod +x ~/.local/bin/floatyoutube
 cat mkscreencast > ~/.local/bin/mkscreencast
 chmod +x ~/.local/bin/mkscreencast
 
+cat mkscreenshot > ~/.local/bin/mkscreenshot
+chmod +x ~/.local/bin/mkscreenshot
+
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
 

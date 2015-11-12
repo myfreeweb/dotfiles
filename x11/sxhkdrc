@@ -95,10 +95,10 @@ XF86MonBrightness{Up,Down}
 	cmus-remote -C player-next
 
 super + shift + 3
-	maim ~/Screen_$(date +%F-%T).png
+	~/.local/bin/mkscreenshot
 
 super + shift + 4
-	maim -s ~/Screen_$(date +%F-%T).png
+	~/.local/bin/mkscreenshot -s
 
 super + shift + 5
 	~/.local/bin/mkscreencast

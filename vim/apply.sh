@@ -8,7 +8,6 @@ mkdir -p ~/.vim/autoload
 
 cat vimrc > ~/.vimrc
 
-rm ~/.nvimrc
 echo "source ~/.vimrc" > ~/.nvimrc
 
 rm ~/.vim/*.vim
@@ -16,6 +15,9 @@ cp ./*.vim ~/.vim/
 
 rm ~/.nvim
 ln -s .vim ~/.nvim
+
+rm ~/.config/nvim
+ln -s ../.vim ~/.config/nvim
 
 rm -r ~/.vim/ftplugin
 cp -r ftplugin ~/.vim/ftplugin

@@ -1,7 +1,3 @@
-if !windows
-	let g:plug_url_format = 'git@github.com:%s'
-end
-
 " GOPATH all the things. The option is added in vim/apply.sh because fuck everything.
 " Only `Plug 'username/repo'` works with this setup. I don't care about other types of paths!
 let g:plug_name_modifier = ':s?\.git$??'
