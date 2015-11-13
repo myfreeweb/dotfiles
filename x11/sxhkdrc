@@ -109,6 +109,9 @@ super + shift + 5
 super + l
 	xset dpms force off; xautolock -locknow
 
+super + p
+	~/.local/bin/freepass-x11
+
 super + f
 	~/.local/bin/floatyoutube start
 

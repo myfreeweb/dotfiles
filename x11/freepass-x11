@@ -1,0 +1,22 @@
+#!/bin/sh
+
+. ~/.config/freepassrc # Should contain:
+# export FREEPASS_NAME=".."
+# FILES_DIR="..."
+
+ROFI_SETTINGS="-dmenu -fuzzy"
+
+if [ "$FREEPASS_MODE" = "MENU" ]; then
+	exec rofi $ROFI_SETTINGS -p 'freepass> '
+elif [ "$FREEPASS_MODE" = "TEXT" ]; then
+	exec rofi $ROFI_SETTINGS -p "$FREEPASS_PROMPT: "
+else
+	FREEPASS_MENU="freepass-x11" \
+	FREEPASS_ASKTEXT="freepass-x11" \
+	FREEPASS_ASKPASS="x11-ssh-askpass" \
+	FREEPASS_FILE="$FILES_DIR/`ls $FILES_DIR | grep .fpass | rofi $ROFI_SETTINGS -p 'freepass file: '`" \
+	freepass | (while read -r line; do
+		echo -n "$line" | xclip
+		notify-send -u low "Copied to clipboard!"
+	done)
+fi

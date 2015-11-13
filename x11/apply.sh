@@ -15,6 +15,9 @@ chmod +x ~/.local/bin/mkscreencast
 cat mkscreenshot > ~/.local/bin/mkscreenshot
 chmod +x ~/.local/bin/mkscreenshot
 
+cat freepass-x11 > ~/.local/bin/freepass-x11
+chmod +x ~/.local/bin/freepass-x11
+
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
 
