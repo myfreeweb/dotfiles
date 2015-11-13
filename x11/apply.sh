@@ -37,11 +37,8 @@ cat dunstrc.ini > ~/.config/dunst/dunstrc
 mkdir -p ~/.config/zathura
 cat zathurarc > ~/.config/zathura/zathurarc
 
-cat gtkrc.mine > ~/.gtkrc.mine
-
-echo "include '$HOME/.gtkrc.mine'" > ~/.gtkrc-1.2-gnome2
-
-echo "include '$HOME/.gtkrc.mine'" > ~/.gtkrc-2.0
+mkdir -p ~/.config/gtk-2.0
+cat gtkrc.mine > ~/.config/gtk-2.0/gtkrc
 
 mkdir -p ~/.config/gtk-3.0
 cat gtk3.ini > ~/.config/gtk-3.0/settings.ini

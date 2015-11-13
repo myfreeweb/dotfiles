@@ -80,7 +80,10 @@ alt + Return
 	st -f monospace
 
 alt + space
-	dmenu_run -fn 'ChicagoFLF-9' -sb '#8F9D6A' -sf '#282828' -p '$'
+	rofi -show run
+
+super + Tab
+	rofi -show window
 
 XF86MonBrightness{Up,Down}
 	~/.local/bin/brightctl {+,-}1

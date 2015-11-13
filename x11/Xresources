@@ -4,22 +4,7 @@ Xft.hinting:          true
 Xft.hintstyle:        hintfull
 Xft.lcdfilter:        lcdlight
 
-URxvt.scrollBar:      false
-URxvt.loginShell:     true
-URxvt.font:           xft:monospace:size=9,xft:DejaVu Sans Mono:size=9
-! Monospace is set in fonts.conf
-URxvt.letterSpace:    -2
-URxvt.termName:       xterm-256color
-URxvt.depth:          32
-URxvt.background:     rgba:2700/2800/2200/ee00
-
-xscreensaver.mode:           blank
-xscreensaver.selected:       -1
-xscreensaver.dpmsEnabled:    True
-xscreensaver.dpmsQuickOff:   True
-xscreensaver.splash:         True
-xscreensaver.timeout:        0:03:00
-xscreensaver.lock:           True
-xscreensaver.lockTimeout:    0:00:00
-xscreensaver.fade:           True
-xscreensaver.unfade:         True
+rofi.fuzzy:           true
+rofi.font:            monospace 12
+rofi.padding:         10
+rofi.width:           720

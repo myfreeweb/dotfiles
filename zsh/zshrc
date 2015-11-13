@@ -19,6 +19,13 @@ source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
 # }}}
 
+# XDG defaults {{{
+: ${XDG_CONFIG_HOME:="$HOME/.config"}
+: ${XDG_CACHE_HOME:="$HOME/.cache"}
+: ${XDG_DATA_HOME:="$HOME/.local/share"}
+: ${XDG_RUNTIME_DIR:="$HOME/.tmp"}
+# }}}
+
 # Color {{{
 base16() {
 	local SCHEME="$*"
@@ -26,14 +33,14 @@ base16() {
 	if [[ -s $BASE16_SHELL ]]; then
 		source $BASE16_SHELL
 		export BASE16_SCHEME="$SCHEME"
-		echo -n $SCHEME > ~/.config/base16/scheme
+		echo -n $SCHEME > $XDG_CONFIG_HOME/base16/scheme
 	else
 		echo "Looks like $BASE16_SHELL does not exist :-("
 	fi
 }
 
 background() {
-	echo -n "$*" > ~/.config/base16/background
+	echo -n "$*" > $XDG_CONFIG_HOME/base16/background
 	export BASE16_BACKGROUND="$*"
 	base16 $BASE16_SCHEME
 }
@@ -41,8 +48,8 @@ background() {
 light() { background light }
 dark() { background dark }
 _base16() { compadd $(find ~/.zsh/base16-shell | grep dark.sh | xargs basename | sed -e "s/base16-//" -e "s/\.dark\.sh//") }
-export BASE16_SCHEME="$(cat ~/.config/base16/scheme 2>/dev/null || echo default)"
-export BASE16_BACKGROUND="$(cat ~/.config/base16/background 2>/dev/null || echo dark)"
+export BASE16_SCHEME="$(cat $XDG_CONFIG_HOME/base16/scheme 2>/dev/null || echo default)"
+export BASE16_BACKGROUND="$(cat $XDG_CONFIG_HOME/base16/background 2>/dev/null || echo dark)"
 background $BASE16_BACKGROUND
 # }}}
 
@@ -55,7 +62,11 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;33;146m'
 export LESS="-R"
+export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export MANWIDTH="120"
+
+# Tmux
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR/tmux"
 
 # Go
 export GOPATH=~
@@ -91,7 +102,7 @@ bunforkify() {
 export PYTHONDONTWRITEBYTECODE=true
 export VIRTUALENV_DISTRIBUTE=true
 export PIP_USE_MIRRORS=true
-export PYTHONSTARTUP=~/.config/python/rc.py
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/rc.py
 
 # Perl
 export PERL_MB_OPT="--install_base \"$HOME/.local\""
@@ -109,6 +120,7 @@ export PERL5LIB=~/.local/lib/perl5:$PERL5LIB
 
 # Rust
 export RUST_SRC_PATH="$HOME/src/github.com/rust-lang/rust/src"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$HOME/.local"
 # }}}
 
@@ -244,6 +256,7 @@ zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[red]"
 zstyle ':completion:*:aliases' list-colors "=*=$color[green]"
 fpath+=(
 	~/.zsh/zsh-completions/src(N)
+	$XDG_DATA_HOME/zsh/site-functions(N)
 	/usr/local/share/zsh/site-functions(N)
 )
 fignore+=.DS_Store
@@ -260,7 +273,7 @@ compdef _base16 base16
 alias find="noglob find"
 alias wget="noglob wget"
 
-HISTFILE=~/.tmp/history_zsh
+HISTFILE=$XDG_RUNTIME_DIR/history_zsh
 HISTSIZE=4096
 SAVEHIST=4096
 setopt HIST_EXPIRE_DUPS_FIRST
