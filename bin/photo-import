@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+ADOBECONV = '/Applications/Adobe DNG Converter.app/Contents/MacOS/Adobe DNG Converter'
+
+SRC = ARGV[0]
+DST = ARGV[1]
+
+def files_at(path)
+  # Dir[path] doesn't work with ZFS volumes on OS X?!
+  Dir.entries(path).select { |f| File.file? File.join(path, f) }
+end
+
+def get_num(s)
+  s.match(/[0-9]+/).to_s.to_i
+end
+
+if File.directory? SRC
+  puts "=> From #{SRC}"
+else
+  puts "=> Not a directory: #{SRC}"
+  exit 1
+end
+
+if File.directory? DST
+  puts "=> To #{DST}"
+else
+  puts "=> Not a directory: #{DST}"
+  exit 1
+end
+
+max_num = files_at(DST).map { |f| get_num(f) }.max || 0
+new_files = files_at(SRC).reject { |f| get_num(f) <= max_num }
+if new_files.count > 0
+  puts "=> Files newer than #{max_num}: #{new_files.join ', '}"
+else
+  puts "=> No files newer than #{max_num}, exiting"
+  exit 0
+end
+
+if File.executable? ADOBECONV
+  puts "=> Found Adobe DNG Converter, running"
+  system ADOBECONV, '-p0', '-d', DST, *new_files.map { |f| File.join SRC, f }
+else
+  puts "=> No DNG converter found"
+end

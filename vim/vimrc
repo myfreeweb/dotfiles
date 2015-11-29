@@ -144,8 +144,10 @@ let g:ledger_bin='hledger'
 let g:FactorRoot='/Applications/factor'
 let g:racer_cmd=$HOME.'/src/github.com/phildawes/racer/target/release/racer'
 
-if exists('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/')
-	let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+if exists('/Library/Developer/CommandLineTools/usr/lib')
+	let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
+elseif exists('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib')
+	let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 elseif exists('/usr/local/llvm35/lib')
 	let g:clang_library_path = '/usr/local/llvm35/lib'
 elseif exists('/usr/local/llvm36/lib')
