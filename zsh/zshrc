@@ -183,10 +183,6 @@ fancy-ctrl-z() {
 		zle clear-screen
 	fi
 }
-
-page-up-within-tmux() {
-	[[ -n $TMUX ]] && tmux copy-mode -u
-}
 # }}}
 
 # Basic settings {{{
@@ -210,7 +206,6 @@ bindkey '^H' backward-word
 bindkey '^L' forward-word
 zle -N hst && bindkey '^R' hst
 zle -N fancy-ctrl-z && bindkey '^Z' fancy-ctrl-z
-[[ -n $terminfo[kpp] ]] && zle -N page-up-within-tmux && bindkey $terminfo[kpp] page-up-within-tmux
 [[ -n $terminfo[kcuu1] ]] && bindkey $terminfo[kcuu1] history-substring-search-up
 [[ -n $terminfo[kcud1] ]] && bindkey $terminfo[kcud1] history-substring-search-down
 
