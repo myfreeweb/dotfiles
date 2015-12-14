@@ -11,8 +11,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_RUNTIME_DIR="$HOME/.tmp"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-export ICEAUTHORITY="$XDG_RUNTIME_DIR/ICEauthority"
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
 # E.g. xcape is in ~/.local/bin
 export PATH="~/.local/bin:$PATH"
