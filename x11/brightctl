@@ -11,6 +11,9 @@ if File.exist? xorglogin_path
   xorglogin = File.read(xorglogin_path).chomp
   current = lambda { || `ssh #{xorglogin} cat /sys/class/backlight/nv_backlight/brightness`.to_i }
   set = lambda { |v| `echo #{v} | ssh #{xorglogin} tee /sys/class/backlight/nv_backlight/brightness` }
+elsif command? 'intel_backlight'
+  current = lambda { || `sudo intel_backlight`.gsub(/[^\d]*(\d+)%.*/, '\1').to_i }
+  set = lambda { |v| `sudo intel_backlight #{v}` }
 elsif command? 'xbacklight'
   current = lambda { || `xbacklight -get`.to_i }
   set = lambda { |v| `xbacklight -set #{v}` }

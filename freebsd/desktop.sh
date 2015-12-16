@@ -39,10 +39,10 @@ pkg lock -y mutt
 pkg install -y \
 	ack ctags mercurial sloccount npm \
 	msmtp urlview hashcash notmuch antiword w3m \
-	py27-ranger py27-pip python35 \
+	py27-ranger py27-pip python35 rubygem-bundler \
 	xorg compton unclutter xautolock slock bspwm sterm \
 	zathura zathura-ps zathura-djvu zathura-pdf-poppler \
-	feh dunst rofi xclip xsel maim slop xev redshift automount \
+	feh dunst rofi xclip xsel maim slop pngquant xev redshift automount OpenSSH-askpass \
 	xdotool xvkbd transset surf-browser \
 	gnome-themes-standard \
 	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf droid-fonts-ttf

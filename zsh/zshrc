@@ -200,12 +200,10 @@ bindkey -e # Emacs style keys in shell
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey '^H' backward-word
-bindkey '^L' forward-word
 zle -N hst && bindkey '^R' hst
 zle -N fancy-ctrl-z && bindkey '^Z' fancy-ctrl-z
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 [[ -n $terminfo[kcuu1] ]] && bindkey $terminfo[kcuu1] history-substring-search-up
 [[ -n $terminfo[kcud1] ]] && bindkey $terminfo[kcud1] history-substring-search-down
 

@@ -85,8 +85,14 @@ alt + space
 super + Tab
 	rofi -show window
 
+XF86Audio{Lower,Raise}Volume
+	notify-send -t 500 -u low "`mixer vol {-,+}5`"
+
 XF86MonBrightness{Up,Down}
-	~/.local/bin/brightctl {+,-}1
+	~/.local/bin/brightctl {+,-}10
+
+{F6,F5}
+	~/.local/bin/brightctl {+,-}10
 
 {F7,XF86AudioPrev}
 	cmus-remote -C player-prev
