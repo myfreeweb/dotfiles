@@ -32,7 +32,7 @@ xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 
 # Keyboard setup inspired by http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
-# // Non-Mac keyboard: echo 'XKB_OPTS="-option altwin:swap_lalt_lwin"' >> ~/.xinitrc.local
+# // Non-Mac keyboard on Mac: echo 'XKB_OPTS="-option altwin:swap_lalt_lwin"' >> ~/.xinitrc.local
 xset r rate 300 35
 setxkbmap 'us(colemak),ru' \
 	-option ctrl:nocaps \
@@ -55,8 +55,8 @@ dunst &
 unclutter &
 xautolock -time 5 -corners -000 -notify 5 -notifier "xset dpms force off" -locker "xset dpms force off; slock" &
 # TODO: try glx on nvidia
-# NVIDIA: echo 'COMPTON_BACKEND_FLAGS="--backend glx --glx-no-stencil --paint-on-overlay --vsync-use-glfinish --vsync opengl"' >> ~/.xinitrc.local
-# INTEL:  echo 'COMPTON_BACKEND_FLAGS="--vsync drm"' >> ~/.xinitrc.local # all the glx stuff hangs the whole system on haswell for now
+# NVIDIA: echo 'COMPTON_BACKEND_FLAGS="--backend glx --glx-no-stencil --paint-on-overlay"' >> ~/.xinitrc.local
+# INTEL:  echo 'COMPTON_BACKEND_FLAGS="--backend xr_glx_hybrid --vsync drm --glx-no-stencil --paint-on-overlay"' >> ~/.xinitrc.local
 compton -c -o 0.35 -f -D 4 \
 	$COMPTON_BACKEND_FLAGS \
 	--shadow-exclude "class_g = 'Firefox' && argb" \

@@ -26,14 +26,8 @@ sysctl_set kern.ipc.shm_allow_removed=1 \
 sysrc background_dhclient="YES" \
 	syslogd_flags="-ss" 
 
-pkg info freetype2 >/dev/null || make BATCH=yes WITH="LCD_FILTERING PNG" -C /usr/ports/print/freetype2 install clean
-pkg lock -y freetype2
-
-pkg info dmenu >/dev/null || make BATCH=yes WITH="XFT" -C /usr/ports/x11/dmenu install clean
-pkg lock -y dmenu
-
 pkg install -y gmake-lite automake autoconf libidn libiconv gettext-runtime gettext-tools p5-Locale-gettext mime-support db5 cyrus-sasl gpgme
-pkg info mutt >/dev/null || make BATCH=yes WITH="FLOCK GPGME" WITHOUT="XML DOCS EXAMPLES" -C /usr/ports/mail/mutt install clean
+pkg info mutt >/dev/null || make BATCH=yes WITH="FLOCK GPGME ICONV IDN SASL MAILDIR_HEADER_CACHE NCURSES ASPELL" WITHOUT="XML DOCS EXAMPLES" -C /usr/ports/mail/mutt install clean
 pkg lock -y mutt
 
 pkg install -y \
