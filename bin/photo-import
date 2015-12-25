@@ -7,7 +7,9 @@ DST = ARGV[1]
 
 def files_at(path)
   # Dir[path] doesn't work with ZFS volumes on OS X?!
-  Dir.entries(path).select { |f| File.file? File.join(path, f) }
+  Dir.entries(path)
+    .select { |f| File.file? File.join(path, f) }
+    .select { |f| !%w(.mp4 .m4v .mov .webm .ogv .mkv).include?(File.extname(f).downcase) }
 end
 
 def get_num(s)
