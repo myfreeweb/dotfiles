@@ -35,6 +35,7 @@
 	wordregex = [^[:space:]]
 	mnemonicprefix = true
 	submodule = log
+	tool = meld
 [mergetool "splice"]
 	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
 	trustExitCode = true
@@ -77,6 +78,7 @@
 	# [d]iff
 	d   = diff
 	dc  = diff --cached
+	dt  = difftool -y --dir-diff
 	# [f]ile
 	fa  = add
 	faa = !git add --all && git ws
@@ -89,7 +91,8 @@
 	hs  = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}" # [s]napshot
 	# [m]erge
 	m   = merge
-	mt  = mergetool
+	mt  = mergetool -y
+	mtg = mergetool -y -t meld
 	mo  = "!f() { git checkout --ours $@ && git add $@; }; f"   # [o]urs
 	mt  = "!f() { git checkout --theirs $@ && git add $@; }; f" # [t]heirs
 	# [r]emote

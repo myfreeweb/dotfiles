@@ -33,7 +33,7 @@ case "$1" in
 		if [ "$BATTERIES" != "0" ]; then
 			for i in $(seq 0 $BATTERIES); do
 				CHARGE="$(acpiconf -i $i | grep -Eo "[0-9]+%" | sed -e s/%//)"
-				CHARGED_SLOTS="$(let "$CHARGE / 20")"
+				CHARGED_SLOTS="$(let "($CHARGE + 1) / 20")"
 				UNCHARGED_SLOTS="$(let "5 - $CHARGED_SLOTS")"
 				if [ "$CHARGED_SLOTS" != "0" ]; then
 					printf '%s' '#[fg=red]'

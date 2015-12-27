@@ -6,10 +6,11 @@
 if [ "$1" == "start" ]; then
 	sleep 0.3
 	xvkbd -text "\Cl\Cc" # For some reason this doesn't work with xdotool
-	bspc rule -a surf -o floating=on sticky=on
-	surf "https://www.youtube.com/embed/`xclip -o | sed -E -e "s/.*v=([^&]+).*/\1/"`" &
+	sleep 0.1
+	bspc rule -a mpv -o floating=on sticky=on
+	mpv --vo=vaapi --hwdec=vaapi "https://www.youtube.com/embed/`xclip -o | sed -E -e "s/.*v=([^&]+).*/\1/"`" &
 	sleep 1
-	xdotool search --class surf windowsize 1280 720
+	xdotool search --class mpv windowsize 1280 720
 elif [ "$1" == "toggleopacity" ]; then
-	transset -t -i "`xdotool search --class surf`" 0.1
+	transset -t -i "`xdotool search --class mpv`" 0.1
 fi

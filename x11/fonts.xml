@@ -26,6 +26,7 @@
 			<family>PT Sans</family>
 			<family>Helvetica Neue</family>
 			<family>Noto Sans</family>
+			<family>Noto Emoji</family>
 			<family>Symbola</family>
 		</prefer>
 	</alias>
@@ -35,6 +36,7 @@
 		<prefer>
 			<family>PT Serif</family>
 			<family>Noto Serif</family>
+			<family>Noto Emoji</family>
 			<family>Symbola</family>
 		</prefer>
 	</alias>
