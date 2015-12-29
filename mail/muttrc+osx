@@ -2,4 +2,5 @@
 #      https://github.com/myfreeweb/dotfiles
 # Feel free to steal it, but attribution is nice
 
+set sendmail = "/usr/local/bin/msmtp"
 set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"

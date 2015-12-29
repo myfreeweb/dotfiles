@@ -89,7 +89,6 @@ bind pager N  search-opposite
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
 
 # Compose Options
-set sendmail = "/usr/local/bin/msmtp"
 set sendmail_wait = 0
 set send_charset  = "utf-8"
 set from          = "greg@unrelenting.technology"
