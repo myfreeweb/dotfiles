@@ -32,9 +32,8 @@ xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 
 # Keyboard setup inspired by http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
-# // Non-Mac keyboard on Mac: echo 'XKB_OPTS="-option altwin:swap_lalt_lwin"' >> ~/.xinitrc.local
 xset r rate 300 35
-setxkbmap 'us(colemak),ru' \
+setxkbmap 'us(colemak),ru' -option \ # blank option resets all options
 	-option ctrl:nocaps \
 	-option ctrl:lctrl_meta \
 	-option compose:ralt \
@@ -54,7 +53,6 @@ sxhkd &
 dunst &
 unclutter &
 xautolock -time 5 -corners -000 -notify 5 -notifier "xset dpms force off" -locker "xset dpms force off; slock" &
-# TODO: try glx on nvidia
 # NVIDIA: echo 'COMPTON_BACKEND_FLAGS="--backend glx --glx-no-stencil --paint-on-overlay"' >> ~/.xinitrc.local
 # INTEL:  echo 'COMPTON_BACKEND_FLAGS="--backend xr_glx_hybrid --vsync opengl-swc --glx-no-stencil --paint-on-overlay"' >> ~/.xinitrc.local
 compton -c -o 0.35 -f -D 4 -m 1.0 \
