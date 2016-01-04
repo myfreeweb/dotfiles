@@ -337,6 +337,5 @@ export GPG_TTY=$(tty)
 [[ $TERM == "st-256color" ]] && export TERM=xterm-256color
 
 [[ -e $commands[showkeys] ]] && showkeys
-[[ -e $commands[fortune] ]] && fortune | (cowsay -f small || cat) 2&> /dev/null | (lolcat || cat) 2&>/dev/null
 [[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ $PRIVATE == 1 ]] && unset HISTFILE

@@ -46,6 +46,9 @@ if executable('mono') " .NET
 	Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
 	Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
 endif
+if executable('sbt') " Scala
+	Plug 'ensime/ensime-vim', { 'for': 'scala', 'do': 'pip install --user websocket-client' }
+endif
 
 " Features
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
