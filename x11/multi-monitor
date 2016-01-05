@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+MENU_CMD = "rofi -dmenu -fuzzy"
+
+monitors = `xrandr -q | grep " connected"`.split("\n").map { |m| m.split(" ").first }
+monitor  = `echo "#{monitors.join "\n"}" | #{MENU_CMD} -p Monitor`.strip
+
+while true
+  actions = (%w(all-desktops half-desktops off) +
+             monitors.reject { |m| m == monitor }.map { |m| ["left-of #{m}", "right-of #{m}"] }).flatten
+  action  = `echo "#{actions.join "\n"}" | #{MENU_CMD} -p #{monitor}`
+  if action.start_with? "all-desktops"
+    `bspc monitor "#{monitor}" -d 1 2 3 4 5 6 7 8 9 10`
+  elsif action.start_with? "half-desktops"
+    `bspc monitor "#{monitors.first}" -d 1 2 3 4 5`
+    `bspc monitor "#{monitor}" -d 6 7 8 9 10`
+  elsif action.start_with? "off"
+    `xrandr --output "#{monitor}" --off`
+    `sh ~/.fehbg`
+  else
+    side = action.match /(left|right)-of ([^ \n]+)/
+    if side.captures.length == 2
+      `xrandr --output "#{monitor}" --auto --#{side.captures[0]}-of "#{side.captures[1]}"`
+      `killall compton`
+      `sh ~/.fehbg`
+    else
+      break
+    end
+  end
+end

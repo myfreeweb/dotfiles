@@ -18,6 +18,9 @@ chmod +x ~/.local/bin/mkscreenshot
 cat freepass-x11 > ~/.local/bin/freepass-x11
 chmod +x ~/.local/bin/freepass-x11
 
+cat multi-monitor > ~/.local/bin/multi-monitor
+chmod +x ~/.local/bin/multi-monitor
+
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
 

@@ -3,65 +3,49 @@
 alt + super + Escape
 	bspc quit
 
+# close window
 alt + w
 	bspc window -c
 
-alt + t
-	bspc desktop -l next
-
+# balance desktop
 alt + b
 	bspc desktop -B
 
-alt + {s,f}
-	bspc window -t {floating,fullscreen}
+# window states
+alt + {s,f,shift + f}
+	bspc window -t {sticky,floating,fullscreen}
 
+# alternate between last 2 windows/desktops
 alt + {grave,Tab}
 	bspc {window,desktop} -f last
 
-alt + apostrophe
-	bspc window -s last
-
-alt + {o,i}
-	bspc control --record-history off; \
-	bspc window {older,newer} -f; \
-	bspc control --record-history on
-
-alt + y
-	bspc window -w last.manual
-
+# make biggest
 alt + m
 	bspc window -s biggest
 
+# -p: preselection
+alt + ctrl + {h,k,j,l}
+	bspc window -p {left,down,up,right}
+
+alt + ctrl + space
+	bspc window -p cancel
+
+# -e: edge (size)
+alt + super + {h,k,j,l}
+	bspc window -e {left -10,down +10,up -10,right +10}
+
+# select window / move window
 alt + {_,shift + }{h,k,j,l}
 	bspc window -{f,s} {left,down,up,right}
 
-alt + {_,shift + }c
-	bspc window -f {next,prev}
-
-alt + {comma,period}
-	bspc desktop -C {backward,forward}
+# select desktop / move window to desktop
+alt + {_,shift + }{1-9,0}
+	bspc {desktop -f,window -d} ^{1-9,10}
 
 alt + bracket{left,right}
 	bspc desktop -f {prev,next}
 
-alt + ctrl + {h,k,j,l}
-	bspc window -p {left,down,up,right}
-
-alt + ctrl + {_,shift + }space
-	bspc {window -p cancel,desktop -c}
-
-alt + super + {h,k,j,l}
-	bspc window -e {left -10,down +10,up -10,right +10}
-
-alt + super + shift + {h,k,j,l}
-	bspc window -e {right -10,up +10,down -10,left +10}
-
-alt + ctrl + {1-9}
-	bspc window -r 0.{1-9}
-
-alt + {_,shift + }{1-9,0}
-	bspc {desktop -f,window -d} ^{1-9,10}
-
+# mouse stuff
 ~button1
 	bspc pointer -g focus
 
@@ -73,6 +57,10 @@ alt + !button{1-3}
 
 alt + @button{1-3}
 	bspc pointer -u
+
+# multi monitor setup
+alt + p
+	~/.local/bin/multi-monitor
 
 # wm independent hotkeys
 
