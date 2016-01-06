@@ -33,7 +33,7 @@ xrdb ~/.Xresources &
 
 # Keyboard setup inspired by http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
 xset r rate 300 35
-setxkbmap 'us(colemak),ru' -option \ # blank option resets all options
+setxkbmap 'us(colemak),ru' \
 	-option ctrl:nocaps \
 	-option ctrl:lctrl_meta \
 	-option compose:ralt \
@@ -62,4 +62,5 @@ compton -c -o 0.35 -f -D 4 -m 1.0 \
 	--shadow-exclude "argb && (override_redirect || wmwin)" \
 	--shadow-exclude "n:e:gromit-mpx" &
 redshift -l 55.75:37.616 -t 6500:4200 &
+tint2 &
 exec bspwm

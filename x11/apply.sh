@@ -35,6 +35,9 @@ chmod +x ~/.config/bspwm/bspwmrc
 mkdir -p ~/.config/sxhkd
 cat sxhkdrc > ~/.config/sxhkd/sxhkdrc
 
+mkdir -p ~/.config/tint2
+cat tint2rc > ~/.config/tint2/tint2rc
+
 pkill -USR1 -x sxhkd
 
 mkdir -p ~/.config/dunst
