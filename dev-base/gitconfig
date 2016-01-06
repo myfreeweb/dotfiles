@@ -59,7 +59,7 @@
 [alias] # object -> verb -> option
 	# common verbs: [c]reate, [l]ist, [r]eset/[r]emove
 	# [b]ranch
-	bc  = checkout -b
+	bc  = checkout --no-track -b # DON'T AUTOMATICALLY TRACK THE SAME FUCKING REMOTE BRANCH!!!
 	bce = checkout --orphan
 	bl  = branch --verbose
 	br  = branch -d
