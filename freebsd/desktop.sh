@@ -44,7 +44,7 @@ pkg install -y \
 	xorg compton unclutter xautolock slock bspwm sterm \
 	zathura zathura-ps zathura-djvu zathura-pdf-poppler \
 	feh dunst rofi xclip xsel maim slop pngquant xev redshift automount OpenSSH-askpass \
-	xdotool xvkbd transset surf-browser meld \
+	xdotool xvkbd transset surf-browser meld gvolwheel \
 	gnome-themes-standard \
 	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf droid-fonts-ttf
 
