@@ -16,7 +16,6 @@ sysctl_set kern.ipc.shm_allow_removed=1 \
 	kern.ipc.shm_allow_removed=1 \
 	kern.shutdown.poweroff_delay=500 \
 	vfs.usermount=1 \
-	hw.syscons.bell=0 \
 	hw.snd.default_auto=1 \
 	hw.usb.no_shutdown_wait=1 \
 	net.inet6.ip6.use_tempaddr=1 \
@@ -45,7 +44,7 @@ pkg install -y \
 	zathura zathura-ps zathura-djvu zathura-pdf-poppler \
 	feh dunst rofi xclip xsel maim slop pngquant xev redshift automount OpenSSH-askpass \
 	xdotool xvkbd transset surf-browser meld gvolwheel \
-	gnome-themes-standard \
+	gnome-themes-standard qt5ct \
 	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf droid-fonts-ttf
 
 python3.5 -m ensurepip --upgrade --user

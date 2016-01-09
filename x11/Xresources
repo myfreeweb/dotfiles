@@ -8,3 +8,8 @@ rofi.fuzzy:           true
 rofi.font:            monospace 12
 rofi.padding:         10
 rofi.width:           720
+rofi.bg:              #2b303b
+rofi.fg:              #eeeeee
+rofi.bc:              #55a5f6
+rofi.hlbg:            #55a5f6
+rofi.hlfg:            #ffffff

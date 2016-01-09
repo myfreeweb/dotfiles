@@ -12,6 +12,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_RUNTIME_DIR="$HOME/.tmp"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 
+# Lightweight qt theme config tool
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 # E.g. xcape is in ~/.local/bin
 export PATH="~/.local/bin:$PATH"
 

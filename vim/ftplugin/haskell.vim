@@ -19,11 +19,12 @@ setlocal iskeyword-=.
 
 imap <C-b> <Space>>>=<Space>
 imap <C-l> <Space>→<Space>
+imap <C-h> <Space>←<Space>
 
 " GHCi repl for fast testing! Use per-project .ghci files.
-" Colemak home row keys... r is for retest, s is for... speed? :D t is for test
 nnoremap <buffer> <Leader>r :call VimuxSendText(":retest\n")<CR>
-nnoremap <buffer> <Leader>s :call VimuxSendText(":bench\n")<CR>
+nnoremap <buffer> <Leader>b :call VimuxSendText(":bench\n")<CR>
 nnoremap <buffer> <Leader>t :call VimuxSendText(":test\n")<CR>
 
+nnoremap <buffer> <Leader>s :GhcModSplitFunCase<CR>
 nnoremap <buffer> <Leader>l :GhcModLintAsync<CR>
