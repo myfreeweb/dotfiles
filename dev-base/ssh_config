@@ -18,6 +18,7 @@ HashKnownHosts no
 CheckHostIP yes
 VerifyHostKeyDNS yes
 StrictHostKeyChecking ask
+UseRoaming no
 
 Host *
 	HashKnownHosts yes
