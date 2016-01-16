@@ -48,8 +48,9 @@ background() {
 light() { background light }
 dark() { background dark }
 _base16() { compadd $(find ~/.zsh/base16-shell | grep dark.sh | xargs basename | sed -e "s/base16-//" -e "s/\.dark\.sh//") }
-export BASE16_SCHEME="$(cat $XDG_CONFIG_HOME/base16/scheme 2>/dev/null || echo default)"
-export BASE16_BACKGROUND="$(cat $XDG_CONFIG_HOME/base16/background 2>/dev/null || echo dark)"
+: ${BASE16_SCHEME:="$(cat $XDG_CONFIG_HOME/base16/scheme 2>/dev/null || echo default)"}
+: ${BASE16_BACKGROUND:="$(cat $XDG_CONFIG_HOME/base16/background 2>/dev/null || echo dark)"}
+export BASE16_SCHEME BASE16_BACKGROUND
 background $BASE16_BACKGROUND
 # }}}
 

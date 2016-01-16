@@ -76,13 +76,7 @@ super + Tab
 XF86Audio{Lower,Raise}Volume
 	notify-send -t 500 -u low "`mixer vol {-,+}5`"
 
-{F2,F3}
-	notify-send -t 500 -u low "`mixer vol {-,+}5`"
-
 XF86MonBrightness{Down,Up}
-	~/.local/bin/brightctl {-,+}5
-
-{F5,F6}
 	~/.local/bin/brightctl {-,+}5
 
 {F7,XF86AudioPrev}
