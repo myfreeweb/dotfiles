@@ -33,5 +33,12 @@ set selection-clipboard clipboard
 
 map [normal] j scroll up
 map [fullscreen] j scroll up
+map [normal] J navigate previous
+map [fullscreen] J navigate previous
 map [normal] k scroll down
 map [fullscreen] k scroll down
+map [normal] K navigate next
+map [fullscreen] K navigate next
+
+map [normal] i set recolor
+map [fullscreen] i set recolor

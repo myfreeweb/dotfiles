@@ -74,7 +74,7 @@ super + Tab
 	rofi -show window
 
 XF86Audio{Lower,Raise}Volume
-	notify-send -t 500 -u low "`mixer vol {-,+}5`"
+	~/.local/bin/volumectl {-,+}5
 
 XF86MonBrightness{Down,Up}
 	~/.local/bin/brightctl {-,+}5

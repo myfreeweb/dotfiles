@@ -21,6 +21,9 @@ chmod +x ~/.local/bin/freepass-x11
 cat multi-monitor > ~/.local/bin/multi-monitor
 chmod +x ~/.local/bin/multi-monitor
 
+cat volumectl > ~/.local/bin/volumectl
+chmod +x ~/.local/bin/volumectl
+
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
 

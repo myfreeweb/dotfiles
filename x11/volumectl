@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+n = `mixer vol #{ARGV.first}`.match(/to ([0-9]+):/)[1].to_i / 5
+msg = "🔈 #{"+" * n}#{"-" * (20-n)} 🔈"
+`notify-send -a mixer "<span weight='normal' font='13'>#{msg}</span>"`
