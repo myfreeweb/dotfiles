@@ -14,7 +14,7 @@ if [[ -f ~/.tmp/screencast_pid ]]; then
 		notify-send -t 10000 -u critical "Couldn't stop recording!"
 else
 	read -r X Y W H < <(slop -f "%x %y %w %h")
-	(daemon -p ~/.tmp/screencast_pid ffmpeg -f x11grab -r 25 -s "$W"x"$H" -i ":0.0+$X,$Y" -f oss -i /dev/dsp \
+	(daemon -p ~/.tmp/screencast_pid ffmpeg -f x11grab -r 25 -s "$W"x"$H" -i "$DISPLAY+$X,$Y" -f oss -i /dev/dsp \
 			-c:v h264 -b:v 10000 -crf 5 -c:a libfaac -b:a 96k ~/Video/Screencasts/$(date +%F-%T).mp4 && \
 		notify-send -t 1000 "Recording started! Run again to stop.") || \
 		notify-send  -t 4000 -u critical "Couldn't start recording!"

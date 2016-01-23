@@ -4,15 +4,18 @@ Xft.hinting:          true
 Xft.hintstyle:        hintfull
 Xft.lcdfilter:        lcdlight
 
-rofi.fuzzy:           true
-rofi.font:            monospace 12
-rofi.padding:         10
-rofi.width:           720
-rofi.bg:              #315975
-rofi.fg:              #e8e8e8
-rofi.bc:              #55a5f6
-rofi.hlbg:            #55a5f6
-rofi.hlfg:            #ffffff
+rofi.modi:               run,drun,window
+rofi.fuzzy:              true
+rofi.font:               monospace 12
+rofi.padding:            10
+rofi.width:              720
+rofi.levenshtein-sort:   true
+rofi.disable-history:    true
+rofi.color-enabled:      true
+rofi.color-window:       argb:dd315975, argb:dd315975, #55a5f6
+rofi.color-normal:       argb:99315975, #e8e8e8, argb:00315975, #55a5f6, #ffffff
+rofi.color-active:       argb:99315975, #55a5f6, argb:00315975, #55a5f6, #66c6ff
+rofi.color-urgent:       argb:99315975, #da4281, argb:00315975, #55a5f6, #890661
 
 x11-ssh-askpass*font:                   monospace
 x11-ssh-askpass*background:             #315975

@@ -68,7 +68,7 @@ alt + Return
 	st -f monospace
 
 alt + space
-	rofi -show run
+	rofi -show drun
 
 super + Tab
 	rofi -show window

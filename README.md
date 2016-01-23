@@ -86,6 +86,7 @@ $ zsh
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 - **ranger** -- [ranger] file manager
+- **firefox** -- [Firefox] CSS style
 - **x11** -- [bspwm], [dunst], [st] and other x.org stuff
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst]
 - **windows** -- PowerShell and other Microsoft Windows stuff
@@ -113,6 +114,7 @@ $ zsh
 [dunst]: https://github.com/knopwob/dunst
 [st]: http://st.suckless.org/
 [ranger]: http://ranger.nongnu.org/
+[Firefox]: https://www.mozilla.org/en-US/firefox/desktop/
 
 ### Language-specific
 

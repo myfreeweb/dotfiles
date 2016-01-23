@@ -55,7 +55,7 @@ rm -f /tmp/bspwm_0_0-socket
 sxhkd &
 dunst &
 unclutter &
-xautolock -time 5 -corners -000 -notify 5 -notifier "xset dpms force off" -locker "xset dpms force off; slock" &
+xautolock -time 5 -corners -000 -notify 5 -notifier "xset dpms force off" -locker "slock" &
 # NVIDIA: echo 'COMPTON_BACKEND_FLAGS="--backend glx --glx-no-stencil --paint-on-overlay"' >> ~/.xinitrc.local
 # INTEL:  echo 'COMPTON_BACKEND_FLAGS="--backend xr_glx_hybrid --vsync opengl-swc"' >> ~/.xinitrc.local
 compton -c -o 0.35 -f -D 4 -m 1.0 \
