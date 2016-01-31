@@ -24,4 +24,5 @@ COLORIZE=$(cat << _EOF_
 _EOF_
 )
 
-(ssh-add -l || (rm $SSH_AUTH_SOCK; ssh-agent -a $SSH_AUTH_SOCK >/dev/null 2>/dev/null && ssh-add -l)) | awk $COLORIZE
+list=$(ssh-add -l || (rm $SSH_AUTH_SOCK; ssh-agent -a $SSH_AUTH_SOCK >/dev/null 2>/dev/null && ssh-add -l))
+[ $? -eq 0 ] && echo $list | awk $COLORIZE

@@ -17,6 +17,8 @@ include "%L"
 <Multi_key> <space> <minus>                                                : " — "             # EM DASH surrounded by THIN SPACEs.
 <Multi_key> <space> <quotedbl>                                             : " “"              # space followed by LEFT DOUBLE QUOTATION MARK
 <Multi_key> <quotedbl> <space>                                             : "” "              # RIGHT DOUBLE QUOTATION MARK followed by space
+<Multi_key> <space> <э>                                                    : " «"              # space followed by LEFT DOUBLE QUOTATION MARK
+<Multi_key> <э> <space>                                                    : "» "              # RIGHT DOUBLE QUOTATION MARK followed by space
 <Multi_key> <space> <apostrophe>                                           : " ‘"              # space followed by LEFT SINGLE QUOTATION MARK
 <Multi_key> <apostrophe> <space>                                           : "’ "              # RIGHT SINGLE QUOTATION MARK followed by space
 <Multi_key> <backslash> <comma>                                            : " "    U2009      # THIN SPACE

@@ -43,6 +43,12 @@
 	summary = true
 	tool = splice
 	conflictstyle = diff3
+[transfer]
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+[receive]
+	fsckobjects = true
 [push]
 	default = tracking
 [pull]
