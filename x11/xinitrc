@@ -29,6 +29,8 @@ killall ssh-agent
 rm -f ~/.ssh/ssh_auth_sock
 
 # Local settings stuff
+# NVIDIA: echo 'export MPV_HWDEC_FLAGS="--hwdec=vdpau"' >> ~/.xinitrc.local
+# INTEL:  echo 'export MPV_HWDEC_FLAGS="--vo=vaapi --hwdec=vaapi"' >> ~/.xinitrc.local
 . ~/.xinitrc.local
 . ~/.fehbg
 xsetroot -cursor_name left_ptr
