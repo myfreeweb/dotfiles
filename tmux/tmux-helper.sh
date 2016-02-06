@@ -30,7 +30,7 @@ case "$1" in
 
 	battery) if [ "$(uname)" = "FreeBSD" ]; then
 		BATTERIES="$(let "$(sysctl hw.acpi.battery.units | grep -Eo "[0-9]+") - 1")"
-		if [ "$BATTERIES" != "0" ]; then
+		if [ "$BATTERIES" != "0" -a "$BATTERIES" != "-1" ]; then
 			for i in $(seq 0 $BATTERIES); do
 				CHARGE="$(acpiconf -i $i | grep -Eo "[0-9]+%" | sed -e s/%//)"
 				CHARGED_SLOTS="$(let "($CHARGE + 1) / 20")"
