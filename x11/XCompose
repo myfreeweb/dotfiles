@@ -266,3 +266,4 @@ include "%L"
 <Multi_key> <R> <L> <O>                                                    : "‮"    U202E # RIGHT-TO-LEFT OVERRIDE
 <Multi_key> <B> <O> <M>                                                    : "﻿"    UFEFF # ZERO WIDTH NO-BREAK SPACE (Byte Order Mark)
 <Multi_key> <C> <G> <J>                                                    : "͏"    U034F       # COMBINING GRAPHEME JOINER
+<Multi_key> <quotedbl> <quotedbl>                                          : "̈"    U0308       # COMBINING DIAERESIS

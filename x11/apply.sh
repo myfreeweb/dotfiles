@@ -3,26 +3,19 @@ echo "==> Installing x11"
 
 mkdir -p ~/.local/bin
 
-cat brightctl > ~/.local/bin/brightctl
-chmod +x ~/.local/bin/brightctl
+install_bin() {
+	cat "$1" > "$HOME/.local/bin/$1"
+	chmod +x "$HOME/.local/bin/$1"
+}
 
-cat floatyoutube > ~/.local/bin/floatyoutube
-chmod +x ~/.local/bin/floatyoutube
-
-cat mkscreencast > ~/.local/bin/mkscreencast
-chmod +x ~/.local/bin/mkscreencast
-
-cat mkscreenshot > ~/.local/bin/mkscreenshot
-chmod +x ~/.local/bin/mkscreenshot
-
-cat freepass-x11 > ~/.local/bin/freepass-x11
-chmod +x ~/.local/bin/freepass-x11
-
-cat multi-monitor > ~/.local/bin/multi-monitor
-chmod +x ~/.local/bin/multi-monitor
-
-cat volumectl > ~/.local/bin/volumectl
-chmod +x ~/.local/bin/volumectl
+install_bin brightctl
+install_bin floatyoutube
+install_bin mkscreencast
+install_bin mkscreenshot
+install_bin freepass-x11
+install_bin multi-monitor
+install_bin volumectl
+install_bin x-terminal-emulator
 
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
