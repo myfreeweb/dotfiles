@@ -3,6 +3,9 @@
 #      https://github.com/myfreeweb/dotfiles
 # Feel free to steal it, but attribution is nice
 
+# Need a session bus for stuff like nautilus trash
+[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sh $HOME/.xinitrc
+
 export LC_ALL=en_US.UTF-8
 
 # XDG paths

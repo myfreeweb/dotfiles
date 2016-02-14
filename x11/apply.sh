@@ -8,14 +8,19 @@ install_bin() {
 	chmod +x "$HOME/.local/bin/$1"
 }
 
+install_bin2() {
+	cat "$1" > "$HOME/.local/bin/$2"
+	chmod +x "$HOME/.local/bin/$2"
+}
+
 install_bin brightctl
 install_bin floatyoutube
 install_bin mkscreencast
 install_bin mkscreenshot
 install_bin freepass-x11
 install_bin multi-monitor
-install_bin volumectl
 install_bin x-terminal-emulator
+install_bin2 volumectl.rs volumectl
 
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
