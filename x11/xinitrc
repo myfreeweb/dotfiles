@@ -24,8 +24,9 @@ export PATH="~/.local/bin:$PATH"
 # Make sure XCompose works!
 export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
 
-# Just in case I'll use some Java GUI
+# Java crap
 export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 # For some reason...
 killall ssh-agent

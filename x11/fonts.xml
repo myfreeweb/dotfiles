@@ -51,6 +51,13 @@
 		</prefer>
 	</alias>
 
+	<alias>
+		<family>cursive</family>
+		<prefer>
+			<family>Comic Neue</family>
+		</prefer>
+	</alias>
+
 	<!-- Monospace fonts are monospace -->
 	<alias>
 		<family>Fira Mono</family>
@@ -114,5 +121,17 @@
 		<test qual="any" name="family"><string>ChicagoFLF</string></test>
 		<edit mode="assign" name="antialias"><bool>false</bool></edit>
 	</match>
+
+	<!-- Fix Comic Neue! (Is this still necessary?) -->
+	<match>
+		<test name="lang" compare="contains"><string>en</string></test>
+		<test name="family"><string>cursive</string></test>
+		<edit name="lang" mode="delete_all"></edit>
+		<edit name="family" mode="prepend"><string>Comic Neue</string></edit>
+	</match>
+	<alias>
+		<family>Comic Neue</family>
+		<default><family>cursive</family></default>
+	</alias>
 
 </fontconfig>

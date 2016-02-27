@@ -45,7 +45,8 @@ pkg install -y \
 	feh dunst rofi xclip xsel maim slop pngquant xev redshift automount OpenSSH-askpass \
 	xdotool xvkbd transset surf-browser meld gvolwheel \
 	gnome-themes-standard qt5ct \
-	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf droid-fonts-ttf
+	fira noto paratype sourcecodepro-ttf sourcesanspro-ttf inconsolata-ttf fantasque-sans-mono \
+	droid-fonts-ttf roboto-fonts-ttf comic-neue clearsans \
 
 python3.5 -m ensurepip --upgrade --user
 
