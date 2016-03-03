@@ -19,38 +19,33 @@
 	</match>
 
 	<!-- Defaults -->
-	<alias>
-		<family>sans-serif</family>
-		<prefer>
-			<family>Fira Sans</family>
-			<family>PT Sans</family>
-			<family>Helvetica Neue</family>
-			<family>Noto Sans</family>
-			<family>Noto Emoji</family>
-			<family>Symbola</family>
-		</prefer>
-	</alias>
-
-	<alias>
-		<family>serif</family>
-		<prefer>
-			<family>PT Serif</family>
-			<family>Noto Serif</family>
-			<family>Noto Emoji</family>
-			<family>Symbola</family>
-		</prefer>
-	</alias>
-
-	<alias>
-		<family>monospace</family>
-		<prefer>
-			<family>Fira Mono</family>
-			<family>Source Code Pro</family>
-			<family>DejaVu Sans Mono</family>
-			<family>Symbola</family>
-		</prefer>
-	</alias>
-
+	<!-- // alias doesn't properly allow the emoji -->
+	<match>
+		<test name="family"><string>sans-serif</string></test>
+		<edit name="family" mode="prepend" binding="strong">
+			<string>Emoji One Color</string>
+			<string>Fira Sans</string>
+			<string>PT Sans</string>
+			<string>Noto Sans</string>
+		</edit>
+	</match>
+	<match>
+		<test name="family"><string>serif</string></test>
+		<edit name="family" mode="prepend" binding="strong">
+			<string>Emoji One Color</string>
+			<string>PT Serif</string>
+			<string>Noto Serif</string>
+		</edit>
+	</match>
+	<match>
+		<test name="family"><string>monospace</string></test>
+		<edit name="family" mode="prepend" binding="strong">
+			<string>Emoji One Color</string>
+			<string>Fira Mono</string>
+			<string>Source Code Pro</string>
+			<string>DejaVu Sans Mono</string>
+		</edit>
+	</match>
 	<alias>
 		<family>cursive</family>
 		<prefer>
@@ -114,6 +109,16 @@
 	<match target="pattern">
 		<test qual="any" name="family"><string>Consolas</string></test>
 		<edit mode="assign" binding="same" name="family"><string>Fira Mono</string></edit>
+	</match>
+
+	<!-- Because someone WILL fucking specify these in a font-family CSS property -->
+	<match target="pattern">
+		<test qual="any" name="family"><string>Symbola</string></test>
+		<edit mode="assign" binding="same" name="family"><string>Emoji One Color</string></edit>
+	</match>
+	<match target="pattern">
+		<test qual="any" name="family"><string>Noto Emoji</string></test>
+		<edit mode="assign" binding="same" name="family"><string>Emoji One Color</string></edit>
 	</match>
 
 	<!-- Don't antialias Chicago! -->
