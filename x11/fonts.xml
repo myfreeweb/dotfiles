@@ -40,8 +40,8 @@
 	<match>
 		<test name="family"><string>monospace</string></test>
 		<edit name="family" mode="prepend" binding="strong">
-			<string>Emoji One Color</string>
 			<string>Fira Mono</string>
+			<string>Emoji One Color</string>
 			<string>Source Code Pro</string>
 			<string>DejaVu Sans Mono</string>
 		</edit>
