@@ -20,6 +20,8 @@ install_bin mkscreenshot
 install_bin freepass-x11
 install_bin multi-monitor
 install_bin x-terminal-emulator
+install_bin bar.rs
+install_bin bar.sh
 install_bin2 volumectl.rs volumectl
 
 cat xinitrc > ~/.xinitrc
@@ -35,9 +37,6 @@ chmod +x ~/.config/bspwm/bspwmrc
 
 mkdir -p ~/.config/sxhkd
 cat sxhkdrc > ~/.config/sxhkd/sxhkdrc
-
-mkdir -p ~/.config/tint2
-cat tint2rc > ~/.config/tint2/tint2rc
 
 pkill -USR1 -x sxhkd
 
