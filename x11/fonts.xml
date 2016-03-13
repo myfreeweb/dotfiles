@@ -19,33 +19,32 @@
 	</match>
 
 	<!-- Defaults -->
-	<!-- // alias doesn't properly allow the emoji -->
-	<match>
-		<test name="family"><string>sans-serif</string></test>
-		<edit name="family" mode="prepend" binding="strong">
-			<string>Emoji One Color</string>
-			<string>Fira Sans</string>
-			<string>PT Sans</string>
-			<string>Noto Sans</string>
-		</edit>
-	</match>
-	<match>
-		<test name="family"><string>serif</string></test>
-		<edit name="family" mode="prepend" binding="strong">
-			<string>Emoji One Color</string>
-			<string>PT Serif</string>
-			<string>Noto Serif</string>
-		</edit>
-	</match>
-	<match>
-		<test name="family"><string>monospace</string></test>
-		<edit name="family" mode="prepend" binding="strong">
-			<string>Fira Mono</string>
-			<string>Emoji One Color</string>
-			<string>Source Code Pro</string>
-			<string>DejaVu Sans Mono</string>
-		</edit>
-	</match>
+	<alias>
+		<family>sans-serif</family>
+		<prefer>
+			<family>Emoji One Color</family>
+			<family>Fira Sans</family>
+			<family>PT Sans</family>
+			<family>Noto Sans</family>
+		</prefer>
+	</alias>
+	<alias>
+		<family>serif</family>
+		<prefer>
+			<family>Emoji One Color</family>
+			<family>PT Serif</family>
+			<family>Noto Serif</family>
+		</prefer>
+	</alias>
+	<alias>
+		<family>monospace</family>
+		<prefer>
+			<family>Fira Mono</family>
+			<family>Emoji One Color</family>
+			<family>Source Code Pro</family>
+			<family>DejaVu Sans Mono</family>
+		</prefer>
+	</alias>
 	<alias>
 		<family>cursive</family>
 		<prefer>
