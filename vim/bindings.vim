@@ -24,7 +24,7 @@ vnoremap ; :
 nnoremap ' i
 vnoremap ' i
 nnoremap U <C-r>
-nnoremap <Leader>q :bd<CR>
+nnoremap <Leader>q :Bdelete<CR>
 
 " Show most plugin keybindings  http://vimbits.com/bits/534
 nnoremap <silent> <Leader>? :map <Leader><CR>

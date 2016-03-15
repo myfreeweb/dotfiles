@@ -41,9 +41,3 @@ Host unrelenting.technology
 	PasswordAuthentication no
 	IdentitiesOnly yes
 	IdentityFile ~/.ssh/unrelenting.technology
-
-Host h.unrelenting.technology
-	ForwardAgent yes
-	PasswordAuthentication no
-	IdentitiesOnly yes
-	IdentityFile ~/.ssh/unrelenting.technology

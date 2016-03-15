@@ -28,3 +28,7 @@ nnoremap <buffer> <Leader>t :call VimuxSendText(":test\n")<CR>
 
 nnoremap <buffer> <Leader>s :GhcModSplitFunCase<CR>
 nnoremap <buffer> <Leader>l :GhcModLintAsync<CR>
+
+vnoremap <buffer> a= :EasyAlign /=/<CR>
+vnoremap <buffer> a; :EasyAlign /∷\\|::/<CR>
+vnoremap <buffer> al :EasyAlign /→\\|->/<CR>

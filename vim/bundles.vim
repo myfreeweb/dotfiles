@@ -6,6 +6,7 @@ call plug#begin('~/src/github.com')
 
 " Languages
 Plug 'sheerun/vim-polyglot'
+Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
@@ -37,7 +38,6 @@ if executable('ghc') " Haskell
 	Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 	Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 	Plug 'dag/vim2hs', { 'for': 'haskell' }
-	" Maybe https://github.com/neovimhaskell will replace some of these
 endif
 if executable('cargo') " Rust
 	Plug 'racer-rust/vim-racer', { 'for': 'rust' }
