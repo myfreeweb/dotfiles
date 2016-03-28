@@ -7,6 +7,7 @@
 
 let g:haskellmode_completion_ghc = 0
 let g:haskell_conceal_enumerations=0
+let g:haskell_use_basedir = getcwd()
 
 setlocal omnifunc=necoghc#omnifunc
 setlocal formatprg=pointfree
@@ -16,6 +17,7 @@ setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal iskeyword-=.
+setlocal iskeyword+='
 
 imap <C-b> <Space>>>=<Space>
 imap <C-l> <Space>→<Space>
@@ -25,6 +27,7 @@ imap <C-h> <Space>←<Space>
 nnoremap <buffer> <Leader>r :call VimuxSendText(":retest\n")<CR>
 nnoremap <buffer> <Leader>b :call VimuxSendText(":bench\n")<CR>
 nnoremap <buffer> <Leader>t :call VimuxSendText(":test\n")<CR>
+nnoremap <buffer> <Leader>x :call VimuxSendText(":serve\n")<CR>
 
 nnoremap <buffer> <Leader>s :GhcModSplitFunCase<CR>
 nnoremap <buffer> <Leader>l :GhcModLintAsync<CR>

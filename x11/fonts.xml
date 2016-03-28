@@ -40,9 +40,9 @@
 		<family>monospace</family>
 		<prefer>
 			<family>Fira Mono</family>
-			<family>Emoji One Color</family>
 			<family>Source Code Pro</family>
 			<family>DejaVu Sans Mono</family>
+			<family>Emoji One Color</family>
 		</prefer>
 	</alias>
 	<alias>

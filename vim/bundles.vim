@@ -37,7 +37,7 @@ endif
 if executable('ghc') " Haskell
 	Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 	Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
-	Plug 'dag/vim2hs', { 'for': 'haskell' }
+	Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 endif
 if executable('cargo') " Rust
 	Plug 'racer-rust/vim-racer', { 'for': 'rust' }
