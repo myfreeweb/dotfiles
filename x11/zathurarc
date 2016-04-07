@@ -5,7 +5,7 @@
 # thanks:
 # https://github.com/esn89/base16-zathura
 
-set font "monospace:pixelsize=12"
+set font "monospace:pixelsize=13"
 set default-bg "#151515"
 set default-fg "#202020"
 set statusbar-bg "#202020"
@@ -26,7 +26,7 @@ set notification-bg "#90A959" #0B
 set notification-fg "#151515" #00
 set recolor-lightcolor "#151515" #00
 set recolor-darkcolor "#E0E0E0" #06
-set recolor true
+set recolor false
 set recolor-keephue true
 set window-title-basename true
 set selection-clipboard clipboard

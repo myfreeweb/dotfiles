@@ -1,7 +1,7 @@
 #!/bin/sh
 
 bspc config border_width        2
-bspc config window_gap          5
+bspc config window_gap          3
 bspc config top_padding         20
 
 bspc config normal_border_color           "#315975"
@@ -17,7 +17,7 @@ bspc config remove_unplugged_monitors true
 
 bspc monitor -d 1 2 3 4 5 6
 
-bspc rule -a Gimp desktop="^8" follow=on floating=on
+bspc rule -a Gimp desktop="^6" follow=on floating=on
 bspc rule -a gromit-mpx manage=off
 bspc rule -a vlc floating=on
 bspc rule -a mpv floating=on

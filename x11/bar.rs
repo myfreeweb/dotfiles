@@ -55,18 +55,18 @@ fn main() {
              Duration::from_secs(30),
              || match System::new().battery_life() {
                  Ok(battery) => {
-                     let percent = battery.remaining_capacity * 100.0;
+                     let percent = (battery.remaining_capacity * 100.0) as u8;
                      let color = match percent {
-                         x if x >= 20.0  => "#94aa82",
-                         20.0...40.0     => "#daa345",
-                         _               => "#d24b58",
+                         x if x >= 20  => "#94aa82",
+                         20...40       => "#daa345",
+                         _             => "#d24b58",
                      };
                      let icon = match percent {
-                         x if x >= 80.0  => "\u{f240}",
-                         60.0...80.0     => "\u{f241}",
-                         40.0...60.0     => "\u{f242}",
-                         20.0...40.0     => "\u{f243}",
-                         _               => "\u{f244}",
+                         x if x >= 80  => "\u{f240}",
+                         60...80       => "\u{f241}",
+                         40...60       => "\u{f242}",
+                         20...40       => "\u{f243}",
+                         _             => "\u{f244}",
                      };
                      bfmt![fg[color] fmt[" {:02}% {} ", percent, icon]]
                  },

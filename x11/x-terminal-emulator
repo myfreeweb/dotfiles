@@ -1,4 +1,4 @@
 #!/bin/sh
 # rofi tries "x-terminal-emulator" when it searches for a terminal
 # zsh -i flag forces it to read zshrc and set correct $TERM and color scheme and stuff
-exec st -f monospace -e zsh -i -c "$@"
+exec st -f monospace-13 -e zsh -i -c "$@"
