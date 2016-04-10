@@ -215,7 +215,7 @@ setopt pushd_ignore_dups auto_pushd auto_name_dirs auto_cd \
 # History
 setopt hist_ignore_dups hist_ignore_space hist_reduce_blanks hist_verify \
  hist_expire_dups_first hist_find_no_dups share_history extended_history \
- append_history inc_append_history
+ append_history inc_append_history nobanghist
 
 # Completion
 setopt menu_complete # Autoselect the first suggestion
