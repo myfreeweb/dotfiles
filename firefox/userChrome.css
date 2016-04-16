@@ -2,67 +2,14 @@
 @namespace xul url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 
 @-moz-document url(chrome://browser/content/browser.xul) {
-	:root {
-		--myfreeweb-text: #e8e8e8;
-		--myfreeweb-alt: #315975;
-		--myfreeweb-accent: #55a5f6;
+	:root { }
 
-		--tab-min-height: 26px !important;
-		--toolbarbutton-hover-background: var(--myfreeweb-text) !important;
-		--toolbarbutton-active-background: var(--myfreeweb-text) !important;
-		--urlbar-separator-color: var(--myfreeweb-accent) !important;
-		--backbutton-urlbar-overlap: 5px !important;
-		--toolbarbutton-hover-background: var(--myfreeweb-text) !important;
-		--toolbarbutton-hover-boxshadow: none !important;
-		--toolbarbutton-hover-bordercolor: var(--myfreeweb-text) !important;
-		--toolbarbutton-active-boxshadow: none !important;
-		--toolbarbutton-active-bordercolor: var(--myfreeweb-text) !important;
-		--toolbarbutton-active-background: var(--myfreeweb-text) !important;
-	}
-
-	#navigator-toolbox { background: #2b303b !important; }
-
-	menubar > menu { color: var(--myfreeweb-text) !important; }
-
-	.tab-background-start[visuallyselected="true"]::after, .tab-background-start[visuallyselected="true"]::before, .tab-background-start, .tab-background-end, .tab-background-end[visuallyselected="true"]::after, .tab-background-end[visuallyselected="true"]::before { display: none !important; }
-	.tab-background-middle {
-		margin: 0 !important;
-		background: none !important;
-	}
-	tab:hover .tab-background-middle:not([visuallyselected="true"]) { background: var(--myfreeweb-alt) !important; }
-	.tab-background-middle[visuallyselected="true"] { background: var(--myfreeweb-accent) !important; }
-	.tab-label { color: var(--myfreeweb-text) !important; }
-	.tab-background, .tabs-newtab-button {
-		margin-inline-end: 0 !important;
-		margin-inline-start: 0 !important;
-	}
-	.tabbrowser-arrowscrollbox > .arrowscrollbox-scrollbox {
-		padding-inline-end: 0 !important;
-		padding-inline-start: 0 !important;
-	}
-	.tab-throbber, .tab-icon-image, .tabs-newtab-button, .tab-close-button { display: none !important; }
-
-	#nav-bar {
-		background: var(--myfreeweb-accent) !important;
-		box-shadow: none !important;
-		border: none !important;
-		z-index: 2 !important;
-	}
-	#back-button, #forward-button { display: none !important; }
-	#urlbar, .searchbar-textbox { border: none !important; }
-	window:not([chromehidden~="toolbar"]) #urlbar-wrapper {
-		clip-path: none !important;
-		margin-inline-start: calc(1 * var(--backbutton-urlbar-overlap)) !important;
-	}
-	#urlbar { border-radius: 2px !important; }
 	#identity-box { filter: grayscale(95%); }
+	.tabs-newtab-button { filter: brightness(0%) saturate(4500%) opacity(50%); }
 	#foobar-urlbar-icon {
 		border-radius: 2px;
 		filter: grayscale(95%) contrast(125%) brightness(110%) opacity(85%);
 	}
 	#foobar-urlbar-icon:hover { filter: contrast(110%) brightness(105%); }
-	#urlbar-search-splitter { width: 4px !important; }
-	#nav-bar > toolbarbutton { padding: 2px !important; }
 	toolbarbutton[id*="destructing-cookies"] { filter: grayscale(100%) contrast(110%); }
 }
-
