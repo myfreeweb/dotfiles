@@ -13,6 +13,7 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 if executable('perl')
 	Plug 'vim-perl/vim-perl', { 'for': ['perl', 'tt2', 'tt2html', 'tt2js', 'tap'] }
