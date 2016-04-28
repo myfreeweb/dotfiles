@@ -3,9 +3,9 @@
 alt + super + Escape
 	bspc quit
 
-# close window
-alt + w
-	bspc window -c
+# close/kill window
+alt + {_,shift + }w
+	bspc node -{c,k}
 
 # balance desktop
 alt + b
@@ -13,30 +13,30 @@ alt + b
 
 # window states
 alt + {s,f,shift + f}
-	bspc window -t {sticky,floating,fullscreen}
+	bspc node {-g sticky,-t "~floating",-t "~fullscreen"}
 
 # alternate between last 2 windows/desktops
 alt + {grave,Tab}
-	bspc {window,desktop} -f last
+	bspc {node,desktop} -f last
 
 # make biggest
 alt + m
-	bspc window -s biggest
+	bspc node -s biggest
 
 # -p: preselection
 alt + ctrl + {h,k,j,l}
-	bspc window -p {left,down,up,right}
+	bspc node -p {west,south,north,east}
 
 alt + ctrl + space
-	bspc window -p cancel
+	bspc node -p cancel
 
-# -e: edge (size)
+# -r: ratio
 alt + super + {h,k,j,l}
-	bspc window -e {left -10,down +10,up -10,right +10}
+	bspc node @{west -r -,south -r +,north -r -,east -r +}10
 
 # select window / move window
 alt + {_,shift + }{h,k,j,l}
-	bspc window -{f,s} {left,down,up,right}
+	bspc node -{f,s} {west,south,north,east}
 
 # select desktop / move window to desktop
 alt + {_,shift + }{1-9,0}
@@ -65,7 +65,7 @@ alt + p
 # wm independent hotkeys
 
 alt + Return
-	st -f monospace-13
+	st -f monospace-13.5
 
 alt + space
 	rofi -show drun

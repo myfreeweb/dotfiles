@@ -20,13 +20,7 @@ fn load_color(percent: f32) -> String {
 }
 
 fn main() {
-    UnixBar::new(LemonbarFormatter::new_noescape())
-
-        .add(Bspwm::new(|desktops| Format::Concat(desktops.iter().map(|d| Box::new({
-                let bg = if d.focused { "#55a5f6" } else { "-" };
-                bfmt![click[MouseButton::Left => format!("bspc desktop -f {}", d.name)]
-                      bg[bg] fg["#ececec"] fmt[" {} ", d.name]]
-            })).collect())))
+    UnixBar::new(I3BarFormatter::new())
 
         .add(Text::new(bfmt![right]))
 
@@ -86,7 +80,7 @@ fn main() {
              |f| bfmt![fg["#ececec"] f],
              DateTime::new(" %a %b %e %H:%M ")))
 
-        .add(Text::new(bfmt![ fg["#bebebe"] click[MouseButton::Left => format!("xautolock -locknow")] text[" \u{f023} "] ]))
+        //.add(Text::new(bfmt![ fg["#bebebe"] click[MouseButton::Left => format!("xautolock -locknow")] text[" \u{f023} "] ]))
 
         .run();
 }

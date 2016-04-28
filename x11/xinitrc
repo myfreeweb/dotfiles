@@ -46,7 +46,7 @@ setxkbmap 'us(colemak),ru' \
 	-option ctrl:nocaps \
 	-option ctrl:lctrl_meta \
 	-option compose:ralt \
-	-option grp:win_space_toggle \
+	-option grp:alt_space_toggle \
 	$XKB_OPTS
 if [ -x "`which xcape`" ]; then
 	xcape -t 350 -e 'Control_L=Escape'
@@ -54,11 +54,8 @@ if [ -x "`which xcape`" ]; then
 	xcape -t 350 -e 'Shift_R=Shift_R|0'
 fi
 
-# What the fuck. bspwm, why are you *crashing* when this is left over from a hard reboot?
-rm -f /tmp/bspwm_0_0-socket
-
 # All the things
-sxhkd &
+#sxhkd &
 dunst &
 unclutter &
 xautolock -time 5 -corners -000 -notify 5 -notifier "xset dpms force off" -locker "slock" &
@@ -72,5 +69,5 @@ compton -c -o 0.35 -f -D 4 -m 1.0 \
 	--shadow-exclude "class_g = 'slop'" \
 	--shadow-exclude "n:e:gromit-mpx" &
 redshift -l 55.75:37.616 -t 6500:4200 &
-bar.sh &
-exec bspwm
+#bar.sh &
+exec i3

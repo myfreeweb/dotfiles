@@ -21,7 +21,6 @@ install_bin freepass-x11
 install_bin multi-monitor
 install_bin x-terminal-emulator
 install_bin bar.rs
-install_bin bar.sh
 install_bin2 volumectl.rs volumectl
 
 cat xinitrc > ~/.xinitrc
@@ -31,9 +30,8 @@ cat Xresources > ~/.Xresources
 
 cat XCompose > ~/.XCompose
 
-mkdir -p ~/.config/bspwm
-cat bspwmrc  > ~/.config/bspwm/bspwmrc
-chmod +x ~/.config/bspwm/bspwmrc
+mkdir -p ~/.config/i3
+cat i3.conf > ~/.config/i3/config
 
 mkdir -p ~/.config/sxhkd
 cat sxhkdrc > ~/.config/sxhkd/sxhkdrc

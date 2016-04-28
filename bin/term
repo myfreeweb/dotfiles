@@ -14,7 +14,7 @@ if [ -e "`which osascript`" ]; then
 		end tell
 EOF
 elif [ -e "`which st`" ]; then
-	exec st -f "monospace:pixelsize=12" -e "$COMMAND" &
+	exec st -f "monospace-13.5" -e "$COMMAND" &
 elif [ -e "`which xterm`" ]; then
 	exec xterm -e "$COMMAND" &
 fi
