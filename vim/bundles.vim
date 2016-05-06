@@ -50,6 +50,9 @@ endif
 if executable('sbt') " Scala
 	Plug 'ensime/ensime-vim', { 'for': 'scala', 'do': 'pip install --user websocket-client' }
 endif
+if executable('crystal')
+	Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
+endif
 
 " Features
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
