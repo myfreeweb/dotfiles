@@ -12,7 +12,7 @@
 :set -XQuasiQuotes
 :set +m
 
-:set prompt "\ESC[1;34m[ \ESC[1;32m%s \ESC[1;34m]\n\955\ESC[m "
+:set prompt "\ESC[1;34m\STX[ \ESC[1;32m\STX%s \ESC[1;34m\STX]\n\955\ESC[m\STX "
 -- :set prompt2 "|\ESC[m "
 :set +t
 
