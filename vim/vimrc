@@ -132,11 +132,6 @@ source ~/.vim/fuzzy.vim
 
 " Misc
 let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-let g:gitgutter_sign_added = '⇒'
-let g:gitgutter_sign_modified = '⇔'
-let g:gitgutter_sign_removed = '⇐'
-let g:gitgutter_sign_removed_first_line = '⇐'
-let g:gitgutter_sign_modified_removed = '⇔'
 let g:startify_change_to_dir = 0
 
 let delimitMate_excluded_ft='clojure'

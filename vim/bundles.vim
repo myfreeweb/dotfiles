@@ -4,6 +4,10 @@ let g:plug_name_modifier = ':s?\.git$??'
 
 call plug#begin('~/src/github.com')
 
+function! DoRemote(arg)
+	UpdateRemotePlugins
+endfunction
+
 " Languages
 Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-bbye'
@@ -36,8 +40,7 @@ if executable('idris')
 	Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
 endif
 if executable('ghc') " Haskell
-	Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-	Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+	Plug 'myfreeweb/intero.nvim', { 'for': 'haskell' }
 	Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 endif
 if executable('cargo') " Rust
@@ -75,7 +78,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'reedes/vim-wordy'
 Plug 'ervandew/supertab'
-Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Raimondi/delimitMate'
 Plug 'AndrewRadev/splitjoin.vim'
