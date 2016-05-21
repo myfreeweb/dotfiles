@@ -31,7 +31,7 @@ nnoremap <buffer> <Leader>r :call VimuxSendText(":retest\n")<CR>
 nnoremap <buffer> <Leader>b :call VimuxSendText(":bench\n")<CR>
 nnoremap <buffer> <Leader>t :call VimuxSendText(":test\n")<CR>
 nnoremap <buffer> <Leader>x :call VimuxSendText(":serve\n")<CR>
-nnoremap <buffer> <Leader>m :call intero#ensurebufmodule()<CR>:call VimuxSendText(":m + ".b:intero_module."\n")<CR>
+nnoremap <buffer> <Leader>m :call intero#ensurebufmodule()<CR>:call VimuxSendText(":m + ".b:intero_module."\n:reload\n")<CR>
 
 vnoremap <buffer> a= :EasyAlign /=/<CR>
 vnoremap <buffer> a; :EasyAlign /∷\\|::/<CR>
