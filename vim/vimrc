@@ -164,7 +164,8 @@ let g:lightline = {
 			\ }
 let base16colorspace=256
 execute 'set background='.$BASE16_BACKGROUND
-execute 'colorscheme base16-'.$BASE16_SCHEME
+"execute 'colorscheme base16-'.$BASE16_SCHEME
+colorscheme base16-ocean
 " note: base16-*what* doesn't actually matter for the 256 color terminal
 
 if filereadable(expand("~/.vimrc.local"))

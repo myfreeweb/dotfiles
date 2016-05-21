@@ -19,6 +19,7 @@ cp -r zsh-completions ~/.zsh/zsh-completions
 
 rm -r ~/.zsh/base16-shell
 cp -r base16-shell ~/.zsh/base16-shell
+cp base16-custom/* ~/.zsh/base16-shell/
 
 rm ~/.zshrc
 cp zshrc ~/.zshrc

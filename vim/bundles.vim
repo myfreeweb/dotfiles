@@ -19,12 +19,8 @@ Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-if executable('perl')
-	Plug 'vim-perl/vim-perl', { 'for': ['perl', 'tt2', 'tt2html', 'tt2js', 'tap'] }
-endif
 if executable('npm')
-	Plug 'marijnh/tern_for_vim', { 'for': ['js', 'jsx', 'javascript', 'html', 'jade', 'haml'], 'do': 'npm install --update' }
-	Plug 'raichoo/purescript-vim', { 'for': ['purs', 'purescript'] }
+	Plug 'marijnh/tern_for_vim', { 'for': ['js', 'jsx', 'javascript', 'html', 'pug', 'haml'], 'do': 'npm install --update' }
 	Plug 'Quramy/tsuquyomi', { 'for': ['ts', 'typescript'] }
 endif
 if executable('latex')
@@ -41,7 +37,7 @@ if executable('idris')
 endif
 if executable('ghc') " Haskell
 	Plug 'myfreeweb/intero.nvim', { 'for': 'haskell' }
-	Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+	Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 endif
 if executable('cargo') " Rust
 	Plug 'racer-rust/vim-racer', { 'for': 'rust' }
@@ -52,9 +48,6 @@ if executable('mono') " .NET
 endif
 if executable('sbt') " Scala
 	Plug 'ensime/ensime-vim', { 'for': 'scala', 'do': 'pip install --user websocket-client' }
-endif
-if executable('crystal')
-	Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 endif
 
 " Features
@@ -74,8 +67,6 @@ Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] }
 Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] }
 Plug 'sjl/vitality.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'reedes/vim-wordy'
 Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
