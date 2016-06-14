@@ -34,11 +34,12 @@
 	renames = copy
 	wordregex = [^[:space:]]
 	mnemonicprefix = true
+	compactionheuristic = true
 	submodule = log
 	tool = meld
 [mergetool "splice"]
 	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-	trustExitCode = true
+	trustexitcode = true
 [merge]
 	summary = true
 	tool = splice
@@ -55,6 +56,8 @@
 	rebase = preserve
 [branch]
 	autosetupmerge = always
+[submodule]
+	fetchjobs = 4
 [status]
 	submodulesummary = true
 	branch = true
@@ -84,6 +87,8 @@
 	# [d]iff
 	d   = diff
 	dc  = diff --cached
+	df  = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+	dcf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --cached --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
 	dt  = difftool -y --dir-diff
 	# [f]ile
 	fa  = add
