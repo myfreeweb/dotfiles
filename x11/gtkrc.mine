@@ -1,5 +1,4 @@
-include "/usr/local/share/themes/Adwaita/gtk-2.0/gtkrc"
-gtk-icon-theme-name = "Adwaita"
+gtk-icon-theme-name = "Chicago95"
 gtk-font-name = "sans-serif 9"
 style "user-font"
 {

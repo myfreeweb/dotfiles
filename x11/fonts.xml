@@ -18,6 +18,12 @@
 		<edit mode="assign" name="autohint"><bool>false</bool></edit>
 	</match>
 
+	<!-- Don't autobold mono fonts -->
+	<match target="font">
+		<test compare="eq" name="spacing"><const>mono</const></test>
+		<edit mode="assign" name="embolden"><bool>false</bool></edit>
+	</match>
+
 	<!-- Defaults -->
 	<alias>
 		<family>sans-serif</family>
@@ -26,6 +32,7 @@
 			<family>Fira Sans</family>
 			<family>PT Sans</family>
 			<family>Noto Sans</family>
+			<family>Source Han Sans JP</family>
 		</prefer>
 	</alias>
 	<alias>
@@ -34,6 +41,7 @@
 			<family>Emoji One Color</family>
 			<family>PT Serif</family>
 			<family>Noto Serif</family>
+			<family>IPAMincho</family>
 		</prefer>
 	</alias>
 	<alias>
@@ -46,11 +54,37 @@
 		</prefer>
 	</alias>
 	<alias>
+		<family>dos</family>
+		<prefer>
+			<family>Px437 ATI 8x16</family>
+			<family>Less Perfect DOS VGA</family>
+			<family>PxPlus IBM VGA8</family>
+			<family>PT Mono</family>
+			<family>DejaVu Sans Mono</family>
+			<family>Emoji One Color</family>
+		</prefer>
+	</alias>
+	<alias>
 		<family>cursive</family>
 		<prefer>
+			<family>Emoji One Color</family>
 			<family>Comic Neue</family>
 		</prefer>
 	</alias>
+
+	<!-- Prevent DOS fonts from being bolded. Yeah, seriously, by setting it to heavy, not thin. -->
+	<match target="font">
+		<test name="family"><string>Px437 ATI 8x16</string></test>
+		<edit mode="assign" name="weight"><const>heavy</const></edit>
+	</match>
+	<match target="font">
+		<test name="family"><string>Less Perfect DOS VGA</string></test>
+		<edit mode="assign" name="weight"><const>heavy</const></edit>
+	</match>
+	<match target="font">
+		<test name="family"><string>PxPlus IBM VGA8</string></test>
+		<edit mode="assign" name="weight"><const>heavy</const></edit>
+	</match>
 
 	<!-- Monospace fonts are monospace -->
 	<alias>

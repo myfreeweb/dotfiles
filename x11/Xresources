@@ -5,12 +5,12 @@ Xft.hintstyle:        hintfull
 Xft.lcdfilter:        lcdlight
 
 rofi.modi:               run,drun,window
-rofi.fuzzy:              true
+rofi.fuzzy:              false
 rofi.font:               monospace 12
 rofi.padding:            10
 rofi.width:              720
 rofi.levenshtein-sort:   true
-rofi.disable-history:    true
+rofi.disable-history:    false
 rofi.color-enabled:      true
 rofi.color-window:       argb:dd315975, argb:dd315975, #55a5f6
 rofi.color-normal:       argb:99315975, #e8e8e8, argb:00315975, #55a5f6, #ffffff

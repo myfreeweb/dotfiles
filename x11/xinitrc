@@ -36,8 +36,6 @@ rm -f ~/.ssh/ssh_auth_sock
 # NVIDIA: echo 'export MPV_HWDEC_FLAGS="--hwdec=vdpau"' >> ~/.xinitrc.local
 # INTEL:  echo 'export MPV_HWDEC_FLAGS="--vo=vaapi --hwdec=vaapi"' >> ~/.xinitrc.local
 . ~/.xinitrc.local
-. ~/.fehbg
-xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources &
 
 # Keyboard setup inspired by http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
@@ -57,11 +55,9 @@ fi
 # All the things
 dunst &
 unclutter &
-clipit &
-xautolock -time 5 -corners -000 -notify 5 -notifier "xset dpms force off" -locker "slock" &
 # NVIDIA: echo 'COMPTON_BACKEND_FLAGS="--backend glx --glx-no-stencil --paint-on-overlay --vsync opengl-swc"' >> ~/.xinitrc.local
 # INTEL:  echo 'COMPTON_BACKEND_FLAGS="--backend xr_glx_hybrid --vsync opengl-swc"' >> ~/.xinitrc.local
-compton -c -o 0.35 -f -D 4 -m 1.0 \
+compton -c -o 0.35 -f -D 4 -m 1.0 -i 1.0 -e 1.0 \
 	$COMPTON_BACKEND_FLAGS \
 	--clear-shadow \
 	--shadow-exclude "fullscreen" \
@@ -69,4 +65,4 @@ compton -c -o 0.35 -f -D 4 -m 1.0 \
 	--shadow-exclude "class_g = 'slop'" \
 	--shadow-exclude "n:e:gromit-mpx" &
 redshift -l 55.75:37.616 -t 6500:4200 &
-exec i3
+exec startxfce4
