@@ -6,7 +6,5 @@
  * https://wiki.archlinux.org/index.php/GTK%2B
  * */
 
-.window-frame, .window-frame:backdrop { border-style: none; margin: 0; border-radius: 0; }
-.titlebar { border-radius: 0; }
 /* Remove dotted lines from GTK+ 3 applications */
 .undershoot.top, .undershoot.right, .undershoot.bottom, .undershoot.left { background-image: none; }

@@ -86,8 +86,9 @@ $ zsh
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 - **ranger** -- [ranger] file manager
+- **hexchat** -- [HexChat] IRC client
 - **firefox** -- [Firefox] CSS style
-- **x11** -- [bspwm], [dunst], [st] and other x.org stuff
+- **x11** -- [dunst], [st], fontconfig, XCompose and other x.org stuff
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst]
 - **windows** -- PowerShell and other Microsoft Windows stuff
 
@@ -110,10 +111,10 @@ $ zsh
 [msmtp]: https://wiki.archlinux.org/index.php/MSMTP
 [urlview]: https://github.com/sigpipe/urlview
 [hashcash]: http://hashcash.org
-[bspwm]: https://github.com/baskerville/bspwm
 [dunst]: https://github.com/knopwob/dunst
 [st]: http://st.suckless.org/
 [ranger]: http://ranger.nongnu.org/
+[HexChat]: https://hexchat.github.io/
 [Firefox]: https://www.mozilla.org/en-US/firefox/desktop/
 
 ### Language-specific

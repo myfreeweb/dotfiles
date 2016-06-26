@@ -10,7 +10,7 @@ if [ "${TERM%%-*}" = 'linux' ]; then
 fi
 
 color00="2A/2A/2A" # Base 00 - Black
-color01="EF/B0/81" # Base 08 - Red
+color01="CF/8B/5C" # Base 08 - Red
 color02="B8/E0/9F" # Base 0B - Green
 color03="D3/C4/20" # Base 0A - Yellow
 color04="B5/D6/EA" # Base 0D - Blue
