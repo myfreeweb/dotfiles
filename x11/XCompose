@@ -56,6 +56,8 @@ include "%L"
 <Multi_key> <at> <at> <X>                                                  : "✘"    U2718      # HEAVY BALLOT X
 <Multi_key> <P> <minus>                                                    : "₽"               # Russian ruble sign
 <Multi_key> <p> <minus>                                                    : "₽"               # Russian ruble sign
+<Multi_key> <p> <minus>                                                    : "₽"               # Russian ruble sign
+<Multi_key> <s> <o> <s>                                                    : "SoƧ"             # dank youtube memes
 
 # Arrows
 <Multi_key> <minus> <less>                                                 : "←"    leftarrow  # LEFTWARDS ARROW
