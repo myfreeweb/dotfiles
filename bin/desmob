@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+# desmob -- extract embedded SMart OBjects from PSD files (e.g. .ai vector icons)
+# Requires https://pypi.python.org/pypi/psd-tools
+#
+# This came from Greg V's dotfiles:
+#      https://github.com/myfreeweb/dotfiles
+# Feel free to steal it, but attribution is nice
+
+from psd_tools import PSDImage
+from os import path
+import sys
+
+
+def extract(fname):
+    fpath = path.abspath(fname)
+    sys.stderr.write(u"%s..." % fpath)
+    try:
+        psd = PSDImage.load(fpath)
+        dpath = path.dirname(fpath)
+        for i, ob in enumerate(psd.embedded):
+            ob.save(path.join(dpath, u"%s_%s" % (i, ob.filename)))
+        sys.stderr.write("done\n")
+    except:
+        sys.stderr.write("error\n")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        sys.stderr.write("Usage: %s <psd files...>\n" % sys.argv[0])
+    for name in sys.argv[1:]:
+        extract(name)
