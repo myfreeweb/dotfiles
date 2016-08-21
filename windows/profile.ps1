@@ -5,8 +5,8 @@
 # thanks:
 # https://github.com/jayharris/dotfiles-windows
 
-Import-Module PsGet
-Import-Module PsReadLine
+Import-Module PsReadline
+Import-Module PsSudo
 Import-Module posh-git
 
 Set-PSReadlineOption -EditMode Emacs
@@ -25,14 +25,6 @@ ${function:......} = { Set-Location ..\..\..\..\.. }
 # Misc
 function which($name) { Get-Command $name -ErrorAction SilentlyContinue | Select-Object Definition }
 function touch($file) { "" | Out-File $file -Encoding ASCII }
-function sudo() {
-	if ($args.Length -eq 1) {
-		start-process $args[0] -verb "runAs"
-	}
-	if ($args.Length -gt 1) {
-		start-process $args[0] -ArgumentList $args[1..$args.Length] -verb "runAs"
-	}
-}
 # Reload the Shell
 function Reload-Powershell {
 	$newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";

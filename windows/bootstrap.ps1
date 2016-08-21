@@ -68,16 +68,13 @@ cinst ctags
 cinst git
 cinst vim
 cinst SourceCodePro
-cinst ConEmu
 cinst autohotkey
-cinst psget
-cinst firefox
-cinst githubforwindows
+cinst wincompose
+cinst github
 cinst curl
 cinst wget
-cinst deluge
 
-########### Chocolatey
-Import-Module PsGet
-Install-Module PsReadLine
-Install-Module posh-git
+########### PowerShell plugins
+Install-Package PsReadline
+Install-Package PsSudo
+Install-Package posh-git
