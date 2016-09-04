@@ -5,6 +5,7 @@
 #  https://voyager.lupomesky.cz/crawl/irssi-colorizer/
 
 from __future__ import print_function
+from functools import reduce # ugh python 3 what are you doing
 
 import re
 import hexchat
@@ -24,7 +25,7 @@ BOTS = {
     'Jorgrell': (' CJR', 5 ),
 }
 
-REPLACEMENTS = map(lambda (r, x): (re.compile(r), x), [
+REPLACEMENTS = list(map(lambda rx: (re.compile(rx[0]), rx[1]), [
     (r'^([a-zA-Z0-9_]+ the [^ ]+) \((L\d{1,2} \w{4})\)', '\x02\\1\x02\x0F (\x03\\2\x0F)'),
     (r'^([a-zA-Z0-9_]+) \((L\d{1,2} \w{4})\)', '\x02\\1\x02\x0F (\x03\\2\x0F)'),
     (r'became a worshipper of (.+)\.', '\x0310became a worshipper of \x02\\1\x02.\x0F'),
@@ -49,7 +50,7 @@ REPLACEMENTS = map(lambda (r, x): (re.compile(r), x), [
     (r'found the Orb of Zot!', '\x02found the Orb of Zot!\x02'),
     (r'([\w\s,]+)escaped with the Orb and (\d{1,2}) runes, with (\d+ points) after (\d+ turns) and ([0-9:,]+)\.',
      '\\1\x16escaped with the Orb and \\2 runes\x16, with \x02\\3\x02 after \x02\\4\x02 and \x02\\5\x02.'),
-])
+]))
 
 def on_message(word, word_eol, userdata):
     if hexchat.get_info('channel') == '##crawl':
@@ -59,7 +60,7 @@ def on_message(word, word_eol, userdata):
                 BOTS[msg_nick][1],
                 BOTS[msg_nick][0]
             )
-            msg_text = reduce(lambda s, (r, x): r.sub(x, s), REPLACEMENTS, msg_text)
+            msg_text = reduce(lambda s, rx: rx[0].sub(rx[1], s), REPLACEMENTS, msg_text)
             hexchat.emit_print("Channel Message", msg_nick, msg_text, "@")
             return hexchat.EAT_ALL
 
