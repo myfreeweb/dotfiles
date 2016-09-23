@@ -1,4 +1,5 @@
 ; Shifts as parens: https://autohotkey.com/board/topic/98742-remapping-shift-key/
+#IfWinNotActive ahk_exe VirtualBox.exe
 ~LShift::
 	KeyWait, LShift
 	if (A_TimeSinceThisHotkey < 200 and A_PriorKey = "LShift") {
@@ -12,7 +13,7 @@
 		Send, )
 	}
 	return
-
+#IfWinNotActive
 
 ; Caps Lock as Control/Escape: https://gist.github.com/sedm0784/4443120
 
