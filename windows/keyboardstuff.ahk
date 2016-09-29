@@ -1,18 +1,30 @@
 ; Shifts as parens: https://autohotkey.com/board/topic/98742-remapping-shift-key/
+; thanks @sigfig for the | idea :D
 #IfWinNotActive ahk_exe VirtualBox.exe
+
+
 ~LShift::
-	KeyWait, LShift
-	if (A_TimeSinceThisHotkey < 200 and A_PriorKey = "LShift") {
-		Send, (
+	KeyWait LShift
+	if (A_TimeSinceThisHotkey < 220) {
+		if (A_PriorKey = "LShift") {
+			Send (
+		} else if (A_PriorKey = "RShift") {
+			Send |
+		}
 	}
 	return
 
 ~RShift::
-	KeyWait, RShift
-	if (A_TimeSinceThisHotkey < 200 and A_PriorKey = "RShift") {
-		Send, )
+	KeyWait RShift
+	if (A_TimeSinceThisHotkey < 220) {
+		if (A_PriorKey = "RShift") {
+			Send )
+		} else if (A_PriorKey = "LShift") {
+			Send |
+		}
 	}
 	return
+
 #IfWinNotActive
 
 ; Caps Lock as Control/Escape: https://gist.github.com/sedm0784/4443120
@@ -22,12 +34,11 @@ g_AbortSendEsc := false
 g_ControlRepeatDetected := false
 
 *CapsLock::
-    if (g_ControlRepeatDetected)
-    {
+    if (g_ControlRepeatDetected) {
         return
     }
 
-    send,{Ctrl down}
+    Send {Ctrl down}
     g_LastCtrlKeyDownTime := A_TickCount
     g_AbortSendEsc := false
     g_ControlRepeatDetected := true
@@ -35,16 +46,15 @@ g_ControlRepeatDetected := false
     return
 
 *CapsLock Up::
-    send,{Ctrl up}
+    SetCapsLockState, AlwaysOff
+    Send {Ctrl up}
     g_ControlRepeatDetected := false
-    if (g_AbortSendEsc)
-    {
+    if (g_AbortSendEsc) {
         return
     }
     current_time := A_TickCount
     time_elapsed := current_time - g_LastCtrlKeyDownTime
-    if (time_elapsed <= 250)
-    {
+    if (time_elapsed <= 250) {
         SendInput {Esc}
     }
     return
