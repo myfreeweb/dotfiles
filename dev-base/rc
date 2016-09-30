@@ -73,6 +73,7 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 alias emacs="TERM=xterm-256color emacs"
 alias meet="marelle meet"
 alias whois="whois -h whois-servers.net"
+alias dril="drill" # :D
 ## Intuitive map function
 ## For example, to list all directories that contain a certain file:  find . -name .gitattributes | map dirname
 alias map="xargs -n1"
