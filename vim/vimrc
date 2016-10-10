@@ -27,6 +27,22 @@ if !has('nvim')
 	set ttyfast
 	set t_ti= t_te= " http://www.shallowsky.com/linux/noaltscreen.html
 end
+
+if executable('/usr/local/bin/python3.5')
+	let g:python3_host_prog = '/usr/local/bin/python3.5'
+endif
+
+" Set up virtualenv before loading jedi
+if has('python3')
+py3 << EOF
+import os.path
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, os.path.join(project_base_dir, '/lib/python3.5/site-packages'))
+EOF
+end
+
 source ~/.vim/bundles.vim
 
 " basics

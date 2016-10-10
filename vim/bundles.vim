@@ -27,7 +27,7 @@ if executable('latex')
 	Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
 endif
 if executable('python')
-	Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'git submodule update --init' }
+	Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 endif
 if executable('go')
 	Plug 'fatih/vim-go', { 'for': 'go' }
