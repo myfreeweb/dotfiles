@@ -1,3 +1,9 @@
+; Turn off the monitor: http://greasypc.blogspot.ru/2008/03/autohotkey-script-to-put-monitor-on.html
+; 0x112 is WM_SYSCOMMAND, 0xF170 is SC_MONITORPOWER.
+#m::
+    SendMessage, 0x112, 0xF170, 2,, Program Manager
+    return
+
 ; Shifts as parens: https://autohotkey.com/board/topic/98742-remapping-shift-key/
 ; thanks @sigfig for the | idea :D
 #IfWinNotActive ahk_exe VirtualBox.exe
