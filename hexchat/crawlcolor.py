@@ -14,16 +14,33 @@ __module_name__ = 'Crawl Color'
 __module_version__ = '1.0'
 __module_description__ = 'Colorizes ##crawl bot announcements'
 
-BOTS = {
-    'Henzell':  (' CAO', 10),
-    'Gretell':  (' CDO', 3 ),
-    'Sizzell':  ('CSZO', 1 ),
-    'Lantell':  (' CUE', 6 ),
-    'Ruffell':  (' RHF', 7 ),
-    'Rotatell': ('CBRO', 2 ),
-    'Eksell':   (' CXC', 9 ),
-    'Jorgrell': (' CJR', 5 ),
+SERVER_COLORS = {
+    'CAO':  10,
+    'CDO':  3,
+    'CSZO': 1,
+    'CUE':  6,
+    'RHF':  7,
+    'CBRO': 2,
+    'CXC':  9,
+    'CJR':  5,
+    'CPO':  4,
 }
+
+BOTS = {
+    'Kramell':  None, # special
+    'Henzell':  'CAO',
+    'Gretell':  'CDO',
+    'Sizzell':  'CSZO',
+    'Lantell':  'CUE',
+    'Ruffell':  'RHF',
+    'Rotatell': 'CBRO',
+    'Eksell':   'CXC',
+    'Jorgrell': 'CJR',
+}
+
+MAX_SERV_NAME_LEN = 4
+
+KRAMELL_SRV = re.compile(r'\[([A-Z]+) [^\]]+\]\s*$')
 
 REPLACEMENTS = list(map(lambda rx: (re.compile(rx[0]), rx[1]), [
     (r'^([a-zA-Z0-9_]+ the [^ ]+) \((L\d{1,2} \w{4})\)', '\x02\\1\x02\x0F (\x03\\2\x0F)'),
@@ -56,9 +73,13 @@ def on_message(word, word_eol, userdata):
     if hexchat.get_info('channel') == '##crawl':
         msg_nick, msg_text = word[:2]
         if msg_nick in BOTS:
+            if msg_nick == 'Kramell':
+                msg_srv, = KRAMELL_SRV.findall(msg_text)
+            else:
+                msg_srv = BOTS[msg_nick]
             msg_nick = "\x02\x03{}{}\x02".format(
-                BOTS[msg_nick][1],
-                BOTS[msg_nick][0]
+                SERVER_COLORS.get(msg_srv, 1),
+                msg_srv.rjust(MAX_SERV_NAME_LEN)
             )
             msg_text = reduce(lambda s, rx: rx[0].sub(rx[1], s), REPLACEMENTS, msg_text)
             hexchat.emit_print("Channel Message", msg_nick, msg_text, "@")
