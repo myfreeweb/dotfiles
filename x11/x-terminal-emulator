@@ -1,2 +1,2 @@
 #!/bin/sh
-exec st -f dos:size=14 -e $*
+exec st -f monospace:size=10 -e $*
