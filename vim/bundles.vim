@@ -49,6 +49,9 @@ endif
 if executable('sbt') " Scala
 	Plug 'ensime/ensime-vim', { 'for': 'scala', 'do': 'pip install --user websocket-client' }
 endif
+if isdirectory($HOME.'/src/scm.gforge.inria.fr/anonscm/git/why3/why3/share/vim')
+	Plug '~/src/scm.gforge.inria.fr/anonscm/git/why3/why3/share/vim'
+endif
 
 " Features
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
