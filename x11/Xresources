@@ -5,8 +5,8 @@ Xft.hintstyle:        hintfull
 Xft.lcdfilter:        lcdlight
 
 rofi.modi:               run,drun,window
-rofi.fuzzy:              false
-rofi.font:               monospace 12
+rofi.matching:           fuzzy
+rofi.font:               sans 12
 rofi.padding:            10
 rofi.width:              720
 rofi.levenshtein-sort:   true

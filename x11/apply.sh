@@ -13,7 +13,6 @@ install_bin2() {
 	chmod +x "$HOME/.local/bin/$2"
 }
 
-install_bin brightctl
 install_bin floatyoutube
 install_bin mkscreencast
 install_bin mkscreenshot
@@ -32,11 +31,6 @@ cat XCompose > ~/.XCompose
 
 mkdir -p ~/.config/i3
 cat i3.conf > ~/.config/i3/config
-
-mkdir -p ~/.config/sxhkd
-cat sxhkdrc > ~/.config/sxhkd/sxhkdrc
-
-pkill -USR1 -x sxhkd
 
 mkdir -p ~/.config/dunst
 cat dunstrc.ini > ~/.config/dunst/dunstrc
