@@ -69,4 +69,5 @@ compton -c -o 0.35 -f -D 4 -m 1.0 -i 1.0 -e 1.0 \
 	--shadow-exclude "class_g = 'slop'" \
 	--shadow-exclude "n:e:gromit-mpx" &
 redshift -l 55.75:37.616 -t 6500:4200 &
+~/.fehbg &
 exec i3
