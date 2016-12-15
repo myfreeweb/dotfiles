@@ -13,3 +13,6 @@
 [submodule "keybindings"]
 	path = osx/keybindings
 	url = git://github.com/ttscoff/KeyBindings.git
+[submodule "zsh/deer"]
+	path = zsh/deer
+	url = https://github.com/Vifon/deer.git

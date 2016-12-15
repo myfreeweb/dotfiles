@@ -18,6 +18,7 @@
 
 let windows = has('win32') || has('win64')
 let mac = has('mac')
+let g:ruby_path = [] " Disable path walking that's slow on NFS. I don't even use vim-ruby features beyond syntax
 
 if windows
 	set runtimepath+=~/.vim

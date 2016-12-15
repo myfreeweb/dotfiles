@@ -10,17 +10,17 @@ chmod +x ~/.local/bin/*
 
 export GOPATH=~
 export GOBIN=~/.local/bin
-go get github.com/motemen/ghq
-go get github.com/peco/peco/cmd/peco
-go get github.com/monochromegane/the_platinum_searcher/cmd/pt
-go get github.com/pranavraja/tldr
-go get github.com/rakyll/boom
-go get github.com/schachmat/wego
-go get github.com/alexanderGugel/wsd
-go get github.com/jingweno/ccat
-go get github.com/asciinema/asciinema
-go get github.com/MaximeD/gost
-go get github.com/dinedal/textql/textql
-go get github.com/michaeldv/mop/cmd && mv ~/.local/bin/cmd ~/.local/bin/mop
+go get -u github.com/motemen/ghq
+go get -u github.com/peco/peco/cmd/peco
+go get -u github.com/monochromegane/the_platinum_searcher/cmd/pt
+go get -u github.com/pranavraja/tldr
+go get -u github.com/rakyll/hey
+go get -u github.com/schachmat/wego
+go get -u github.com/alexanderGugel/wsd
+go get -u github.com/jingweno/ccat
+go get -u github.com/asciinema/asciinema
+go get -u github.com/MaximeD/gost
+go get -u github.com/dinedal/textql/textql
+go get -u github.com/mop-tracker/mop/cmd && mv ~/.local/bin/cmd ~/.local/bin/mop
 
 echo "==> Installed bin"

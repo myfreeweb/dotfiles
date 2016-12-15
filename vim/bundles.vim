@@ -10,6 +10,7 @@ endfunction
 
 " Languages
 Plug 'sheerun/vim-polyglot'
+Plug 'b4b4r07/vim-hcl'
 Plug 'moll/vim-bbye'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
@@ -20,7 +21,6 @@ Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 if executable('npm')
-	Plug 'marijnh/tern_for_vim', { 'for': ['js', 'jsx', 'javascript', 'html', 'pug', 'haml'], 'do': 'npm install --update' }
 	Plug 'Quramy/tsuquyomi', { 'for': ['ts', 'typescript'] }
 endif
 if executable('latex')
@@ -55,7 +55,6 @@ endif
 
 " Features
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
@@ -65,7 +64,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-sleuth'
 Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] }
 Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] }
 Plug 'sjl/vitality.vim'
@@ -77,9 +75,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sickill/vim-pasta'
 Plug 'itchyny/lightline.vim'
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim' " Everything becomes slow over NFS :(
 Plug 'benmills/vimux'
-Plug 'mhinz/vim-startify'
 
 " Colors
 Plug 'chriskempson/base16-vim'

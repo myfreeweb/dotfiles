@@ -17,6 +17,8 @@
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
+fpath+=(~/.zsh/deer)
+autoload -U deer
 # }}}
 
 # XDG defaults {{{
@@ -204,6 +206,7 @@ bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
 zle -N hst && bindkey '^R' hst
 zle -N fancy-ctrl-z && bindkey '^Z' fancy-ctrl-z
+zle -N deer && bindkey '\ek' deer
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 [[ -n $terminfo[kcuu1] ]] && bindkey $terminfo[kcuu1] history-substring-search-up
@@ -212,6 +215,12 @@ bindkey '^[[B' history-substring-search-down
 # Stuff
 setopt pushd_ignore_dups auto_pushd auto_name_dirs auto_cd \
 	transient_rprompt prompt_subst no_beep multios extended_glob interactive_comments
+
+typeset -Ag DEER_KEYS
+DEER_KEYS[down]=k
+DEER_KEYS[page_down]=K
+DEER_KEYS[up]=j
+DEER_KEYS[page_up]=J
 
 # History
 setopt hist_ignore_dups hist_ignore_space hist_reduce_blanks hist_verify \
