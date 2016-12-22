@@ -1,0 +1,4 @@
+# https://docs.haskellstack.org/en/stable/yaml_configuration/
+
+build:
+  split-objs: true # make smaller executables (at the expense of slower linking)

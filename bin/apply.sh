@@ -22,5 +22,7 @@ go get -u github.com/asciinema/asciinema
 go get -u github.com/MaximeD/gost
 go get -u github.com/dinedal/textql/textql
 go get -u github.com/mop-tracker/mop/cmd && mv ~/.local/bin/cmd ~/.local/bin/mop
+go get -u github.com/cortesi/devd/cmd/devd
+go get -u github.com/cortesi/modd/cmd/modd
 
 echo "==> Installed bin"
