@@ -1,0 +1,29 @@
+#!/bin/sh
+# Common stuff for X and Wayland
+
+export LC_ALL=en_US.UTF-8
+
+# XDG paths
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_RUNTIME_DIR="$HOME/.tmp"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+
+# Lightweight qt theme config tool
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Prevent X errors and glitches
+export GDK_SYNCHRONIZE=1
+export COGL_ATLAS_DEFAULT_BLIT_MODE=framebuffer
+
+# E.g. xcape is in ~/.local/bin
+export PATH="~/.local/bin:$PATH"
+
+# Java crap
+export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
+# For some reason...
+killall ssh-agent
+rm -f ~/.ssh/ssh_auth_sock

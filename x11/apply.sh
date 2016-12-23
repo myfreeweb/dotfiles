@@ -13,11 +13,11 @@ install_bin2() {
 	chmod +x "$HOME/.local/bin/$2"
 }
 
+install_bin startw
 install_bin floatyoutube
 install_bin mkscreencast
 install_bin mkscreenshot
 install_bin freepass-x11
-install_bin multi-monitor
 install_bin x-terminal-emulator
 install_bin bar.rs
 install_bin2 volumectl.rs volumectl
@@ -25,12 +25,17 @@ install_bin2 volumectl.rs volumectl
 cat xinitrc > ~/.xinitrc
 touch ~/.xinitrc.local
 
+cat desktoprc > ~/.desktoprc
+
 cat Xresources > ~/.Xresources
 
 cat XCompose > ~/.XCompose
 
 mkdir -p ~/.config/i3
 cat i3.conf > ~/.config/i3/config
+
+mkdir -p ~/.config/sway
+cat sway.conf > ~/.config/sway/config
 
 mkdir -p ~/.config/dunst
 cat dunstrc.ini > ~/.config/dunst/dunstrc

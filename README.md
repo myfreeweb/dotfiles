@@ -88,7 +88,7 @@ $ zsh
 - **ranger** -- [ranger] file manager
 - **hexchat** -- [HexChat] IRC client
 - **firefox** -- [Firefox] CSS style
-- **x11** -- [dunst], [st], fontconfig, XCompose and other x.org stuff
+- **x11** -- [dunst], [st], fontconfig, XCompose, [i3]/[sway] and other X11 and Wayland stuff
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst]
 - **windows** -- PowerShell and other Microsoft Windows stuff
 
@@ -113,6 +113,8 @@ $ zsh
 [hashcash]: http://hashcash.org
 [dunst]: https://github.com/knopwob/dunst
 [st]: http://st.suckless.org/
+[i3]: https://i3wm.org/
+[sway]: https://github.com/SirCmpwn/sway
 [ranger]: http://ranger.nongnu.org/
 [HexChat]: https://hexchat.github.io/
 [Firefox]: https://www.mozilla.org/en-US/firefox/desktop/
