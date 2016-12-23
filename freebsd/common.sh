@@ -22,7 +22,8 @@ boot_set () {
 	sysrc -f /boot/loader.conf $* >/dev/null
 }
 
-boot_set cc_cubic_load="YES"
+boot_set cc_cubic_load="YES" \
+	kern.racct.enable=1
 kldload cc_cubic 2>/dev/null
 
 sysctl_set kern.randompid=1000 \

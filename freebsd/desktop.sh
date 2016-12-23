@@ -8,6 +8,18 @@
 
 . common.sh
 
+boot_set hw.usb.no_boot_wait=1 \
+	kern.cam.scsi_delay=1000 \
+	autoboot_delay=1 \
+	compat.linuxkpi.enable_fbc=0 \
+	hw.psm.synaptics_support=1 \
+	hw.psm.trackpoint_support=1
+	aesni_load="YES" \
+	fuse_load="YES" \
+	sem_load="YES" \
+	coretemp_load="YES" \
+	tpm_load="YES"
+
 sysctl_set kern.ipc.shm_allow_removed=1 \
 	kern.ipc.shmmax=67108864 \
 	kern.ipc.shmall=32768 \
@@ -15,6 +27,7 @@ sysctl_set kern.ipc.shm_allow_removed=1 \
 	kern.maxfiles=200000 \
 	kern.ipc.shm_allow_removed=1 \
 	kern.shutdown.poweroff_delay=500 \
+	kern.evdev.rcpt_mask=12 \
 	vfs.usermount=1 \
 	hw.snd.default_auto=1 \
 	hw.usb.no_shutdown_wait=1 \
