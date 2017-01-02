@@ -1,0 +1,3 @@
+[desktop=10]
+add path 'input/*' mode 0660 group video
+add path 'tty*' mode 0660 group video
