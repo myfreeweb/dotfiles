@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 ADOBECONV = '/Applications/Adobe DNG Converter.app/Contents/MacOS/Adobe DNG Converter'
+# RAW2DNG = "#{ENV['HOME']}/.local/bin/raw2dng" # https://github.com/Fimagena/raw2dng
 
 SRC = ARGV[0]
 DST = ARGV[1]
@@ -42,6 +43,12 @@ end
 if File.executable? ADOBECONV
   puts "=> Found Adobe DNG Converter, running"
   system ADOBECONV, '-p0', '-d', DST, *new_files.map { |f| File.join SRC, f }
+# elsif File.executable? RAW2DNG
+#   puts "=> Found raw2dng, running"
+#   new_files.each do |f|
+#     system RAW2DNG, '-o', File.join(DST, File.basename(f, '.*') + '.dng'), File.join(SRC, f)
+#   end
 else
-  puts "=> No DNG converter found"
+  puts "=> No DNG converter found, copying"
+  system 'cp', *new_files.map { |f| File.join SRC, f }, DST
 end
