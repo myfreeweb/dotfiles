@@ -126,6 +126,7 @@ if !windows
 end
 set backupdir=~/.vim/tmp/backups/
 set undodir=~/.vim/tmp/undo/
+set path+=** " recursive :find
 
 " ////////////////////////////
 
@@ -152,27 +153,22 @@ let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 let g:startify_change_to_dir = 0
 
 let delimitMate_excluded_ft='clojure'
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_liststyle = 3
 let g:jedi#popup_on_dot = 0
 let g:ledger_bin='hledger'
 let g:FactorRoot='/Applications/factor'
 let g:racer_cmd=$HOME.'/src/github.com/phildawes/racer/target/release/racer'
 
-if exists('/usr/local/llvm38/lib') " FreeBSD
+if exists('/usr/local/llvm39/lib') " FreeBSD
+	let g:clang_library_path = '/usr/local/llvm39/lib'
+elseif exists('/usr/local/llvm38/lib')
 	let g:clang_library_path = '/usr/local/llvm38/lib'
 elseif exists('/usr/local/llvm37/lib')
 	let g:clang_library_path = '/usr/local/llvm37/lib'
-elseif exists('/usr/local/llvm36/lib')
-	let g:clang_library_path = '/usr/local/llvm36/lib'
-elseif exists('/usr/local/llvm35/lib')
-	let g:clang_library_path = '/usr/local/llvm35/lib'
-elseif exists('/usr/local/opt/llvm38/lib/llvm-3.8/lib') " Homebrew
-	let g:clang_library_path = '/usr/local/opt/llvm38/lib/llvm-3.8/lib'
-elseif exists('/usr/local/opt/llvm37/lib/llvm-3.7/lib')
-	let g:clang_library_path = '/usr/local/opt/llvm37/lib/llvm-3.7/lib'
-elseif exists('/usr/local/opt/llvm36/lib/llvm-3.6/lib')
-	let g:clang_library_path = '/usr/local/opt/llvm36/lib/llvm-3.6/lib'
-elseif exists('/usr/local/opt/llvm35/lib/llvm-3.5/lib')
-	let g:clang_library_path = '/usr/local/opt/llvm35/lib/llvm-3.5/lib'
+elseif exists('/usr/local/opt/llvm38/lib/llvm-3.9/lib') " Homebrew
+	let g:clang_library_path = '/usr/local/opt/llvm39/lib/llvm-3.9/lib'
 elseif exists('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib') " Xcode
 	let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 elseif exists('/Library/Developer/CommandLineTools/usr/lib')

@@ -9,9 +9,12 @@ function! DoRemote(arg)
 endfunction
 
 " Languages
+let g:polyglot_disabled = ['nginx']
 Plug 'sheerun/vim-polyglot'
 Plug 'b4b4r07/vim-hcl'
 Plug 'moll/vim-bbye'
+Plug 'joker1007/vim-ruby-heredoc-syntax'
+Plug 'hexchain/vim-openresty', { 'for': 'nginx' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
@@ -63,12 +66,12 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-rsi'
 Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] }
 Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] }
 Plug 'sjl/vitality.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'reedes/vim-wordy'
 Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Raimondi/delimitMate'
