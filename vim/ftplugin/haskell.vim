@@ -1,15 +1,11 @@
-" This came from Greg V's dotfiles:
-"      https://github.com/myfreeweb/dotfiles
-" Feel free to steal it, but attribution is nice
-" 
-" Thanks: see vimrc
+" thanks:
 " http://www.stephendiehl.com/posts/vim_haskell.html
 
 let g:haskell_conceal_enumerations=0
 let g:haskell_use_basedir = getcwd()
 
 setlocal omnifunc=intero#omnifunc
-setlocal formatprg=pointfree
+setlocal formatprg=hindent
 
 setlocal expandtab
 setlocal tabstop=2

@@ -1,8 +1,4 @@
 #!/bin/sh
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
-
 MAIL_INBOX="$HOME/Mail/INBOX/new"
 
 case "$1" in

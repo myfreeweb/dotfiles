@@ -1,8 +1,6 @@
 #!/bin/sh
 echo "==> Installing haskell"
 
-cat hirc > ~/.hirc
-
 mkdir -p ~/.ghc
 cat ghci.conf.hs > ~/.ghc/ghci.conf
 

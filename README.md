@@ -124,7 +124,6 @@ $ zsh
 - **python** -- [Python] REPL configuration
 - **ruby** -- [Ruby] irb, Rails, RubyGems configuration
 - **node** -- [Node.js] npm configuration
-- **lein** -- [Clojure]'s [Leiningen] configuration
 - **ocaml** -- [OCaml]'s [OPAM] and [utop] configuration
 - **haskell** -- [Haskell]'s [Cabal], ghci, [hi] configuration
 - **lua** -- [Lua] [luarocks] configuration
@@ -132,8 +131,6 @@ $ zsh
 [Python]: https://www.python.org
 [Ruby]: https://www.ruby-lang.org/en/
 [Node.js]: https://nodejs.org/en/
-[Clojure]: http://clojure.org
-[Leiningen]: http://leiningen.org
 [OCaml]: https://ocaml.org
 [OPAM]: https://opam.ocaml.org
 [utop]: https://github.com/diml/utop

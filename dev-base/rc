@@ -1,7 +1,3 @@
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
-#
 # thanks:
 # https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/fish/config.fish
 # https://twitter.com/davegardnerisme/status/360422133316337664
@@ -10,6 +6,7 @@
 
 # Enable aliases to be sudo’ed
 alias sudo="sudo "
+alias doas="doas "
 
 # Ruby
 alias b="bundle"
@@ -20,7 +17,7 @@ alias rmig="rake db:migrate RAILS_ENV=development && rake db:migrate RAILS_ENV=t
 alias brmig="bundle exec rake db:migrate RAILS_ENV=development && bundle exec rake db:migrate RAILS_ENV=test"
 
 # Python
-alias pinst='sudo python setup.py install && sudo rm -r build && sudo rm -r dist && sudo rm -r *egg-info'
+alias pinst='python setup.py install && rm -fr build dist *egg-info'
 alias pipup="pip freeze --local | cut -d = -f 1 | xargs pip install -U"
 alias pipfr="pip freeze --local > requirements.txt"
 
@@ -33,7 +30,6 @@ alias gpgsign="gpg --detach-sign --armor"
 
 # Navigation
 alias p="popd"
-alias P="$PAGER"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -56,12 +52,10 @@ alias la="ls -lAFh" # long list, show all except . and .., show type, human read
 # Text
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-alias collapse="sed -e 's/  */ /g'"
 
 # Quick servers
 alias s_http="python -m SimpleHTTPServer"
 alias s_smtp="python -m smtpd -n -c DebuggingServer localhost:1025"
-alias gaes="dev_appserver.py -a 0.0.0.0 ."
 
 # Quick clients
 alias wgetallthethings="wget -E -nH -k -K -p"
@@ -74,10 +68,6 @@ alias emacs="TERM=xterm-256color emacs"
 alias meet="marelle meet"
 alias whois="whois -h whois-servers.net"
 alias dril="drill" # :D
-## Intuitive map function
-## For example, to list all directories that contain a certain file:  find . -name .gitattributes | map dirname
-alias map="xargs -n1"
-alias mus="ncmpcpp" # Is it even possible to remember this name correctly?!
 
 # Top
 # get top process eating memory
@@ -86,9 +76,5 @@ alias psmem="ps -e -orss=,args= | sort -b -k1,1n | head -10"
 alias pscpu="ps -e -o pcpu,cpu,nice,state,cputime,args | sort -k1 -nr | head -10"
 
 # OS X stuff
-## Empty the Trash on all mounted volumes and the main HDD. Also, clear Apple’s System Logs to improve shell startup speed
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
-## Merge PDF files. Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
-alias mergepdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py"
 ## Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"

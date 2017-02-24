@@ -6,9 +6,6 @@ mkdir -p ~/.tmp/tmux
 mkdir -p ~/.zsh
 mkdir -p ~/.config/base16
 
-rm -r ~/.zsh/deer
-cp -r deer ~/.zsh/deer
-
 rm -r ~/.zsh/zsh-hl
 cp -r zsh-hl ~/.zsh/zsh-hl
 

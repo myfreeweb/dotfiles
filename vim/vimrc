@@ -29,7 +29,9 @@ if !has('nvim')
 	set t_ti= t_te= " http://www.shallowsky.com/linux/noaltscreen.html
 end
 
-if executable('/usr/local/bin/python3.5')
+if executable('/usr/local/bin/python3.6')
+	let g:python3_host_prog = '/usr/local/bin/python3.6'
+elseif executable('/usr/local/bin/python3.5')
 	let g:python3_host_prog = '/usr/local/bin/python3.5'
 endif
 
@@ -152,6 +154,7 @@ source ~/.vim/fuzzy.vim
 let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 let g:startify_change_to_dir = 0
 
+let g:haskell_indent_disable = 1 " it's bad
 let delimitMate_excluded_ft='clojure'
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -161,7 +164,9 @@ let g:ledger_bin='hledger'
 let g:FactorRoot='/Applications/factor'
 let g:racer_cmd=$HOME.'/src/github.com/phildawes/racer/target/release/racer'
 
-if exists('/usr/local/llvm39/lib') " FreeBSD
+if exists('/usr/local/llvm40/lib') " FreeBSD
+	let g:clang_library_path = '/usr/local/llvm40/lib'
+elseif exists('/usr/local/llvm39/lib')
 	let g:clang_library_path = '/usr/local/llvm39/lib'
 elseif exists('/usr/local/llvm38/lib')
 	let g:clang_library_path = '/usr/local/llvm38/lib'

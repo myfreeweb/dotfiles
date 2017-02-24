@@ -1,7 +1,4 @@
 # vim:set noexpandtab
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
 #
 # thanks:
 # http://selena.deckelmann.usesthis.com/
@@ -17,8 +14,6 @@
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
-fpath+=(~/.zsh/deer)
-autoload -U deer
 # }}}
 
 # XDG defaults {{{
@@ -82,14 +77,10 @@ export GOBIN=~/.local/bin
 # Java
 [[ -e /usr/libexec/java_home ]] && export JAVA_HOME=$(/usr/libexec/java_home)
 [[ -d /usr/local/opt/android-sdk ]] && export ANDROID_HOME=/usr/local/opt/android-sdk
-export JRUBY_OPTS="-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify"
 runjava() {
 	cp $1 /tmp/Main.java
 	(cd /tmp && javac Main.java && echo "--- compiled, running" && java Main)
 }
-
-# .NET Core
-[[ -e $commands[dnvm.sh] ]] && source dnvm.sh
 
 # Ruby
 export RBXOPT=-X19
@@ -132,11 +123,12 @@ export CARGO_INSTALL_ROOT="$HOME/.local"
 [[ -e ~/.rc ]] && source ~/.rc
 [[ ! -e $commands[gmake] ]] && alias gmake=make
 dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
+drillhost() { host $(drill $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
 mcd() { mkdir -p $1 && cd $1; }
 icd() { DIR=$(ls | $MENU) && cd $DIR && icd }
 prj() { cd ~/src/$(ghq list | $MENU) }
 hst() { eval $(history -n 1 | tail -r | $MENU --layout=bottom-up) }
-mdown() { pandoc -s -f markdown -t man "$*" | man -l - } # read markdown files like manpages
+mdown() { pandoc -s -f markdown -t man "$*" | mandoc | less } # read markdown files like manpages
 
 if [[ -n $TMUX ]]; then
 	escseq() { printf "\033Ptmux;\033\033]$1\007\033\\" }
@@ -144,29 +136,10 @@ else
 	escseq() { printf "\033]$1\007" }
 fi
 
-if [[ -n $ITERM_PROFILE && -o login ]]; then
-	before_cmd_executes() { escseq "133;C" }
-	after_cmd_executes() {
-		escseq "133;D;$1"
-		escseq "1337;RemoteHost=$USER@$(hostname -f)"
-		escseq "1337;CurrentDir=$PWD"
-	}
-	escseq "1337;ShellIntegrationVersion=1"
-	after_cmd_executes 0
-else
-	before_cmd_executes() { }
-	after_cmd_executes() { }
-fi
-
-preexec() {
-	before_cmd_executes
-}
-
 precmd() {
 	# $? in prompt is wrong, can't pass %? to conditionals
 	local exit_status="$?"
 	if [[ $exit_status == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
-	after_cmd_executes $exit_status
 	if [[ $PRIVATE == 1 ]]; then
 		SCOLOR=$bg[magenta]$fg_bold[black]
 	elif [[ ${HOST##*\.} == 'local' || ${HOST##*\.} == 'localdomain' || $HOST =~ '^[^\.]+$' ]]; then
@@ -206,26 +179,19 @@ bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
 zle -N hst && bindkey '^R' hst
 zle -N fancy-ctrl-z && bindkey '^Z' fancy-ctrl-z
-zle -N deer && bindkey '\ek' deer
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-[[ -n $terminfo[kcuu1] ]] && bindkey $terminfo[kcuu1] history-substring-search-up
-[[ -n $terminfo[kcud1] ]] && bindkey $terminfo[kcud1] history-substring-search-down
+#[[ -n $terminfo[kcuu1] ]] && bindkey $terminfo[kcuu1] history-substring-search-up
+#[[ -n $terminfo[kcud1] ]] && bindkey $terminfo[kcud1] history-substring-search-down
 
 # Stuff
 setopt pushd_ignore_dups auto_pushd auto_name_dirs auto_cd \
 	transient_rprompt prompt_subst no_beep multios extended_glob interactive_comments
 
-typeset -Ag DEER_KEYS
-DEER_KEYS[down]=k
-DEER_KEYS[page_down]=K
-DEER_KEYS[up]=j
-DEER_KEYS[page_up]=J
-
 # History
 setopt hist_ignore_dups hist_ignore_space hist_reduce_blanks hist_verify \
- hist_expire_dups_first hist_find_no_dups share_history extended_history \
- append_history inc_append_history nobanghist
+	hist_expire_dups_first hist_find_no_dups share_history extended_history \
+	append_history inc_append_history nobanghist
 
 # Completion
 setopt menu_complete # Autoselect the first suggestion
@@ -274,9 +240,6 @@ _loadkeys() { compadd $(find ~/.ssh -perm 0600 ! -type s | xargs basename) }
 compdef _loadkeys loadkeys
 compdef _base16 base16
 
-alias find="noglob find"
-alias wget="noglob wget"
-
 HISTFILE=$XDG_RUNTIME_DIR/history_zsh
 HISTSIZE=4096
 SAVEHIST=4096
@@ -316,13 +279,14 @@ alias pg=$PAGER
 alias vi=$VISUAL
 
 [[ -e $commands[percol] ]] && export MENU=percol
-[[ -e $commands[peco]   ]] && export MENU=peco
 [[ -e $commands[fzf]    ]] && export MENU=fzf
+[[ -e $commands[peco]   ]] && export MENU=peco
 alias mn=$MENU
 
 [[ -e $commands[ack] ]] && export SEARCH=ack
-[[ -e $commands[ag]  ]] && export SEARCH=ag
 [[ -e $commands[pt]  ]] && export SEARCH=pt
+[[ -e $commands[ag]  ]] && export SEARCH=ag
+[[ -e $commands[rg]  ]] && export SEARCH=rg
 alias sr=$SEARCH
 # }}}
 

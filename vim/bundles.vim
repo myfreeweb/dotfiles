@@ -12,19 +12,17 @@ endfunction
 let g:polyglot_disabled = ['nginx']
 Plug 'sheerun/vim-polyglot'
 Plug 'b4b4r07/vim-hcl'
-Plug 'moll/vim-bbye'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'hexchain/vim-openresty', { 'for': 'nginx' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
-Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'brandonbloom/vim-factor', { 'for': 'factor' }
-Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 if executable('npm')
 	Plug 'Quramy/tsuquyomi', { 'for': ['ts', 'typescript'] }
+	Plug 'moll/vim-node', { 'for': ['js', 'javascript', 'ts', 'typescript'] }
 endif
 if executable('latex')
 	Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
@@ -58,19 +56,22 @@ endif
 
 " Features
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-rsi'
+Plug 'moll/vim-bbye' " Good buffer close
+Plug 'tpope/vim-unimpaired' " ']q' to :cnext, etc.
+Plug 'tpope/vim-speeddating' " Ctrl-A/X to increment dates/times
+Plug 'tpope/vim-surround' " 'cs' to 'c'hange 's'urrounding brackets/etc
+Plug 'tpope/vim-endwise' " Auto 'end' in Ruby/Lua/etc
+Plug 'tpope/vim-abolish' " Smart case %S substitution, etc
+Plug 'tpope/vim-commentary' " 'gc' to toggle comment
+Plug 'tpope/vim-eunuch' " :Remove, :SudoWrite etc.
+Plug 'tpope/vim-repeat' " Enable . repeating for plugins
+Plug 'tpope/vim-sleuth' " Autodetect indent
+Plug 'tpope/vim-rsi' " Readline key bindings in command prompts & insert mode
 Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] }
 Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] }
-Plug 'sjl/vitality.vim'
+if has('mac')
+	Plug 'sjl/vitality.vim' " iTerm2 + tmux fixes
+endif
 Plug 'junegunn/vim-easy-align'
 Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
@@ -78,7 +79,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sickill/vim-pasta'
 Plug 'itchyny/lightline.vim'
-" Plug 'editorconfig/editorconfig-vim' " Everything becomes slow over NFS :(
+Plug 'editorconfig/editorconfig-vim'
 Plug 'benmills/vimux'
 
 " Colors

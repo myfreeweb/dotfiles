@@ -23,6 +23,7 @@ au BufRead,BufNewFile *.fish setf tcsh
 au BufRead,BufNewFile *.ledger setf ledger
 au BufRead,BufNewFile *.cr setf crystal
 au BufRead,BufNewFile *psqlrc,*.sql setf pgsql
+au BufRead,BufNewFile *.ngx.conf,*.nginx.conf setf nginx
 au BufRead,BufNewFile gitconfig setlocal noexpandtab
 
 " Completion

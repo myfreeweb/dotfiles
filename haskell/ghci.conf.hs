@@ -1,7 +1,3 @@
--- This came from Greg V's dotfiles:
---      https://github.com/myfreeweb/dotfiles
--- Feel free to steal it, but attribution is nice
---
 -- thanks:
 --  http://redd.it/144biy
 --  http://www.mega-nerd.com/erikd/Blog/CodeHacking/Haskell/ghci-trick.html
