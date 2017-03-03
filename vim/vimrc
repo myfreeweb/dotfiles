@@ -1,7 +1,3 @@
-" This came from Greg V's dotfiles:
-"      https://github.com/myfreeweb/dotfiles
-" Feel free to steal it, but attribution is nice
-"
 " Thanks:
 " http://bitbucket.org/sjl/dotfiles
 " https://github.com/daveray/vimfiles
@@ -42,6 +38,7 @@ import os.path
 import sys
 if 'VIRTUAL_ENV' in os.environ:
     project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, os.path.join(project_base_dir, '/lib/python3.6/site-packages'))
     sys.path.insert(0, os.path.join(project_base_dir, '/lib/python3.5/site-packages'))
 EOF
 end
@@ -91,7 +88,7 @@ set hidden
 if windows || mac
 	set mouse=a
 end
-set shortmess=filtIoOA
+set shortmess=filtIoOAc
 set laststatus=2
 set nostartofline
 set visualbell
@@ -148,48 +145,51 @@ digraph __ 8869
 
 source ~/.vim/bindings.vim
 source ~/.vim/autocmd.vim
-source ~/.vim/fuzzy.vim
 
 " Misc
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 let g:startify_change_to_dir = 0
-
-let g:haskell_indent_disable = 1 " it's bad
-let delimitMate_excluded_ft='clojure'
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
-let g:jedi#popup_on_dot = 0
-let g:ledger_bin='hledger'
-let g:FactorRoot='/Applications/factor'
-let g:racer_cmd=$HOME.'/src/github.com/phildawes/racer/target/release/racer'
-
-if exists('/usr/local/llvm40/lib') " FreeBSD
-	let g:clang_library_path = '/usr/local/llvm40/lib'
-elseif exists('/usr/local/llvm39/lib')
-	let g:clang_library_path = '/usr/local/llvm39/lib'
-elseif exists('/usr/local/llvm38/lib')
-	let g:clang_library_path = '/usr/local/llvm38/lib'
-elseif exists('/usr/local/llvm37/lib')
-	let g:clang_library_path = '/usr/local/llvm37/lib'
-elseif exists('/usr/local/opt/llvm38/lib/llvm-3.9/lib') " Homebrew
-	let g:clang_library_path = '/usr/local/opt/llvm39/lib/llvm-3.9/lib'
-elseif exists('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib') " Xcode
-	let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
-elseif exists('/Library/Developer/CommandLineTools/usr/lib')
-	let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
-endif
-
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 command! -bar -count=0 RFC :e http://www.ietf.org/rfc/rfc<count>.txt | setl ro noma
 
+" Language support
+let delimitMate_excluded_ft='clojure'
+let g:haskell_indent_disable = 1 " it's bad
+let g:ledger_bin='hledger'
+let g:FactorRoot='/Applications/factor'
+let g:echodoc_enable_at_startup = 1
+let g:LanguageClient_serverCommands = {
+	    \ 'rust': ['rls'],
+	    \ 'go': ['go-langserver'],
+	    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+	    \ 'reason': ['ocaml-language-server', '--stdio'],
+	    \ 'javascript.jsx': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js', '-s', '-t', '-l', $HOME.'/tslog'],
+	    \ 'typescript': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js', '-s', '-t', '-l', $HOME.'/tslog'],
+	    \ 'python': ['pyls'],
+	    \}
+let g:cm_sources_override = {
+	    \ 'cm-gocode': {'enable': 0},
+	    \ 'cm-tmux': {'enable': 0},
+	    \ }
+au User CmSetup call cm#register_source({'name' : 'cm-intero',
+	    \ 'priority': 9, 
+	    \ 'scoping': 1,
+	    \ 'scopes': ['haskell'],
+	    \ 'abbreviation': 'haskell',
+	    \ 'cm_refresh_patterns':[':\s+\w*$'],
+	    \ 'cm_refresh': {'omnifunc': 'intero#omnifunc'},
+	    \ })
+
 " Colors and lines
 let g:lightline = {
-			\ 'colorscheme': 'solarized',
-			\ 'component': {
-			\   'readonly': '%{&readonly ? "⭤" : ""}',
-			\ }
-			\ }
+	    \ 'colorscheme': 'solarized',
+		\ 'component': {
+		\   'readonly': '%{&readonly ? "⭤" : ""}',
+		\ }
+	    \ }
 let base16colorspace=256
 execute 'set background='.$BASE16_BACKGROUND
 "execute 'colorscheme base16-'.$BASE16_SCHEME

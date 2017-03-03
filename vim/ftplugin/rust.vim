@@ -1,5 +1,3 @@
-setlocal omnifunc=RacerComplete
-
 setlocal expandtab
 setlocal tabstop=4
 setlocal softtabstop=4
