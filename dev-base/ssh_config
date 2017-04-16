@@ -9,7 +9,6 @@ TCPKeepAlive no
 ServerAliveInterval 60
 ServerAliveCountMax 10
 HostbasedAuthentication no
-RhostsRSAAuthentication no
 HashKnownHosts no
 CheckHostIP yes
 VerifyHostKeyDNS yes

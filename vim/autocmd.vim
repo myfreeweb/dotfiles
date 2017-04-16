@@ -16,6 +16,7 @@ au BufRead,BufNewFile *.{jar,war,ear,sar} setf zip
 au BufRead,BufNewFile *.ledger setf ledger
 au BufRead,BufNewFile *psqlrc,*.sql setf pgsql
 au BufRead,BufNewFile *.nginx,*.ngx,*.ngx.conf,*nginx.conf setf nginx
+au BufRead,BufNewFile *.pf,*pf.conf setf pf
 au BufRead,BufNewFile *.sieve setf sieve
 au BufRead,BufNewFile gitconfig setlocal noexpandtab
 
