@@ -1,9 +1,5 @@
 #!/bin/sh
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
-#
-# Thanks:
+# thanks:
 #  https://www.digitalocean.com/community/questions/what-settings-digitalocean-suggested-for-tuning-of-freebsd-installation
 #  https://calomel.org/freebsd_network_tuning.html
 #  https://gist.github.com/jahil/69265ffbefd86a588649

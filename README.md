@@ -15,8 +15,6 @@
  ▀█▄██  ▀█▄█▀    ▀▄▄    █    ▄▄█▄▄    ▀▄▄  ▀█▄▄▀  ▀▄▄▄▀ 
                                                         
 
-I definitely spend waaaaaay too much time configuring software I use.
-
 ```
 
 # dotfiles
@@ -87,7 +85,6 @@ $ zsh
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 - **ranger** -- [ranger] file manager
 - **hexchat** -- [HexChat] IRC client
-- **firefox** -- [Firefox] CSS style
 - **x11** -- [dunst], [st], fontconfig, XCompose, [i3]/[sway] and other X11 and Wayland stuff
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst]
 - **windows** -- PowerShell and other Microsoft Windows stuff
@@ -117,7 +114,6 @@ $ zsh
 [sway]: https://github.com/SirCmpwn/sway
 [ranger]: http://ranger.nongnu.org/
 [HexChat]: https://hexchat.github.io/
-[Firefox]: https://www.mozilla.org/en-US/firefox/desktop/
 
 ### Language-specific
 
@@ -125,7 +121,7 @@ $ zsh
 - **ruby** -- [Ruby] irb, Rails, RubyGems configuration
 - **node** -- [Node.js] npm configuration
 - **ocaml** -- [OCaml]'s [OPAM] and [utop] configuration
-- **haskell** -- [Haskell]'s [Cabal], ghci, [hi] configuration
+- **haskell** -- [Haskell]'s [Cabal], [Stack] and ghci configuration
 - **lua** -- [Lua] [luarocks] configuration
 
 [Python]: https://www.python.org
@@ -136,6 +132,6 @@ $ zsh
 [utop]: https://github.com/diml/utop
 [Haskell]: https://www.haskell.org
 [Cabal]: https://www.haskell.org/cabal/
-[hi]: https://github.com/fujimura/hi
+[Stack]: https://docs.haskellstack.org/en/stable/README/
 [Lua]: http://www.lua.org
 [luarocks]: https://rocks.moonscript.org

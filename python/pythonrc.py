@@ -1,13 +1,9 @@
 # coding: utf-8
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
-#
 # thanks:
-# https://github.com/zacharyvoase/dotfiles/blob/master/pythonrc
-# https://github.com/sontek/dotfiles/blob/master/_pythonrc.py
-# http://brianlyttle.com/2011/10/python-interpreter-tab-completion-on-os-x/
-# http://stackoverflow.com/questions/7116038/python-tab-completion-mac-osx-10-7-lion
+#  https://github.com/zacharyvoase/dotfiles/blob/master/pythonrc
+#  https://github.com/sontek/dotfiles/blob/master/_pythonrc.py
+#  http://brianlyttle.com/2011/10/python-interpreter-tab-completion-on-os-x/
+#  http://stackoverflow.com/questions/7116038/python-tab-completion-mac-osx-10-7-lion
 
 import rlcompleter
 import subprocess

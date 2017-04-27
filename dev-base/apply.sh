@@ -9,8 +9,6 @@ cat gitignore > ~/.gitignore
 
 cat hgrc > ~/.hgrc
 
-cat ackrc > ~/.ackrc
-
 sed -e "s/^#.*$//" < ctags > ~/.ctags
 
 cat curlrc > ~/.curlrc

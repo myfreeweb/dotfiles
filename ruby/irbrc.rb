@@ -1,14 +1,10 @@
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
-#
 # thanks:
-# https://github.com/aziz/dotfiles/blob/master/irbrc
-# https://gist.github.com/807492
-# http://pastie.org/179534
-# https://github.com/rafmagana/irbrc/blob/master/dot_irbrc
-# https://github.com/cjameshuff/irbrc/blob/master/irbrc.rb
-# http://stackoverflow.com/questions/123494/whats-your-favourite-irb-trick
+#  https://github.com/aziz/dotfiles/blob/master/irbrc
+#  https://gist.github.com/807492
+#  http://pastie.org/179534
+#  https://github.com/rafmagana/irbrc/blob/master/dot_irbrc
+#  https://github.com/cjameshuff/irbrc/blob/master/irbrc.rb
+#  http://stackoverflow.com/questions/123494/whats-your-favourite-irb-trick
 
 require 'rubygems'
 require 'irb/completion'
