@@ -83,7 +83,6 @@ runjava() {
 }
 
 # Ruby
-export RBXOPT=-X19
 [[ -d /usr/local/var/rbenv ]] && export RBENV_ROOT=/usr/local/var/rbenv
 bforkify() {
 	bundle config local.$1 ~/src/github.com/myfreeweb/$1
@@ -114,8 +113,7 @@ hsi() { stack ghci --ghc-options="-fno-hpc" --with-ghc intero }
 :test() { hsi } # for the vimux/ghci trick
 
 # Rust
-export RUST_SRC_PATH="$HOME/src/github.com/rust-lang/rust/src"
-export RLS_ROOT="$HOME/src/github.com/rust-lang-nursery/rls"
+export RUSTUP_USE_HYPER=1 # XXX: will eventually become the default??
 [[ -e $commands[rustc] ]] && export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$HOME/.local"
@@ -263,6 +261,7 @@ path=(
 	$BREWGO/bin(N) $BREWGO/libexec/bin(N) /usr/local/go/bin(N)
 	$JAVA_HOME/bin(N)
 	$RBENV_ROOT/shims(N)
+	~/.gem/ruby/2.4/bin(N)
 	~/.gem/ruby/2.3/bin(N)
 	/usr/local/share/npm/bin(N)
 	/usr/local/sbin /usr/local/bin /sbin /bin $path

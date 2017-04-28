@@ -103,12 +103,12 @@ set wildmenu wildmode=list:longest,list:full
 set wildignore+=.hg,.git,.bzr,.svn " Version control
 set wildignore+=*.aux,*.out,*.toc  " LaTeX
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.webp,*.otf,*.ttf,*.eot,*.woff
-set wildignore+=*.luac,*.pyc,*.rbc,*.class,classes
+set wildignore+=*.luac,*.pyc,*.rbc,*.class,classes,*.min.*
 set wildignore+=*.o,*.so,*.dylib,*.obj,*.exe,*.dll,*.manifest
 set wildignore+=*.spl,*.sw?
 set wildignore+=.DS_Store,Thumbs.db
-set wildignore+=target,node_modules,build,dist
-set wildignore+=.cabal-sandbox,.hpc,.stack-work
+set wildignore+=target,node_modules,build,dist,venv
+set wildignore+=.cabal-sandbox,.hpc,.stack-work,__pycache__
 set wildignore+=platforms,plugins
 
 " paths
@@ -147,13 +147,21 @@ source ~/.vim/bindings.vim
 source ~/.vim/autocmd.vim
 
 " Misc
-let g:startify_change_to_dir = 0
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 command! -bar -count=0 RFC :e http://www.ietf.org/rfc/rfc<count>.txt | setl ro noma
+
+call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git', ''])
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
 
 " Language support
 let delimitMate_excluded_ft='clojure'
@@ -162,7 +170,7 @@ let g:ledger_bin='hledger'
 let g:FactorRoot='/Applications/factor'
 let g:echodoc_enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
-	    \ 'rust': ['rls'],
+	    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
 	    \ 'go': ['go-langserver'],
 	    \ 'ocaml': ['ocaml-language-server', '--stdio'],
 	    \ 'reason': ['ocaml-language-server', '--stdio'],

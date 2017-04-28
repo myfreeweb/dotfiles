@@ -4,9 +4,36 @@ let maplocalleader = "\\"
 " Plugins and stuff
 nmap sk :SplitjoinSplit<CR>
 nmap sj :SplitjoinJoin<CR>
-nnoremap <Leader>a :call VimuxOpenRunner()<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+nnoremap <silent> <Leader>a :call VimuxOpenRunner()<CR>
+nnoremap <silent> <Leader>q :Bdelete<CR>
+nnoremap <silent> <Leader>p :Denite file_rec buffer<CR>
+nnoremap <silent> <Leader>s :Denite grep<CR>
+nnoremap <silent> <Leader>h :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> <Leader>d :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <Leader>r :call LanguageClient_textDocument_rename()<CR>
+
+" Show most plugin keybindings  http://vimbits.com/bits/534
+nnoremap <silent> <Leader>? :map <Leader><CR>
+
+" Unfuck the screen
+nnoremap <Leader>u :syntax sync fromstart<cr>:redraw!<cr> 
+
+" Toggles
+nnoremap <silent> <Leader>P :call ToggleOption('paste')<CR>
+nnoremap <silent> <Leader>W :call ToggleOption('wrap')<CR>
+nnoremap <silent> <Leader>S :call ToggleOption('spell')<CR>
+function! ToggleOption(option_name)
+	execute 'setlocal' a:option_name.'!'
+	execute 'setlocal' a:option_name.'?'
+endfunction
+
+" Settings
+nnoremap <silent> <Leader><Tab>t :setlocal noexpandtab<CR>
+nnoremap <silent> <Leader><Tab>2 :setlocal expandtab shiftwidth=2 softtabstop=2<CR>
+nnoremap <silent> <Leader><Tab>4 :setlocal expandtab shiftwidth=4 softtabstop=4<CR>
+nnoremap <silent> <Leader><Tab>8 :setlocal expandtab shiftwidth=8 softtabstop=8<CR>
 
 " Inverted for Colemak + Improve up/down movement on wrapped lines http://vimbits.com/bits/25
 noremap k gj
@@ -18,10 +45,7 @@ vnoremap ; :
 nnoremap ' i
 vnoremap ' i
 nnoremap U <C-r>
-nnoremap <Leader>q :Bdelete<CR>
-
-" Show most plugin keybindings  http://vimbits.com/bits/534
-nnoremap <silent> <Leader>? :map <Leader><CR>
+"nnoremap <Leader>q :Bdelete<CR>
 
 " Reselect visual block after indent/outdent  http://vimbits.com/bits/20
 vnoremap < <gv
@@ -47,9 +71,6 @@ vnoremap <Space> za
 
 " Remove search highlights  http://vimbits.com/bits/21
 nnoremap <silent> <CR> :nohlsearch<CR>
-
-" Unfuck the screen
-nnoremap <Leader>u :syntax sync fromstart<cr>:redraw!<cr> 
 
 " Select (charwise) the contents of the current line, excluding indentation.
 " great for pasting Python lines into REPLs.
@@ -77,21 +98,6 @@ nnoremap <Left>  :bprev<CR>
 nnoremap <Up>    :cprev<CR>zvzz
 nnoremap <Down>  :cnext<CR>zvzz
 
-" Toggles
-nnoremap <silent> <Leader>P :call ToggleOption('paste')<CR>
-nnoremap <silent> <Leader>W :call ToggleOption('wrap')<CR>
-nnoremap <silent> <Leader>S :call ToggleOption('spell')<CR>
-function! ToggleOption(option_name)
-	execute 'setlocal' a:option_name.'!'
-	execute 'setlocal' a:option_name.'?'
-endfunction
-
-" Settings
-nnoremap <silent> <Leader><Tab>t :setlocal noexpandtab<CR>
-nnoremap <silent> <Leader><Tab>2 :setlocal expandtab shiftwidth=2 softtabstop=2<CR>
-nnoremap <silent> <Leader><Tab>4 :setlocal expandtab shiftwidth=4 softtabstop=4<CR>
-nnoremap <silent> <Leader><Tab>8 :setlocal expandtab shiftwidth=8 softtabstop=8<CR>
-
 " Motion for numbers.  Great for CSS.  Lets you do things like this:
 " margin-top: 200px; -> daN -> margin-top: px;
 onoremap N  :<C-u>call <SID>NumberTextObject(0)<cr>
@@ -110,27 +116,5 @@ function! s:NumberTextObject(whole)
 		while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
 			normal! h
 		endwhile
-	endif
-endfunction
-
-" Kill buffers without closing panes
-nnoremap <silent> <Leader>k :Bclose<CR>
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-	let l:currentBufNum = bufnr("%")
-	let l:alternateBufNum = bufnr("#")
-
-	if buflisted(l:alternateBufNum)
-		buffer #
-	else
-		bnext
-	endif
-
-	if bufnr("%") == l:currentBufNum
-		new
-	endif
-
-	if buflisted(l:currentBufNum)
-		execute("bdelete! ".l:currentBufNum)
 	endif
 endfunction
