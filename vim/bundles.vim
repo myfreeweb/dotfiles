@@ -5,11 +5,10 @@ let g:plug_name_modifier = ':s?\.git$??'
 call plug#begin('~/src/github.com')
 
 " Languages
-let g:polyglot_disabled = ['nginx']
+let g:polyglot_disabled = ['latex']
 Plug 'sheerun/vim-polyglot'
 Plug 'b4b4r07/vim-hcl'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
-Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
