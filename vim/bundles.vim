@@ -59,6 +59,7 @@ Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] } " Merge
 if has('mac')
 	Plug 'sjl/vitality.vim' " iTerm2 + tmux fixes
 endif
+Plug 'machakann/vim-highlightedyank' " Highlight copied text
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Raimondi/delimitMate'

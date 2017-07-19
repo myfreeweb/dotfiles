@@ -8,7 +8,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 nnoremap <silent> <Leader>a :call VimuxOpenRunner()<CR>
 nnoremap <silent> <Leader>q :Bdelete<CR>
-nnoremap <silent> <Leader>p :Denite file_rec buffer<CR>
+nnoremap <silent> <Leader>p :Denite buffer file_rec<CR>
 nnoremap <silent> <Leader>s :Denite grep<CR>
 nnoremap <silent> <Leader>h :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> <Leader>d :call LanguageClient_textDocument_definition()<CR>

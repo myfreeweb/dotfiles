@@ -57,7 +57,7 @@ set autoread autowrite
 set magic
 set nojoinspaces
 set modelines=3
-set synmaxcol=500 " don't highlight minified js and stuff
+set synmaxcol=768 " don't highlight minified js and stuff
 set switchbuf=usetab
 set gdefault
 
@@ -97,6 +97,9 @@ set mat=5
 set virtualedit=onemore
 set viewoptions=folds,options,cursor,unix,slash
 set completeopt-=preview
+if has('inccommand')
+	set inccommand=nosplit
+end
 
 " completion
 set wildmenu wildmode=list:longest,list:full
@@ -104,6 +107,7 @@ set wildignore+=.hg,.git,.bzr,.svn " Version control
 set wildignore+=*.aux,*.out,*.toc  " LaTeX
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.webp,*.otf,*.ttf,*.eot,*.woff
 set wildignore+=*.luac,*.pyc,*.rbc,*.class,classes,*.min.*
+set wildignore+=*.annot,*.cmi,*.cmo,*.cmt,*.cmti,*.cmx,*.dep " OCaml
 set wildignore+=*.o,*.so,*.dylib,*.obj,*.exe,*.dll,*.manifest
 set wildignore+=*.spl,*.sw?
 set wildignore+=.DS_Store,Thumbs.db
@@ -161,6 +165,10 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
 
 
 " Language support
@@ -172,8 +180,8 @@ let g:echodoc_enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
 	    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
 	    \ 'go': ['go-langserver'],
-	    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-	    \ 'reason': ['ocaml-language-server', '--stdio'],
+	    \ 'ocaml': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
+	    \ 'reason': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
 	    \ 'javascript.jsx': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js', '-s', '-t', '-l', $HOME.'/tslog'],
 	    \ 'typescript': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js', '-s', '-t', '-l', $HOME.'/tslog'],
 	    \ 'python': ['pyls'],
