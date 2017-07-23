@@ -10,6 +10,7 @@
 # http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 # https://github.com/xero/dotfiles
 # https://github.com/eevee/rc
+# http://nullprogram.com/blog/2017/06/19/
 
 # External plugins {{{
 source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
@@ -21,6 +22,13 @@ source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
 : ${XDG_CACHE_HOME:="$HOME/.cache"}
 : ${XDG_DATA_HOME:="$HOME/.local/share"}
 : ${XDG_RUNTIME_DIR:="$HOME/.tmp"}
+# }}}
+
+# Library installation to home {{{
+export C_INCLUDE_PATH=$HOME/.local/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=$HOME/.local/include:$CPLUS_INCLUDE_PATH
+export LIBRARY_PATH=$HOME/.local/lib:$LIBRARY_PATH
+export PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH
 # }}}
 
 # Color {{{
