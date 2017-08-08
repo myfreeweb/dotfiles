@@ -34,7 +34,7 @@ export PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH
 # Color {{{
 base16() {
 	local SCHEME="$*"
-	local BASE16_SHELL="$HOME/.zsh/base16-shell/base16-$SCHEME.$BASE16_BACKGROUND.sh"
+	local BASE16_SHELL="$HOME/.zsh/base16-shell/scripts/base16-$SCHEME.sh"
 	if [[ -s $BASE16_SHELL ]]; then
 		source $BASE16_SHELL
 		export BASE16_SCHEME="$SCHEME"
@@ -44,19 +44,10 @@ base16() {
 	fi
 }
 
-background() {
-	echo -n "$*" > $XDG_CONFIG_HOME/base16/background
-	export BASE16_BACKGROUND="$*"
-	base16 $BASE16_SCHEME
-}
-
-light() { background light }
-dark() { background dark }
-_base16() { compadd $(find ~/.zsh/base16-shell | grep dark.sh | xargs basename | sed -e "s/base16-//" -e "s/\.dark\.sh//") }
+_base16() { compadd $(find ~/.zsh/base16-shell/scripts | xargs basename | sed -e "s/base16-//" -e "s/\.sh//") }
 : ${BASE16_SCHEME:="$(cat $XDG_CONFIG_HOME/base16/scheme 2>/dev/null || echo default)"}
-: ${BASE16_BACKGROUND:="$(cat $XDG_CONFIG_HOME/base16/background 2>/dev/null || echo dark)"}
-export BASE16_SCHEME BASE16_BACKGROUND
-background $BASE16_BACKGROUND
+export BASE16_SCHEME
+base16 $BASE16_SCHEME
 # }}}
 
 # Support for tools, programming languages, etc {{{
