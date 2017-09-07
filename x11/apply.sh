@@ -27,6 +27,7 @@ touch ~/.xinitrc.local
 
 cat desktoprc > ~/.desktoprc
 
+touch ~/.Xresources.local
 cat Xresources > ~/.Xresources
 
 cat XCompose > ~/.XCompose

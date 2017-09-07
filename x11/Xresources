@@ -1,3 +1,5 @@
+Xcursor.theme:        Adwaita
+
 Xft.rgba:             rgb
 Xft.antialias:        true
 Xft.hinting:          true
@@ -26,3 +28,5 @@ x11-ssh-askpass.Indicator*background:   #2b303b
 x11-ssh-askpass*topShadowColor:         #315975
 x11-ssh-askpass*bottomShadowColor:      #315975
 x11-ssh-askpass.*borderWidth:           0
+
+#include ".Xresources.local"

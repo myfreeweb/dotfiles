@@ -1,0 +1,8 @@
+! Stuff to put into ~/.Xresources.local
+
+! Note on rofi dpi: https://github.com/DaveDavenport/rofi/issues/254
+
+! Scaling for 1.5 DPI (4K @ 28" monitor):
+Xft.dpi:              144
+rofi.dpi:             144
+Xcursor.size:         32

@@ -179,6 +179,7 @@ let g:FactorRoot='/Applications/factor'
 let g:echodoc_enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
 	    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+	    \ 'haskell': ['hie', '--lsp'],
 	    \ 'go': ['go-langserver'],
 	    \ 'ocaml': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
 	    \ 'reason': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
@@ -190,14 +191,6 @@ let g:cm_sources_override = {
 	    \ 'cm-gocode': {'enable': 0},
 	    \ 'cm-tmux': {'enable': 0},
 	    \ }
-au User CmSetup call cm#register_source({'name' : 'cm-intero',
-	    \ 'priority': 9, 
-	    \ 'scoping': 1,
-	    \ 'scopes': ['haskell'],
-	    \ 'abbreviation': 'haskell',
-	    \ 'cm_refresh_patterns':[':\s+\w*$'],
-	    \ 'cm_refresh': {'omnifunc': 'intero#omnifunc'},
-	    \ })
 
 " Colors and lines
 let g:lightline = {
@@ -207,7 +200,7 @@ let g:lightline = {
 	    \ }
 	\ }
 let base16colorspace=256
-execute 'set background='.$BASE16_BACKGROUND
+"execute 'set background='.$BASE16_BACKGROUND
 "execute 'colorscheme base16-'.$BASE16_SCHEME
 colorscheme base16-ocean
 " note: base16-*what* doesn't actually matter for the 256 color terminal

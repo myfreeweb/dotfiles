@@ -141,8 +141,8 @@ precmd() {
 	if [[ $exit_status == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
 	if [[ $PRIVATE == 1 ]]; then
 		SCOLOR=$bg[magenta]$fg_bold[black]
-	elif [[ ${HOST##*\.} == 'local' || ${HOST##*\.} == 'localdomain' || $HOST =~ '^[^\.]+$' ]]; then
-		# green on *.local, *.localdomain and hostnames without dots
+	elif [[ ${HOST##*\.} == 'lan' || ${HOST##*\.} == 'local' || ${HOST##*\.} == 'localdomain' || $HOST =~ '^[^\.]+$' ]]; then
+		# green on *.lan, *.local, *.localdomain and hostnames without dots
 		SCOLOR=$fg_bold[green]
 	else
 		# red on everything else - that is, on production servers!

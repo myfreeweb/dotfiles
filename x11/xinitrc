@@ -1,7 +1,10 @@
 #!/bin/sh
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
+
+# Local setup:
+# VDPAU: echo 'export MPV_HWDEC_FLAGS="--hwdec=vdpau"' >> ~/.xinitrc.local
+# VAAPI: echo 'export MPV_HWDEC_FLAGS="--vo=vaapi --hwdec=vaapi"' >> ~/.xinitrc.local
+# EVDEV: echo 'XKB_OPTS="-rules evdev"' >> ~/.xinitrc.local
+# COMPTON: echo 'COMPTON_BACKEND_FLAGS="--backend glx  --vsync opengl-swc"' >> ~/.xinitrc.local
 
 # Need a session bus for stuff like nautilus trash
 [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sh $HOME/.xinitrc
@@ -10,12 +13,8 @@
 export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
 
 . ~/.desktoprc
-# VDPAU: echo 'export MPV_HWDEC_FLAGS="--hwdec=vdpau"' >> ~/.xinitrc.local
-# VAAPI:  echo 'export MPV_HWDEC_FLAGS="--vo=vaapi --hwdec=vaapi"' >> ~/.xinitrc.local
-# EVDEV: echo 'XKB_OPTS="-rules evdev"' >> ~/.xinitrc.local
-# COMPTON: echo 'COMPTON_BACKEND_FLAGS="--backend glx --glx-no-stencil --paint-on-overlay"' >> ~/.xinitrc.local
 . ~/.xinitrc.local
-xrdb ~/.Xresources &
+xrdb -merge -I$HOME ~/.Xresources
 
 # Keyboard setup inspired by http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
 xset r rate 300 35
