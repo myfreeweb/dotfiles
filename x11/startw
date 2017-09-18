@@ -5,8 +5,9 @@ export XKB_DEFAULT_LAYOUT=us,ru XKB_DEFAULT_VARIANT=colemak, XKB_DEFAULT_MODEL=p
 export XKB_DEFAULT_OPTIONS="ctrl:nocaps,ctrl:lctrl_meta,compose:ralt,grp:alt_space_toggle"
 export WLC_REPEAT_DELAY=300 WLC_REPEAT_RATE=35
 #export MESA_DEBUG=1 LIBGL_DEBUG=verbose EGL_LOG_LEVEL=debug
-#export QT_QPA_PLATFORM=wayland QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export GDK_BACKEND=x11 # wayland backend crashes when clicking in a menubar
+export QT_QPA_PLATFORM=wayland QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export GDK_BACKEND=wayland
+export XDG_VTNR=9 # Avoid failing tty check in sway on FreeBSD
 
 #exec weston-launch
 

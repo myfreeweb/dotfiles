@@ -1,9 +1,7 @@
 # https://docs.haskellstack.org/en/stable/yaml_configuration/
 
 ghc-options:
-  # XXX: lld produces binaries that segfault until you use strip on them (even if you tell it to produce already stripped binaries with the -s flag)
-  # this is okay for executables but not for test suites -- cabal/stack runs them without 'installing'
-  # so using gold for now
-  "*": "-fllvm -split-sections -pgmlo opt37 -pgmlc llc37 -pgma clang40 -pgmc clang40 -optc-Wno-expansion-to-defined -pgml clang40 -optl-fuse-ld=gold"
+  # -fllvm -pgmlo opt37 -pgmlc llc37 -pgma clang40 -pgmc clang40 
+  "*": "-split-sections -optc-Wno-expansion-to-defined -pgml cc -optl-fuse-ld=lld"
 
 apply-ghc-options: everything

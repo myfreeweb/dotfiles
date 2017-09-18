@@ -17,6 +17,9 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export GDK_SYNCHRONIZE=1
 export COGL_ATLAS_DEFAULT_BLIT_MODE=framebuffer
 
+# DRI3 works on FreeBSD drm-next, but isn't enabled by default in the Mesa port
+export LIBGL_DRI3_ENABLE=1
+
 # E.g. xcape is in ~/.local/bin
 export PATH="~/.local/bin:$PATH"
 
