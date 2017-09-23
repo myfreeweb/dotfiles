@@ -8,6 +8,8 @@ call plug#begin('~/src/github.com')
 let g:polyglot_disabled = ['latex']
 Plug 'sheerun/vim-polyglot'
 Plug 'b4b4r07/vim-hcl'
+Plug 'jparise/vim-graphql'
+Plug 'vmchale/ion-vim'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
@@ -59,7 +61,6 @@ Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] } " Merge
 if has('mac')
 	Plug 'sjl/vitality.vim' " iTerm2 + tmux fixes
 endif
-Plug 'machakann/vim-highlightedyank' " Highlight copied text
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Raimondi/delimitMate'
