@@ -1,7 +1,7 @@
 #!/usr/bin/env run-cargo-script
 //! ```cargo
 //! [dependencies]
-//! unixbar = "0"
+//! unixbar = { path = "../../src/github.com/myfreeweb/unixbar" }
 //! systemstat = "0"
 //! ```
 
@@ -13,9 +13,9 @@ use systemstat::{System, Platform};
 
 fn load_color(percent: f32) -> String {
     match percent {
-        x if x >= 80.0  => "#d24b58",
-        60.0...80.0     => "#daa345",
-        _               => "#94aa82",
+        x if x >= 80.0              => "#d24b58",
+        x if x >= 60.0 && x < 80.0  => "#daa345",
+        _                           => "#94aa82",
     }.to_owned()
 }
 
@@ -66,6 +66,18 @@ fn main() {
                  },
                  Err(_) => bfmt![text[""]],
              }))
+
+        .add(Volume::new(default_volume(),
+             |volume| {
+                 let vol = (volume.volume * 100.0) as i32;
+                 let icon = match vol {
+                     x if x >= 50  => "\u{f028}",
+                     1...50        => "\u{f027}",
+                     _             => "\u{f026}",
+                 };
+                 bfmt![fg[load_color(vol as f32)] fmt[" {} {} ", vol, icon]]
+             },
+        ))
 
         .add(Xkb::new(|id| {
             let layout = match id {
