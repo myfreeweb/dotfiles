@@ -1,2 +1,9 @@
 #!/bin/sh
+if type alacritty > /dev/null; then
+	# alacritty does not like being called with -e and no args
+	if [ -e "$1" ]; then
+		exec alacritty --config-file ~/.config/alacritty/alacritty.yml -e $*
+	fi
+	exec alacritty --config-file ~/.config/alacritty/alacritty.yml
+fi
 exec st -f monospace:size=10 -e $*
