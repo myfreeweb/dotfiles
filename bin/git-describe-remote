@@ -1,0 +1,16 @@
+#!/usr/bin/awk -f
+# based on https://stackoverflow.com/a/13619380
+# modified to describe all tags
+# very useful for making FreeBSD ports
+BEGIN {
+	FS = "[ /^]+"
+	while ("git ls-remote --tags " ARGV[1] "| sort -Vrk2" | getline) {
+		if (!sha)
+			sha = substr($0, 1, 7)
+		tag = $3
+		while ("curl -s " ARGV[1] "/releases/tag/" tag | getline)
+			if ($3 ~ "commits")
+				com = $2
+		printf com ? "%s-%s-g%s\n" : "%s\n", tag, com, sha
+	}
+}
