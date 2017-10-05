@@ -1,5 +1,6 @@
 ---
 gem: --no-ri --no-rdoc
+install: --user-install
 search: --remote
 update_sources: true
 benchmark: false

@@ -4,5 +4,7 @@
 # Feel free to steal it, but attribution is nice
 
 FILENAME=~/Screen_$(date +%F-%T).png
-maim $* $FILENAME
+#maim $* $FILENAME
+read -r G < <(slop -f "%g")
+import -window root -crop $G $FILENAME
 pngquant --force --ext .png --quality 85-100 $FILENAME
