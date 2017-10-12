@@ -15,6 +15,9 @@ Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+if executable('meson')
+	Plug 'igankevich/mesonic'
+endif
 if executable('npm')
 	Plug 'moll/vim-node', { 'for': ['js', 'javascript', 'ts', 'typescript'] }
 endif
