@@ -24,8 +24,8 @@ Modular dotfiles!
 - A module is a directory with an `apply.sh` file that installs the dotfiles the module contains
 - `install.sh` installs multiple modules on the local machine
 - `rinstall.sh` installs multiple modules on a remote machine using SSH
-- `osx/packages.sh` and `osx/apps.sh` installs OS X Homebrew packages
-- `freebsd/desktop.sh` installs FreeBSD packages and system settings for a desktop
+
+## Preferences
 
 - XDG-style `~/.config/application-name/config-file-name` paths are preferred
 - Binaries are placed into `~/.local/bin` (and `go`, `pip`, `npm`, `cpan`, `cargo`, etc. are configured to use that directory)
@@ -35,44 +35,7 @@ Modular dotfiles!
 [ghq]: https://github.com/motemen/ghq
 [A Modern Space Cadet]: http://stevelosh.com/blog/2012/10/a-modern-space-cadet/
 
-## Installation
-
-### Common setup (FreeBSD)
-
-```bash
-# portsnap fetch extract
-# pkg install git sudo
-# visudo
-$ git clone git@github.com:myfreeweb/dotfiles ~/src/github.com/myfreeweb/dotfiles
-$ cd ~/src/github.com/myfreeweb/dotfiles
-$ git submodule update --init --recursive
-$ (cd freebsd && sudo ./desktop.sh)
-$ ./install.sh dev-base bin tmux zsh vim x11 python ruby
-$ chsh -s /usr/local/bin/zsh
-$ zsh
-```
-
-### Common setup (OS X)
-
-```bash
-$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-$ brew install git
-$ git clone git@github.com:myfreeweb/dotfiles ~/src/github.com/myfreeweb/dotfiles
-$ cd ~/src/github.com/myfreeweb/dotfiles
-$ git submodule update --init --recursive
-$ ./osx/packages.sh
-$ ./osx/apps.sh
-$ PCKEYBOARD=1 ./install.sh dev-base bin tmux zsh vim osx python ruby
-$ sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
-$ chsh -s /usr/local/bin/zsh
-$ zsh
-```
-
-### Remote setup (example)
-
-    ./rinstall.sh dovahkiin@winterhold.local dev-base tmux zsh vim
-
-## Module WTF
+## Module list
 
 ### Common
 
