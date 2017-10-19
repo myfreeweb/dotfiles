@@ -172,13 +172,18 @@ call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'nore
 
 
 " Language support
+"  pip3.6 install --user --upgrade python-language-server pyls-mypy
+"  gem install language_server fastri
+"  go get -u github.com/sourcegraph/go-langserver
 let delimitMate_excluded_ft='clojure'
 let g:haskell_indent_disable = 1 " it's bad
 let g:ledger_bin='hledger'
 let g:FactorRoot='/Applications/factor'
 let g:echodoc_enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
-	    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+	    \ 'rust': ['rls'],
+	    \ 'c': ['clangd-devel'],
+	    \ 'cpp': ['clangd-devel'],
 	    \ 'haskell': ['hie', '--lsp'],
 	    \ 'go': ['go-langserver'],
 	    \ 'ocaml': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
@@ -186,6 +191,7 @@ let g:LanguageClient_serverCommands = {
 	    \ 'javascript.jsx': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js', '-s', '-t', '-l', $HOME.'/tslog'],
 	    \ 'typescript': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js', '-s', '-t', '-l', $HOME.'/tslog'],
 	    \ 'python': ['pyls'],
+	    \ 'ruby': ['language_server-ruby'],
 	    \}
 let g:cm_sources_override = {
 	    \ 'cm-gocode': {'enable': 0},
