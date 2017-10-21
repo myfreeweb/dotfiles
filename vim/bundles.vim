@@ -60,7 +60,6 @@ Plug 'tpope/vim-repeat' " Enable . repeating for plugins
 Plug 'tpope/vim-sleuth' " Autodetect indent
 Plug 'tpope/vim-rsi' " Readline key bindings in command prompts & insert mode
 Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] } " Undo tree
-Plug 'sjl/splice.vim', { 'on': ['SpliceInit'] } " Merge
 if has('mac')
 	Plug 'sjl/vitality.vim' " iTerm2 + tmux fixes
 endif

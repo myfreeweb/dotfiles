@@ -21,8 +21,6 @@
 	name = Greg V
 	email = greg@unrelenting.technology
 	signingkey = 0x5F9F528D3B011BAF
-[github]
-	user = myfreeweb
 [web]
 	browser = open
 [diff]
@@ -38,7 +36,7 @@
 	trustexitcode = true
 [merge]
 	summary = true
-	tool = splice
+	tool = meld
 	conflictstyle = diff3
 [transfer]
 	fsckobjects = true
@@ -64,19 +62,16 @@
 [alias] # object -> verb -> option
 	# common verbs: [c]reate, [l]ist, [r]eset/[r]emove
 	# [b]ranch
-	bc  = checkout --no-track -b # DON'T AUTOMATICALLY TRACK THE SAME FUCKING REMOTE BRANCH!!!
+	bc  = checkout --no-track -b # don't automatically track the same remote branch
 	bce = checkout --orphan
 	bl  = branch --verbose
 	br  = branch -d
 	bR  = branch -D
-	brc = rebase --continue
-	brs = rebase --skip
 	bs  = checkout # [s]witch
 	# [c]ommit
 	ca  = commit --amend
 	cc  = commit
-	cl  = "!f() { git log --decorate --graph --abbrev-commit --date=relative --pretty='tformat:%C(yellow)%h %G?%Creset}%Cgreen%ar%Creset}%C(bold blue)%aN%Creset}%C(red)%d%Creset %s' $@ | sed -Ee 's/(^[^<]*) ago)/\\1)/' | sed -Ee 's/(^[^<]*), [[:digit:]]+ .*months?)/\\1)/' | column -t -s '}' | less -FXRS; }; f"
-	cp  = cherry-pick -x
+	cl  = log
 	cr  = reset --soft HEAD^
 	cK  = reset --hard HEAD^ # [K]ill
 	cs  = show
@@ -84,20 +79,17 @@
 	d   = diff
 	dc  = diff --cached
 	df  = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
-	dcf = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --cached --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
+	dfc = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --cached --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
 	dt  = difftool -y --dir-diff
 	# [f]ile
 	fa  = add
 	faa = !git add --all && git ws
-	fap = add --patch
 	ff  = rm --cached # [f]orget
 	fm  = mv # [m]ove
 	fr  = rm
-	fu  = reset HEAD #[u]nstage?
 	# stas[h]
 	hs  = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}" # [s]napshot
 	# [m]erge
-	m   = merge
 	mt  = mergetool -y
 	mtg = mergetool -y -t meld
 	mo  = "!f() { git checkout --ours $@ && git add $@; }; f"   # [o]urs
@@ -105,7 +97,6 @@
 	# [r]emote
 	r   = remote
 	rc  = remote add
-	rco = remote add origin
 	rl  = remote -v
 	rr  = remote rm
 	rp  = "!f() { git push $@ && git push --tags $@; }; f"
@@ -128,5 +119,23 @@
 
 [url "git@github.com:"]
 	pushInsteadOf = "git://github.com/"
+
+[github]
+	user = myfreeweb
+
 [ghq]
 	root = ~/src
+
+[tig]
+	line-graphics = utf-8
+	truncation-delimiter = "❯"
+	tab-size = 4
+	mailmap = true
+[tig "bind"]
+	generic = k move-down
+	generic = j move-up
+	main = k next
+	main = j previous
+[tig "color"]
+	cursor = black green
+	title-focus = black magenta
