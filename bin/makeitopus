@@ -1,0 +1,4 @@
+#!/bin/sh
+: ${CPUS:=$(expr $(sysctl -n hw.ncpu) - 1)}
+(for arg in "$@"; do printf '"%s"\n' "$arg"; done) | exec xargs -P $CPUS -n 1 \
+	sh -c 'exec ffmpeg -i "$1" -acodec libopus -b:a 96k -vn -y "${1%.*}.ogg"' sh
