@@ -24,6 +24,35 @@ fn main() {
 
         .add(Text::new(bfmt![right]))
 
+        .register_fn("prev", move || { MPRISMusic::new().prev(); })
+        .register_fn("play_pause", move || { MPRISMusic::new().play_pause(); })
+        .register_fn("next", move || { MPRISMusic::new().next(); })
+        .add(Music::new(MPRISMusic::new(),
+            |song| {
+                if let Some(playing) = song.playback.map(|playback| playback.playing) {
+                    bfmt![
+                        fg["#bbbbbb"]
+                        multi[
+                            (click[MouseButton::Left => fn "prev"] no_sep text["\u{f048}"]),
+                            (click[MouseButton::Left => fn "play_pause"]
+                             no_sep text[if playing { "\u{f04c}" } else { "\u{f04b}" }]),
+                            (click[MouseButton::Left => sh format!("firefox 'https://musicbrainz.org/artist/{}'",
+                                                                   song.musicbrainz_artist.unwrap_or("".to_owned()))]
+                             no_sep pad[4] text[song.artist]),
+                            (no_sep pad[4] text["-"]),
+                            (click[MouseButton::Left => sh format!("firefox 'https://musicbrainz.org/recording/{}'",
+                                                                   song.musicbrainz_track.unwrap_or("".to_owned()))]
+                             no_sep text[song.title]),
+                            (click[MouseButton::Left => fn "next"] text["\u{f051}"])
+                        ]
+                    ]
+                } else {
+                    bfmt![click[MouseButton::Left => sh "rhythmbox"]
+                          fg["#bbbbbb"] text["\u{f001}"]]
+                }
+            }
+        ))
+
         .add(Periodic::new(
              Duration::from_secs(2),
              || match System::new().memory() {
@@ -40,7 +69,7 @@ fn main() {
              |res| match res {
                  Ok(cpu) => {
                      let percent = (1.0 - cpu.idle) * 100.0;
-                     bfmt![fg[load_color(percent)] fmt[" {:02.0}% \u{f0e4} ", percent]]
+                     bfmt![fg[load_color(percent)] fmt[" {:02.0}% \u{f2db} ", percent]]
                  },
                  Err(_) => bfmt![fg["#bb1155"] text["error"]],
              }))
@@ -89,7 +118,7 @@ fn main() {
         }))
 
         .add(Wrap::new(
-             |f| bfmt![fg["#ececec"] f],
+             |f| bfmt![ click[MouseButton::Left => sh "zenity --calendar"] fg["#ececec"] f],
              DateTime::new(" %a %b %e %H:%M ")))
 
         //.add(Text::new(bfmt![ fg["#bebebe"] click[MouseButton::Left => format!("xautolock -locknow")] text[" \u{f023} "] ]))
