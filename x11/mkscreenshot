@@ -1,10 +1,11 @@
 #!/usr/bin/env zsh
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
 
 FILENAME=~/Screen_$(date +%F-%T).png
 #maim $* $FILENAME
-read -r G < <(slop -f "%g")
-import -window root -crop $G $FILENAME
+if [[ "$*" == "-s" ]]; then
+	read -r G < <(slop -f "%g")
+	import -window root -crop $G $FILENAME
+else
+	import -window root $FILENAME
+fi
 pngquant --force --ext .png --quality 85-100 $FILENAME
