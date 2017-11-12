@@ -1,8 +1,10 @@
 #!/usr/bin/env run-cargo-script
 //! ```cargo
 //! [dependencies]
-//! unixbar = { path = "../../src/github.com/myfreeweb/unixbar" }
-//! systemstat = "0"
+//! unixbar = { path = "/home/greg/src/github.com/myfreeweb/unixbar" }
+//! systemstat = { path = "/home/greg/src/github.com/myfreeweb/systemstat" }
+//! [patch.crates-io]
+//! systemstat = { path = "/home/greg/src/github.com/myfreeweb/systemstat" }
 //! ```
 
 #[macro_use] extern crate unixbar;
@@ -52,6 +54,27 @@ fn main() {
                 }
             }
         ))
+
+        .add(Periodic::new(
+             Duration::from_secs(2),
+             || match System::new().cpu_temp() {
+                 Ok(temp) => {
+                    let color = match temp {
+                        x if x >= 70.0              => "#d24b58",
+                        x if x >= 60.0 && x < 70.0  => "#daa345",
+                        _                           => "#94aa82",
+                    };
+                    let icon = match temp {
+                        x if x >= 90.0              => "\u{f2c7}",
+                        x if x >= 80.0 && x < 90.0  => "\u{f2c8}",
+                        x if x >= 60.0 && x < 80.0  => "\u{f2c9}",
+                        x if x >= 40.0 && x < 60.0  => "\u{f2ca}",
+                        _                           => "\u{f2cb}",
+                    };
+                    bfmt![fg[color] fmt[" {:02.0}℃  {} ", temp, icon]]
+                 },
+                 Err(_) => bfmt![fg["#bb1155"] text["error"]],
+             }))
 
         .add(Periodic::new(
              Duration::from_secs(2),

@@ -56,7 +56,7 @@ mkdir -p ~/.config/fontconfig
 cat fonts.xml > ~/.config/fontconfig/fonts.conf
 
 mkdir -p ~/.config/alacritty
-cat alacritty.yml ~/.config/alacritty/alacritty.local.yml > ~/.config/alacritty/alacritty.yml
+cat alacritty.yml > ~/.config/alacritty/alacritty.yml
 
 cat compton.conf > ~/.config/compton.conf
 
