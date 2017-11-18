@@ -173,4 +173,8 @@
 		<default><family>cursive</family></default>
 	</alias>
 
+	<!-- TeX Live dirs -->
+	<dir>/usr/local/share/texmf-dist/fonts/opentype</dir>
+	<dir>/usr/local/share/texmf-dist/fonts/freetype</dir>
+
 </fontconfig>
