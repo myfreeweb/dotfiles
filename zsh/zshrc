@@ -293,23 +293,10 @@ alias mn=$MENU
 alias sr=$SEARCH
 # }}}
 
-# Arcane SSH/GPG agent stuff {{{
-SSH_SOCK_LN=~/.ssh/ssh_auth_sock
-if [[ $SSH_AUTH_SOCK =~ '^/private/tmp/com.apple.*' || ! -e $SSH_AUTH_SOCK ]]; then
-	# Apple-provided or none => run agent right at $SSH_SOCK_LN
-	[[ ! -e $SSH_SOCK_LN && -e $commands[ssh-agent] ]] && eval $(ssh-agent -a $SSH_SOCK_LN)
-elif [[ -S $SSH_AUTH_SOCK && ! -h $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != $SSH_SOCK_LN ]]; then
-	# Socket and not symlink (== forwarded!) => make the symlink
-	ln -sf $SSH_AUTH_SOCK $SSH_SOCK_LN
-fi
-export SSH_AUTH_SOCK=$SSH_SOCK_LN
-
-if [[ -e ~/.gnupg/enable-agent ]]; then
-	[[ -e ~/.gnupg/agent-info ]] && source ~/.gnupg/agent-info
-	[[ ! -S $(echo $GPG_AGENT_INFO | cut -d : -f 1) ]] && eval $(gpg-agent --daemon --write-env-file ~/.gnupg/agent-info)
-	export GPG_AGENT_INFO # not exported in the env-file
-fi
+# GPG agent {{{
 export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+[[ -e $commands[gpgconf] ]] && gpgconf --launch gpg-agent
 # }}}
 
 [[ $TERM == "st-256color" ]] && export TERM=xterm-256color

@@ -23,7 +23,6 @@ Host *
 	HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa
 	SendEnv BASE16_SCHEME LANG LC_*
 	IdentityFile ~/.ssh/%u@%h
-	# PKCS11Provider libsimple-tpm-pk11.so
 
 Host *.onion
 	ProxyCommand socat - SOCKS4A:localhost:%h:%p,socksport=9050
