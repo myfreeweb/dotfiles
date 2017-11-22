@@ -295,7 +295,7 @@ alias sr=$SEARCH
 
 # GPG agent for SSH {{{
 export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+[[ -e $commands[gpgconf] ]] && export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 if [[ -e $commands[gpg-connect-agent] ]]; then
 	ssh() {
 		gpg-connect-agent updatestartuptty /bye
