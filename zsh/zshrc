@@ -293,14 +293,22 @@ alias mn=$MENU
 alias sr=$SEARCH
 # }}}
 
-# GPG agent {{{
+# GPG agent for SSH {{{
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
-[[ -e $commands[gpgconf] ]] && gpgconf --launch gpg-agent
+if [[ -e $commands[gpg-connect-agent] ]]; then
+	ssh() {
+		gpg-connect-agent updatestartuptty /bye
+		$commands[ssh] $*
+	}
+	scp() {
+		gpg-connect-agent updatestartuptty /bye
+		$commands[scp] $*
+	}
+fi
 # }}}
 
 [[ $TERM == "st-256color" ]] && export TERM=xterm-256color
 
-[[ -e $commands[showkeys] ]] && showkeys
 [[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ $PRIVATE == 1 ]] && unset HISTFILE
