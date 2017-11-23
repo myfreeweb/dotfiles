@@ -38,6 +38,7 @@ cat i3.conf > ~/.config/i3/config
 
 mkdir -p ~/.config/sway
 cat sway.conf > ~/.config/sway/config
+touch ~/.config/sway/local.conf
 
 mkdir -p ~/.config/dunst
 cat dunstrc.ini > ~/.config/dunst/dunstrc

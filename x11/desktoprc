@@ -3,6 +3,9 @@
 
 export LC_ALL=en_US.UTF-8
 
+# E.g. xcape is in ~/.local/bin
+export PATH="~/.local/bin:$PATH"
+
 # XDG paths
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -18,15 +21,15 @@ export GDK_SYNCHRONIZE=1
 export COGL_ATLAS_DEFAULT_BLIT_MODE=framebuffer
 
 # DRI3 works on FreeBSD drm-next, but isn't enabled by default in the Mesa port
+# *Required* for 3D acceleration in Xwayland!
 export LIBGL_DRI3_ENABLE=1
 
-# E.g. xcape is in ~/.local/bin
-export PATH="~/.local/bin:$PATH"
-
-# Java crap
+# Java GUI crap
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
-# For some reason...
-killall ssh-agent
-rm -f ~/.ssh/ssh_auth_sock
+# Firefox touch support
+export MOZ_USE_XINPUT2=1
+
+# Make sure XCompose works
+export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
