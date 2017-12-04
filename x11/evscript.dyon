@@ -1,0 +1,25 @@
+//! [events]
+//! keys = ['ESC', 'LEFTSHIFT', '9', '0']
+
+fn main() ~ evdevs, uinput {
+    should_esc := false
+    should_lshift := false
+    should_rshift := false
+    loop {
+        evts := next_events(evdevs)
+        for i len(evts) {
+            evt := evts[i]
+            //println("Event on " + device_name(evdevs[evt.device_idx]) + " | kind " +
+            //    str(evt.kind) + "	code " + str(evt.code) + "	value " + str(evt.value))
+            xcape(mut should_esc, evt, KEY_CAPSLOCK(), [KEY_ESC()])
+            xcape(mut should_lshift, evt, KEY_LEFTSHIFT(), [KEY_LEFTSHIFT(), KEY_9()])
+            xcape(mut should_rshift, evt, KEY_RIGHTSHIFT(), [KEY_LEFTSHIFT(), KEY_0()])
+            if (evt.kind == EV_KEY()) && (evt.code == KEY_VOLUMEUP()) && (evt.value == 0) {
+                println("vol +5")
+            }
+            if (evt.kind == EV_KEY()) && (evt.code == KEY_VOLUMEDOWN()) && (evt.value == 0) {
+                println("vol -5")
+            }
+        }
+    }
+}

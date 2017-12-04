@@ -15,6 +15,7 @@ Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+Plug 'jceb/vim-orgmode', { 'for': ['org'] }
 if executable('meson')
 	Plug 'igankevich/mesonic'
 endif
@@ -28,7 +29,6 @@ if executable('idris')
 	Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
 endif
 if executable('ghc') " Haskell
-	Plug 'myfreeweb/intero.nvim', { 'for': 'haskell' }
 	Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 endif
 if executable('mono') " .NET

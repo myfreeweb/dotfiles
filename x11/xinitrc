@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 # Local setup:
 # VDPAU: echo 'export MPV_HWDEC_FLAGS="--hwdec=vdpau"' >> ~/.xinitrc.local
@@ -7,8 +7,7 @@
 # COMPTON, tweaked for amdgpu with TearFree: echo 'COMPTON_BACKEND_FLAGS="--backend glx --vsync none --glx-no-stencil --paint-on-overlay --glx-no-rebind-pixmap --glx-swap-method buffer-age --glx-use-copysubbuffermesa --sw-opti --unredir-if-possible --xrender-sync-fence"' >> ~/.xinitrc.local
 
 # Need a session bus for stuff like nautilus trash
-# note: ConsoleKit requires a dbus **system** bus
-[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sh $HOME/.xinitrc
+[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exec dbus-launch --sh-syntax --exit-with-session sh $HOME/.xinitrc
 
 . ~/.desktoprc
 . ~/.xinitrc.local
@@ -24,12 +23,6 @@ setxkbmap 'us(colemak),ru' \
 	-option compose:ralt \
 	-option grp:alt_space_toggle \
 	-rules evdev
-if [ -x "`which xcape`" ]; then
-	# "-f &" to make them appear under i3 in the process tree
-	xcape -t 350 -e 'Control_L=Escape' -f &
-	xcape -t 350 -e 'Shift_L=Shift_L|9' -f &
-	xcape -t 350 -e 'Shift_R=Shift_R|0' -f &
-fi
 
 # All the things
 dunst &

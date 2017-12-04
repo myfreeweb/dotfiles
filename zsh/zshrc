@@ -21,7 +21,10 @@ source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
 : ${XDG_CONFIG_HOME:="$HOME/.config"}
 : ${XDG_CACHE_HOME:="$HOME/.cache"}
 : ${XDG_DATA_HOME:="$HOME/.local/share"}
-: ${XDG_RUNTIME_DIR:="$HOME/.tmp"}
+: ${XDG_RUNTIME_DIR:="/tmp/$USER"}
+export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_RUNTIME_DIR
+[[ ! -d $XDG_RUNTIME_DIR ]] && mkdir -p $XDG_RUNTIME_DIR && chmod 0700 $XDG_RUNTIME_DIR
+# mount tmpfs at /tmp. Do not use ZFS for XDG_RUNTIME_DIR because posix_fallocate.
 # }}}
 
 # Library installation to home {{{
@@ -241,7 +244,7 @@ _loadkeys() { compadd $(find ~/.ssh -perm 0600 ! -type s | xargs basename) }
 compdef _loadkeys loadkeys
 compdef _base16 base16
 
-HISTFILE=$XDG_RUNTIME_DIR/history_zsh
+HISTFILE=~/.tmp/history_zsh
 HISTSIZE=40960
 SAVEHIST=40960
 setopt HIST_EXPIRE_DUPS_FIRST

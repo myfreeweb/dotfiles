@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 # Common stuff for X and Wayland
 
 export LC_ALL=en_US.UTF-8
@@ -33,3 +33,9 @@ export MOZ_USE_XINPUT2=1
 
 # Make sure XCompose works
 export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
+
+evscript -f ~/.config/evscript.dyon -d /dev/input/event* | (
+	while read line arg; do
+		if [[ $line == "vol" ]]; then mixer vol $arg; fi
+	done
+) &
