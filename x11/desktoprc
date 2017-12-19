@@ -31,9 +31,7 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 # Firefox touch support
 export MOZ_USE_XINPUT2=1
 
-# Make sure XCompose works
-export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
-
+killall evscript
 evscript -f ~/.config/evscript.dyon -d /dev/input/event* | (
 	while read line arg; do
 		if [[ $line == "vol" ]]; then mixer vol $arg; fi

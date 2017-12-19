@@ -24,6 +24,9 @@ setxkbmap 'us(colemak),ru' \
 	-option grp:alt_space_toggle \
 	-rules evdev
 
+# Make sure XCompose works
+export GTK_IM_MODULE=xim QT_IM_MODULE=xim XMODIFIERS="@im=none"
+
 # All the things
 dunst &
 unclutter & # NOTE: kill it when playing broken games (e.g. Sauerbraten) to avoid mouse cursor weirdness
