@@ -46,7 +46,9 @@ Plug 'Shougo/denite.nvim' " Unite (fuzzy finder for many things) but fast
 if has('nvim')
 	Plug 'roxma/nvim-completion-manager' " Async completion
 	Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " Language Server Protocol client!
+	Plug 'kassio/neoterm' " Easy reuse of a terminal buffer (send to REPL, run tests etc.)
 endif
+Plug 'samuelsimoes/vim-drawer' " Make buffers tab-local
 Plug 'ervandew/supertab' " Correct Tab completion behavior
 Plug 'moll/vim-bbye' " Good buffer close
 Plug 'tpope/vim-unimpaired' " ']q' to :cnext, etc.
@@ -59,10 +61,8 @@ Plug 'tpope/vim-eunuch' " :Remove, :SudoWrite etc.
 Plug 'tpope/vim-repeat' " Enable . repeating for plugins
 Plug 'tpope/vim-sleuth' " Autodetect indent
 Plug 'tpope/vim-rsi' " Readline key bindings in command prompts & insert mode
+Plug 'jeetsukumaran/vim-filebeagle' " Simple file explorer without netrw's bugs
 Plug 'sjl/gundo.vim', { 'on': ['GundoShow', 'GundoToggle'] } " Undo tree
-if has('mac')
-	Plug 'sjl/vitality.vim' " iTerm2 + tmux fixes
-endif
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Raimondi/delimitMate'
@@ -70,7 +70,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'sickill/vim-pasta'
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'benmills/vimux'
 
 " Colors
 Plug 'chriskempson/base16-vim'

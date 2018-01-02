@@ -47,6 +47,7 @@ function s:MkNonExDir(file, buf)
 endfunction
 au BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 au BufReadPost fugitive://* setlocal bufhidden=delete
+au FileType netrw setlocal bufhidden=wipe
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 au VimResized * exe "normal! \<c-w>="
 au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif

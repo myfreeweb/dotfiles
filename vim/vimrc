@@ -53,6 +53,7 @@ set clipboard+=unnamedplus
 if windows
 	set clipboard=unnamed
 endif
+let g:GuiInternalClipboard=1
 set autoread autowrite
 set magic
 set nojoinspaces
@@ -97,7 +98,7 @@ set mat=5
 set virtualedit=onemore
 set viewoptions=folds,options,cursor,unix,slash
 set completeopt-=preview
-if has('inccommand')
+if has('nvim')
 	set inccommand=nosplit
 end
 
@@ -155,6 +156,7 @@ let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:betterTabsVim_map_keys = 0
 
 command! -bar -count=0 RFC :e http://www.ietf.org/rfc/rfc<count>.txt | setl ro noma
 

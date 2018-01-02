@@ -1,3 +1,5 @@
 setlocal formatprg=par
 
-nnoremap <Leader>t :call VimuxSendText("make open\n")<CR>
+if has('nvim')
+	nnoremap <Leader>t :T make open<CR>
+endif

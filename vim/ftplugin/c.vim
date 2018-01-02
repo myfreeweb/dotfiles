@@ -1,4 +1,8 @@
-if executable('clang-format40')
+if executable('clang-format-devel')
+	setlocal formatprg=clang-format-devel
+elseif executable('clang-format50')
+	setlocal formatprg=clang-format50
+elseif executable('clang-format40')
 	setlocal formatprg=clang-format40
 elseif executable('clang-format39')
 	setlocal formatprg=clang-format39

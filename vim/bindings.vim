@@ -2,13 +2,13 @@ let mapleader = ","
 let maplocalleader = "\\"
 
 " Plugins and stuff
-nmap sk :SplitjoinSplit<CR>
-nmap sj :SplitjoinJoin<CR>
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-nnoremap <silent> <Leader>a :call VimuxOpenRunner()<CR>
-nnoremap <silent> <Leader>q :Bdelete<CR>
+nmap <silent> sk :SplitjoinSplit<CR>
+nmap <silent> sj :SplitjoinJoin<CR>
+xmap <silent> ga <Plug>(EasyAlign)
+nmap <silent> ga <Plug>(EasyAlign)
+nnoremap <silent> <Leader>q :CloseBuf<CR>
 nnoremap <silent> <Leader>p :Denite buffer file_rec<CR>
+nnoremap <silent> <Leader>b :Denite buffer<CR>
 nnoremap <silent> <Leader>s :Denite grep<CR>
 nnoremap <silent> <Leader>h :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> <Leader>d :call LanguageClient_textDocument_definition()<CR>
@@ -31,9 +31,10 @@ endfunction
 
 " Settings
 nnoremap <silent> <Leader><Tab>t :setlocal noexpandtab<CR>
-nnoremap <silent> <Leader><Tab>2 :setlocal expandtab shiftwidth=2 softtabstop=2<CR>
-nnoremap <silent> <Leader><Tab>4 :setlocal expandtab shiftwidth=4 softtabstop=4<CR>
-nnoremap <silent> <Leader><Tab>8 :setlocal expandtab shiftwidth=8 softtabstop=8<CR>
+nnoremap <silent> <Leader><Tab>s :setlocal expandtab<CR>
+nnoremap <silent> <Leader><Tab>2 :setlocal shiftwidth=2 softtabstop=2<CR>
+nnoremap <silent> <Leader><Tab>4 :setlocal shiftwidth=4 softtabstop=4<CR>
+nnoremap <silent> <Leader><Tab>8 :setlocal shiftwidth=8 softtabstop=8<CR>
 
 " Inverted for Colemak + Improve up/down movement on wrapped lines http://vimbits.com/bits/25
 noremap k gj
@@ -76,12 +77,20 @@ nnoremap <silent> <CR> :nohlsearch<CR>
 " great for pasting Python lines into REPLs.
 nnoremap vv ^vg_
 
+" Extra commands
+command! Wc w|Bdelete
+
 " Case-insensitive commands
 command! E e
 command! W w
 command! Q q
 command! Wq wq
 command! WQ wq
+command! WC Wc
+
+" Tab navigation
+nmap <C-Right> :tabnext<CR>
+nmap <C-Left>  :tabprev<CR>
 
 " Window navigation
 map <C-h> <C-w>h
@@ -91,12 +100,30 @@ map <C-j> <C-w>k
 map <C-l> <C-w>l
 
 " Buffer navigation
-nnoremap <Right> :bnext<CR>
-nnoremap <Left>  :bprev<CR>
+nnoremap <silent> <Right> :VimDrawerNextBuffer<CR>
+nnoremap <silent> <Left>  :VimDrawerPreviousBuffer<CR>
 
 " List navigation
 nnoremap <Up>    :cprev<CR>zvzz
 nnoremap <Down>  :cnext<CR>zvzz
+
+" Terminal
+if has('nvim')
+	tnoremap <Esc> <C-\><C-n>
+	tnoremap <C-v><Esc> <Esc>
+	" Window navigation out of terminals
+	tmap <C-h> <Esc><C-w>h
+	tmap <C-k> <Esc><C-w>j
+	tmap <C-j> <Esc><C-w>k
+	tmap <C-l> <Esc><C-w>l
+	tnoremap <C-v><C-h> <C-h>
+	tnoremap <C-v><C-j> <C-j>
+	tnoremap <C-v><C-k> <C-k>
+	tnoremap <C-v><C-l> <C-l>
+	nnoremap <silent> <F10> :TREPLSendFile<CR>
+	nnoremap <silent> <F9> :TREPLSendLine<CR>
+	vnoremap <silent> <F9> :TREPLSendSelection<CR>
+endif
 
 " Motion for numbers.  Great for CSS.  Lets you do things like this:
 " margin-top: 200px; -> daN -> margin-top: px;

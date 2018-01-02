@@ -112,7 +112,6 @@ export PERL5LIB=~/.local/lib/perl5:$PERL5LIB
 
 # Haskell
 hsi() { stack ghci --ghc-options="-fno-hpc" --with-ghc intero }
-:test() { hsi } # for the vimux/ghci trick
 
 # Rust
 #export RUSTUP_USE_HYPER=1 # https://github.com/rust-lang-nursery/rustup.rs/issues/1021
@@ -279,10 +278,13 @@ export PATH
 [[ -e $commands[less] ]] && export PAGER=less
 alias pg=$PAGER
 
-[[ -e $commands[vi]   ]] && export EDITOR=vi   VISUAL=vi
-[[ -e $commands[vim]  ]] && export EDITOR=vim  VISUAL=vim
-[[ -e $commands[nvim] ]] && export EDITOR=nvim VISUAL=nvim
-alias vi=$VISUAL
+[[ -e $commands[vi]   ]] && export EDITOR=vi
+[[ -e $commands[vim]  ]] && export EDITOR=vim
+[[ -e $commands[nvim] ]] && export EDITOR=nvim
+[[ -e $commands[nvr]  ]] && export EDITOR="nvr --remote-wait-silent" && \
+	alias vi="nvr --remote-silent" && alias vis="nvr -cc split --remote" && alias viv="nvr -cc vsplit --remote" || \
+	alias vi=$EDITOR
+export VISUAL=$EDITOR
 
 [[ -e $commands[percol] ]] && export MENU=percol
 [[ -e $commands[fzf]    ]] && export MENU=fzf
