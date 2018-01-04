@@ -22,6 +22,9 @@ ln -s ../.vim ~/.config/nvim
 rm -r ~/.vim/ftplugin
 cp -r ftplugin ~/.vim/ftplugin
 
+rm -r ~/.vim/rplugin
+cp -r rplugin ~/.vim/rplugin
+
 rm -r ~/.vim/syntax
 cp -r syntax ~/.vim/syntax
 
