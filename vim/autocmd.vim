@@ -35,7 +35,6 @@ au InsertEnter * set number
 au InsertLeave * set relativenumber
 
 " Misc
-
 " https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
 function s:MkNonExDir(file, buf)
 	if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
@@ -46,7 +45,6 @@ function s:MkNonExDir(file, buf)
 	endif
 endfunction
 au BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
-au BufReadPost fugitive://* setlocal bufhidden=delete
 au FileType netrw setlocal bufhidden=wipe
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 au VimResized * exe "normal! \<c-w>="

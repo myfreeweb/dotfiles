@@ -1,9 +1,7 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 # Common stuff for X and Wayland
 
 export LC_ALL=en_US.UTF-8
-
-# E.g. xcape is in ~/.local/bin
 export PATH="~/.local/bin:$PATH"
 
 # XDG paths
@@ -13,8 +11,10 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_RUNTIME_DIR="$HOME/.tmp"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 
-# Lightweight qt theme config tool
-export QT_QPA_PLATFORMTHEME=qt5ct
+# Qt
+export QT_QPA_PLATFORM=gtk # https://github.com/CrimsonAS/gtkplatform
+#export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=adwaita
 
 # Prevent X errors and glitches
 export GDK_SYNCHRONIZE=1
@@ -32,8 +32,4 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 export MOZ_USE_XINPUT2=1
 
 killall evscript
-evscript -f ~/.config/evscript.dyon -d /dev/input/event* | (
-	while read line arg; do
-		if [[ $line == "vol" ]]; then mixer vol $arg; fi
-	done
-) &
+evscript -f ~/.config/evscript.dyon -d /dev/input/event* &

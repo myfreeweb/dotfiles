@@ -16,20 +16,12 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'jceb/vim-orgmode', { 'for': ['org'] }
-if executable('meson')
-	Plug 'igankevich/mesonic'
-endif
-if executable('npm')
-	Plug 'moll/vim-node', { 'for': ['js', 'javascript', 'ts', 'typescript'] }
-endif
+Plug 'igankevich/mesonic'
+Plug 'moll/vim-node', { 'for': ['js', 'javascript', 'ts', 'typescript'] }
+Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
+Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 if executable('latex')
 	Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
-endif
-if executable('idris')
-	Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
-endif
-if executable('ghc') " Haskell
-	Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 endif
 if executable('mono') " .NET
 	Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
@@ -63,6 +55,10 @@ Plug 'tpope/vim-sleuth' " Autodetect indent
 Plug 'tpope/vim-rsi' " Readline key bindings in command prompts & insert mode
 Plug 'jeetsukumaran/vim-filebeagle' " Simple file explorer without netrw's bugs
 Plug 'mbbill/undotree', { 'on': ['UndotreeToggle'] } " Undo tree
+Plug 'DougBeney/pickachu' " :Pick color/date/file with zenity/qarma
+Plug 'ap/vim-css-color' " Highlight colors in the editor
+Plug 'jreybert/vimagit' " Interactive git commit
+Plug 'aquach/vim-http-client' " Make HTTP requests
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Raimondi/delimitMate'

@@ -157,6 +157,7 @@ let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:vim_drawer_exclude_regex = "\[denite\]"
 
 command! -bar -count=0 RFC :e http://www.ietf.org/rfc/rfc<count>.txt | setl ro noma
 
@@ -178,7 +179,8 @@ call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'nore
 "  pip3.6 install --user --upgrade python-language-server pyls-mypy
 "  gem install language_server fastri
 "  go get -u github.com/sourcegraph/go-langserver
-let delimitMate_excluded_ft='clojure'
+let delimitMate_excluded_ft = 'clojure'
+let g:bbye_previous_command = 'VimDrawerPreviousBuffer' " Integrate the buffer closing plugin with the tab-local buffers plugin. All of this should be built-in >_<
 let g:haskell_indent_disable = 1 " it's bad
 let g:ledger_bin='hledger'
 let g:echodoc_enable_at_startup = 1

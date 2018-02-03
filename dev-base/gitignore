@@ -8,6 +8,8 @@
 .rake_tasks
 .cake_tasks
 .sass-cache
+.mypy_cache
+.ropeproject
 *~
 *.swp
 *.swo
