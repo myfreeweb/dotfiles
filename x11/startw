@@ -7,7 +7,6 @@ export XKB_DEFAULT_OPTIONS="ctrl:nocaps,ctrl:lctrl_meta,compose:ralt,grp:alt_spa
 #export WLC_REPEAT_DELAY=300 WLC_REPEAT_RATE=35
 #export QT_QPA_PLATFORM=gtk # https://github.com/CrimsonAS/gtkplatform
 export XDG_RUNTIME_DIR=/tmp/$USER
-export LIBGL_DRI3_ENABLE=1
 
 exec weston-launch
 #exec sway --debug

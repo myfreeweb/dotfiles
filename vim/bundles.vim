@@ -7,6 +7,7 @@ call plug#begin('~/src/github.com')
 " Languages
 let g:polyglot_disabled = ['latex']
 Plug 'sheerun/vim-polyglot'
+Plug 'lifepillar/pgsql.vim'
 Plug 'b4b4r07/vim-hcl'
 Plug 'jparise/vim-graphql'
 Plug 'vmchale/ion-vim'

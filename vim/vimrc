@@ -180,6 +180,7 @@ call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'nore
 "  gem install language_server fastri
 "  go get -u github.com/sourcegraph/go-langserver
 let delimitMate_excluded_ft = 'clojure'
+let g:sql_type_default = 'pgsql'
 let g:bbye_previous_command = 'VimDrawerPreviousBuffer' " Integrate the buffer closing plugin with the tab-local buffers plugin. All of this should be built-in >_<
 let g:haskell_indent_disable = 1 " it's bad
 let g:ledger_bin='hledger'
@@ -188,6 +189,7 @@ let g:LanguageClient_autoStart = 0
 let g:LanguageClient_serverCommands = {
 	    \ 'rust': ['rls'],
 	    \ 'crystal': ['scry'],
+	    \ 'elixir': ['env', 'ERL_LIBS='.$HOME.'/src/github.com/JakeBecker/elixir-ls/release', 'mix', 'elixir_ls.language_server'],
 	    \ 'c': ['clangd-devel'],
 	    \ 'cpp': ['clangd-devel'],
 	    \ 'haskell': ['hie', '--lsp'],

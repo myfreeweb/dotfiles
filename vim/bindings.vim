@@ -108,8 +108,10 @@ map <C-j> <C-w>k
 map <C-l> <C-w>l
 
 " Buffer navigation
-nnoremap <silent> <Right> :VimDrawerNextBuffer<CR>
-nnoremap <silent> <Left>  :VimDrawerPreviousBuffer<CR>
+"nnoremap <silent> <Right> :VimDrawerNextBuffer<CR>
+"nnoremap <silent> <Left>  :VimDrawerPreviousBuffer<CR>
+nnoremap <silent> <Right> :bnext<CR>
+nnoremap <silent> <Left>  :bprev<CR>
 
 " List navigation
 nnoremap <Up>    :cprev<CR>zvzz
