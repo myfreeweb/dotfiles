@@ -6,7 +6,6 @@ export XKB_DEFAULT_LAYOUT=us,ru XKB_DEFAULT_VARIANT=colemak, XKB_DEFAULT_MODEL=p
 export XKB_DEFAULT_OPTIONS="ctrl:nocaps,ctrl:lctrl_meta,compose:ralt,grp:alt_space_toggle"
 #export WLC_REPEAT_DELAY=300 WLC_REPEAT_RATE=35
 #export QT_QPA_PLATFORM=gtk # https://github.com/CrimsonAS/gtkplatform
-export XDG_RUNTIME_DIR=/tmp/$USER
 
 exec weston-launch
 #exec sway --debug

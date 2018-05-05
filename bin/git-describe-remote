@@ -2,11 +2,14 @@
 # based on https://stackoverflow.com/a/13619380
 # modified to describe all tags
 # very useful for making FreeBSD ports
+
 BEGIN {
 	FS = "[ /^]+"
-	while ("git ls-remote --tags " ARGV[1] "| sort -Vrk2" | getline) {
-		if (!sha)
-			sha = substr($0, 1, 7)
+	if (!ARGV[2])
+		opts = "--tags"
+	"git ls-remote " ARGV[1] " master" | getline
+	sha = substr($0, 1, 7)
+	while ("git ls-remote " opts " " ARGV[1] " " ARGV[2] "| sort -Vrk2" | getline) {
 		tag = $3
 		while ("curl -s " ARGV[1] "/releases/tag/" tag | getline)
 			if ($3 ~ "commits")

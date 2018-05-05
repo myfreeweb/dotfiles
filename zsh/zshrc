@@ -13,7 +13,7 @@
 # http://nullprogram.com/blog/2017/06/19/
 
 # External plugins {{{
-source ~/.zsh/zsh-hl/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-hl/fast-syntax-highlighting.plugin.zsh
 source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
 # }}}
 

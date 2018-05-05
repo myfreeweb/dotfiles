@@ -102,6 +102,7 @@ set completeopt-=preview
 if has('nvim')
 	set inccommand=nosplit
 end
+set spelllang=en_us,ru
 
 " completion
 set wildmenu wildmode=list:longest,list:full
