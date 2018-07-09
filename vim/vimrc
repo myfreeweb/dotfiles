@@ -182,6 +182,7 @@ call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'nore
 "  go get -u github.com/sourcegraph/go-langserver
 let delimitMate_excluded_ft = 'clojure'
 let g:sql_type_default = 'pgsql'
+let g:omni_sql_no_default_maps = 1 " WTF https://www.reddit.com/r/vim/comments/2om1ib/how_to_disable_sql_dynamic_completion/
 let g:bbye_previous_command = 'VimDrawerPreviousBuffer' " Integrate the buffer closing plugin with the tab-local buffers plugin. All of this should be built-in >_<
 let g:haskell_indent_disable = 1 " it's bad
 let g:ledger_bin='hledger'
@@ -191,14 +192,14 @@ let g:LanguageClient_serverCommands = {
 	    \ 'rust': ['rls'],
 	    \ 'crystal': ['scry'],
 	    \ 'elixir': ['env', 'ERL_LIBS='.$HOME.'/src/github.com/JakeBecker/elixir-ls/release', 'mix', 'elixir_ls.language_server'],
-	    \ 'c': ['clangd-devel'],
-	    \ 'cpp': ['clangd-devel'],
+	    \ 'c': ['clangd60'],
+	    \ 'cpp': ['clangd60'],
 	    \ 'haskell': ['hie', '--lsp'],
 	    \ 'go': ['go-langserver'],
 	    \ 'ocaml': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
 	    \ 'reason': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
-	    \ 'javascript.jsx': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js', '-s', '-t', '-l', $HOME.'/tslog'],
-	    \ 'typescript': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js', '-s', '-t', '-l', $HOME.'/tslog'],
+	    \ 'javascript': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js'],
+	    \ 'typescript': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js'],
 	    \ 'python': ['pyls'],
 	    \ 'ruby': ['language_server-ruby'],
 	    \}

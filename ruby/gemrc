@@ -1,6 +1,5 @@
 ---
-gem: --no-ri --no-rdoc
+:update_sources: true
+gem: --no-ri --no-rdoc --bindir ~/.local/bin
 install: --user-install
 search: --remote
-update_sources: true
-benchmark: false

@@ -5,7 +5,7 @@ let g:plug_name_modifier = ':s?\.git$??'
 call plug#begin('~/src/github.com')
 
 " Languages
-let g:polyglot_disabled = ['latex']
+let g:polyglot_disabled = ['latex', 'jsx']
 Plug 'sheerun/vim-polyglot'
 Plug 'lifepillar/pgsql.vim'
 Plug 'b4b4r07/vim-hcl'
@@ -18,7 +18,7 @@ Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'jceb/vim-orgmode', { 'for': ['org'] }
 Plug 'igankevich/mesonic'
-Plug 'moll/vim-node', { 'for': ['js', 'javascript', 'ts', 'typescript'] }
+Plug 'jonsmithers/vim-html-template-literals', { 'for': 'javascript' }
 Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
 Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 if executable('latex')
