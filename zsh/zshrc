@@ -1,16 +1,4 @@
 # vim:set noexpandtab
-#
-# thanks:
-# http://selena.deckelmann.usesthis.com/
-# https://github.com/mathiasbynens/dotfiles/blob/master/.functions
-# https://superuser.com/questions/180148/how-do-you-get-screen-to-automatically-connect-to-the-current-ssh-agent-when-re
-# https://github.com/nummi/my-config/blob/master/.zsh/completion.zsh
-# http://robots.thoughtbot.com/silver-searcher-tab-completion-with-exuberant-ctags
-# http://iterm2.com/shell_integration.html
-# http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-# https://github.com/xero/dotfiles
-# https://github.com/eevee/rc
-# http://nullprogram.com/blog/2017/06/19/
 
 # External plugins {{{
 source ~/.zsh/zsh-hl/fast-syntax-highlighting.plugin.zsh
@@ -71,14 +59,8 @@ export GOBIN=~/.local/bin
 
 # Java
 [[ -e /usr/libexec/java_home ]] && export JAVA_HOME=$(/usr/libexec/java_home)
-[[ -d /usr/local/opt/android-sdk ]] && export ANDROID_HOME=/usr/local/opt/android-sdk
-runjava() {
-	cp $1 /tmp/Main.java
-	(cd /tmp && javac Main.java && echo "--- compiled, running" && java Main)
-}
 
 # Ruby
-[[ -d /usr/local/var/rbenv ]] && export RBENV_ROOT=/usr/local/var/rbenv
 bforkify() {
 	bundle config local.$1 ~/src/github.com/myfreeweb/$1
 }
@@ -119,10 +101,7 @@ export CARGO_INSTALL_ROOT="$HOME/.local"
 dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
 drillhost() { host $(drill $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
 mcd() { mkdir -p $1 && cd $1; }
-icd() { DIR=$(ls | $MENU) && cd $DIR && icd }
 prj() { cd ~/src/$(ghq list | $MENU) }
-hst() { eval $(history -n 1 | tail -r | $MENU --layout=bottom-up) }
-mdown() { pandoc -s -f markdown -t man "$*" | mandoc | less } # read markdown files like manpages
 
 if [[ -n $TMUX ]]; then
 	escseq() { printf "\033Ptmux;\033\033]$1\007\033\\" }
@@ -131,17 +110,10 @@ else
 fi
 
 precmd() {
-	# $? in prompt is wrong, can't pass %? to conditionals
-	local exit_status="$?"
-	if [[ $exit_status == 0 ]]; then SMILEY=')'; else SMILEY='('; fi
 	if [[ $PRIVATE == 1 ]]; then
 		SCOLOR=$bg[magenta]$fg_bold[black]
-	elif [[ ${HOST##*\.} == 'lan' || ${HOST##*\.} == 'local' || ${HOST##*\.} == 'localdomain' || $HOST =~ '^[^\.]+$' ]]; then
-		# green on *.lan, *.local, *.localdomain and hostnames without dots
-		SCOLOR=$fg_bold[green]
 	else
-		# red on everything else - that is, on production servers!
-		SCOLOR=$fg_bold[red]
+		SCOLOR=$fg_bold[green]
 	fi
 }
 
@@ -162,7 +134,6 @@ autoload -U colors && colors
 autoload -U compinit && zmodload -i zsh/complist
 autoload -U edit-command-line && zle -N edit-command-line
 autoload -U url-quote-magic && zle -N self-insert url-quote-magic
-autoload -U select-word-style && select-word-style bash
 autoload -U zmv
 
 # Keybindings
@@ -171,7 +142,6 @@ bindkey -e # Emacs style keys in shell
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey "\e[3~" delete-char # Del
-zle -N hst && bindkey '^R' hst
 zle -N fancy-ctrl-z && bindkey '^Z' fancy-ctrl-z
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -180,7 +150,7 @@ bindkey '^[[B' history-substring-search-down
 
 # Stuff
 setopt pushd_ignore_dups auto_pushd auto_name_dirs auto_cd \
-	transient_rprompt prompt_subst no_beep multios extended_glob interactive_comments
+	prompt_subst no_beep multios extended_glob interactive_comments
 
 # History
 setopt hist_ignore_dups hist_ignore_space hist_reduce_blanks hist_verify \
@@ -226,12 +196,6 @@ fpath+=(
 fignore+=.DS_Store
 compinit -i
 compdef mcd=cd
-_ctagscomp() { (( CURRENT == 2 )) && compadd $(cut -f 1 tags ctags .git/tags tmp/tags 2>/dev/null | grep -v '!_TAG') }
-compdef _ctagscomp ack
-compdef _ctagscomp ag
-compdef _ctagscomp pt
-compdef _ctagscomp rg
-compdef _ctagscomp sr
 _loadkeys() { compadd $(find ~/.ssh -perm 0600 ! -type s | xargs basename) }
 compdef _loadkeys loadkeys
 compdef _base16 base16
@@ -240,13 +204,13 @@ HISTFILE=~/.tmp/history_zsh
 HISTSIZE=40960
 SAVEHIST=40960
 setopt HIST_EXPIRE_DUPS_FIRST
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # Like default, but without / -- ^W must be useful in paths, like it is in vim, bash, tcsh
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export CLICOLOR="yes"
 
-PROMPT='%{$SCOLOR%}${PWD/#~/~}%{$reset_color%} %{$fg_no_bold[yellow]%}:$SMILEY%{$reset_color%} '
+PROMPT="%B%F{cyan}%~%b %F{yellow}%#%f "
+RPROMPT="%(0?..%F{red}^%?^) %F{blue}%T%f"
 
 cdpath=(~/src/github.com/myfreeweb)
 
@@ -257,6 +221,7 @@ path=(
 	$BREWGO/bin(N) $BREWGO/libexec/bin(N) /usr/local/go/bin(N)
 	$JAVA_HOME/bin(N)
 	$RBENV_ROOT/shims(N)
+	~/.gem/ruby/2.5/bin(N)
 	~/.gem/ruby/2.4/bin(N)
 	~/.gem/ruby/2.3/bin(N)
 	/usr/local/lib/erlang20/bin(N)
@@ -275,9 +240,9 @@ alias pg=$PAGER
 [[ -e $commands[vi]   ]] && export EDITOR=vi
 [[ -e $commands[vim]  ]] && export EDITOR=vim
 [[ -e $commands[nvim] ]] && export EDITOR=nvim
+alias vi=$EDITOR
 [[ -e $commands[nvr]  ]] && export EDITOR="nvr --remote-wait-silent" && \
-	alias vi="nvr --remote-silent" && alias vis="nvr -cc split --remote" && alias viv="nvr -cc vsplit --remote" || \
-	alias vi=$EDITOR
+	alias vio="nvr --remote-silent" && alias vis="nvr -cc split --remote" && alias viv="nvr -cc vsplit --remote"
 export VISUAL=$EDITOR
 
 [[ -e $commands[percol] ]] && export MENU=percol
