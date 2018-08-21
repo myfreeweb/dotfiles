@@ -90,7 +90,7 @@ hsi() { stack ghci --ghc-options="-fno-hpc" --with-ghc intero }
 
 # Rust
 #export RUSTUP_USE_HYPER=1 # https://github.com/rust-lang-nursery/rustup.rs/issues/1021
-[[ -e $commands[rustc] ]] && export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
+#[[ -e $commands[rustc] ]] && export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$HOME/.local"
 # }}}
