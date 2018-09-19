@@ -1,0 +1,3 @@
+#!/bin/sh
+(for f in "$@"; do ffprobe -of json -show_streams "$f" 2>/dev/null; done) |
+	jq -r '.streams[0] | @text "\(.tags.track). \(.tags.ARTIST) - \(.tags.TITLE) (\(.duration | tonumber / 60 | floor):\(.duration | tonumber % 60))"'
