@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+ARGF.each do |line|
+  next if line.start_with?('diff --git') || line.start_with?('index ')
+  if line.start_with?('---')
+    puts line.gsub(/a\/([^\n\t]+)/, '\1.orig')
+    next
+  end
+  if line.start_with?('+++')
+    puts line.gsub(/b\/([^\n\t]+)/, '\1')
+    next
+  end
+  puts line
+end
