@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-#
+#!/usr/bin/env python3
 # Thanks:
 #  https://pthree.org/2011/03/24/hashcash-and-mutt/
 
@@ -33,7 +30,10 @@ for hash in msg.get_all("X-Hashcash", []):
 # Call the hashcash function from the operating system to mint tokens
 for email in email_addrs:
     t = subprocess.Popen("hashcash -mq -Z 2 %s" % email, shell=True, stdout=subprocess.PIPE)
-    msg["X-Hashcash"] = t.stdout.read().strip()
+    cash = t.stdout.read()
+    if sys.version_info[0] >= 3:
+        cash = cash.decode('utf-8')
+    msg["X-Hashcash"] = cash.strip()
 
 # Write out the message!
 with open(filename, 'w') as msg_out:
