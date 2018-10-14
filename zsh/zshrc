@@ -36,12 +36,6 @@ base16 $BASE16_SCHEME
 
 # Support for tools, programming languages, etc {{{
 # Less
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[38;5;246m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[04;33;146m'
 export LESS="-R"
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export MANWIDTH="120"
@@ -52,7 +46,6 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 # Go
 export GOPATH=~
 export GOBIN=~/.local/bin
-[[ -e $commands[brew] ]] && export BREWGO=$(brew --prefix go)
 
 # JS
 [[ -d /usr/local/lib/node_modules ]] && export NODE_PATH=/usr/local/lib/node_modules
@@ -70,8 +63,6 @@ bunforkify() {
 
 # Python
 export PYTHONDONTWRITEBYTECODE=true
-export VIRTUALENV_DISTRIBUTE=true
-export PIP_USE_MIRRORS=true
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/rc.py
 
 # Perl
@@ -85,11 +76,7 @@ export PERL5LIB=~/.local/lib/perl5:$PERL5LIB
 # OCaml
 [[ -e $commands[opam] ]] && eval $(opam config env)
 
-# Haskell
-hsi() { stack ghci --ghc-options="-fno-hpc" --with-ghc intero }
-
 # Rust
-#export RUSTUP_USE_HYPER=1 # https://github.com/rust-lang-nursery/rustup.rs/issues/1021
 #[[ -e $commands[rustc] ]] && export LD_LIBRARY_PATH="$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$HOME/.local"
@@ -234,16 +221,13 @@ export PATH
 
 # Default programs {{{
 # (must come after PATH)
-[[ -e $commands[more] ]] && export PAGER=more
-[[ -e $commands[less] ]] && export PAGER=less
+export PAGER=less
 alias pg=$PAGER
 
 [[ -e $commands[vi]   ]] && export EDITOR=vi
 [[ -e $commands[vim]  ]] && export EDITOR=vim
 [[ -e $commands[nvim] ]] && export EDITOR=nvim
 alias vi=$EDITOR
-[[ -e $commands[nvr]  ]] && export EDITOR="nvr --remote-wait-silent" && \
-	alias vio="nvr --remote-silent" && alias vis="nvr -cc split --remote" && alias viv="nvr -cc vsplit --remote"
 export VISUAL=$EDITOR
 
 [[ -e $commands[peco]   ]] && export MENU=peco
