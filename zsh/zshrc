@@ -246,13 +246,11 @@ alias vi=$EDITOR
 	alias vio="nvr --remote-silent" && alias vis="nvr -cc split --remote" && alias viv="nvr -cc vsplit --remote"
 export VISUAL=$EDITOR
 
-[[ -e $commands[percol] ]] && export MENU=percol
-[[ -e $commands[fzf]    ]] && export MENU=fzf
 [[ -e $commands[peco]   ]] && export MENU=peco
+[[ -e $commands[fzy]    ]] && export MENU=fzy
 alias mn=$MENU
 
 [[ -e $commands[ack] ]] && export SEARCH=ack
-[[ -e $commands[pt]  ]] && export SEARCH=pt
 [[ -e $commands[ag]  ]] && export SEARCH=ag
 [[ -e $commands[rg]  ]] && export SEARCH=rg
 alias sr=$SEARCH

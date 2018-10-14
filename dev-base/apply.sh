@@ -32,7 +32,4 @@ cat ssh_config > ~/.ssh/config
 #	sed -I "" -e "s/# PKCS11Provider/PKCS11Provider/" ~/.ssh/config
 #fi
 
-mkdir -p ~/.config/peco
-cat peco.json > ~/.config/peco/config.json
-
 echo "==> Installed dev-base"
