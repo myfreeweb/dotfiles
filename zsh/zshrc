@@ -88,7 +88,8 @@ export CARGO_INSTALL_ROOT="$HOME/.local"
 dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
 drillhost() { host $(drill $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
 mcd() { mkdir -p $1 && cd $1; }
-prj() { cd ~/src/$(ghq list | $MENU) }
+srcrepos() { find -s $HOME/src -type d \( -path '*/.git' -or -path '*/.hg' \) -maxdepth 5 -prune -print0 | xargs -0 -I '{}' dirname '{}' }
+prj() { cd $(srcrepos | sed "s|$HOME|~|" | $MENU | sed "s|^~|$HOME|") }
 
 if [[ -n $TMUX ]]; then
 	escseq() { printf "\033Ptmux;\033\033]$1\007\033\\" }
