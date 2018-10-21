@@ -17,6 +17,9 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'jceb/vim-orgmode', { 'for': ['org'] }
+Plug 'jakwings/vim-pony', { 'for': 'pony' }
+Plug 'ziglang/zig.vim', { 'for': 'zig' }
+Plug 'rhysd/vim-llvm', { 'for': 'llvm' }
 Plug 'igankevich/mesonic'
 Plug 'jonsmithers/vim-html-template-literals', { 'for': 'javascript' }
 Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
