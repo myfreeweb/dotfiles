@@ -20,6 +20,7 @@ Plug 'jceb/vim-orgmode', { 'for': ['org'] }
 Plug 'jakwings/vim-pony', { 'for': 'pony' }
 Plug 'ziglang/zig.vim', { 'for': 'zig' }
 Plug 'rhysd/vim-llvm', { 'for': 'llvm' }
+Plug 'bohlender/vim-smt2', { 'for': 'smt2' }
 Plug 'igankevich/mesonic'
 Plug 'jonsmithers/vim-html-template-literals', { 'for': 'javascript' }
 Plug 'idris-hackers/idris-vim', { 'for': 'idris' }

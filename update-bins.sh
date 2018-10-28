@@ -9,9 +9,11 @@ gem install \
 npm i -g \
 	npm-check-updates publish-diff stackvis diff-so-fancy coap-cli
 
-cargo install --force \
-	cargo-script cargo-vendor cargo-outdated cargo-osha cargo-geiger \
-	rusty-tags oxipng twiggy bingrep xsv
+cargo install cargo-update
+
+cargo install-update -i \
+	cargo-update cargo-script cargo-vendor cargo-outdated cargo-osha cargo-geiger \
+	rusty-tags oxipng twiggy xsv # bingrep 
 
 stack install pandoc pandoc-citeproc
 
