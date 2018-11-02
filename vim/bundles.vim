@@ -21,6 +21,7 @@ Plug 'jakwings/vim-pony', { 'for': 'pony' }
 Plug 'ziglang/zig.vim', { 'for': 'zig' }
 Plug 'rhysd/vim-llvm', { 'for': 'llvm' }
 Plug 'bohlender/vim-smt2', { 'for': 'smt2' }
+Plug 'dcharbon/vim-flatbuffers', { 'for': 'fbs' }
 Plug 'igankevich/mesonic'
 Plug 'jonsmithers/vim-html-template-literals', { 'for': 'javascript' }
 Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
@@ -41,7 +42,8 @@ Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
 Plug 'Shougo/echodoc.vim' " Display function signatures etc. on the bottom status line
 Plug 'Shougo/denite.nvim' " Unite (fuzzy finder for many things) but fast
 if has('nvim')
-	Plug 'roxma/nvim-completion-manager' " Async completion
+	Plug 'ncm2/ncm2'
+	Plug 'roxma/nvim-yarp'
 	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release' } " LSP
 	Plug 'kassio/neoterm' " Easy reuse of a terminal buffer (send to REPL, run tests etc.)
 endif

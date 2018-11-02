@@ -98,7 +98,7 @@ set showmatch
 set mat=5
 set virtualedit=onemore
 set viewoptions=folds,options,cursor,unix,slash
-set completeopt-=preview
+set completeopt=noinsert,menuone,noselect
 if has('nvim')
 	set inccommand=nosplit
 end

@@ -25,6 +25,9 @@ au FileType {css,sass,scss,less,stylus} setlocal omnifunc=csscomplete#CompleteCS
 au FileType {css,sass,scss,less,stylus} setlocal iskeyword+=-
 au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+if has('nvim')
+		au BufEnter * call ncm2#enable_for_buffer()
+endif
 
 " Folds
 au FileType {vim,javascript,sql} setlocal foldmethod=marker
