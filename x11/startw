@@ -4,9 +4,11 @@
 #export MESA_DEBUG=1 LIBGL_DEBUG=verbose EGL_LOG_LEVEL=debug
 export XKB_DEFAULT_LAYOUT=us,ru XKB_DEFAULT_VARIANT=colemak, XKB_DEFAULT_MODEL=pc101 XKB_DEFAULT_RULES=evdev
 export XKB_DEFAULT_OPTIONS="ctrl:nocaps,ctrl:lctrl_meta,compose:ralt,grp:alt_space_toggle"
-#export WLC_REPEAT_DELAY=300 WLC_REPEAT_RATE=35
-#export QT_QPA_PLATFORM=gtk # https://github.com/CrimsonAS/gtkplatform
+export QT_QPA_PLATFORM=wayland
+export XDG_RUNTIME_DIR=/tmp/$USER
+export LIBGL_DRI3_ENABLE=1
 
-exec weston-launch
+exec loginw weston --debug --log=$XDG_RUNTIME_DIR/weston.log
+#exec weston-launch --debug --log=$XDG_RUNTIME_DIR/weston.log
 #exec sway --debug
 #exec ~/src/github.com/swaywm/wlroots/build/rootston/rootston -C ~/src/github.com/swaywm/wlroots/rootston.ini

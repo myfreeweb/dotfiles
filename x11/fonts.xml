@@ -28,8 +28,9 @@
 	<alias>
 		<family>sans-serif</family>
 		<prefer>
-			<family>Emoji One Color</family>
-			<family>Roboto</family>
+			<family>Noto Color Emoji</family>
+			<family>Twitter Color Emoji</family>
+			<family>Cantarell</family>
 			<family>Fira Sans</family>
 			<family>PT Sans</family>
 			<family>Noto Sans</family>
@@ -39,7 +40,8 @@
 	<alias>
 		<family>serif</family>
 		<prefer>
-			<family>Emoji One Color</family>
+			<family>Noto Color Emoji</family>
+			<family>Twitter Color Emoji</family>
 			<family>PT Serif</family>
 			<family>Noto Serif</family>
 			<family>IPAMincho</family>
@@ -51,7 +53,8 @@
 			<family>Fira Mono</family>
 			<family>Source Code Pro</family>
 			<family>DejaVu Sans Mono</family>
-			<family>Emoji One Color</family>
+			<family>Noto Color Emoji</family>
+			<family>Twitter Color Emoji</family>
 		</prefer>
 	</alias>
 	<alias>
@@ -62,13 +65,15 @@
 			<family>PxPlus IBM VGA8</family>
 			<family>PT Mono</family>
 			<family>DejaVu Sans Mono</family>
-			<family>Emoji One Color</family>
+			<family>Noto Color Emoji</family>
+			<family>Twitter Color Emoji</family>
 		</prefer>
 	</alias>
 	<alias>
 		<family>cursive</family>
 		<prefer>
-			<family>Emoji One Color</family>
+			<family>Noto Color Emoji</family>
+			<family>Twitter Color Emoji</family>
 			<family>Comic Neue</family>
 		</prefer>
 	</alias>

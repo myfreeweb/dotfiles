@@ -15,8 +15,6 @@ install_bin2() {
 
 install_bin startw
 install_bin floatyoutube
-install_bin mkscreencast
-install_bin mkscreenshot
 install_bin freepass-x11
 install_bin x-terminal-emulator
 install_bin bar.rs
@@ -48,10 +46,6 @@ cat zathurarc > ~/.config/zathura/zathurarc
 
 mkdir -p ~/.config/gtk-2.0
 cat gtkrc.mine > ~/.config/gtk-2.0/gtkrc
-
-mkdir -p ~/.config/gtk-3.0
-cat gtk3.ini > ~/.config/gtk-3.0/settings.ini
-cat gtk3.css > ~/.config/gtk-3.0/gtk.css
 
 mkdir -p ~/.config/fontconfig
 cat fonts.xml > ~/.config/fontconfig/fonts.conf

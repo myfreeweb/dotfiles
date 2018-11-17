@@ -9,7 +9,7 @@ if [ "${TERM%%-*}" = 'linux' ]; then
 		return 2>/dev/null || exit 0
 fi
 
-color00="5A/54/75" # Base 00 - Black
+color00="4A/44/65" # Base 00 - Black
 color01="FF/85/7F" # Base 08 - Red
 color02="C2/FF/DF" # Base 0B - Green
 color03="FF/F3/52" # Base 0A - Yellow
