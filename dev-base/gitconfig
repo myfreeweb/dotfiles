@@ -58,6 +58,8 @@
 [color]
 	ui = auto
 	interactive = auto
+[credential]
+	helper = /usr/local/share/git-core/contrib/credential/libsecret/git-credential-libsecret
 
 [alias] # object -> verb -> option
 	# common verbs: [c]reate, [l]ist, [r]eset/[r]emove

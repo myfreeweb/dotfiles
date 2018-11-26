@@ -29,6 +29,11 @@ if has('nvim')
 		au BufEnter * call ncm2#enable_for_buffer()
 endif
 
+" LSP
+au User LanguageClientStarted set signcolumn=yes
+au User LanguageClientStarted set formatexpr=LanguageClient#textDocument_rangeFormatting()
+au User LanguageClientStopped set signcolumn=auto
+
 " Folds
 au FileType {vim,javascript,sql} setlocal foldmethod=marker
 au BufRead,BufNewFile {,.}zshrc,*.fish setlocal foldmethod=marker

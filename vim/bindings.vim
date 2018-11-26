@@ -12,15 +12,20 @@ nnoremap <silent> <Leader>q :Bdelete<CR>
 nnoremap <silent> <Leader>U :UndotreeToggle<CR>
 nnoremap <silent> <Leader>p :Denite buffer file_rec<CR>
 nnoremap <silent> <Leader>b :Denite buffer<CR>
-nnoremap <silent> <Leader>s :Denite grep<CR>
+nnoremap <silent> <Leader>g :Denite grep<CR>
 command! -bar ProjTab tabnew|Denite -default-action=tcd prj
 command! ProjTabTerm ProjTab|terminal
 nnoremap <silent> <Leader>O :ProjTabTerm<CR>
-nnoremap <silent> <Leader>h :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> <Leader>d :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <Leader>r :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> <Leader>f :call LanguageClient_textDocument_codeAction()<CR>
+nnoremap <silent> <Leader>h :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> <Leader>d :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <Leader>D :call LanguageClient#textDocument_typeDefinition()<CR>
+nnoremap <silent> <Leader>r :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> <Leader>e :call LanguageClient#explainErrorAtPoint()<CR>
+nnoremap <silent> <Leader>a :Denite contextMenu<CR>
+nnoremap <silent> <Leader>f :Denite codeAction<CR>
 nnoremap <silent> <Leader>R :Denite references<CR>
+nnoremap <silent> <Leader>s :Denite documentSymbol<CR>
+nnoremap <silent> <Leader>S :Denite workspaceSymbol<CR>
 
 " Show most plugin keybindings  http://vimbits.com/bits/534
 nnoremap <silent> <Leader>? :map <Leader><CR>

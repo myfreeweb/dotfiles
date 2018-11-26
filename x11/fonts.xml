@@ -28,7 +28,6 @@
 	<alias>
 		<family>sans-serif</family>
 		<prefer>
-			<family>Noto Color Emoji</family>
 			<family>Twitter Color Emoji</family>
 			<family>Cantarell</family>
 			<family>Fira Sans</family>
@@ -40,7 +39,6 @@
 	<alias>
 		<family>serif</family>
 		<prefer>
-			<family>Noto Color Emoji</family>
 			<family>Twitter Color Emoji</family>
 			<family>PT Serif</family>
 			<family>Noto Serif</family>
@@ -53,7 +51,6 @@
 			<family>Fira Mono</family>
 			<family>Source Code Pro</family>
 			<family>DejaVu Sans Mono</family>
-			<family>Noto Color Emoji</family>
 			<family>Twitter Color Emoji</family>
 		</prefer>
 	</alias>
@@ -65,14 +62,12 @@
 			<family>PxPlus IBM VGA8</family>
 			<family>PT Mono</family>
 			<family>DejaVu Sans Mono</family>
-			<family>Noto Color Emoji</family>
 			<family>Twitter Color Emoji</family>
 		</prefer>
 	</alias>
 	<alias>
 		<family>cursive</family>
 		<prefer>
-			<family>Noto Color Emoji</family>
 			<family>Twitter Color Emoji</family>
 			<family>Comic Neue</family>
 		</prefer>
@@ -153,11 +148,11 @@
 	<!-- Because someone WILL fucking specify these in a font-family CSS property -->
 	<match target="pattern">
 		<test qual="any" name="family"><string>Symbola</string></test>
-		<edit mode="assign" binding="same" name="family"><string>Emoji One Color</string></edit>
+		<edit mode="assign" binding="same" name="family"><string>Twitter Color Emoji</string></edit>
 	</match>
 	<match target="pattern">
 		<test qual="any" name="family"><string>Noto Emoji</string></test>
-		<edit mode="assign" binding="same" name="family"><string>Emoji One Color</string></edit>
+		<edit mode="assign" binding="same" name="family"><string>Twitter Color Emoji</string></edit>
 	</match>
 
 	<!-- Don't antialias Chicago! -->
