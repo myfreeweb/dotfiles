@@ -4,8 +4,9 @@
 <fontconfig>
 
 	<match target="font">
-		<edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit>
-		<edit mode="assign" name="rgba"><const>rgb</const></edit>
+		<!-- Subpixel isn't really beneficial with good fonts, especially on HiDPI. It only adds ugly color fringes. -->
+		<edit mode="assign" name="rgba"><const>none</const></edit>
+		<edit mode="assign" name="lcdfilter"><const>none</const></edit>
 		<edit mode="assign" name="antialias"><bool>true</bool></edit>
 		<edit mode="assign" name="hinting"><bool>false</bool></edit> <!-- true causes skipped letters with new dri/mesa/etc.! -->
 		<edit mode="assign" name="hintstyle"><const>hintslight</const></edit>
