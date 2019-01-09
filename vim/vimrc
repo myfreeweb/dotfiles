@@ -215,6 +215,8 @@ let base16colorspace=256
 "execute 'set background='.$BASE16_BACKGROUND
 "execute 'colorscheme base16-'.$BASE16_SCHEME
 colorscheme base16-ocean
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 if filereadable(expand("~/.vimrc.local"))
 	source ~/.vimrc.local

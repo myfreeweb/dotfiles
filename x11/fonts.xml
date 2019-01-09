@@ -174,8 +174,10 @@
 		<default><family>cursive</family></default>
 	</alias>
 
-	<!-- TeX Live dirs -->
-	<dir>/usr/local/share/texmf-dist/fonts/opentype</dir>
-	<dir>/usr/local/share/texmf-dist/fonts/freetype</dir>
+	<!-- TeX Live fonts (but not all of them, that can be a lot of junk) -->
+	<dir>/usr/local/share/texmf-dist/fonts/opentype/public/cm-unicode</dir>
+	<dir>/usr/local/share/texmf-dist/fonts/opentype/public/Asana-Math</dir>
+	<dir>/usr/local/share/texmf-dist/fonts/opentype/public/tex-gyre-math</dir>
+	<dir>/usr/local/share/texmf-dist/fonts/opentype/public/ebgaramond</dir>
 
 </fontconfig>

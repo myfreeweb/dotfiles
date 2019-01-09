@@ -38,6 +38,8 @@
 	summary = true
 	tool = meld
 	conflictstyle = diff3
+[rebase]
+	instructionformat = "<%aE> %s"
 [transfer]
 	fsckobjects = true
 [fetch]
