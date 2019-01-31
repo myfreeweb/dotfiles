@@ -143,3 +143,6 @@
 [tig "color"]
 	cursor = black green
 	title-focus = black magenta
+
+[absorb]
+	maxStack = 69
