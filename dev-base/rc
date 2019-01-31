@@ -65,7 +65,6 @@ alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlay
 alias beep='echo -n "\a"'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 alias emacs="TERM=xterm-256color emacs"
-alias meet="marelle meet"
 alias whois="whois -h whois-servers.net"
 alias dril="drill" # :D
 

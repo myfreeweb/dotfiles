@@ -3,7 +3,7 @@
 #  https://stribika.github.io/2015/01/04/secure-secure-shell.html
 
 ControlMaster auto
-ControlPath /tmp/%u/ssh_%r@%h:%p
+ControlPath /tmp/ssh_%r@%h:%p
 ControlPersist 5m
 TCPKeepAlive no
 ServerAliveInterval 60

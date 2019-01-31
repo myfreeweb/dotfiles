@@ -9,7 +9,6 @@ let g:polyglot_disabled = ['latex', 'jsx']
 Plug 'sheerun/vim-polyglot'
 Plug 'lifepillar/pgsql.vim'
 Plug 'b4b4r07/vim-hcl'
-Plug 'jparise/vim-graphql'
 Plug 'vmchale/ion-vim'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
@@ -17,7 +16,6 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'jceb/vim-orgmode', { 'for': ['org'] }
-Plug 'jakwings/vim-pony', { 'for': 'pony' }
 Plug 'ziglang/zig.vim', { 'for': 'zig' }
 Plug 'rhysd/vim-llvm', { 'for': 'llvm' }
 Plug 'bohlender/vim-smt2', { 'for': 'smt2' }
