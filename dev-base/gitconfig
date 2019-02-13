@@ -31,15 +31,14 @@
 	compactionheuristic = true
 	submodule = log
 	tool = meld
-[mergetool "splice"]
-	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-	trustexitcode = true
 [merge]
 	summary = true
 	tool = meld
 	conflictstyle = diff3
 [rebase]
 	instructionformat = "<%aE> %s"
+[sequence]
+	editor = interactive-rebase-tool
 [transfer]
 	fsckobjects = true
 [fetch]
