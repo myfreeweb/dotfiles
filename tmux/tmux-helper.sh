@@ -21,18 +21,22 @@ case "$1" in
 			[ "$MAIL_COUNT" != "0" ] && printf " ✉ %s " "$MAIL_COUNT"
 		fi ;;
 
-	copy-buf) if [ -x "$(which reattach-to-user-namespace)" ] && [ -x "$(which pbcopy)" ]; then
-		tmux save-buffer - | reattach-to-user-namespace pbcopy
+	copy-buf) if [ -x "$(which wl-copy)" ]; then
+		tmux save-buffer - | wl-copy
 	elif [ -x "$(which xclip)" ]; then
 		tmux save-buffer - | xclip
+	elif [ -x "$(which reattach-to-user-namespace)" ] && [ -x "$(which pbcopy)" ]; then
+		tmux save-buffer - | reattach-to-user-namespace pbcopy
 	else
 		echo "Copy not supported"
 	fi ;;
 
-	copy-pipe) if [ -x "$(which reattach-to-user-namespace)" ] && [ -x "$(which pbcopy)" ]; then
-		exec reattach-to-user-namespace pbcopy
+	copy-pipe) if [ -x "$(which wl-copy)" ]; then
+		exec wl-copy
 	elif [ -x "$(which xclip)" ]; then
 		exec xclip
+	elif [ -x "$(which reattach-to-user-namespace)" ] && [ -x "$(which pbcopy)" ]; then
+		exec reattach-to-user-namespace pbcopy
 	else
 		echo "Copy not supported"
 	fi ;;
