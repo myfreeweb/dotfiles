@@ -1,8 +1,4 @@
 #!/bin/sh
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
-#
 # thanks:
 # https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 # https://bitbucket.org/sjl/dotfiles/src/0112fc0dd59d0e93512ea047fc3639634c70591d/osx.sh?at=default

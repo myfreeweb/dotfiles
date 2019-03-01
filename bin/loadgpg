@@ -1,9 +1,4 @@
 #!/usr/bin/env zsh
-# This came from Greg V's dotfiles:
-#      https://github.com/myfreeweb/dotfiles
-# Feel free to steal it, but attribution is nice
-#
-# Because keychain is fscking 1500 lines long.
 # See also: loadkeys
 
 autoload colors && colors
