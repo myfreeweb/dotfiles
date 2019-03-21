@@ -17,9 +17,6 @@ Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'jceb/vim-orgmode', { 'for': ['org'] }
 Plug 'ziglang/zig.vim', { 'for': 'zig' }
-Plug 'rhysd/vim-llvm', { 'for': 'llvm' }
-Plug 'bohlender/vim-smt2', { 'for': 'smt2' }
-Plug 'dcharbon/vim-flatbuffers', { 'for': 'fbs' }
 Plug 'igankevich/mesonic'
 Plug 'jonsmithers/vim-html-template-literals', { 'for': 'javascript' }
 Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
@@ -27,17 +24,12 @@ Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
 if executable('latex')
 	Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
 endif
-if executable('mono') " .NET
-	Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
-	Plug 'kongo2002/fsharp-vim', { 'for': 'fsharp' }
-endif
 if isdirectory($HOME.'/src/scm.gforge.inria.fr/anonscm/git/why3/why3/share/vim')
 	Plug '~/src/scm.gforge.inria.fr/anonscm/git/why3/why3/share/vim'
 endif
 
 " Features
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
-Plug 'Shougo/echodoc.vim' " Display function signatures etc. on the bottom status line
 Plug 'Shougo/denite.nvim' " Unite (fuzzy finder for many things) but fast
 if has('nvim')
 	Plug 'ncm2/ncm2'
@@ -63,7 +55,6 @@ Plug 'mbbill/undotree', { 'on': ['UndotreeToggle'] } " Undo tree
 Plug 'DougBeney/pickachu' " :Pick color/date/file with zenity/qarma
 Plug 'ap/vim-css-color' " Highlight colors in the editor
 Plug 'jreybert/vimagit' " Interactive git commit
-Plug 'aquach/vim-http-client' " Make HTTP requests
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Raimondi/delimitMate'
