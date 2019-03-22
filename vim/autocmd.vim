@@ -26,13 +26,7 @@ au FileType {css,sass,scss,less,stylus} setlocal iskeyword+=-
 au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if has('nvim')
-		au BufEnter * call ncm2#enable_for_buffer()
 endif
-
-" LSP
-au User LanguageClientStarted set signcolumn=yes
-au User LanguageClientStarted set formatexpr=LanguageClient#textDocument_rangeFormatting()
-au User LanguageClientStopped set signcolumn=auto
 
 " Folds
 au FileType {vim,javascript,sql} setlocal foldmethod=marker

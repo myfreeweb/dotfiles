@@ -32,13 +32,9 @@ endif
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
 Plug 'Shougo/denite.nvim' " Unite (fuzzy finder for many things) but fast
 if has('nvim')
-	Plug 'ncm2/ncm2'
-	Plug 'roxma/nvim-yarp'
-	Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release' } " LSP
-	Plug 'kassio/neoterm' " Easy reuse of a terminal buffer (send to REPL, run tests etc.)
+	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 endif
 Plug 'samuelsimoes/vim-drawer' " Make buffers tab-local
-Plug 'ervandew/supertab' " Correct Tab completion behavior
 Plug 'moll/vim-bbye' " Good buffer close
 Plug 'tpope/vim-unimpaired' " ']q' to :cnext, etc.
 Plug 'tpope/vim-speeddating' " Ctrl-A/X to increment dates/times

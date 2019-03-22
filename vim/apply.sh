@@ -12,6 +12,7 @@ echo "source ~/.vimrc" > ~/.nvimrc
 
 rm ~/.vim/*.vim
 cp ./*.vim ~/.vim/
+cp ./*.json ~/.vim/
 
 rm ~/.nvim
 ln -s .vim ~/.nvim

@@ -1,0 +1,35 @@
+{
+	"coc.preferences.diagnostic.virtualText": true,
+	"coc.preferences.codeLens.enable": true,
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"rootPatterns": ["meson.build", "CMakeLists.txt", "Makefile", "GNUmakefile", "SConscript"],
+			"filetypes": ["c", "cpp", "objc", "objcpp"]
+		},
+		"haskell": {
+			"command": "hie-wrapper",
+			"rootPatterns": ["stack.yaml", "cabal.config", "package.yaml", ".stack-work"],
+			"filetypes": ["hs", "lhs", "haskell"],
+			"initializationOptions": {}
+		},
+		"ocaml": {
+			"command": "node",
+			"args": ["/home/greg/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js", "--stdio"],
+			"rootPatterns": ["dune", "dune-project"],
+			"filetypes": ["ocaml", "reason"]
+		},
+		// "crystal": {
+		// 	"command": "scry",
+		// 	"rootPatterns": ["shard.yml"],
+		// 	"filetypes": ["crystal"]
+		// },
+		"elixir": {
+			"command": "env",
+			"args": ["ERL_LIBS=/home/greg/src/github.com/JakeBecker/elixir-ls/release", "mix", "elixir_ls.language_server"],
+			"rootPatterns": ["mix.exs", "mix.lock"],
+			"filetypes": ["elixir", "eelixir"]
+		}
+		// cd ~/.config/coc/extensions && yarnpkg add coc-ccls coc-rls coc-tsserver coc-solargraph coc-pyls coc-html coc-css coc-json coc-yaml --ignore-engines
+	}
+}

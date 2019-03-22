@@ -16,16 +16,56 @@ nnoremap <silent> <Leader>g :Denite grep<CR>
 command! -bar ProjTab tabnew|Denite -default-action=tcd prj
 command! ProjTabTerm ProjTab|terminal
 nnoremap <silent> <Leader>O :ProjTabTerm<CR>
-nnoremap <silent> <Leader>h :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> <Leader>d :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <Leader>D :call LanguageClient#textDocument_typeDefinition()<CR>
-nnoremap <silent> <Leader>r :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> <Leader>e :call LanguageClient#explainErrorAtPoint()<CR>
-nnoremap <silent> <Leader>a :Denite contextMenu<CR>
-nnoremap <silent> <Leader>f :Denite codeAction<CR>
-nnoremap <silent> <Leader>R :Denite references<CR>
-nnoremap <silent> <Leader>s :Denite documentSymbol<CR>
-nnoremap <silent> <Leader>S :Denite workspaceSymbol<CR>
+
+if has('nvim')
+	inoremap <silent><expr> <TAB>
+				\ pumvisible() ? "\<C-n>" :
+				\ <SID>check_back_space() ? "\<TAB>" :
+				\ coc#refresh()
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+	function! s:check_back_space() abort
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]  =~# '\s'
+	endfunction
+
+	let g:coc_snippet_next = '<TAB>'
+	let g:coc_snippet_prev = '<S-TAB>'
+
+	nmap <silent> [c <Plug>(coc-diagnostic-prev)
+	nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
+
+	nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+	function! s:show_documentation()
+		if &filetype == 'vim'
+			execute 'h '.expand('<cword>')
+		else
+			call CocAction('doHover')
+		endif
+	endfunction
+
+	autocmd CursorHold * silent call CocActionAsync('highlight')
+
+	nmap <leader>rn <Plug>(coc-rename)
+
+	vmap <leader>f  <Plug>(coc-format-selected)
+	nmap <leader>f  <Plug>(coc-format-selected)
+
+	vmap <leader>a  <Plug>(coc-codeaction-selected)
+	nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+	nmap <leader>ac  <Plug>(coc-codeaction)
+	nmap <leader>qf  <Plug>(coc-fix-current)
+
+	command! -nargs=0 Format :call CocAction('format')
+	command! -nargs=? Fold   :call CocAction('fold', <f-args>)
+endif
 
 " Show most plugin keybindings  http://vimbits.com/bits/534
 nnoremap <silent> <Leader>? :map <Leader><CR>

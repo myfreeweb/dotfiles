@@ -89,7 +89,9 @@ set hidden
 if windows || mac || exists('g:GuiLoaded')
 	set mouse=a
 end
+set signcolumn=yes
 set shortmess=filtIoOAc
+set updatetime=300
 set laststatus=2
 set nostartofline
 set visualbell
@@ -176,40 +178,26 @@ call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'norema
 call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
 
 " Language support
-"  pip3.6 install --user --upgrade python-language-server pyls-mypy
-"  gem install solargraph
-"  go get -u github.com/sourcegraph/go-langserver
 let delimitMate_excluded_ft = 'clojure'
 let g:sql_type_default = 'pgsql'
 let g:omni_sql_no_default_maps = 1 " WTF https://www.reddit.com/r/vim/comments/2om1ib/how_to_disable_sql_dynamic_completion/
 let g:bbye_previous_command = 'VimDrawerPreviousBuffer' " Integrate the buffer closing plugin with the tab-local buffers plugin. All of this should be built-in >_<
 let g:haskell_indent_disable = 1 " it's bad
 let g:ledger_bin='hledger'
-let g:echodoc_enable_at_startup = 1
-let g:LanguageClient_autoStart = 0
-let g:LanguageClient_hoverPreview = 'Always' " echo is bad
-let g:LanguageClient_serverCommands = {
-	    \ 'rust': ['rls'],
-	    \ 'crystal': ['scry'],
-	    \ 'elixir': ['env', 'ERL_LIBS='.$HOME.'/src/github.com/JakeBecker/elixir-ls/release', 'mix', 'elixir_ls.language_server'],
-	    \ 'c': ['ccls'],
-	    \ 'cpp': ['ccls'],
-	    \ 'haskell': ['hie-wrapper'],
-	    \ 'go': ['go-langserver'],
-	    \ 'ocaml': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
-	    \ 'reason': ['node', $HOME.'/src/github.com/freebroccolo/ocaml-language-server/out/src/server/index.js', '--stdio'],
-	    \ 'javascript': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js'],
-	    \ 'typescript': ['node', $HOME.'/src/github.com/sourcegraph/javascript-typescript-langserver/lib/language-server-stdio.js'],
-	    \ 'python': ['pyls'],
-	    \ 'ruby': ['solargraph'],
-	    \}
 
 " Colors and lines
 let g:lightline = {
 	    \ 'colorscheme': 'wombat',
+	    \ 'active': {
+	    \   'left': [ [ 'mode', 'paste' ],
+	    \             [ 'readonly', 'filename', 'modified', 'cocstatus' ] ]
+	    \ },
 	    \ 'component': {
 		\ 'readonly': '%{&readonly ? "⭤" : ""}',
-	    \ }
+	    \ },
+	    \ 'component_function': {
+	    \   'cocstatus': 'coc#status'
+	    \ },
 	\ }
 let base16colorspace=256
 "execute 'set background='.$BASE16_BACKGROUND
