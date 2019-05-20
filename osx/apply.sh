@@ -8,14 +8,14 @@ echo "==> Installing osx"
 mkdir -p ~/Library/KeyBindings
 sed '$d' ./keybindings/DefaultKeyBinding.dict > ~/Library/KeyBindings/DefaultKeyBinding.dict
 
-if [ -e "../x11/XCompose" ]; then
+if [ -e "../desktop/XCompose" ]; then
 	export PERL_MB_OPT="--install_base \"$HOME/.local\""
 	export PERL_MM_OPT="INSTALL_BASE=$HOME/.local"
 	[[ ! -e "$HOME/.local/lib/perl5/X11/Keysyms.pm" ]] && cpan -f -i X11:Keysyms
 	echo "\n  // XCompose " >> ~/Library/KeyBindings/DefaultKeyBinding.dict
-	PERL5LIB="$HOME/.local/lib/perl5" perl ./compose2keybindings.pl < ../x11/XCompose | sed -e "s/\\\\UF710/^$\\\\UF710/" | tail -n +2 >> ~/Library/KeyBindings/DefaultKeyBinding.dict
+	PERL5LIB="$HOME/.local/lib/perl5" perl ./compose2keybindings.pl < ../desktop/XCompose | sed -e "s/\\\\UF710/^$\\\\UF710/" | tail -n +2 >> ~/Library/KeyBindings/DefaultKeyBinding.dict
 else
-	echo "==> Warning: x11 not found, not adding XCompose to DefaultKeyBinding"
+	echo "==> Warning: desktop not found, not adding XCompose to DefaultKeyBinding"
 	echo "}" >> ~/Library/KeyBindings/DefaultKeyBinding.dict
 fi
 

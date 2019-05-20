@@ -47,8 +47,9 @@ Modular dotfiles!
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 - **ranger** -- [ranger] file manager
-- **x11** -- [dunst], [st], fontconfig, XCompose, [i3]/[sway] and other X11 and Wayland stuff
-- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst]
+- **desktop** -- common freedesktop things: fontconfig, XCompose..
+- **x11** -- [dunst], [st], compton, [i3]/[sway] and other X11 stuff (not used currently)
+- **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst] (not used in years)
 - **windows** -- PowerShell and other Microsoft Windows stuff
 
 [ssh]: http://www.openssh.com

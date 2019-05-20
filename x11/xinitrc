@@ -9,7 +9,6 @@
 # Need a session bus for stuff like nautilus trash
 [ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exec dbus-launch --sh-syntax --exit-with-session sh $HOME/.xinitrc
 
-. ~/.desktoprc
 . ~/.xinitrc.local
 xrdb -merge -I$HOME ~/.Xresources
 
