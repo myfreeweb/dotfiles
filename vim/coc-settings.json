@@ -10,7 +10,7 @@
 		"haskell": {
 			"command": "hie-wrapper",
 			"rootPatterns": ["stack.yaml", "cabal.config", "package.yaml", ".stack-work"],
-			"filetypes": ["hs", "lhs", "haskell"],
+			"filetypes": ["haskell", "lhaskell"],
 			"initializationOptions": {}
 		},
 		"ocaml": {
@@ -25,8 +25,9 @@
 		// 	"filetypes": ["crystal"]
 		// },
 		"elixir": {
+			"trace.server": "verbose",
 			"command": "env",
-			"args": ["ERL_LIBS=/home/greg/src/github.com/JakeBecker/elixir-ls/release", "mix", "elixir_ls.language_server"],
+			"args": ["ERL_LIBS=/home/greg/src/github.com/JakeBecker/elixir-ls/release", "elixir", "-e", "ElixirLS.LanguageServer.CLI.main()"],
 			"rootPatterns": ["mix.exs", "mix.lock"],
 			"filetypes": ["elixir", "eelixir"]
 		}

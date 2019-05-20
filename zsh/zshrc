@@ -212,6 +212,7 @@ path=(
 	~/.gem/ruby/2.5/bin(N)
 	~/.gem/ruby/2.4/bin(N)
 	~/.gem/ruby/2.3/bin(N)
+	/usr/local/lib/erlang22/bin(N)
 	/usr/local/lib/erlang21/bin(N)
 	/usr/local/lib/erlang20/bin(N)
 	/usr/local/share/npm/bin(N)
