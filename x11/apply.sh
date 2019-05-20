@@ -18,7 +18,6 @@ install_bin floatyoutube
 install_bin freepass-x11
 install_bin x-terminal-emulator
 install_bin bar.rs
-install_bin disable-standby-fs.py
 install_bin2 volumectl.rs volumectl
 
 cat xinitrc > ~/.xinitrc

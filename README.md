@@ -47,7 +47,6 @@ Modular dotfiles!
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
 - **ranger** -- [ranger] file manager
-- **hexchat** -- [HexChat] IRC client
 - **x11** -- [dunst], [st], fontconfig, XCompose, [i3]/[sway] and other X11 and Wayland stuff
 - **osx** -- Apple OS X `defaults`, [keybindings], [Karabiner], [Seil], [Amethyst]
 - **windows** -- PowerShell and other Microsoft Windows stuff
@@ -76,7 +75,6 @@ Modular dotfiles!
 [i3]: https://i3wm.org/
 [sway]: https://github.com/SirCmpwn/sway
 [ranger]: http://ranger.nongnu.org/
-[HexChat]: https://hexchat.github.io/
 
 ### Language-specific
 

@@ -1,2 +1,0 @@
-#!/bin/sh
-exec swipl -q -t main -s ~/src/github.com/larsyencken/marelle/marelle.pl "$@"
