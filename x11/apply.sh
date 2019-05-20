@@ -40,9 +40,6 @@ touch ~/.config/sway/local.conf
 mkdir -p ~/.config/dunst
 cat dunstrc.ini > ~/.config/dunst/dunstrc
 
-mkdir -p ~/.config/zathura
-cat zathurarc > ~/.config/zathura/zathurarc
-
 mkdir -p ~/.config/gtk-2.0
 cat gtkrc.mine > ~/.config/gtk-2.0/gtkrc
 
