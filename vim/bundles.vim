@@ -1,5 +1,5 @@
-" GOPATH all the things. The option is added in vim/apply.sh because fuck everything.
-" Only `Plug 'username/repo'` works with this setup. I don't care about other types of paths!
+" Only `Plug 'username/repo'` works with this setup.
+" NOTE: Plug itself is patched in vim/apply.sh!
 let g:plug_name_modifier = ':s?\.git$??'
 
 call plug#begin('~/src/github.com')
@@ -7,8 +7,6 @@ call plug#begin('~/src/github.com')
 " Languages
 let g:polyglot_disabled = ['latex', 'jsx']
 Plug 'sheerun/vim-polyglot'
-Plug 'lifepillar/pgsql.vim'
-Plug 'b4b4r07/vim-hcl'
 Plug 'vmchale/ion-vim'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
@@ -32,7 +30,7 @@ endif
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
 Plug 'Shougo/denite.nvim' " Unite (fuzzy finder for many things) but fast
 if has('nvim')
-	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+	Plug 'neoclide/coc.nvim' " XXX: coc#util#install() hangs
 endif
 Plug 'samuelsimoes/vim-drawer' " Make buffers tab-local
 Plug 'moll/vim-bbye' " Good buffer close

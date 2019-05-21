@@ -1,10 +1,11 @@
 {
-	"coc.preferences.diagnostic.virtualText": true,
-	"coc.preferences.codeLens.enable": true,
+	"diagnostic.virtualText": true,
+	"codeLens.enable": true,
+	"suggest.maxCompleteItemCount": 69,
 	"languageserver": {
 		"ccls": {
 			"command": "ccls",
-			"rootPatterns": ["meson.build", "CMakeLists.txt", "Makefile", "GNUmakefile", "SConscript"],
+			"rootPatterns": ["meson.build", "CMakeLists.txt", "Makefile", "GNUmakefile", "SConscript", ".ccls"],
 			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		},
 		"haskell": {
