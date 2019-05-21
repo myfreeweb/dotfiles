@@ -13,9 +13,9 @@ nnoremap <silent> <Leader>U :UndotreeToggle<CR>
 nnoremap <silent> <Leader>p :Denite buffer file_rec<CR>
 nnoremap <silent> <Leader>b :Denite buffer<CR>
 nnoremap <silent> <Leader>g :Denite grep<CR>
-command! -bar ProjTab tabnew|Denite -default-action=tcd prj
-command! ProjTabTerm ProjTab|terminal
-nnoremap <silent> <Leader>O :ProjTabTerm<CR>
+command! -bar Proj Denite -default-action=cd prj
+command! ProjStuff Proj|execute 'terminal'|vsplit .
+nnoremap <silent> <Leader>o :ProjStuff<CR>
 
 if has('nvim')
 	inoremap <silent><expr> <TAB>
@@ -61,8 +61,8 @@ if has('nvim')
 	nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 	nmap <leader>ac  <Plug>(coc-codeaction)
-	nmap <leader>qf  <Plug>(coc-fix-current)
 
+	command! -nargs=0 Diag   :call CocAction('diagnosticInfo')
 	command! -nargs=0 Format :call CocAction('format')
 	command! -nargs=? Fold   :call CocAction('fold', <f-args>)
 endif
@@ -166,6 +166,9 @@ nnoremap <Down>  :cnext<CR>zvzz
 if has('nvim')
 	tnoremap <Esc> <C-\><C-n>
 	tnoremap <C-v><Esc> <Esc>
+	" Buffer navigation
+	tmap <silent> <C-Right> <C-\><C-n>:bnext<CR>
+	tmap <silent> <C-Left>  <C-\><C-n>:bprev<CR>
 	" Window navigation out of terminals
 	tmap <C-h> <Esc><C-w>h
 	tmap <C-k> <Esc><C-w>j

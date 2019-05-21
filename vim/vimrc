@@ -86,9 +86,7 @@ end
 set lazyredraw title
 "set cursorline
 set hidden
-if windows || mac || exists('g:GuiLoaded')
-	set mouse=a
-end
+set mouse=a
 set signcolumn=yes
 set shortmess=filtIoOAc
 set updatetime=300
@@ -181,7 +179,7 @@ call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'nore
 let delimitMate_excluded_ft = 'clojure'
 let g:sql_type_default = 'pgsql'
 let g:omni_sql_no_default_maps = 1 " WTF https://www.reddit.com/r/vim/comments/2om1ib/how_to_disable_sql_dynamic_completion/
-let g:bbye_previous_command = 'VimDrawerPreviousBuffer' " Integrate the buffer closing plugin with the tab-local buffers plugin. All of this should be built-in >_<
+"let g:bbye_previous_command = 'VimDrawerPreviousBuffer' " Integrate the buffer closing plugin with the tab-local buffers plugin. All of this should be built-in >_<
 let g:haskell_indent_disable = 1 " it's bad
 let g:ledger_bin='hledger'
 

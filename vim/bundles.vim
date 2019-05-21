@@ -31,6 +31,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
 Plug 'Shougo/denite.nvim' " Unite (fuzzy finder for many things) but fast
 if has('nvim')
 	Plug 'neoclide/coc.nvim' " XXX: coc#util#install() hangs
+	Plug 'kassio/neoterm' " send to REPL in :term
 endif
 Plug 'samuelsimoes/vim-drawer' " Make buffers tab-local
 Plug 'moll/vim-bbye' " Good buffer close

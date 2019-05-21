@@ -6,7 +6,6 @@ au BufRead,BufNewFile *.gradle setf groovy
 au BufRead,BufNewFile *.scaml setf haml
 au BufRead,BufNewFile *.sjs setf javascript
 au BufRead,BufNewFile .{eslintrc,babelrc} setf json
-au BufRead,BufNewFile *.swig setf htmldjango
 au BufRead,BufNewFile *.tt setf tt2html
 au BufRead,BufNewFile *.tap setf tap
 au BufRead,BufNewFile *.gv setf dot
@@ -19,14 +18,7 @@ au BufRead,BufNewFile *.nginx,*.ngx,*.ngx.conf,*nginx.conf setf nginx
 au BufRead,BufNewFile *.pf,*pf.conf setf pf
 au BufRead,BufNewFile *.sieve setf sieve
 au BufRead,BufNewFile gitconfig setlocal noexpandtab
-
-" Completion and stuff
-au FileType {css,sass,scss,less,stylus} setlocal omnifunc=csscomplete#CompleteCSS
 au FileType {css,sass,scss,less,stylus} setlocal iskeyword+=-
-au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-if has('nvim')
-endif
 
 " Folds
 au FileType {vim,javascript,sql} setlocal foldmethod=marker
@@ -35,6 +27,12 @@ au BufRead,BufNewFile {,.}zshrc,*.fish setlocal foldmethod=marker
 " Line numbers
 au InsertEnter * set number
 au InsertLeave * set relativenumber
+
+" Terminal
+au TermOpen * setlocal norelativenumber nonumber signcolumn=no
+au TermClose * Bdelete!
+au BufWinEnter,WinEnter term://* startinsert
+au BufLeave term://* stopinsert
 
 " Misc
 " https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
