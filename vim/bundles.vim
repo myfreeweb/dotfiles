@@ -7,14 +7,12 @@ call plug#begin('~/src/github.com')
 " Languages
 let g:polyglot_disabled = ['latex', 'jsx']
 Plug 'sheerun/vim-polyglot'
-Plug 'vmchale/ion-vim'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'jceb/vim-orgmode', { 'for': ['org'] }
-Plug 'ziglang/zig.vim', { 'for': 'zig' }
 Plug 'igankevich/mesonic'
 Plug 'jonsmithers/vim-html-template-literals', { 'for': 'javascript' }
 Plug 'idris-hackers/idris-vim', { 'for': 'idris' }
