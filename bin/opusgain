@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+oggfiles = $*.map { |f| if File.directory?(f) then Dir[File.join(f, "*.ogg")] else f end }.flatten
+puts oggfiles.inspect
+opusfiles = oggfiles.map { |f| File.join(File.dirname(f), File.basename(f, '.*') + '.opus') }
+opusfiles.each { |op| File.delete(op) if File.exist?(op) }
+oggfiles.zip(opusfiles).each { |og, op| File.symlink(og, op) }
+system 'loudness', 'tag', '-L', '--opus-vorbisgain-compat', *opusfiles
+opusfiles.each { |op| File.delete(op) }

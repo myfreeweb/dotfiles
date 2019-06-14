@@ -1,0 +1,4 @@
+#!/bin/sh
+: ${CPUS:=$(expr $(sysctl -n hw.ncpu) - 1)}
+: ${LIBRARY:=/disk/Music}
+find "$LIBRARY" -path '*.ogg' -print0 | xargs -0 -I "{}" dirname "{}" | uniq | tr '\n' '\0' | xargs -0 -P $CPUS -n 1 opusgain
