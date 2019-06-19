@@ -9,6 +9,5 @@ else
 		ORIGINAL_URL="$ORIGINAL_URL.git"
 	fi
 	git remote set-url "$REMOTE" "$(printf "%s" "$ORIGINAL_URL" | sed -e 's|ssh://||' -e 's|git@github.com.|https://github.com/|')"
-	git remote set-url --push "$REMOTE" "$(printf "%s" "$ORIGINAL_URL" | sed -e 's|https://github.com/|git@github.com:|')"
-	git config legit.remote "$REMOTE"
+	git remote set-url --push "$REMOTE" "$(printf "%s" "$ORIGINAL_URL" | sed -re 's|https://([^/]+)/|git@\1:|')"
 fi
