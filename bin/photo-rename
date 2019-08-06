@@ -1,0 +1,80 @@
+#!/usr/bin/env ruby
+require 'date'
+
+PATH = ARGV[0]
+
+def files_at(path)
+  Dir.entries(path)
+    .select { |f| File.file? File.join(path, f) }
+end
+
+def get_date(path)
+  exif_out = IO.popen(['exiv2', '-g', 'Exif.Image.DateTime', '-Pv', path]).read.scan(/(\d+):(\d+):(\d+)\s(\d+):(\d+):(\d+)/)
+  if exif_out.length == 1
+    y, m, d, h, mi, s = exif_out.first
+    return [:exif, DateTime.new(y.to_i, m.to_i, d.to_i, h.to_i, mi.to_i, s.to_i, '+3')]
+  end
+  raws = Dir["/disk/Photos/*Raw*/**/#{File.basename(path).sub(File.extname(path), "")}*"].select { |f|
+    !%w(.txt .xmp .pp3 .mp4 .m4v .mov .webm .ogv .mkv).include?(File.extname(f).downcase)
+  }
+  if raws.length > 0
+    exif_out = IO.popen(['exiv2', '-g', 'Exif.Image.DateTime', '-Pv', raws.first]).read.scan(/(\d+):(\d+):(\d+)\s(\d+):(\d+):(\d+)/)
+    if exif_out.length == 1
+      y, m, d, h, mi, s = exif_out.first
+      return [:rawexif, DateTime.new(y.to_i, m.to_i, d.to_i, h.to_i, mi.to_i, s.to_i, '+3')]
+    end
+  end
+  img_out = File.basename(path).scan(/(?:IMG|PANO)_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/)
+  if img_out.length == 1
+    y, m, d, h, mi, s = img_out.first
+    return [:filename, DateTime.new(y.to_i, m.to_i, d.to_i, h.to_i, mi.to_i, s.to_i, '+3')]
+  end
+  wp_out = File.basename(path).scan(/WP_(\d{4})(\d{2})(\d{2})_(\d+)_(\d+)_(\d+)/)
+  if wp_out.length == 1
+    y, m, d, h, mi, s = wp_out.first
+    return [:filename, DateTime.new(y.to_i, m.to_i, d.to_i, h.to_i, mi.to_i, s.to_i, '+3')]
+  end
+  stat = File::Stat.new(path)
+  times = [stat.ctime, stat.mtime]
+  begin
+    times << stat.birthtime
+  rescue NotImplementedError
+  end
+  dt = times.select { |d| d.year >= 2000 }.sort.first.to_datetime
+  [:file, dt]
+end
+
+def rename(path)
+  if File.basename(path).scan(/(?:IMG|PANO)_(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/).length == 1
+    puts "=> #{path} skipped: IMG/PANO already"
+    return
+  end
+
+  dtsrc, dt = get_date(path)
+  new_path = File.join(File.dirname(path), "IMG_#{dt.strftime '%Y%m%d_%H%M%S'}#{File.extname(path)}")
+
+  if new_path == path
+    puts "=> #{path} skipped: same name [via #{dtsrc}]"
+    return
+  end
+
+  i = 0
+  while File.exists?(new_path)
+    puts "=> #{path}: #{new_path} [via #{dtsrc}] exists"
+    new_path = File.join(File.dirname(path), "IMG_#{dt.strftime '%Y%m%d_%H%M%S'}_#{i}#{File.extname(path)}")
+    i += 1
+  end
+
+  puts "=> #{path} -> #{new_path} [via #{dtsrc}]"
+  File.rename(path, new_path)
+end
+
+if File.directory?(PATH)
+  files_at(PATH).each do |path|
+    rename(File.join(PATH, path))
+  rescue Errno::ENOENT
+    puts "#{path}: enoent"
+  end
+else
+  rename(PATH)
+end
