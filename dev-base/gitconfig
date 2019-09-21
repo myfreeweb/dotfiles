@@ -22,7 +22,7 @@
 	email = greg@unrelenting.technology
 	signingkey = 0x5F9F528D3B011BAF
 [web]
-	browser = open
+	browser = xdg-open
 [diff]
 	algorithm = histogram
 	renames = copy
@@ -35,6 +35,9 @@
 	summary = true
 	tool = meld
 	conflictstyle = diff3
+[rerere]
+	enabled = true
+	autoupdate = true
 [rebase]
 	instructionformat = "<%aE> %s"
 [sequence]
@@ -45,10 +48,6 @@
 	fsckobjects = true
 [receive]
 	fsckobjects = true
-[push]
-	default = tracking
-[pull]
-	rebase = preserve
 [branch]
 	autosetupmerge = always
 [submodule]
@@ -94,7 +93,6 @@
 	hs  = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}" # [s]napshot
 	# [m]erge
 	mt  = mergetool -y
-	mtg = mergetool -y -t meld
 	mo  = "!f() { git checkout --ours $@ && git add $@; }; f"   # [o]urs
 	mt  = "!f() { git checkout --theirs $@ && git add $@; }; f" # [t]heirs
 	# [r]emote
