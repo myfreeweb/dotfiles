@@ -40,14 +40,18 @@
 	autoupdate = true
 [rebase]
 	instructionformat = "<%aE> %s"
+	autostash = true
 [sequence]
 	editor = interactive-rebase-tool
 [transfer]
 	fsckobjects = true
 [fetch]
 	fsckobjects = true
+	recursesubmodules = true
 [receive]
 	fsckobjects = true
+[pull]
+	rebase = merges
 [branch]
 	autosetupmerge = always
 [submodule]
