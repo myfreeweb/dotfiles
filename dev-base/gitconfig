@@ -11,7 +11,6 @@
 	whitespace = space-before-tab,trailing-space
 	legacyheaders = false
 	quotepath = false
-	pager = $PAGER
 	trustctime = false
 [repack]
 	usedeltabaseoffset = true
@@ -20,8 +19,6 @@
 [user]
 	name = Greg V
 	email = greg@unrelenting.technology
-[web]
-	browser = xdg-open
 [diff]
 	algorithm = histogram
 	renames = copy
@@ -29,7 +26,6 @@
 	mnemonicprefix = true
 	compactionheuristic = true
 	submodule = log
-	tool = meld
 [merge]
 	summary = true
 	tool = meld
@@ -40,8 +36,6 @@
 [rebase]
 	instructionformat = "<%aE> %s"
 	autostash = true
-[sequence]
-	editor = interactive-rebase-tool
 [transfer]
 	fsckobjects = true
 [fetch]
@@ -61,8 +55,6 @@
 [color]
 	ui = auto
 	interactive = auto
-[credential]
-	helper = /usr/local/share/git-core/contrib/credential/libsecret/git-credential-libsecret
 
 [alias] # object -> verb -> option
 	# common verbs: [c]reate, [l]ist, [r]eset/[r]emove
@@ -83,8 +75,6 @@
 	# [d]iff
 	d   = diff
 	dc  = diff --cached
-	df  = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
-	dfc = "!f() { [ \"$GIT_PREFIX\" != \"\" ] && cd "$GIT_PREFIX"; git diff --cached --color $@ | diff-so-fancy | less --tabs=4 -RFX; }; f"
 	dt  = difftool -y --dir-diff
 	# [f]ile
 	fa  = add
