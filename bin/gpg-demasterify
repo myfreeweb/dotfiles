@@ -1,9 +1,0 @@
-#!/bin/sh
-# Thanks: https://alexcabal.com/creating-the-perfect-gpg-keypair/
-
-for k in "$@"; do
-	gpg --export-secret-subkeys "$k" > "$k.sub"
-	gpg --delete-secret-key "$k"
-	gpg --import "$k.sub"
-	srm "$k.sub"
-done

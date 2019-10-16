@@ -17,7 +17,7 @@ UseRoaming no
 
 Host *
 	HashKnownHosts yes
-	KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group1-sha1
+	HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,rsa-sha2-512,rsa-sha2-256,ssh-rsa
 	SendEnv BASE16_SCHEME LANG LC_*
 	IdentityFile ~/.ssh/%u@%h
 
@@ -25,4 +25,7 @@ Host *.onion
 	ProxyCommand socat - SOCKS4A:localhost:%h:%p,socksport=9050
 
 Host *.local
+	ForwardAgent yes
+
+Host *.lan
 	ForwardAgent yes

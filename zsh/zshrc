@@ -13,6 +13,8 @@ source ~/.zsh/zsh-hss/zsh-history-substring-search.zsh
 export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME XDG_RUNTIME_DIR
 [[ ! -d $XDG_RUNTIME_DIR ]] && mkdir -p $XDG_RUNTIME_DIR && chmod 0700 $XDG_RUNTIME_DIR
 # mount tmpfs at /tmp. Do not use ZFS for XDG_RUNTIME_DIR because posix_fallocate.
+# with pam_ck_connector (ConsoleKit2), XDG_RUNTIME_DIR is set to /var/run/user/UID
+# and that should be on tmpfs too
 # }}}
 
 # Color {{{
@@ -38,7 +40,7 @@ base16 $BASE16_SCHEME
 # Less
 export LESS="-R"
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
-export MANWIDTH="120"
+export MANWIDTH="100"
 
 # Tmux
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
@@ -242,18 +244,11 @@ alias mn=$MENU
 alias sr=$SEARCH
 # }}}
 
-# GPG agent for SSH {{{
-export GPG_TTY=$(tty)
-[[ -e $commands[gpgconf] ]] && export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-if [[ -e $commands[gpg-connect-agent] ]]; then
-	ssh() {
-		gpg-connect-agent updatestartuptty /bye
-		$commands[ssh] $*
-	}
-	scp() {
-		gpg-connect-agent updatestartuptty /bye
-		$commands[scp] $*
-	}
+# SSH agent {{{
+# working socket -> either forwarded or started like this
+: ${SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"}
+if [[ ! -S $SSH_AUTH_SOCK ]]; then
+	eval $(ssh-agent -a $SSH_AUTH_SOCK)
 fi
 # }}}
 

@@ -20,7 +20,6 @@
 [user]
 	name = Greg V
 	email = greg@unrelenting.technology
-	signingkey = 0x5F9F528D3B011BAF
 [web]
 	browser = xdg-open
 [diff]

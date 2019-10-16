@@ -39,7 +39,7 @@ Modular dotfiles!
 
 ### Common
 
-- **dev-base** -- configs for [ssh], [git], [ack], [ctags], [curl], [gpg] and other small but essential programs
+- **dev-base** -- configs for [ssh], [git], [ack], [ctags], [curl] and other small but essential programs
 - **bin** -- various useful scripts that mostly work
 - **tmux** -- [tmux] configuration and command helper
 - **zsh** -- [Z Shell] configuration and plugins
@@ -57,7 +57,6 @@ Modular dotfiles!
 [ack]: http://beyondgrep.com
 [ctags]: http://ctags.sourceforge.net
 [curl]: http://curl.haxx.se
-[gpg]: https://www.gnupg.org
 [tmux]: http://tmux.sourceforge.net
 [Z Shell]: http://zsh.sourceforge.net
 [neovim]: https://github.com/neovim/neovim

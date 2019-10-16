@@ -25,9 +25,6 @@ alias pipfr="pip freeze --local > requirements.txt"
 alias ci="git commit -am"
 alias g="git"
 
-# GPG
-alias gpgsign="gpg --detach-sign --armor"
-
 # Navigation
 alias p="popd"
 alias ..="cd .."
