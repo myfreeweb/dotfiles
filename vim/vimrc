@@ -58,7 +58,7 @@ set autoread autowrite
 set magic
 set nojoinspaces
 set modelines=3
-set synmaxcol=768 " don't highlight minified js and stuff
+set synmaxcol=1024 " don't highlight minified js and stuff
 set switchbuf=usetab
 set gdefault
 
@@ -104,7 +104,7 @@ end
 set spelllang=en_us,ru
 
 " completion
-set wildmenu wildmode=list:longest,list:full
+set wildmenu wildmode=longest,full
 set wildignore+=.hg,.git,.bzr,.svn " Version control
 set wildignore+=*.aux,*.out,*.toc  " LaTeX
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.webp,*.otf,*.ttf,*.eot,*.woff
@@ -157,23 +157,8 @@ let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:vim_drawer_exclude_regex = "\[denite\]"
 
 command! -bar -count=0 RFC :e http://www.ietf.org/rfc/rfc<count>.txt | setl ro noma
-
-call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git', ''])
-call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
-call denite#custom#source('prj', 'sorters', ['sorter_sublime'])
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
 
 " Language support
 let delimitMate_excluded_ft = 'clojure'

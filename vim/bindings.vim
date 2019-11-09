@@ -10,12 +10,6 @@ xmap <silent> ga <Plug>(EasyAlign)
 nmap <silent> ga <Plug>(EasyAlign)
 nnoremap <silent> <Leader>q :Bdelete<CR>
 nnoremap <silent> <Leader>U :UndotreeToggle<CR>
-nnoremap <silent> <Leader>p :Denite buffer file_rec<CR>
-nnoremap <silent> <Leader>b :Denite buffer<CR>
-nnoremap <silent> <Leader>g :Denite grep<CR>
-command! -bar Proj Denite -default-action=cd prj
-command! ProjStuff Proj|execute 'terminal'|vsplit .
-nnoremap <silent> <Leader>o :ProjStuff<CR>
 
 if has('nvim')
 	inoremap <silent><expr> <TAB>
@@ -32,8 +26,8 @@ if has('nvim')
 	let g:coc_snippet_next = '<TAB>'
 	let g:coc_snippet_prev = '<S-TAB>'
 
-	nmap <silent> [c <Plug>(coc-diagnostic-prev)
-	nmap <silent> ]c <Plug>(coc-diagnostic-next)
+	nmap <silent> [g <Plug>(coc-diagnostic-prev)
+	nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 	nmap <silent> gd <Plug>(coc-definition)
 	nmap <silent> gy <Plug>(coc-type-definition)
@@ -57,14 +51,20 @@ if has('nvim')
 	vmap <leader>f  <Plug>(coc-format-selected)
 	nmap <leader>f  <Plug>(coc-format-selected)
 
-	vmap <leader>a  <Plug>(coc-codeaction-selected)
+	xmap <leader>a  <Plug>(coc-codeaction-selected)
 	nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 	nmap <leader>ac  <Plug>(coc-codeaction)
 
+	xmap if <Plug>(coc-funcobj-i)
+	xmap af <Plug>(coc-funcobj-a)
+	omap if <Plug>(coc-funcobj-i)
+	omap af <Plug>(coc-funcobj-a)
+
 	command! -nargs=0 Diag   :call CocAction('diagnosticInfo')
 	command! -nargs=0 Format :call CocAction('format')
 	command! -nargs=? Fold   :call CocAction('fold', <f-args>)
+	command! -nargs=0 Import :call CocAction('runCommand', 'editor.action.organizeImport')
 endif
 
 " Show most plugin keybindings  http://vimbits.com/bits/534
@@ -96,10 +96,7 @@ noremap j gk
 " Less keystrokes
 nnoremap ; :
 vnoremap ; :
-nnoremap ' i
-vnoremap ' i
 nnoremap U <C-r>
-"nnoremap <Leader>q :Bdelete<CR>
 
 " Reselect visual block after indent/outdent  http://vimbits.com/bits/20
 vnoremap < <gv
@@ -130,16 +127,12 @@ nnoremap <silent> <CR> :nohlsearch<CR>
 " great for pasting Python lines into REPLs.
 nnoremap vv ^vg_
 
-" Extra commands
-command! Wc w|Bdelete
-
 " Case-insensitive commands
 command! E e
 command! W w
 command! Q q
 command! Wq wq
 command! WQ wq
-command! WC Wc
 
 " Tab navigation
 nmap <C-Right> :tabnext<CR>
@@ -182,24 +175,3 @@ if has('nvim')
 	nnoremap <silent> <F9> :TREPLSendLine<CR>
 	vnoremap <silent> <F9> :TREPLSendSelection<CR>
 endif
-
-" Motion for numbers.  Great for CSS.  Lets you do things like this:
-" margin-top: 200px; -> daN -> margin-top: px;
-onoremap N  :<C-u>call <SID>NumberTextObject(0)<cr>
-xnoremap N  :<C-u>call <SID>NumberTextObject(0)<cr>
-onoremap aN :<C-u>call <SID>NumberTextObject(1)<cr>
-xnoremap aN :<C-u>call <SID>NumberTextObject(1)<cr>
-onoremap iN :<C-u>call <SID>NumberTextObject(1)<cr>
-xnoremap iN :<C-u>call <SID>NumberTextObject(1)<cr>
-function! s:NumberTextObject(whole)
-	normal! v
-	while getline('.')[col('.')] =~# '\v[0-9]'
-		normal! l
-	endwhile
-	if a:whole
-		normal! o
-		while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
-			normal! h
-		endwhile
-	endif
-endfunction

@@ -26,7 +26,6 @@ endif
 
 " Features
 Plug 'Shougo/vimproc.vim', { 'do': 'gmake' }
-Plug 'Shougo/denite.nvim' " Unite (fuzzy finder for many things) but fast
 if has('nvim')
 	Plug 'neoclide/coc.nvim' " XXX: coc#util#install() hangs
 	Plug 'kassio/neoterm' " send to REPL in :term
@@ -45,7 +44,6 @@ Plug 'tpope/vim-sleuth' " Autodetect indent
 Plug 'tpope/vim-rsi' " Readline key bindings in command prompts & insert mode
 Plug 'jeetsukumaran/vim-filebeagle' " Simple file explorer without netrw's bugs
 Plug 'mbbill/undotree', { 'on': ['UndotreeToggle'] } " Undo tree
-Plug 'DougBeney/pickachu' " :Pick color/date/file with zenity/qarma
 Plug 'ap/vim-css-color' " Highlight colors in the editor
 Plug 'jreybert/vimagit' " Interactive git commit
 Plug 'junegunn/vim-easy-align'
