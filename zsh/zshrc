@@ -250,6 +250,7 @@ alias sr=$SEARCH
 if [[ ! -S $SSH_AUTH_SOCK ]]; then
 	eval $(ssh-agent -a $SSH_AUTH_SOCK)
 fi
+export $SSH_AUTH_SOCK
 # }}}
 
 [[ $TERM == "st-256color" ]] && export TERM=xterm-256color
