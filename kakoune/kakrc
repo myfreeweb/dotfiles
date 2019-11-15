@@ -1,0 +1,125 @@
+# First things first, flip up/down because Colemak
+map global normal j k
+map global normal k j
+map global normal J K
+map global normal K J
+
+# Then add support for (customized) vim habits
+map global normal $ Gl
+map global normal 0 Gh
+map global normal <left>  ': buffer-previous<ret>'
+map global normal <right> ': buffer-next<ret>'
+map global user q ': delete-buffer<ret>'
+
+# Especially the paragraph navigation addiction
+map global normal { [p
+map global normal } ]p
+# But that means we need new keys for the original {} functionality
+# So let's sacrifice the inner object functionality because whatever
+map global normal <a-[> {
+map global normal <a-]> }
+
+# Add some extra useful shortcuts
+map global normal '#' ': comment-line<ret>'
+
+# Integrate tmux navigation and splitting
+define-command tmux-up    %{ nop %sh{ tmux select-pane -U } }
+define-command tmux-right %{ nop %sh{ tmux select-pane -R } }
+define-command tmux-down  %{ nop %sh{ tmux select-pane -D } }
+define-command tmux-left  %{ nop %sh{ tmux select-pane -L } }
+define-command vsplit -params .. -command-completion %{
+	tmux-terminal-horizontal kak -c %val{session} -e "%arg{@}"
+}
+define-command split -params .. -command-completion %{
+	tmux-terminal-vertical kak -c %val{session} -e "%arg{@}"
+}
+alias global vs vsplit
+alias global s split
+map global normal <c-l> ': tmux-right<ret>'
+map global normal <c-h> ': tmux-left<ret>'
+map global normal <c-j> ': tmux-up<ret>'
+map global normal <c-k> ': tmux-down<ret>'
+
+# Indentation
+source ~/src/github.com/andreyorst/smarttab.kak/rc/smarttab.kak
+set-option global indentwidth 0
+set-option global tabstop 2 # Visual size of \t tab
+define-command spaces -params 1 %{
+	require-module smarttab
+	set-option buffer indentwidth %arg{1}
+	set-option buffer softtabstop %arg{1}
+	expandtab
+}
+define-command tabs %{
+	require-module smarttab
+	set-option buffer indentwidth 0
+	set-option buffer softtabstop 0
+	smarttab
+}
+# These Option hooks run before OpenFile to set defaults per filetype
+hook global BufSetOption filetype=(ruby|elixir|crystal) %{ set-option buffer indentwidth 2 }
+hook global BufSetOption filetype=(python|rust) %{ set-option buffer indentwidth 4 }
+define-command auto-setup-indent %{
+	# If we have lines starting with tabs in the file, default to tabs
+	try %{
+		execute-keys '%s^\t<ret>'
+		set-option buffer indentwidth 0
+	}
+	# Would be nice to add width heuristics like in vim-sleuth
+	editorconfig-load # Project settings > defaults
+	modeline-parse # File settings > project settings
+	# Now choose appropriate smarttab mode
+	# based on indentwidth chosen by any of the above things
+	evaluate-commands %sh{
+		if [ $kak_opt_indentwidth -eq 0 ]; then
+			printf "tabs\n"
+		else
+			printf "spaces $kak_opt_indentwidth\n"
+		fi;
+	}
+}
+hook global BufOpenFile .* auto-setup-indent
+hook global BufNewFile .* auto-setup-indent
+
+# Tab completion https://github.com/mawww/kakoune/wiki/Indentation-and-Tabulation
+hook global InsertCompletionShow .* %{
+	try %{
+		execute-keys -draft 'h<a-K>\h<ret>'
+		map window insert <tab> <c-n>
+		map window insert <s-tab> <c-p>
+	}
+}
+hook global InsertCompletionHide .* %{
+	unmap window insert <tab> <c-n>
+	unmap window insert <s-tab> <c-p>
+}
+
+# Various settings
+set global grepcmd 'rg --column'
+
+# Various UI things
+add-highlighter global/line-nums number-lines -relative -separator ' '
+add-highlighter global/unicode-whitespace show-whitespaces -tab '▏' -nbsp '␣' -spc ' '
+
+# Various commands
+define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
+define-command blame %{ tmux-terminal-horizontal tig blame "+%val{cursor_line}" %val{buffile} }
+
+# Use mostly basic terminal palette colors in a base16-shell friendly way
+face global Default white
+face global PrimarySelection bright-white,blue+g
+face global MenuBackground white,rgb:444444
+face global MenuForeground bright-white,rgb:777777+b
+face global LineFlagErrors black,magenta
+face global Whitespace rgb:444444,default+Ff
+face global LineNumbers white,rgb:333333
+face global StatusLine cyan,rgb:222222
+
+# System clipboard
+source ~/src/github.com/lePerdu/kakboard/kakboard.kak
+hook global WinCreate .* %{ kakboard-enable }
+
+# Language Server Protocol
+eval %sh{ kak-lsp --config /usr/local/etc/kak-lsp/kak-lsp.toml --kakoune -s $kak_session }
+lsp-enable
+face global LineFlagErrors magenta,rgb:333333 # kak-lsp sets that

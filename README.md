@@ -43,6 +43,7 @@ Modular dotfiles!
 - **bin** -- various useful scripts that mostly work
 - **tmux** -- [tmux] configuration and command helper
 - **zsh** -- [Z Shell] configuration and plugins
+- **kakoune** -- [kakoune] text editor configuration
 - **vim** -- [neovim] text editor configuration and plugins
 - **emacs** -- [GNU Emacs] text editor configuration and plugins
 - **mail** -- [mutt], [notmuch], [msmtp], [urlview], [hashcash]
@@ -59,6 +60,7 @@ Modular dotfiles!
 [curl]: http://curl.haxx.se
 [tmux]: http://tmux.sourceforge.net
 [Z Shell]: http://zsh.sourceforge.net
+[kakoune]: https://kakoune.org
 [neovim]: https://github.com/neovim/neovim
 [GNU Emacs]: https://www.gnu.org/software/emacs/
 [keybindings]: https://github.com/ttscoff/KeyBindings

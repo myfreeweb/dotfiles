@@ -232,6 +232,7 @@ alias pg=$PAGER
 [[ -e $commands[vim]  ]] && export EDITOR=vim
 [[ -e $commands[nvim] ]] && export EDITOR=nvim
 alias vi=$EDITOR
+[[ -e $commands[kak]  ]] && export EDITOR=kak
 export VISUAL=$EDITOR
 
 [[ -e $commands[peco]   ]] && export MENU=peco
