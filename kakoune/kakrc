@@ -7,17 +7,17 @@ map global normal K J
 # Then add support for (customized) vim habits
 map global normal $ Gl
 map global normal 0 Gh
+map global normal ^ Gi
 map global normal <left>  ': buffer-previous<ret>'
 map global normal <right> ': buffer-next<ret>'
-map global user q ': delete-buffer<ret>'
+map global user q ': delete-buffer<ret>' -docstring "delete buffer"
 
 # Especially the paragraph navigation addiction
 map global normal { [p
 map global normal } ]p
 # But that means we need new keys for the original {} functionality
-# So let's sacrifice the inner object functionality because whatever
-map global normal <a-[> {
-map global normal <a-]> }
+map global user [ { -docstring "ext to obj begin"
+map global user ] } -docstring "ext to obj end"
 
 # Add some extra useful shortcuts
 map global normal '#' ': comment-line<ret>'
@@ -34,7 +34,9 @@ define-command split -params .. -command-completion %{
 	tmux-terminal-vertical kak -c %val{session} -e "%arg{@}"
 }
 alias global vs vsplit
+alias global v vsplit
 alias global s split
+alias global sp split
 map global normal <c-l> ': tmux-right<ret>'
 map global normal <c-h> ': tmux-left<ret>'
 map global normal <c-j> ': tmux-up<ret>'
@@ -57,16 +59,16 @@ define-command tabs %{
 	smarttab
 }
 # These Option hooks run before OpenFile to set defaults per filetype
-hook global BufSetOption filetype=(ruby|elixir|crystal) %{ set-option buffer indentwidth 2 }
+hook global BufSetOption filetype=(ruby|elixir|crystal|haskell) %{ set-option buffer indentwidth 2 }
 hook global BufSetOption filetype=(python|rust) %{ set-option buffer indentwidth 4 }
 define-command auto-setup-indent %{
-	# If we have lines starting with tabs in the file, default to tabs
+	# Having lines starting with tabs in the file > defaults
 	try %{
 		execute-keys '%s^\t<ret>'
 		set-option buffer indentwidth 0
 	}
 	# Would be nice to add width heuristics like in vim-sleuth
-	editorconfig-load # Project settings > defaults
+	editorconfig-load # Project settings > defaults/heuristics
 	modeline-parse # File settings > project settings
 	# Now choose appropriate smarttab mode
 	# based on indentwidth chosen by any of the above things
@@ -122,4 +124,10 @@ hook global WinCreate .* %{ kakboard-enable }
 # Language Server Protocol
 eval %sh{ kak-lsp --config /usr/local/etc/kak-lsp/kak-lsp.toml --kakoune -s $kak_session }
 lsp-enable
+set-option -add global lsp_server_configuration rust.clippy_preference="on"
+set-option -add global lsp_server_configuration d.dls.format.insertFinalNewline=false
 face global LineFlagErrors magenta,rgb:333333 # kak-lsp sets that
+map global user h ': lsp-hover<ret>' -docstring "hover"
+map global user a ': lsp-code-actions<ret>' -docstring "code actions"
+map global user f ': lsp-formatting<ret>' -docstring "format"
+map global user r ': lsp-rename-prompt<ret>' -docstring "rename"
