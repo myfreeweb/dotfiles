@@ -85,6 +85,7 @@ export CARGO_INSTALL_ROOT="$HOME/.local"
 # }}}
 
 # Aliases and functions {{{
+[[ -e $XDG_CONFIG_HOME/broot/launcher/bash/br ]] && source $XDG_CONFIG_HOME/broot/launcher/bash/br
 [[ -e ~/.rc ]] && source ~/.rc
 [[ ! -e $commands[gmake] ]] && alias gmake=make
 dighost() { host $(dig $1 | grep ANSWER -C 1 | tail -n 1 | awk '{ print $5 }') }
@@ -206,11 +207,12 @@ cdpath=(~/src/github.com/myfreeweb)
 
 typeset -U path # U for Unique, like a set; (N) == only if exists
 path=(
-	.git/safe/../../bin
 	~/.local/bin(N) ~/bin(N) ~/.cask/bin(N)
 	$BREWGO/bin(N) $BREWGO/libexec/bin(N) /usr/local/go/bin(N)
 	$JAVA_HOME/bin(N)
 	$RBENV_ROOT/shims(N)
+	~/.gem/ruby/2.7/bin(N)
+	~/.gem/ruby/2.6/bin(N)
 	~/.gem/ruby/2.5/bin(N)
 	~/.gem/ruby/2.4/bin(N)
 	~/.gem/ruby/2.3/bin(N)
