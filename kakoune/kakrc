@@ -11,6 +11,9 @@ map global normal ^ Gi
 map global normal <left>  ': buffer-previous<ret>'
 map global normal <right> ': buffer-next<ret>'
 map global user q ': delete-buffer<ret>' -docstring "delete buffer"
+map global normal / '/(?i)'
+map global normal ? '<a-/>(?i)'
+map global normal <a-/> '?(?i)'
 
 # Especially the paragraph navigation addiction
 map global normal { [p
@@ -21,6 +24,7 @@ map global user ] } -docstring "ext to obj end"
 
 # Add some extra useful shortcuts
 map global normal '#' ': comment-line<ret>'
+map global user i ': echo %sh{ printf "HEX \\\x%04x -- OCT \\\%04o -- DEC %d" "$kak_cursor_char_value" "$kak_cursor_char_value" "$kak_cursor_char_value" }<ret>' -docstring 'codepoint'
 
 # Integrate tmux navigation and splitting
 define-command tmux-up    %{ nop %sh{ tmux select-pane -U } }
@@ -97,7 +101,7 @@ hook global InsertCompletionHide .* %{
 }
 
 # Various settings
-set global grepcmd 'rg --column'
+set global grepcmd 'rg --hidden --follow --smart-case --with-filename --column'
 
 # Various UI things
 add-highlighter global/line-nums number-lines -relative -separator ' '
@@ -131,3 +135,17 @@ map global user h ': lsp-hover<ret>' -docstring "hover"
 map global user a ': lsp-code-actions<ret>' -docstring "code actions"
 map global user f ': lsp-formatting<ret>' -docstring "format"
 map global user r ': lsp-rename-prompt<ret>' -docstring "rename"
+
+# Nice modeline
+evaluate-commands %sh{
+	readonly='{red+b}%sh{ [ -f "$kak_buffile" ] && [ ! -w "$kak_buffile" ] && echo "[ro] " }{default}'
+	modified='{yellow+b}%sh{ $kak_modified && echo "[+] " }{default}'
+	cwd='at {rgb:999999}%sh{ pwd | sed -e "s|^/usr$HOME|$HOME|" -e "s|^$HOME/src/github.com/myfreeweb|~/s/g/my|" -e "s|^$HOME/src/github.com|~/s/g|" -e "s|^$HOME|~|" }{default}'
+	bufname='in {green}%val{bufname}{default}'
+	ft='as {magenta}%sh{ echo "${kak_opt_filetype:-noft}" }{default}'
+	eol='{blue}%val{opt_eolformat}{default}'
+	bom='{red+b}%sh{ [ "$kak_opt_BOM" != "none" ] && echo " BOM" }{default}'
+	indent='{yellow}%sh{ [ $kak_opt_indentwidth -eq 0 ] && echo "⇥" || printf "%d␣" "$kak_opt_indentwidth" }{default}'
+	cursor='on {cyan}%val{cursor_line}{default}:{cyan}%val{cursor_char_column}{default}'
+	echo set global modelinefmt "'{{mode_info}} ${readonly}${modified}${cwd} ${bufname} ${ft} with ${eol}${bom} ${indent} ${cursor}'"
+}
