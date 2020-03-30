@@ -1,0 +1,23 @@
+directory: /disk/Music
+library: /disk/Music/beets.db
+
+plugins: acousticbrainz convert chroma edit fetchart lyrics mbsync mbsubmit replaygain scrub the
+
+paths:
+  default: %the{%asciify{$albumartist}}/($year) %asciify{$album}%aunique{}/$track %asciify{$title}
+  singleton: %the{%asciify{$albumartist}}/Non-Album/%asciify{$title}
+  comp: Compilations/($year) %asciify{$album}%aunique{}/$track %asciify{$title}
+
+# needs master for now: pip-3.7 install --user git+https://github.com/beetbox/beets
+replaygain:
+  backend: ffmpeg
+
+convert:
+  auto: yes
+  no_convert: format:Opus
+  embed: no
+  format: opus
+  formats:
+    opus:
+      command: ffmpeg -i $source -y -acodec libopus -b:a 96k -vn $dest
+      extension: ogg

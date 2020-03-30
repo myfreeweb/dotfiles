@@ -27,4 +27,7 @@ xdg-mime default io.github.GnomeMpv.desktop application/ogg application/x-ogg vi
 xdg-mime default org.gnome.Nautilus.desktop inode/directory
 xdg-mime default org.gnome.Evince.desktop application/pdf image/vnd.djvu image/x-djvu application/x-dvi application/vnd.comicbook+zip application/vnd.comicbook-rar application/oxps application/vnd.ms-xpsdocument application/postscript application/eps application/x-eps image/eps image/x-eps
 
+mkdir -p ~/.config/beets
+cat beets.yml > ~/.config/beets/config.yaml
+
 echo "==> Installed desktop"
