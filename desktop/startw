@@ -3,9 +3,8 @@
 #export MESA_DEBUG=1 LIBGL_DEBUG=verbose EGL_LOG_LEVEL=debug
 export _JAVA_AWT_WM_NONREPARENTING=1 # X crap
 export QT_QPA_PLATFORM=wayland MOZ_ENABLE_WAYLAND=1 # Enabling Wayland in apps
-export AMD_DEBUG=nir
 
-ASAN_SYMBOLIZER_PATH=/usr/local/llvm80/bin/llvm-symbolizer \
+ASAN_SYMBOLIZER_PATH=/usr/local/llvm10/bin/llvm-symbolizer \
 ASAN_OPTIONS=halt_on_error=0:detect_container_overflow=0:disable_coredump=0:unmap_shadow_on_exit=1 \
 LD_LIBRARY_PATH=$HOME/.local/lib \
 	exec wayfire
