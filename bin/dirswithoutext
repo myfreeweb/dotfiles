@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+find "$1" -type d | while read dir; do 
+	ls ${dir}/*.$2 >/dev/null 2>/dev/null
+	if [ $? -ne 0 ]; then
+		echo "$dir"
+	fi
+done
