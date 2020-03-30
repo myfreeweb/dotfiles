@@ -28,18 +28,18 @@ font:
   italic:
     family: monospace
     style: Italic
-  size: 10.0
+  size: 10
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 0.0
-    y: 3.0
+    x: 0
+    y: 3
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
 custom_cursor_colors: false
 
@@ -47,7 +47,7 @@ visual_bell:
   animation: EaseOutExpo
   duration: 0
 
-background_opacity: 0.92
+background_opacity: 0.95
 
 key_bindings:
   - { key: V,        mods: Control|Shift,    action: Paste               }
@@ -112,5 +112,3 @@ selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
 hide_cursor_when_typing: false
-
-live_config_reload: false
