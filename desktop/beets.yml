@@ -12,6 +12,9 @@ paths:
 replaygain:
   backend: ffmpeg
 
+lyrics:
+	auto: no
+
 convert:
   auto: yes
   no_convert: format:Opus
