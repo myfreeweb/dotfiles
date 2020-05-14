@@ -22,9 +22,14 @@ map global normal } ]p
 map global user [ { -docstring "ext to obj begin"
 map global user ] } -docstring "ext to obj end"
 
+# Reduce selections, "opposite of shift-C" -- shouldn't be on my layout switching key combo!
+# also "remove main selection" is really not an obvious help text for this
+map global normal D <a-space>
+
 # Add some extra useful shortcuts
 map global normal '#' ': comment-line<ret>'
 map global user i ': echo %sh{ printf "HEX \\\x%04x -- OCT \\\%04o -- DEC %d" "$kak_cursor_char_value" "$kak_cursor_char_value" "$kak_cursor_char_value" }<ret>' -docstring 'codepoint'
+map global user A '*%s<ret>' -docstring 'sel all instances of this'
 
 # Integrate tmux navigation and splitting
 define-command tmux-up    %{ nop %sh{ tmux select-pane -U } }
@@ -55,12 +60,14 @@ define-command spaces -params 1 %{
 	set-option buffer indentwidth %arg{1}
 	set-option buffer softtabstop %arg{1}
 	expandtab
+	set-option buffer lsp_insert_spaces true
 }
 define-command tabs %{
 	require-module smarttab
 	set-option buffer indentwidth 0
 	set-option buffer softtabstop 0
 	smarttab
+	set-option buffer lsp_insert_spaces false
 }
 # These Option hooks run before OpenFile to set defaults per filetype
 hook global BufSetOption filetype=(ruby|elixir|crystal|haskell) %{ set-option buffer indentwidth 2 }
@@ -106,10 +113,41 @@ set global grepcmd 'rg --hidden --follow --smart-case --with-filename --column'
 # Various UI things
 add-highlighter global/line-nums number-lines -relative -separator ' '
 add-highlighter global/unicode-whitespace show-whitespaces -tab '▏' -nbsp '␣' -spc ' '
+add-highlighter global/soft-wrap wrap -word -indent -marker '↪'
 
 # Various commands
 define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
 define-command blame %{ tmux-terminal-horizontal tig blame "+%val{cursor_line}" %val{buffile} }
+define-command git-edit -params 1 -shell-script-candidates %{ git ls-files } %{ edit %arg{1} }
+alias global E git-edit
+alias global g git
+
+# https://github.com/andreyorst/dotfiles/blob/master/.config/kak/commands.kak
+define-command -docstring "if <condition> <expression> [else [if <condition>] <expression>]: if statement that accepts shell-valid condition string" \
+if -params 2.. %{ evaluate-commands %sh{
+	while [ true ]; do
+		condition="[ $1 ]"
+		if [ -n "$3" ] && [ "$3" != "else" ]; then
+			printf "%s\n" "fail %{if: unknown operator '$3'}"
+		elif [ $# -eq 3 ]; then
+			printf "%s\n" "fail %{if: wrong argument count}"
+		elif eval $condition; then
+			[ -n "${2##*&*}" ] && arg="$2" || arg="$(printf '%s' "$2" | sed 's/&/&&/g')"
+			printf "%s\n" "evaluate-commands %& $arg &"
+		elif [ $# -eq 4 ]; then
+			[ -n "${4##*&*}" ] && arg="$4" || arg="$(printf '%s' "$4" | sed 's/&/&&/g')"
+			printf "%s\n" "evaluate-commands %& $arg &"
+		elif [ $# -gt 4 ]; then
+			if [ "$4" = "if" ]; then
+				shift 4
+				continue
+			else
+				printf "%s\n" "fail %{if: wrong argument count}"
+			fi
+		fi
+		exit
+	done
+}}
 
 # Use mostly basic terminal palette colors in a base16-shell friendly way
 face global Default white
@@ -122,19 +160,25 @@ face global LineNumbers white,rgb:333333
 face global StatusLine cyan,rgb:222222
 
 # System clipboard
-source ~/src/github.com/lePerdu/kakboard/kakboard.kak
-hook global WinCreate .* %{ kakboard-enable }
+if %[ -f ~/src/github.com/lePerdu/kakboard/kakboard.kak ] %{
+	source ~/src/github.com/lePerdu/kakboard/kakboard.kak
+	hook global WinCreate .* %{ kakboard-enable }
+}
 
 # Language Server Protocol
-eval %sh{ kak-lsp --config /usr/local/etc/kak-lsp/kak-lsp.toml --kakoune -s $kak_session }
-lsp-enable
-set-option -add global lsp_server_configuration rust.clippy_preference="on"
-set-option -add global lsp_server_configuration d.dls.format.insertFinalNewline=false
-face global LineFlagErrors magenta,rgb:333333 # kak-lsp sets that
-map global user h ': lsp-hover<ret>' -docstring "hover"
-map global user a ': lsp-code-actions<ret>' -docstring "code actions"
-map global user f ': lsp-formatting<ret>' -docstring "format"
-map global user r ': lsp-rename-prompt<ret>' -docstring "rename"
+if %[ -f /usr/local/etc/kak-lsp/kak-lsp.toml ] %{
+	eval %sh{ kak-lsp --config /usr/local/etc/kak-lsp/kak-lsp.toml --kakoune -s $kak_session }
+	lsp-enable
+	define-command lsp-restart %{ lsp-stop; lsp-start }
+	set-option global lsp_hover_anchor true
+	set-option -add global lsp_server_configuration rust.clippy_preference="on"
+	set-option -add global lsp_server_configuration d.dls.format.insertFinalNewline=false
+	face global LineFlagErrors magenta,rgb:333333 # kak-lsp sets that
+	map global user h ': lsp-hover<ret>' -docstring "hover"
+	map global user a ': lsp-code-actions<ret>' -docstring "code actions"
+	map global user f ': lsp-formatting<ret>' -docstring "format"
+	map global user r ': lsp-rename-prompt<ret>' -docstring "rename"
+}
 
 # Nice modeline
 evaluate-commands %sh{
@@ -147,5 +191,5 @@ evaluate-commands %sh{
 	bom='{red+b}%sh{ [ "$kak_opt_BOM" != "none" ] && echo " BOM" }{default}'
 	indent='{yellow}%sh{ [ $kak_opt_indentwidth -eq 0 ] && echo "⇥" || printf "%d␣" "$kak_opt_indentwidth" }{default}'
 	cursor='on {cyan}%val{cursor_line}{default}:{cyan}%val{cursor_char_column}{default}'
-	echo set global modelinefmt "'{{mode_info}} ${readonly}${modified}${cwd} ${bufname} ${ft} with ${eol}${bom} ${indent} ${cursor}'"
+	echo set global modelinefmt "'${cwd} ${bufname} ${ft} with ${eol}${bom} ${indent} ${cursor} ▏{{mode_info}} ${readonly}${modified}'"
 }
