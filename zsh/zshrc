@@ -203,7 +203,7 @@ export CLICOLOR="yes"
 PROMPT="%B%F{cyan}%~%b %F{yellow}%#%f "
 RPROMPT="%(0?..%F{red}^%?^) %F{blue}%T%f"
 
-cdpath=(~/src/github.com/myfreeweb)
+cdpath=(~/src/github.com/myfreeweb ~/src/github.com/DankBSD)
 
 typeset -U path # U for Unique, like a set; (N) == only if exists
 path=(
