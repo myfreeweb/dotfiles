@@ -31,9 +31,9 @@ base16() {
 }
 
 _base16() { compadd $(find ~/.zsh/base16-shell/scripts | xargs basename | sed -e "s/base16-//" -e "s/\.sh//") }
-: ${BASE16_SCHEME:="$(cat $XDG_CONFIG_HOME/base16/scheme 2>/dev/null || echo default)"}
+BASE16_SCHEME="$(cat $XDG_CONFIG_HOME/base16/scheme 2>/dev/null || echo default)"
 export BASE16_SCHEME
-base16 $BASE16_SCHEME
+source "$HOME/.zsh/base16-shell/scripts/base16-$BASE16_SCHEME.sh"
 # }}}
 
 # Support for tools, programming languages, etc {{{
