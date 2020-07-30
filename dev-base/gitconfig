@@ -12,6 +12,8 @@
 	legacyheaders = false
 	quotepath = false
 	trustctime = false
+[init]
+	defaultbranch = trunk
 [repack]
 	usedeltabaseoffset = true
 [apply]
