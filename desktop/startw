@@ -1,15 +1,11 @@
 #!/usr/bin/env zsh
-[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exec dbus-launch --sh-syntax --exit-with-session sh $HOME/.local/bin/startw
+[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && exec dbus-run-session -- sh $HOME/.local/bin/startw
+
 #export MESA_DEBUG=1 LIBGL_DEBUG=verbose EGL_LOG_LEVEL=debug
-export _JAVA_AWT_WM_NONREPARENTING=1 # X crap
-export QT_QPA_PLATFORM=wayland MOZ_ENABLE_WAYLAND=1 # Enabling Wayland in apps
+export SDL_VIDEODRIVER=wayland WAFFLE_PLATFORM=wayland QT_QPA_PLATFORM=wayland MOZ_ENABLE_WAYLAND=1 # Enabling Wayland in apps
 
-ASAN_SYMBOLIZER_PATH=/usr/local/llvm10/bin/llvm-symbolizer \
-ASAN_OPTIONS=halt_on_error=0:detect_container_overflow=0:disable_coredump=0:unmap_shadow_on_exit=1 \
-LD_LIBRARY_PATH=$HOME/.local/lib \
-	exec wayfire -c $HOME/.config/wayfire.ini
+# export ASAN_SYMBOLIZER_PATH=/usr/local/llvm11/bin/llvm-symbolizer
+# export ASAN_OPTIONS=halt_on_error=0:detect_container_overflow=0:disable_coredump=0:unmap_shadow_on_exit=1
 
-#exec loginw weston --debug --log=$XDG_RUNTIME_DIR/weston.log
-#exec weston-launch --debug --log=$XDG_RUNTIME_DIR/weston.log
-#exec sway --debug
-#exec ~/src/github.com/swaywm/wlroots/build/rootston/rootston -C ~/src/github.com/swaywm/wlroots/rootston.ini
+export LD_LIBRARY_PATH=$HOME/.local/lib
+exec wayfire -c $HOME/.config/wayfire.ini

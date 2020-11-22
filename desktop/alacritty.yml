@@ -31,7 +31,7 @@ font:
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
     x: 0
-    y: 3
+    y: 4
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
@@ -41,11 +41,11 @@ font:
 
 custom_cursor_colors: false
 
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
 
-background_opacity: 0.95
+background_opacity: 0.94
 
 key_bindings:
   - { key: V,        mods: Control|Shift,    action: Paste               }
