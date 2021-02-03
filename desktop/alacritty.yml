@@ -107,6 +107,6 @@ mouse:
   triple_click: { threshold: 300 }
 
 selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>¬"
 
 hide_cursor_when_typing: false

@@ -117,7 +117,7 @@
 	pushInsteadOf = "git://github.com/"
 
 [github]
-	user = myfreeweb
+	user = unrelentingtech
 
 [ghq]
 	root = ~/src

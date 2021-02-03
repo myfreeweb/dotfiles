@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# https://gist.github.com/myfreeweb/5189568   <- also on gist
+# https://gist.github.com/unrelentingtech/5189568   <- also on gist
 # Feel free to steal it, but attribution is nice
 import os
 import sys

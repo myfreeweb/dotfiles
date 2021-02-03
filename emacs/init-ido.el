@@ -1,7 +1,7 @@
 ;;; init-ido.el -- initialize ido mode
 ;;;
 ;;; This came from Greg V's dotfiles:
-;;;      https://github.com/myfreeweb/dotfiles
+;;;      https://github.com/unrelentingtech/dotfiles
 ;;; Feel free to steal it, but attribution is nice
 ;;;
 ;;; Thanks:

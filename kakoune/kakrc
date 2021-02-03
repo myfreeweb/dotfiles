@@ -184,7 +184,7 @@ if %[ -f /usr/local/etc/kak-lsp/kak-lsp.toml ] %{
 evaluate-commands %sh{
 	readonly='{red+b}%sh{ [ -f "$kak_buffile" ] && [ ! -w "$kak_buffile" ] && echo "[ro] " }{default}'
 	modified='{yellow+b}%sh{ $kak_modified && echo "[+] " }{default}'
-	cwd='at {rgb:999999}%sh{ pwd | sed -e "s|^/usr$HOME|$HOME|" -e "s|^$HOME/src/github.com/myfreeweb|~/s/g/my|" -e "s|^$HOME/src/github.com|~/s/g|" -e "s|^$HOME|~|" }{default}'
+	cwd='at {rgb:999999}%sh{ pwd | sed -e "s|^/usr$HOME|$HOME|" -e "s|^$HOME/src/github.com/unrelentingtech|~/s/g/my|" -e "s|^$HOME/src/github.com|~/s/g|" -e "s|^$HOME|~|" }{default}'
 	bufname='in {green}%val{bufname}{default}'
 	ft='as {magenta}%sh{ echo "${kak_opt_filetype:-noft}" }{default}'
 	eol='{blue}%val{opt_eolformat}{default}'

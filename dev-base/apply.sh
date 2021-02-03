@@ -2,6 +2,7 @@
 echo "==> Installing dev-base"
 
 mkdir -p ~/.tmp
+mkdir -p ~/.config
 
 git_name="$(git config --global user.name)"
 git_email="$(git config --global user.email)"
@@ -28,6 +29,8 @@ cat inputrc > ~/.inputrc
 
 cat lesskey > ~/.lesskey
 lesskey
+
+cat ripgreprc > ~/.config/ripgreprc
 
 cat psqlrc > ~/.psqlrc
 

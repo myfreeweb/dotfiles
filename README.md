@@ -1,22 +1,3 @@
-```
-                                                                             
-                 ▄▀▀                                     █                  ▄
- ▄▄▄▄▄  ▄   ▄  ▄▄█▄▄   ▄ ▄▄   ▄▄▄    ▄▄▄  ▄     ▄  ▄▄▄   █▄▄▄              █ 
- █ █ █  ▀▄ ▄▀    █     █▀  ▀ █▀  █  █▀  █ ▀▄ ▄ ▄▀ █▀  █  █▀ ▀█            █  
- █ █ █   █▄█     █     █     █▀▀▀▀  █▀▀▀▀  █▄█▄█  █▀▀▀▀  █   █           █   
- █ █ █   ▀█      █     █     ▀█▄▄▀  ▀█▄▄▀   █ █   ▀█▄▄▀  ██▄█▀          █    
-         ▄▀                                                            ▀     
-        ▀▀                                                                   
-                                                        
-     █           ▄      ▄▀▀    ▀    ▀▀█                 
-  ▄▄▄█   ▄▄▄   ▄▄█▄▄  ▄▄█▄▄  ▄▄▄      █     ▄▄▄    ▄▄▄  
- █▀ ▀█  █▀ ▀█    █      █      █      █    █▀  █  █   ▀ 
- █   █  █   █    █      █      █      █    █▀▀▀▀   ▀▀▀▄ 
- ▀█▄██  ▀█▄█▀    ▀▄▄    █    ▄▄█▄▄    ▀▄▄  ▀█▄▄▀  ▀▄▄▄▀ 
-                                                        
-
-```
-
 # dotfiles
 
 Modular dotfiles!
@@ -29,7 +10,7 @@ Modular dotfiles!
 
 - XDG-style `~/.config/application-name/config-file-name` paths are preferred
 - Binaries are placed into `~/.local/bin` (and `go`, `pip`, `npm`, `cpan`, `cargo`, etc. are configured to use that directory)
-- Repos are placed into `~/src` using Go conventions (e.g. `~/src/github.com/myfreeweb/dotfiles`). `$GOPATH` is `~` and [ghq] is used to clone non-Go repos there
+- Repos are placed into `~/src` using Go conventions (e.g. `~/src/github.com/unrelentingtech/dotfiles`). `$GOPATH` is `~` and [ghq] is used to clone non-Go repos there
 - Keyboard configuration is mostly based on [A Modern Space Cadet]
 
 [ghq]: https://github.com/motemen/ghq

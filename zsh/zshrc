@@ -42,6 +42,9 @@ export LESS="-R"
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export MANWIDTH="100"
 
+# Ripgrep
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgreprc"
+
 # Tmux
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 
@@ -57,7 +60,7 @@ export GOBIN=~/.local/bin
 
 # Ruby
 bforkify() {
-	bundle config local.$1 ~/src/github.com/myfreeweb/$1
+	bundle config local.$1 ~/src/github.com/unrelentingtech/$1
 }
 bunforkify() {
 	bundle config --delete local.$1
@@ -203,7 +206,7 @@ export CLICOLOR="yes"
 PROMPT="%B%F{cyan}%~%b %F{yellow}%#%f "
 RPROMPT="%(0?..%F{red}^%?^) %F{blue}%T%f"
 
-cdpath=(~/src/github.com/myfreeweb ~/src/github.com/DankBSD)
+cdpath=(~/src/github.com/unrelentingtech ~/src/github.com/DankBSD)
 
 typeset -U path # U for Unique, like a set; (N) == only if exists
 path=(

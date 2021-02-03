@@ -1,10 +1,10 @@
 #!/usr/bin/env run-cargo-script
 //! ```cargo
 //! [dependencies]
-//! unixbar = { path = "/home/greg/src/github.com/myfreeweb/unixbar" }
-//! systemstat = { path = "/home/greg/src/github.com/myfreeweb/systemstat" }
+//! unixbar = { path = "/home/greg/src/github.com/unrelentingtech/unixbar" }
+//! systemstat = { path = "/home/greg/src/github.com/unrelentingtech/systemstat" }
 //! [patch.crates-io]
-//! systemstat = { path = "/home/greg/src/github.com/myfreeweb/systemstat" }
+//! systemstat = { path = "/home/greg/src/github.com/unrelentingtech/systemstat" }
 //! ```
 
 #[macro_use] extern crate unixbar;
