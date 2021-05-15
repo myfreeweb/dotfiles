@@ -13,7 +13,7 @@ replaygain:
   backend: ffmpeg
 
 lyrics:
-	auto: no
+  auto: no
 
 convert:
   auto: yes
