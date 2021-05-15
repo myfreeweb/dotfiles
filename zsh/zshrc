@@ -58,14 +58,6 @@ export GOBIN=~/.local/bin
 # Java
 [[ -e /usr/libexec/java_home ]] && export JAVA_HOME=$(/usr/libexec/java_home)
 
-# Ruby
-bforkify() {
-	bundle config local.$1 ~/src/github.com/unrelentingtech/$1
-}
-bunforkify() {
-	bundle config --delete local.$1
-}
-
 # Python
 export PYTHONDONTWRITEBYTECODE=true
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/rc.py
@@ -216,14 +208,10 @@ path=(
 	$RBENV_ROOT/shims(N)
 	~/.gem/ruby/2.7/bin(N)
 	~/.gem/ruby/2.6/bin(N)
-	~/.gem/ruby/2.5/bin(N)
-	~/.gem/ruby/2.4/bin(N)
-	~/.gem/ruby/2.3/bin(N)
 	/usr/local/lib/erlang22/bin(N)
 	/usr/local/lib/erlang21/bin(N)
-	/usr/local/lib/erlang20/bin(N)
 	/usr/local/share/npm/bin(N)
-	/usr/local/sbin /usr/local/bin /sbin /bin $path
+	/usr/local/sbin /usr/local/bin $path
 )
 export PATH
 # }}}
@@ -231,7 +219,6 @@ export PATH
 # Default programs {{{
 # (must come after PATH)
 export PAGER=less
-alias pg=$PAGER
 
 [[ -e $commands[vi]   ]] && export EDITOR=vi
 [[ -e $commands[vim]  ]] && export EDITOR=vim
@@ -242,12 +229,6 @@ export VISUAL=$EDITOR
 
 [[ -e $commands[peco]   ]] && export MENU=peco
 [[ -e $commands[fzy]    ]] && export MENU=fzy
-alias mn=$MENU
-
-[[ -e $commands[ack] ]] && export SEARCH=ack
-[[ -e $commands[ag]  ]] && export SEARCH=ag
-[[ -e $commands[rg]  ]] && export SEARCH=rg
-alias sr=$SEARCH
 # }}}
 
 # SSH agent {{{
@@ -258,8 +239,6 @@ if [[ ! -S $SSH_AUTH_SOCK ]]; then
 fi
 export SSH_AUTH_SOCK
 # }}}
-
-[[ $TERM == "st-256color" ]] && export TERM=xterm-256color
 
 [[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
 [[ $PRIVATE == 1 ]] && unset HISTFILE
