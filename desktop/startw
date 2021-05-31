@@ -4,8 +4,8 @@
 #export MESA_DEBUG=1 LIBGL_DEBUG=verbose EGL_LOG_LEVEL=debug
 export SDL_VIDEODRIVER=wayland WAFFLE_PLATFORM=wayland QT_QPA_PLATFORM=wayland MOZ_ENABLE_WAYLAND=1 # Enabling Wayland in apps
 
-# export ASAN_SYMBOLIZER_PATH=/usr/local/llvm11/bin/llvm-symbolizer
+# export ASAN_SYMBOLIZER_PATH=/usr/local/llvm12/bin/llvm-symbolizer
 # export ASAN_OPTIONS=halt_on_error=0:detect_container_overflow=0:disable_coredump=0:unmap_shadow_on_exit=1
 
 export LD_LIBRARY_PATH=$HOME/.local/lib
-exec wayfire -c $HOME/.config/wayfire.ini
+exec wayfire -B $HOME/.local/lib/wayfire/libgsettings.so
